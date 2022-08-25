@@ -1,28 +1,25 @@
 import React from 'react';
-import styled from 'styled-components/native';
+import { TextInput, StyleSheet } from 'react-native'
 //52 -criando o os inputs padronizados para usar em varios lugares
-const InputArea = styled.View`
-    width: 100%;
-    height: 60px;
-    background-color: #fff;
-    flex-direction: row;
-    border-radius:20px;
-    padding-left: 15px;
-    align-items: center;
-    margin-bottom: 15px;
-`;
-const Input = styled.TextInput`
-    flex: 1;
-    font-size: 16px;
-    color: #000;
-    margin-left: 10px;
-`;
+
 
 export default ({IconSvg, placeholder, value, onChangeText, password, autoCapitalize, keyboardType,  posi}) => {
+    const Styles = StyleSheet.create ({
+        masked :{
+            flex: 1,
+            fontSize: 20,
+            color: '#000',
+            marginLeft: 1,
+            
+           
+        },
+      
+    });
+   
     return (
-        <InputArea>
-            <IconSvg width="24" height="24" fill="#000" />
-            <Input
+      
+          
+            <TextInput
                 keyboardType={keyboardType}
                 autoCapitalize={autoCapitalize}
                 placeholder={placeholder}
@@ -31,7 +28,8 @@ export default ({IconSvg, placeholder, value, onChangeText, password, autoCapita
                 onChangeText={onChangeText}
                 secureTextEntry={password}
                 maxLength = {posi}
+                style = {Styles.masked}
             />
-        </InputArea>
+       
     );
 }

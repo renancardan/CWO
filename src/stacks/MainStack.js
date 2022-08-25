@@ -9,63 +9,46 @@ import Main from '../screens/main';
 import Camera from '../screens/camera';
 import Preload from '../screens/preload';
 import SignIn from '../screens/SignIn';
+import AvisoLoc from '../screens/AvisoLoc';
+import SignInCod from '../screens/SignInCod';
+ //import cadastroSim from '../screens/cadastroSim';
 
 const Stack = createNativeStackNavigator();
 export default function Routes() {
 
-    // const customStyle = {
-    //     container: {
-    //       backgroundColor: '#e8e8e8',
-    //       borderRadius: 10,
-    //     },
-    //     buttonCancel: {
-    //       backgroundColor: '#b51919',
-    //       borderRadius: 5,
-    //       paddingLeft:10,
-    //       paddingRight:10,
-    //     },
-    //     buttonConfirm: {
-    //       backgroundColor: '#4490c7',
-    //       borderRadius: 5,
-    //       paddingLeft:10,
-    //       paddingRight:10,
-    //     },
-    //     textButtonCancel: {
-    //         color: '#fff',
-    //         fontWeight: 'bold'
-    //     },
-    //     textButtonConfirm: {
-    //         color: '#fff',
-    //         fontWeight: 'bold'
-    //     },
-    //     title: {
-    //       color: '#003d69',
-    //       fontSize: 17,
-    //       fontWeight: 'bold'
-    //     },
-    //     message: {
-    //       color: '#4f4f4f',
-    //       fontSize: 12
-    //     }
-    //   }
+    
     return (
       <NavigationContainer>
          
         <Stack.Navigator
-      initialRouteName={"Preload"}
+      initialRouteName={"SignInCod"}
 
       >
-        <Stack.Screen
+          <Stack.Screen
      options={{
+        title: 'Aviso',
         headerShown: false
     }}   
-     name="Main" component={Main} />
+     name="AvisoLoc" component={AvisoLoc} />
+     
         <Stack.Screen
      options={{
         title: 'Inicio',
         headerShown: false
     }}   
      name="Preload" component={Preload} />
+       <Stack.Screen
+     options={{
+      title: 'Codigo',
+        headerShown: false
+    }}   
+    name="SignInCod" component={SignInCod} />
+      {/* <Stack.Screen
+     options={{
+      title: 'Cadastro',
+        headerShown: false
+    }}   
+    name="CadastroSim" component={cadastroSim} /> */}
        <Stack.Screen
      options={{
         title: 'Login',

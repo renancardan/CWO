@@ -24,9 +24,11 @@ export default ({IconSvg, placeholder, value, onChangeText, password, autoCapita
     const Styles = StyleSheet.create ({
         masked :{
             flex: 1,
-            fontSize: 16,
+            fontSize: 20,
             color: '#000',
-            marginLeft: 10,
+            marginLeft: 1,
+           
+           
         },
       
         image: {
@@ -57,6 +59,7 @@ export default ({IconSvg, placeholder, value, onChangeText, password, autoCapita
                 onChangeText={onChangeText}
                 secureTextEntry={password}
                 style = {Styles.masked}
+               
              
             />
     

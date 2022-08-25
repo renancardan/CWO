@@ -98,32 +98,86 @@ export default {
     
     },
 
+    CriandoW: async (Inicio, setPos, setWhats, setTele) => {
+      var Posi= 0;
+      var Num = 0;
+      var Tel = parseInt(Inicio)
+      // 83 ao 84
+      for  (var i = Tel; i < 5599984000000; i++) {
+        setTele(i)
+          Posi = Posi+1;
+          setPos(Posi)
+          const req = await fetch(`https://api.z-api.io/instances/3A9D95BC49F730DF458B76215AA2744C/token/A2A3E65C2FE0E21916E8A2AE/phone-exists/${i}`, 
+            {
+                  method: 'GET',
+                  headers:{
+                    'Content-Type': 'application/json'
+                  },
+                
+                });
+                const json = await req.json(); 
+                if(json.exists){
+
+                 
+                  console.log("Sim")
+             
+                  await firestore.collection("WhatsAtomatico")
+                .where("Telefone", "==", i)
+                .get()
+                  .then(async (querySnapshot) => {
+            
+                  if(querySnapshot.size  === 0){
+            
+                    await firestore.collection("WhatsAtomatico").add({
+                      Telefone:i,
+                      Cidade:"",
+                      Estado:"Maranhão",
+                 
+                   })
+                   .then((docRef) => {
+                    Num = Num+1;
+                    setWhats(Num);
+                    firestore.collection("NumeroWhats").doc("5uqO4Zwh6uj10bHsd2cQ")
+                    .update({
+                      PosiCompu: Posi,
+                      WhatsCompu: Num,
+                  })
+                  })
+                 
+            
+                  }
+                });
+
+                }else {
+
+                  console.log("Não")
+                firestore.collection("NumeroWhats").doc("5uqO4Zwh6uj10bHsd2cQ")
+                  .update({
+                    PosiCompu: Posi
+                })
+
+                }
+         
+  
+  
+  
+      
+      
+        
+     }
+
+     
+   
+
+    },
+
     signIn: async (Tel, Nome, setIrCad, setIrEnt, setLoading) => {
-     
+      
       var tele = Tel.toString();
-     
+      var last = Math.floor((Math.random() * (9999 - 1000)) + 1000);
       await AsyncStorage.setItem('Tel', tele);
-  
-      var data = new URLSearchParams();
-      data.append('Nome', Nome);
-  
-      const req = await fetch("https://us-central1-vigilantesn-3c66a.cloudfunctions.net/api/criarCodigo", {
-        method: 'POST',
-        headers:{
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: data.toString(),
-        json: true,
-      });
-     
-      const json28 = await req.json();
-    
-      if(json28){
-        console.log("Codigo "+json28.Codi)
-        var last = json28.Codi;
-  
-  
-        await firestore.collection("users")
+   
+    await firestore.collection("users")
    .where("telefone", "==", tele)
    .get().then( async (querySnapshot) => {
      if(querySnapshot.size !== 0){
@@ -137,10 +191,11 @@ export default {
               CodigEnt: last,
           })
           .then( async() => {
+
             var ver = tele.replace("(", "55");
             var par1 = ver.replace(")", "");
             var par3 = par1.replace("-", "");
-            data={
+            var data={
               "phone": par3,
               "message": "Código de entrada: "+last,
             }   
@@ -240,7 +295,7 @@ export default {
     var ver = tele.replace("(", "55");
     var par1 = ver.replace(")", "");
     var par3 = par1.replace("-", "");
-    data={
+    var data={
       "phone": par3,
       "message": "Código de entrada: "+last,
     }   
@@ -306,10 +361,62 @@ export default {
      
     
     
-        }
+    
   
   
    
+  
+  
+       
+    },
+    
+    signIn3: async (Tel, code, setIrpre, setLoading) => {
+     
+      var tele = Tel.toString();
+      var codig = await parseInt(code); 
+   await firestore.collection("users")
+   .where("telefone", "==", tele)
+   .where("CodigEnt", "==", codig)
+   .get().then((querySnapshot) => {
+     if(querySnapshot.size !== 0){
+      querySnapshot.forEach(async (doc) => {
+       
+            await AsyncStorage.setItem('Id', doc.id);
+  
+            let time = new Date().getTime();
+            firestore.collection("users")
+            .doc(doc.id)
+            .update({
+              DataEnt: time,
+          })
+          .then( async() => {
+           
+            let temp = await time.toString();
+            
+            await AsyncStorage.setItem('@entrada', temp);
+            await setIrpre(true);
+          })
+          .catch((error) => {
+          
+            
+          });
+    
+       
+      
+    
+      
+    });
+  
+     } else {
+      setLoading(false);
+       alert("Código e/ou Número do celular errado");
+     }
+   
+  })
+  .catch((error) => {
+   
+  });
+  
   
   
        

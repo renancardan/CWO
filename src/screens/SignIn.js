@@ -1,24 +1,132 @@
 import React, { Component, useEffect, useContext, useState  } from 'react'
-import { Text, View, StyleSheet, ImageBackground, Image, } from 'react-native'
+import {Platform, Modal, Alert, Text, View, StyleSheet, ImageBackground, Image, Button, TouchableHighlight, KeyboardAvoidingView } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import { UserContext } from '../contexts/UserContext';
 import Api from '../Api';
-//import TelIcon from '../assets/telefone.svg';
 import Telefone from '../components/NumberTel';
+import SignInput from '../components/SignInputIni';
 
 export default () => {
     const navigation = useNavigation();
     const { dispatch: userDispatch } = useContext(UserContext);
     const { state: userState } = useContext(UserContext);
+    const [Nome, setNome] = useState("");
     const [Tel, setTel] = useState("");
+    const [Te1, setTe1] = useState(false);
+    const [TelMsg, setTelMsg] = useState(true)
+    const [confirm, setConfirm] = useState(null);
+    const [code, setCode] = useState(null);
+    const [IrEnt, setIrEnt] = useState(false);
+    const [IrCad, setIrCad] = useState(false)
+    const [Loading, setLoading] = useState(false);
+    const [Carreg, setCarreg] = useState(false)
+    const [Btn, setBtn] = useState(false);
+    const [ModalLoad, setModalLoad] = useState(false);
+    const [ModText, setModText] = useState("")
  
+    useEffect(() => {
+      console.log(Te1);
+     }, [Te1])
 
+  useEffect(() => {
+      if(IrEnt === true){
+          Entrando();
+      }
+     }, [IrEnt])
+
+     useEffect(() => {
+      if(IrCad === true){
+          Cadastrado();
+      }
+     }, [IrCad])
+
+     useEffect(() => {
+      if(Tel !== "" && Tel.length === 14){
+        console.log("Entrou PesWa")
+          TelWhats();
+      }
+      
+     }, [Tel])
+
+   const handleMessageButtonClick = () => {
+   
+     
+      if(TelMsg === true){
+          if(Tel !== '' && Nome !== '' ) {
+              setLoading(true);
+              Api.signIn(Tel, Nome, setIrCad, setIrEnt, setLoading);
+               
+            
+          }  else {
+            setModalLoad(true);
+            setModText("Preencha todos os campos!")
+        
+          }
+
+      } else {
+        setModalLoad(true);
+        setModText("Este Telefone Não é um Whatsapp!")
+      }
+     
+
+    }
+
+  const Cadastrado = ()=> {
+      navigation.navigate("AvisoLoc", { 
+          Nome:Nome,
+          Tel:Tel, 
+          Tipo:"Cadastro"
+        });
+   }
+
+ 
+   const Entrando = async () => {
+      navigation.navigate("AvisoLoc", { 
+          Nome:Nome,
+          Tel:Tel, 
+          Tipo:"Entrada"
+        });
+   
+      
+      }
+
+    const TelWhats = ()=>{
+       setLoading(true)
+      Api.VerWhats(Tel, setTelMsg, setNome, setBtn, setLoading)
+      Api.AnaliseTel(Tel, setTe1, setNome)  
+   }
    
   
     
     return (
-      <View style={styles.Container}>
+      <KeyboardAvoidingView style={styles.Container}>
+       <Modal
+                       transparent={true}
+                      animationType="slide"
+                      visible={ModalLoad}
+                      >
+                <View style={styles.centeredView4}>
+               <View  style={styles.ModVie}>
+                <View  style={styles.ModVieTex}>
+                <Text style={styles.Avitext}>{ModText}</Text>
+                </View>
+                <View  style={styles.ModVieBtn}>
+                 {/* <TouchableHighlight style={styles.ModVieBtnBtn}>
+                  <Text style={styles.ModVieTexNao}>Não</Text>
+                 </TouchableHighlight> */}
+                 <TouchableHighlight onPress={()=>setModalLoad(false)} style={styles.ModVieBtnBtn}>
+                  <Text style={styles.ModVieTexSim}>Ok</Text>
+                 </TouchableHighlight>
+                </View>
+               </View>
+                     
+
+                
+         
+             </View>
+        
+          </Modal>
         
         
            <ImageBackground source={require("../assets/fundo.png")} 
@@ -36,73 +144,195 @@ export default () => {
                        autoCapitalize="none"
                        keyboardType={"phone-pad"}
                     
-                       // TelWhats={TelWhats}
+                        TelWhats={TelWhats}
                    /> 
+                
                        </View>
+
+             
+                     
+                          
+                     {Loading === false ?   
+            <>      
+            {Btn === true ?
+            <>
+              <View  style = {styles.InputAra}>
+             <Image source={require('../assets/person.svg')}  style={styles.image } resizeMode="center" />
+             <SignInput
+                        placeholder="Digite o Nome da Conta" 
+                        value={Nome}
+                        onChangeText={t=>setNome(t)}
+                        autoCapitalize="none"
+                        keyboardType={"default"}
+                        posi={18}
+                    /> 
+                
+                       </View>
+           
+             <TouchableHighlight  style={styles.Btn} onPress={handleMessageButtonClick} >
+                            <Text style={styles.BtnText}>PRÓXIMO</Text>
+                 </TouchableHighlight>
+                        
+            </>
+            :
+            <>
+            {TelMsg=== false &&
+                <Text style={styles.TexMsg} >Este Telefone Não é um Whatsapp!</Text>
+                }
+            </>
+            }
+
+            </>  
+                :
+                <Image source={require('../assets/loading-87.gif')}  style={styles.imageLoad } resizeMode="center" />
+                        }
 
              </View>
        
             
             </ImageBackground> 
-      </View>
+    
+      </KeyboardAvoidingView>
     )
   }
 
 
 const styles = StyleSheet.create({
-  InputAra :{
+  centeredView4: {
+    backgroundColor:'rgba(0,0,0,0.7)',
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    
+  },
+  BtnText: {
+    fontSize: 18,
+    color: "#fff",
+    fontWeight: "bold",
+  },
+  Avitext: {
+    fontSize: 15,
+    color: "#000",
+  },
+  ModVie: {
+    backgroundColor: "#FFF",
+    width:200,
+    height:100,
+    borderRadius:20,
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection:"column"
+  },
+  ModVieTex: {
+    width:180,
+    height:70,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  ModVieBtn: {
+    width:180,
+    height:30,
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection:"row"
+  },
+  ModVieBtnBtn: {
+    width:90,
+    height:30,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  ModVieTexSim: {
+    fontSize: 18,
+    color: "#00C9FB",
+    fontWeight: "bold",
+  },
+  ModVieTexNao: {
+    fontSize: 18,
+    color: "#EB7560",
+    fontWeight: "bold",
+  },
+InputAra :{
    width:"90%",
    height:60,
    backgroundColor: "#fff",
    flexDirection:"row",
    borderRadius:20,
-   paddingLeft:50,
    alignItems: "center",
    marginBottom:15,
+   paddingLeft:5,
 },
 
-    image: {
-      width:  30,
-      height: 30,
-       flex: 1 ,
-       alignItems:"center",
-       justifyContent: "center",
-       
-    },
+Btn: {
+  width:"90%",
+  marginTop:10,
+ height:60,
+ backgroundColor: "#000",
+ borderRadius:20,
+ justifyContent:"center",
+ alignItems: "center",
+ 
+},
 
-    imageBack: {
-        width:  "100%",
-        height: "120%",
-         flex: 1 ,
-         alignItems:"center",
-         justifyContent: "center",
-      },
-    ImageVer2:{
-        width:200,
-        height:200,
-        marginTop: 300,
-    },
-       
-      InputArea:{
-       width: "100%",
-       padding: 40,
-        
-       },  
-      Container:{
-       backgroundColor: "#FFE767",
-       flex:1,
-       justifyContent:"center",
-       alignItems:"center",
-       paddingBottom: 100,
-       
-      },  
-      ContainerImg:{
-        width:200,
-        height:200,
-        backgroundColor: "#000",
-        flex:1,
-        justifyContent:"center",
-        alignItems:"center"
-        
-       },  
+
+TexMsg: {
+  fontSize: 16,
+  color: "red",
+  marginBottom: 15,
+  marginTop: -10,
+},
+
+image: {
+  width:  30,
+  height: 30,
+    flex: 1 ,
+    alignItems:"center",
+    justifyContent: "center",
+    
+},
+
+imageLoad: {
+  width:  100,
+  height: 100,
+    flex: 1 ,
+    alignItems:"center",
+    justifyContent: "center",
+    
+},
+
+imageBack: {
+    width:  "100%",
+    height: "120%",
+      flex: 1 ,
+      alignItems:"center",
+      justifyContent: "center",
+  },
+ImageVer2:{
+    width:200,
+    height:200,
+    marginTop: 100,
+},
+    
+  InputArea:{
+    width: "100%",
+    padding: 40,
+    
+    },  
+  Container:{
+    backgroundColor: "#FFE767",
+    flex:1,
+    justifyContent:"center",
+    alignItems:"center",
+    paddingBottom: 100,
+    
+  },  
+  ContainerImg:{
+    width:200,
+    height:200,
+    backgroundColor: "#000",
+    flex:1,
+    justifyContent:"center",
+    alignItems:"center"
+    
+    },  
 });
