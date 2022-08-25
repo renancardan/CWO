@@ -39,8 +39,7 @@ export default () => {
 
        const CirandoWhats = ()=>{
         Api.CriandoW(Inicio, setPos, setWhats, setTele)
-     }
-
+     }  
 
     const handleMessageButtonClick = () => { 
 
@@ -97,7 +96,7 @@ export default () => {
                         keyboardType={"numeric"}
                     />
                     </View>
-                    <TouchableHighlight  style={styles.Btn} onPress={CirandoWhats()} >
+                    <TouchableHighlight  style={styles.Btn} onPress={CirandoWhats} >
                             <Text style={styles.BtnText}>Criar</Text>
                  </TouchableHighlight>
                 {/* <CustomButton1 onPress={IrcadasSim} >
