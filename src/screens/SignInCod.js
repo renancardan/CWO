@@ -26,8 +26,9 @@ export default () => {
     const [Tele, setTele] = useState(0);
     const [Inicio, setInicio] = useState("0")
 
+
     useEffect( ()=>{                     
-        PreencherTel()                       
+       QuantidadeWhats()                       
       }, []);
 
     useEffect(() => {
@@ -40,6 +41,10 @@ export default () => {
        const CirandoWhats = ()=>{
         Api.CriandoW(Inicio, setPos, setWhats, setTele)
      }  
+
+     const QuantidadeWhats = ()=>{
+      Api.QuantiWhats(Inicio, setPos, setWhats, setTele)
+    }  
 
     const handleMessageButtonClick = () => { 
 

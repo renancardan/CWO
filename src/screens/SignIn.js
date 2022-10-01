@@ -129,7 +129,7 @@ export default () => {
           </Modal>
         
         
-           <ImageBackground source={require("../assets/fundo.png")} 
+           <ImageBackground source={require("../assets/estadio3.jpg")} 
           resizeMode="cover" 
           style={styles.imageBack} >
             <Image source={require('../assets/logomarca.svg')}  style={styles.ImageVer2 } />

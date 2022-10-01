@@ -21,7 +21,7 @@ export default function Routes() {
       <NavigationContainer>
          
         <Stack.Navigator
-      initialRouteName={"SignInCod"}
+      initialRouteName={"Preload"}
 
       >
           <Stack.Screen
@@ -33,7 +33,7 @@ export default function Routes() {
      
         <Stack.Screen
      options={{
-        title: 'Inicio',
+        title: 'PixBetCash',
         headerShown: false
     }}   
      name="Preload" component={Preload} />
