@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useContext, useState  } from 'react'
+import React, { Component, useEffect, useContext, useState, useRef  } from 'react'
 import {Platform, Modal, Alert, Text, View, StyleSheet, ImageBackground, Image, Button, TouchableHighlight, KeyboardAvoidingView } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
@@ -6,8 +6,12 @@ import { UserContext } from '../contexts/UserContext';
 import Api from '../Api';
 import Telefone from '../components/NumberTel';
 import SignInput from '../components/SignInputIni';
+import ReCAPTCHA from "react-google-recaptcha";
+
 
 export default () => {
+
+  const captcha = useRef(null)
     const navigation = useNavigation();
     const { dispatch: userDispatch } = useContext(UserContext);
     const { state: userState } = useContext(UserContext);
@@ -23,7 +27,10 @@ export default () => {
     const [Carreg, setCarreg] = useState(false)
     const [Btn, setBtn] = useState(false);
     const [ModalLoad, setModalLoad] = useState(false);
-    const [ModText, setModText] = useState("")
+    const [ModalText, setModalText] = useState("");
+    const [ModalAlert, setModalAlert] = useState(false);
+    const [Robo, setRobo] = useState(true)
+    console.log(window.location.href);
  
     useEffect(() => {
       console.log(Te1);
@@ -42,32 +49,46 @@ export default () => {
      }, [IrCad])
 
      useEffect(() => {
-      if(Tel !== "" && Tel.length === 14){
-        console.log("Entrou PesWa")
+      if(Tel !== "" && Tel.length === 14 && Robo === false){
+    
           TelWhats();
+      
+      } else {
+        if(Robo === true && Tel.length > 3 ){
+          setModalAlert(true);
+          setModalText("Clique no Não sou Robô!")
+        }
       }
       
-     }, [Tel])
+
+
+     }, [Tel, Robo])
 
    const handleMessageButtonClick = () => {
    
-     
+     if(Robo === false){
       if(TelMsg === true){
-          if(Tel !== '' && Nome !== '' ) {
-              setLoading(true);
-              Api.signIn(Tel, Nome, setIrCad, setIrEnt, setLoading);
-               
-            
-          }  else {
-            setModalLoad(true);
-            setModText("Preencha todos os campos!")
-        
-          }
+        if(Tel !== '' && Nome !== '' ) {
+            setLoading(true);
+            Api.signIn(Tel, Nome, setIrCad, setIrEnt, setLoading);
+             
+          
+        }  else {
+          setModalAlert(true);
+          setModText("Preencha todos os campos!")
+      
+        }
 
-      } else {
-        setModalLoad(true);
-        setModText("Este Telefone Não é um Whatsapp!")
-      }
+    } else {
+      setModalAlert(true);
+      setModText("Este Telefone Não é um Whatsapp!")
+    }
+
+     } else {
+      setModalAlert(true);
+      setModText("Clique no Não Sou Robô!")
+    }
+      
      
 
     }
@@ -82,7 +103,7 @@ export default () => {
 
  
    const Entrando = async () => {
-      navigation.navigate("AvisoLoc", { 
+      navigation.navigate("SignInCod", { 
           Nome:Nome,
           Tel:Tel, 
           Tipo:"Entrada"
@@ -94,8 +115,31 @@ export default () => {
     const TelWhats = ()=>{
        setLoading(true)
       Api.VerWhats(Tel, setTelMsg, setNome, setBtn, setLoading)
-      Api.AnaliseTel(Tel, setTe1, setNome)  
+      Api.AnaliseTel(Tel, setTe1, setNome) 
+     
    }
+
+  //  const onMessage = (event)=>{
+  //   if (event && event.nativeEvent.data) {
+  //     if (['cancel', 'error', 'expired'].includes(event.nativeEvent.data)) {
+  //       captcha.current.hide();
+  //         return;
+  //     } else {
+  //         console.log('Verified code from Google', event.nativeEvent.data);
+  //         setTimeout(() => {
+  //           captcha.current.hide();
+  //             // do what ever you want here
+  //         }, 1500);
+  //     }
+  // }
+  //  }
+
+  const onChange = ()=> {
+    if(captcha.current.getValue()){
+      setRobo(false)
+    }
+  }
+
    
   
     
@@ -104,28 +148,24 @@ export default () => {
        <Modal
                        transparent={true}
                       animationType="slide"
-                      visible={ModalLoad}
+                      visible={ModalAlert}
                       >
                 <View style={styles.centeredView4}>
                <View  style={styles.ModVie}>
                 <View  style={styles.ModVieTex}>
-                <Text style={styles.Avitext}>{ModText}</Text>
+                <Text style={styles.Avitext}>{ModalText}</Text>
                 </View>
                 <View  style={styles.ModVieBtn}>
                  {/* <TouchableHighlight style={styles.ModVieBtnBtn}>
                   <Text style={styles.ModVieTexNao}>Não</Text>
                  </TouchableHighlight> */}
-                 <TouchableHighlight onPress={()=>setModalLoad(false)} style={styles.ModVieBtnBtn}>
+                 <TouchableHighlight onPress={()=>setModalAlert(false)} style={styles.ModVieBtnBtn}>
                   <Text style={styles.ModVieTexSim}>Ok</Text>
                  </TouchableHighlight>
                 </View>
                </View>
-                     
-
-                
-         
+       
              </View>
-        
           </Modal>
         
         
@@ -133,7 +173,15 @@ export default () => {
           resizeMode="cover" 
           style={styles.imageBack} >
             <Image source={require('../assets/logomarca.svg')}  style={styles.ImageVer2 } />
-             <View  style={styles.InputArea}>
+             <View  style={styles.AreaLogin}>
+             <ReCAPTCHA
+                                    ref={captcha}
+                                        sitekey="6LdDVDIiAAAAAM8Z3lsWD6qE2o2w94YfwDM7mRf7"
+                                        size="normal"
+                                        hl="pt"
+                                        theme="dark"
+                                        onChange={onChange}
+                                      />
              <View  style = {styles.InputAra}>
              <Image source={require('../assets/telefone.svg')}  style={styles.image } resizeMode="center" />
              <Telefone
@@ -146,10 +194,13 @@ export default () => {
                     
                         TelWhats={TelWhats}
                    /> 
+                  
                 
                        </View>
 
-             
+                    
+                      
+              
                      
                           
                      {Loading === false ?   
@@ -170,7 +221,7 @@ export default () => {
                        </View>
            
              <TouchableHighlight  style={styles.Btn} onPress={handleMessageButtonClick} >
-                            <Text style={styles.BtnText}>PRÓXIMO</Text>
+                            <Text style={styles.BtnText}>Criar Código</Text>
                  </TouchableHighlight>
                         
             </>
@@ -184,9 +235,12 @@ export default () => {
 
             </>  
                 :
-                <Image source={require('../assets/loading-87.gif')}  style={styles.imageLoad } resizeMode="center" />
+               <>
+                <Image source={require('../assets/carreg.gif')}  style={styles.ImageVer3 } />
+       <Image source={require('../assets/futebol.gif')}  style={styles.ImageVer5 } />     
+               </>
                         }
-
+              
              </View>
        
             
@@ -207,7 +261,7 @@ const styles = StyleSheet.create({
   },
   BtnText: {
     fontSize: 18,
-    color: "#fff",
+    color: "#FFF212",
     fontWeight: "bold",
   },
   Avitext: {
@@ -241,6 +295,7 @@ const styles = StyleSheet.create({
     height:30,
     justifyContent: "center",
     alignItems: "center",
+    outlineStyle: 'none'
   },
   ModVieTexSim: {
     fontSize: 18,
@@ -261,16 +316,29 @@ InputAra :{
    alignItems: "center",
    marginBottom:15,
    paddingLeft:5,
+   marginTop:15,
+},
+
+AreaLogin :{
+  width:300,
+  flexDirection:"column",
+  borderRadius:20,
+  alignItems: "center",
+  justifyContent:"center",
+  marginBottom:15,
+  paddingLeft:5,
 },
 
 Btn: {
   width:"90%",
   marginTop:10,
  height:60,
- backgroundColor: "#000",
+ backgroundColor: "#00A859",
  borderRadius:20,
  justifyContent:"center",
  alignItems: "center",
+borderColor:"#FFF212",
+borderWidth:2,
  
 },
 
@@ -306,11 +374,13 @@ imageBack: {
       flex: 1 ,
       alignItems:"center",
       justifyContent: "center",
+    
   },
 ImageVer2:{
     width:200,
     height:200,
     marginTop: 100,
+    marginBottom:15,
 },
     
   InputArea:{
@@ -334,5 +404,19 @@ ImageVer2:{
     justifyContent:"center",
     alignItems:"center"
     
+    },
+    ImageVer5:{
+      width:50,
+      height:100,
+      marginTop: 10,
+   
+     
     },  
+    ImageVer3:{
+      width:100,
+      height:90,
+      marginTop: 140,
+  
+     
+    },    
 });

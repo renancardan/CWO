@@ -21,8 +21,8 @@ export default {
                   console.log("tele "+tele)
                   console.log("Temp "+temp)
                   await firestore.collection("users")
-                  .where("telefone", "==", tele)
-                  .where("DataEnt", "==", temp)
+                  .where("Telefone", "==", tele)
+                  .where("DataEntCel", "==", temp)
                   .get().then( async(querySnapshot) => {
                  
                     if(querySnapshot.size !== 0){
@@ -81,14 +81,16 @@ export default {
           },
 
     AnaliseTel: async (Tel, setTe1, setNome) => {
-
+      console.log("Nome ")
       await firestore.collection("users")
-      .where("telefone", "==", Tel)
+      .where("Telefone", "==", Tel)
       .get().then((querySnapshot) => {
+       
         if(querySnapshot.size !== 0){
           querySnapshot.forEach((doc) => {
+           
             setTe1(true);
-            setNome(doc.data().nome)
+            setNome(doc.data().Nome)
             
           })
       
@@ -101,12 +103,12 @@ export default {
     AnaliseTel: async (Tel, setTe1, setNome) => {
 
       await firestore.collection("users")
-      .where("telefone", "==", Tel)
+      .where("Telefone", "==", Tel)
       .get().then((querySnapshot) => {
         if(querySnapshot.size !== 0){
           querySnapshot.forEach((doc) => {
             setTe1(true);
-            setNome(doc.data().nome)
+            setNome(doc.data().Nome)
             
           })
       
@@ -265,17 +267,20 @@ export default {
     },
 
     signIn: async (Tel, Nome, setIrCad, setIrEnt, setLoading) => {
-      
+      let temp = new Date().getTime();
       var tele = Tel.toString();
-      var last = Math.floor((Math.random() * (9999 - 1000)) + 1000);
+     console.log(Tel);
       await AsyncStorage.setItem('Tel', tele);
+  
    
-    await firestore.collection("users")
-   .where("telefone", "==", tele)
-   .get().then( async (querySnapshot) => {
+      var last = Math.floor((Math.random() * (9999 - 1000)) + 1000);
+  
+        await firestore.collection("users")
+        .where("Telefone", "==", Tel)
+        .get().then( async (querySnapshot) => {
+          console.log(querySnapshot.size);
      if(querySnapshot.size !== 0){
       querySnapshot.forEach(async (doc) => {
-        if(doc.data().conta !== "Empresa"){
           
             let time = new Date().getTime();
             firestore.collection("users")
@@ -284,8 +289,7 @@ export default {
               CodigEnt: last,
           })
           .then( async() => {
-
-            var ver = tele.replace("(", "55");
+            var ver = Tel.replace("(", "55");
             var par1 = ver.replace(")", "");
             var par3 = par1.replace("-", "");
             var data={
@@ -302,13 +306,10 @@ export default {
                 });
               
                 const json = await req.json(); 
-                if(doc.data().Tipo === ""){
-                  await setIrCad(true);
-                  await setLoading(false);
-                } else {
+              
                   await setIrEnt(true);
                   await setLoading(false);
-                }
+                
                 
           })
           .catch((error) => {
@@ -318,11 +319,7 @@ export default {
     
          
   
-        }  else{
-  
-          setLoading(false);
-          alert("Esse Usuário é de Uma Conta Serv");
-        }
+      
       
     
       
@@ -333,59 +330,24 @@ export default {
       var time = new Date().getTime();
       var Forms = ["off", "off", "off"]
       await firestore.collection("users").add({
-        nome:Nome,
-        CodigEnt: last, 
-        nameComp: "",
-        EndCadas: "",
-        area: null,
-        DataCadas: time,
-        Bairro: "",
-        telefone: Tel,
-        DataEnt: 0,
-        entrada:true,
-        Rg:"",
-        CPF: "",
-        localizacao:{lat:0, lng:0},
-        conta:"Titular",
-        Dependo:null,
-        dependentes: ["", "", ""],
-        DataVenc: 0,
-        ativo:false,
-        config:{ChamDep:0, LimDep:true, LimTi:true},
-        chamadasTi:0,
-        chamadasDep:0,
-        AceConfEsp:false,
-        confiExp:{QuantCha:0, AceitCha:0, ValorMen:0, ValorCha:0},
-        Foto:"",
-        FotoPerfil:"",
-        SistemVig:"NaoAutorizada",
-        Tipo:"",
-        SegEmp:["", "", ""],
-        redeSocial:{cidade:"", estado:""},
-        AreaLoc:{cidade:"", estado:""},
-        Status:{Cliente:false, ClienteLoc:false, TicktLivre:false },
-        estrelas:0,
-        Negociacao:0,
-        Excluir:false,
-        IdTicket:null,
-        DenunPost:[],
-        BloqCont:[]
+        CodigEnt: last,
+        Telefone:Tel,
+        DataEntCel:0,
+        Nome:Nome,
+        Indicados:[],
+        Extrato:[],
+        DataCadas: temp,
+        Cash:0,
+        Dinheiro:0,
+        DataVenc:0,
+        ADM:false,
     })
     .then( async (docRef) => {
    
+      var id = docRef.id
+   
   
-      await firestore.collection("historicoUso").add({
-        IdCri: docRef.id,
-        NomeCri: "",
-        IdSof:docRef.id,
-        NomeSof:"",
-        Colecao:"users",
-        Funcao:"Usuario se Cadastrou",
-        date:new Date().getTime(),
-    })
-  
-  
-    var ver = tele.replace("(", "55");
+    var ver = Tel.replace("(", "55");
     var par1 = ver.replace(")", "");
     var par3 = par1.replace("-", "");
     var data={
@@ -401,9 +363,43 @@ export default {
           body: JSON.stringify(data),
         });
       
-        const json = await req.json(); 
+        const json = await req.json();
+        var IdBanco = "";
+        var IdInd = "";
+
+        await firestore.collection("BancoWhats")
+        .where("Telefone", "==", Tel)
+        .where("DataFin", ">=", temp)
+        .get().then((querySnapshot2) => {
+        
+          if(querySnapshot2.size !== 0){
+          querySnapshot2.forEach(async (doc2) => {
+            IdBanco = doc2.id;
+            IdInd = doc2.data().IdUser;
+          });
+            firestore.collection("users")
+            .doc(IdInd)
+            .update({
+              Indicados: firebase.firestore.FieldValue.arrayUnion(id)
+             })
+  
+            firestore.collection("BancoWhats")
+            .doc(IdBanco)
+            .update({
+              Aprovado:true, 
+              })
+  
+          
+        }
+  
+        });
+        
+  
+  
+  
+  
     
-        await setIrCad(true);
+        await setIrEnt(true);
         await setLoading(false);
   
       var res = [];
@@ -454,8 +450,7 @@ export default {
      
     
     
-    
-  
+       
   
    
   
@@ -463,12 +458,12 @@ export default {
        
     },
     
-    signIn3: async (Tel, code, setIrpre, setLoading) => {
-     
-      var tele = Tel.toString();
+    signIn3: async (Tel, code, Tentativa, setIrpre, setLoading, setModalAlert, setModalText, setTentativa) => {
+      var tel = await AsyncStorage.getItem('Tel');
       var codig = await parseInt(code); 
+      console.log(codig)
    await firestore.collection("users")
-   .where("telefone", "==", tele)
+   .where("Telefone", "==", tel)
    .where("CodigEnt", "==", codig)
    .get().then((querySnapshot) => {
      if(querySnapshot.size !== 0){
@@ -480,7 +475,7 @@ export default {
             firestore.collection("users")
             .doc(doc.id)
             .update({
-              DataEnt: time,
+              DataEntCel: time,
           })
           .then( async() => {
            
@@ -502,7 +497,9 @@ export default {
   
      } else {
       setLoading(false);
-       alert("Código e/ou Número do celular errado");
+      setTentativa(Tentativa+1)
+       setModalAlert(true)
+       setModalText("Código Errado "+(Tentativa+1)+"° tentativa de 3")
      }
    
   })

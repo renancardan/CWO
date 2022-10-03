@@ -23,75 +23,75 @@ export default () => {
     const [Lat, setLat] = useState("");
     const [Lng, setLng] = useState("");
   
-//     useEffect(() => {
-//         if(IrLogin === true){
-//             irParaLogin();
-//         }
-//          }, [IrLogin])
+    useEffect(() => {
+        if(IrLogin === true){
+            irParaLogin();
+        }
+         }, [IrLogin])
 
 
       
 
-//     useEffect(async() => {
-//       if(IrHome === true){
-//           await  guardaDados();
-//          await irParaHome();
+    useEffect(async() => {
+      if(IrHome === true){
+          await  guardaDados();
+         await irParaHome();
        
-//       }
-//        }, [IrHome])
+      }
+       }, [IrHome])
     
-//     useEffect(()=>{
+    useEffect(()=>{
                   
-//         const checkAuth = async () => {
-//             await AsyncStorage.setItem('@empresa', '');
-//             var tel = await AsyncStorage.getItem('Tel');
-//             var cod = await AsyncStorage.getItem('@codigo');
-//             var time = await AsyncStorage.getItem('@entrada');
-//             var Emp = await AsyncStorage.getItem('@empresa');
+        const checkAuth = async () => {
+            await AsyncStorage.setItem('@empresa', '');
+            var tel = await AsyncStorage.getItem('Tel');
+            var cod = await AsyncStorage.getItem('@codigo');
+            var time = await AsyncStorage.getItem('@entrada');
+            var Emp = await AsyncStorage.getItem('@empresa');
 
        
     
         
-//             if(tel){
-//                 let user = await Api.checkToken(tel, cod, time, setIrHome, setIrLogin,   setId, ); 
-//             } else {
-//                 await navigation.reset({
-//                     routes:[{name:'SignIn'}]
-//                 });
+            if(tel){
+                let user = await Api.checkToken(tel, cod, time, setIrHome, setIrLogin,   setId, ); 
+            } else {
+                await navigation.reset({
+                    routes:[{name:'SignIn'}]
+                });
 
-//             }
+            }
            
 
-//             }
+            }
            
-//             checkAuth();
+            checkAuth();
 
 
-//     }, []);
+    }, []);
 
 
 
-//    const irParaHome = ()=>{
-//     // navigation.reset({
-//     //     routes:[{name:"MainTab"}]
-//     // });
-//    }
+   const irParaHome = ()=>{
+    navigation.reset({
+        routes:[{name:"MainTab"}]
+    });
+   }
 
-//    const irParaLogin = ()=>{
-//     navigation.reset({
-//         routes:[{name:'SignIn'}]
-//     });
-//    }
+   const irParaLogin = ()=>{
+    navigation.reset({
+        routes:[{name:'SignIn'}]
+    });
+   }
 
-//     const  guardaDados =()=>{
+    const  guardaDados =()=>{
     
-//         userDispatch({
-//             type: 'setId',
-//             payload:{
-//                 id: Id
-//             }
-//         });
-//     }
+        userDispatch({
+            type: 'setId',
+            payload:{
+                id: Id
+            }
+        });
+    }
 
 
    

@@ -5,20 +5,22 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
-import Main from '../screens/main';
+
 import Camera from '../screens/camera';
 import Preload from '../screens/preload';
 import SignIn from '../screens/SignIn';
 import AvisoLoc from '../screens/AvisoLoc';
 import SignInCod from '../screens/SignInCod';
+import MainTab from '../stacks/MainTab';
+import main from '../screens/main';
  //import cadastroSim from '../screens/cadastroSim';
 
 const Stack = createNativeStackNavigator();
-export default function Routes() {
+export default function Ret() {
 
     
     return (
-      <NavigationContainer>
+      <NavigationContainer  >
          
         <Stack.Navigator
       initialRouteName={"Preload"}
@@ -55,6 +57,20 @@ export default function Routes() {
         headerShown: false
     }}   
      name='SignIn' component={SignIn} />
+     
+      <Stack.Screen 
+     options={{
+        title: '',
+        headerTransparent:true,
+        headerShown: false,
+    }}   
+    name="MainTab" component={MainTab} />
+
+<Stack.Screen 
+     options={{
+        headerShown: false
+    }}   
+    name="Main" component={main} />
 
 <Stack.Screen
      options={{

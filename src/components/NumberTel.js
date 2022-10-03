@@ -27,7 +27,9 @@ export default ({IconSvg, placeholder, value, onChangeText, password, autoCapita
             fontSize: 20,
             color: '#000',
             marginLeft: 1,
-           
+            height:40,
+            borderColor: "#fff",
+            outlineStyle: 'none'
            
         },
       
@@ -40,6 +42,9 @@ export default ({IconSvg, placeholder, value, onChangeText, password, autoCapita
              
           },
     });
+
+   
+      
 
     return (
      
@@ -59,7 +64,7 @@ export default ({IconSvg, placeholder, value, onChangeText, password, autoCapita
                 onChangeText={onChangeText}
                 secureTextEntry={password}
                 style = {Styles.masked}
-               
+             
              
             />
     

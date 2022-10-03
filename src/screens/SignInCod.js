@@ -24,7 +24,10 @@ export default () => {
     const [Pos, setPos] = useState(0);
     const [Whats, setWhats] = useState(0);
     const [Tele, setTele] = useState(0);
-    const [Inicio, setInicio] = useState("0")
+    const [Inicio, setInicio] = useState("");
+    const [ModalText, setModalText] = useState("");
+    const [ModalAlert, setModalAlert] = useState(false);
+    const [Tentativa, setTentativa] = useState(0)
 
 
     useEffect( ()=>{                     
@@ -36,6 +39,12 @@ export default () => {
             confirmCode();
         }
        }, [Irpre])
+
+       useEffect(() => {
+        if(Tentativa === 3){
+            Voltar();
+        }
+       }, [Tentativa])
 
 
        const CirandoWhats = ()=>{
@@ -50,11 +59,12 @@ export default () => {
 
         if( code != null ) {
         setLoading(true);
-        Api.signIn3(Tel, code, setIrpre, setLoading);
+        Api.signIn3(Tel, code, Tentativa, setIrpre, setLoading, setModalAlert, setModalText, setTentativa);
          
       
     }  else {
-        alert("Preencha Código!");
+      setModalAlert(true)
+      setModalText("Prencha o Código Corretamente!")
     }
 
     }
@@ -71,38 +81,58 @@ export default () => {
        });
      }
 
-     const IrcadasSim= ()=> {
+     const Voltar= ()=> {
         navigation.reset({
-           routes:[{name:'CadastroSim'}]
+           routes:[{name:'SignIn'}]
        });
      }
     return (
         <KeyboardAvoidingView style={styles.Container}>
-            <ImageBackground source={require("../assets/fundo.png")} 
+           <Modal
+                       transparent={true}
+                      animationType="slide"
+                      visible={ModalAlert}
+                      >
+                <View style={styles.centeredView4}>
+               <View  style={styles.ModVie}>
+                <View  style={styles.ModVieTex}>
+                <Text style={styles.Avitext}>{ModalText}</Text>
+                </View>
+                <View  style={styles.ModVieBtn}>
+                 {/* <TouchableHighlight style={styles.ModVieBtnBtn}>
+                  <Text style={styles.ModVieTexNao}>Não</Text>
+                 </TouchableHighlight> */}
+                 <TouchableHighlight onPress={()=>setModalAlert(false)} style={styles.ModVieBtnBtn}>
+                  <Text style={styles.ModVieTexSim}>Ok</Text>
+                 </TouchableHighlight>
+                </View>
+               </View>
+       
+             </View>
+          </Modal>
+        <ImageBackground source={require("../assets/estadio3.jpg")} 
           resizeMode='cover' 
-          style={styles.image} >
+          style={styles.imageBack} >
             <Image source={require('../assets/logomarca.svg')}  style={styles.ImageVer2 } />
-      
+            <View  style={styles.AreaLogin}>
            {Loading === false ? 
          
          <View  style={styles.InputArea}>
 
-                   <Text style={styles.TituText}>Quantidade: {Pos}</Text>
-                   <Text style={styles.TituText}>Whats:{Whats}</Text>
-                   <Text style={styles.TituText}>Tel:{Tele}</Text>
+                
                    <View  style = {styles.InputAra}>
                    <Image source={require('../assets/codigo.svg')}  style={styles.imageIcon } resizeMode="center" />
             <SignInput
                     
                         placeholder="Digite o Código" 
-                        value={Inicio}
-                        onChangeText={t=>setInicio(t)}
+                        value={code}
+                        onChangeText={t=>setCode(t)}
                         autoCapitalize="none"
                         keyboardType={"numeric"}
                     />
                     </View>
-                    <TouchableHighlight  style={styles.Btn} onPress={CirandoWhats} >
-                            <Text style={styles.BtnText}>Criar</Text>
+                    <TouchableHighlight  style={styles.Btn} onPress={handleMessageButtonClick} >
+                            <Text style={styles.BtnText}>Entrar</Text>
                  </TouchableHighlight>
                 {/* <CustomButton1 onPress={IrcadasSim} >
                         <CustomButtonText1> Cadastro Simples CLIQUE AQUI!</CustomButtonText1>
@@ -110,10 +140,13 @@ export default () => {
     
             </View>
             :
-            <Image source={require('../assets/loading-87.gif')}  style={styles.imageLoad } resizeMode="center" />
+            <>
+                <Image source={require('../assets/carreg.gif')}  style={styles.ImageVer3 } />
+       <Image source={require('../assets/futebol.gif')}  style={styles.ImageVer5 } />     
+               </>
                 }
 
-      
+      </View>
         </ImageBackground> 
         </KeyboardAvoidingView>
     )
@@ -121,6 +154,13 @@ export default () => {
 }
 
 const styles = StyleSheet.create({
+  centeredView4: {
+    backgroundColor:'rgba(0,0,0,0.7)',
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    
+  },
     imageLoad: {
         width:  100,
         height: 100,
@@ -130,18 +170,20 @@ const styles = StyleSheet.create({
           
       },
     BtnText: {
-        fontSize: 18,
-        color: "#fff",
-        fontWeight: "bold",
+      fontSize: 18,
+      color: "#FFF212",
+      fontWeight: "bold",
       },
       Btn: {
         width:"90%",
         marginTop:10,
        height:60,
-       backgroundColor: "#000",
+       backgroundColor: "#00A859",
        borderRadius:20,
        justifyContent:"center",
        alignItems: "center",
+      borderColor:"#FFF212",
+      borderWidth:2,
        
       },
     image: {
@@ -152,8 +194,8 @@ const styles = StyleSheet.create({
        justifyContent: "center",
     },
     imageIcon: {
-        width:  30,
-        height: 30,
+        width:  60,
+        height: 60,
           flex: 1 ,
           alignItems:"center",
           justifyContent: "center",
@@ -191,5 +233,65 @@ const styles = StyleSheet.create({
             paddingBottom: 100,
             
           },    
+          imageBack: {
+            width:  "100%",
+            height: "120%",
+              flex: 1 ,
+              alignItems:"center",
+              justifyContent: "center",
+            
+          },
+          ModVie: {
+            backgroundColor: "#FFF",
+            width:200,
+            height:100,
+            borderRadius:20,
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection:"column"
+          },
+          ModVieTex: {
+            width:180,
+            height:70,
+            justifyContent: "center",
+            alignItems: "center",
+          },
+          ModVieBtn: {
+            width:180,
+            height:30,
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection:"row"
+          },
+          ModVieBtnBtn: {
+            width:90,
+            height:30,
+            justifyContent: "center",
+            alignItems: "center",
+            outlineStyle: 'none'
+          },
+          ModVieTexSim: {
+            fontSize: 18,
+            color: "#00C9FB",
+            fontWeight: "bold",
+          },
+          ModVieTexNao: {
+            fontSize: 18,
+            color: "#EB7560",
+            fontWeight: "bold",
+          },
+          ImageVer5:{
+            width:50,
+            height:100,
+            marginTop: 10,
+         
+           
+          },  
+          ImageVer3:{
+            width:100,
+            height:90,
+            marginTop: 140,
         
+           
+          },    
 });

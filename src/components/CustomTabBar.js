@@ -1,61 +1,18 @@
 import React, { useContext, useState, useEffect } from 'react';
-import styled from 'styled-components/native';
 import { UserContext } from '../contexts/UserContext';
-import AsyncStorage from '@react-native-community/async-storage';
-import Panico from '../assets/panico.svg';
-import ChatIcon from '../assets/chat.svg';
-import Lista from '../assets/lista.svg';
-import Finan from '../assets/financeiro.svg';
-import Botao from '../assets/botao.svg';
-import Feeds from '../assets/feed.svg';
-import Pesquisa from '../assets/search.svg';
+import Panico from '../assets/casaAtivo.png';
+import ChatIcon from '../assets/casaAtivo.png';
+import Lista from '../assets/casaAtivo.png';
+import Finan from '../assets/casaAtivo.png';
+import Botao from '../assets/casaAtivo.png';
+import Feeds from '../assets/casaAtivo.png';
+import Pesquisa from '../assets/casaAtivo.png';
+import {Modal, Text, View, StyleSheet, ImageBackground, Image, Button, TouchableHighlight, KeyboardAvoidingView } from 'react-native'
 import Api from '../Api';
 
 
 
-const TabArea = styled.View`
-    height: 50px;
-    background-color: #000;
-    flex-direction: row;
-`;
-const TabItem = styled.TouchableOpacity`
-    flex: 1;
-    justify-content: center;
-    align-items: center;
-`;
-const TabItemCenter = styled.TouchableOpacity`
-    width: 90px;
-    height: 90px;
-    justify-content: center;
-    align-items: center;
-    background-color:#FFF;
-    border-radius: 45px;
-    border: 1px solid #FFF;
-    margin-top: -40px;
-`;
-const AvatarIcon = styled.Image`
-    width: 24px;
-    height: 24px;
-    border-radius: 12px;
-`;
 
-const CaixaDadosChat = styled.View`
-        display: flex; 
-        align-items: center;
-        justify-content: center;
-        width: 20px;
-        height: 20px;
-        border-radius:10px;
-        background-color: red;
-        margin-left:-30px;
-        margin-top:-20px;
-       
-`;
-
- const  TextCha = styled.Text`
-    font-size: 12px;
-    color: #FFF;
-`;
 //79-todosos botões da tab
 export default ({ state, navigation }) => {
     //83-vai puxar qual usuario está logado vai pegaro avatar.
@@ -87,32 +44,64 @@ export default ({ state, navigation }) => {
 
     return (
         //82 - criando a opacidade ,tamanbho e cor das tabs 
-        <TabArea>
-           <TabItem onPress={()=>goTo("Mural")}>
-                <Feeds style={{opacity: Opac==="Mural"? 1 : 0.5}} width="30" height="30" fill="#FFFFFF" />
-            </TabItem>
-            <TabItem onPress={()=>goTo("Chat")}>
+        <View style={styles.Caixa}>
+           <TouchableHighlight style={styles.btn} onPress={()=>goTo("Jogos")}>
+                <Feeds style={{opacity: Opac==="Jogos"? 1 : 0.5}} width="30" height="30" fill="#FFFFFF" />
+            </TouchableHighlight >
+            <TouchableHighlight style={styles.btn} onPress={()=>goTo("Aposta")}>
           
-                <ChatIcon style={{opacity: Opac==="Chat"? 1 : 0.5}} width="30" height="30" fill="#FFFFFF" />
+                <ChatIcon style={{opacity: Opac==="Aposta"? 1 : 0.5}} width="30" height="30" fill="#FFFFFF" />
                {Quant !== Vizu &&
-                <CaixaDadosChat>
-                <TextCha>{Quant - Vizu}</TextCha>
-                </CaixaDadosChat>
+                <View style={styles.CaixaDadosChat}>
+                <Text style={styles.TextCha}>{Quant - Vizu}</Text>
+                </View>
                }
              
-            </TabItem>
-            <TabItem onPress={()=>goTo("Pesquisa")}>
-                <Pesquisa style={{opacity: Opac==="Pesquisa"? 1 : 0.5}} width="30" height="30" fill="#FFFFFF" />
-            </TabItem>
+            </TouchableHighlight>
+            <TouchableHighlight style={styles.btn} onPress={()=>goTo("Financeiro")}>
+                <Pesquisa style={{opacity: Opac==="Financeiro"? 1 : 0.5}} width="30" height="30" fill="#FFFFFF" />
+            </TouchableHighlight>
         
-            <TabItem onPress={()=>goTo("Rotas")}>
-                <Lista style={{opacity: Opac==="Rotas"? 1 : 0.5}} width="30" height="30" fill="#FFFFFF" />
-            </TabItem>
+            <TouchableHighlight style={styles.btn} onPress={()=>goTo("Rede")}>
+                <Lista style={{opacity: Opac==="Rede"? 1 : 0.5}} width="30" height="30" fill="#FFFFFF" />
+            </TouchableHighlight>
 
-            <TabItem onPress={()=>goTo("Chamada")}>
-                <Botao style={{opacity: Opac==="Chamada" ? 1 : 0.5}} width="30" height="30" fill="#FFFFFF" />
-            </TabItem>
+            <TouchableHighlight style={styles.btn} onPress={()=>goTo("Cambista")}>
+                <Botao style={{opacity: Opac==="Cambista" ? 1 : 0.5}} width="30" height="30" fill="#FFFFFF" />
+            </TouchableHighlight>
             
-        </TabArea>
+        </View>
     );
 }
+
+const styles = StyleSheet.create({
+    Caixa:{
+        height:50,
+        backgroundColor:"#000",
+        flexDirection:"row",
+    },
+    btn:{
+       flex:1,
+       justifyContent:"center",
+       alignItems:"center"
+    },
+    CaixaDadosChat:{
+        display:"center",
+        alignItems:"center",
+        justifyContent:"center",
+        width:20,
+        height:20,
+        borderRadius:10,
+        backgroundColor:"red",
+        marginLeft:-30,
+        marginTop:-20,
+     },
+     TextCha:{
+       fontSize:12,
+       color:"#fff"
+     },
+
+  
+   
+
+})

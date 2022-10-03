@@ -9,7 +9,7 @@ export default class main extends Component {
           <ImageBackground source={require("../assets/estadio3.jpg")} 
           resizeMode='cover' 
           style={styles.imageBack} >
-        <Text style={styles.BtnText} >main</Text>
+        <Text style={styles.BtnText} >Jogos</Text>
         </ImageBackground>
       </View>
     )
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
       },
     BtnText: {
       fontSize: 18,
-      color: "#FFF212",
+      color: "#000",
       fontWeight: "bold",
       },
       Btn: {
