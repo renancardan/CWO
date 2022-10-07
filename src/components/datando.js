@@ -1,6 +1,5 @@
 import React, { useState, useEffect} from "react";
-import styled from 'styled-components/native';
-import  {  TextInputMask  }  from  'react-native-masked-text';
+
 import { StyleSheet, Text } from 'react-native';
 //52 -criando o os inputs padronizados para usar em varios lugares
 

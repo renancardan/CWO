@@ -7,6 +7,7 @@ import Api from '../Api';
 import Telefone from '../components/NumberTel';
 import SignInput from '../components/SignInputIni';
 import ReCAPTCHA from "react-google-recaptcha";
+import {FontAwesome} from "@expo/vector-icons";
 
 
 export default () => {
@@ -137,6 +138,8 @@ export default () => {
   const onChange = ()=> {
     if(captcha.current.getValue()){
       setRobo(false)
+    } else {
+      setRobo(true)
     }
   }
 
@@ -183,7 +186,7 @@ export default () => {
                                         onChange={onChange}
                                       />
              <View  style = {styles.InputAra}>
-             <Image source={require('../assets/telefone.svg')}  style={styles.image } resizeMode="center" />
+             <FontAwesome name="phone-square" size={40} color="black" />
              <Telefone
                        
                        placeholder="Digite seu Whatsapp" 
@@ -191,8 +194,7 @@ export default () => {
                        onChangeText={t=>setTel(t)}
                        autoCapitalize="none"
                        keyboardType={"phone-pad"}
-                    
-                        TelWhats={TelWhats}
+                      TelWhats={TelWhats}
                    /> 
                   
                 
@@ -208,7 +210,7 @@ export default () => {
             {Btn === true ?
             <>
               <View  style = {styles.InputAra}>
-             <Image source={require('../assets/person.svg')}  style={styles.image } resizeMode="center" />
+              <FontAwesome name="user" size={40} color="black" />
              <SignInput
                         placeholder="Digite o Nome da Conta" 
                         value={Nome}

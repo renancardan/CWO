@@ -512,6 +512,83 @@ export default {
        
     },
 
+    ListJogos: async(Page, setListOc, setCarreg,  Dat, Dat2,)=> {
+   
+      let Antes = Dat/1000;
+      let Depois = Dat2/1000;
+      console.log(Antes);
+      console.log(Depois);
+       
+             await firestore.collection("JogosCirados")
+               .where("DiaJogo", ">=", Antes)
+               .where("DiaJogo", "<=", Depois)
+               .get().then((querySnapshot) => {
+
+               var res = []; 
+               console.log("q "+querySnapshot.size)
+               querySnapshot.forEach((doc) => {
+
+                let currentDate = '';
+                let now =new Date(doc.data().DiaJogo*1000);
+                let hours = now.getHours();
+                let minutes = now.getMinutes();
+                let Dia = now.getDate();
+                let Mes = (now.getMonth()+1);
+                let Ano = now.getFullYear();
+                let seg = now.getSeconds(); 
+                hours = hours < 10 ? '0'+hours : hours;
+                minutes = minutes < 10 ? '0'+minutes : minutes;
+                seg = seg < 10 ? '0'+seg : seg;
+                Dia = Dia < 10 ? '0'+Dia : Dia;
+                Mes = Mes < 10 ? '0'+Mes : Mes;
+                currentDate = Dia+'/'+Mes+'/'+Ano;
+                currentDate += ' ';
+                currentDate += hours+':'+minutes;
+                 
+                   res.push({
+                     id: doc.id,
+                     dataJogo: doc.data().DiaJogo,
+                     Analisado:doc.data().Analisado,
+                     AtualApi:doc.data().AtualApi,
+                     Atualizei:doc.data().Atualizei,
+                     Best:doc.data().Best,
+                     Casa:doc.data().Casa,
+                     CasaDeAposta:doc.data().CasaDeAposta,
+                     Estadio:doc.data().Estadio,
+                     Fora:doc.data().Fora,
+                     dataCriacao:doc.data().dataCriacao,
+                     fixture:doc.data().fixture,
+                     liga:doc.data().liga,
+                     dataForm:currentDate,
+   
+                    
+                   });    
+                 
+                 
+               });
+               
+               res.sort((a,b)=>{
+                 if(a.dataJogo > b.dataJogo) {
+                   return 1;
+                 } else {
+                   return -1;
+                 }
+               });
+               console.log(res)
+               setListOc(res);
+               setCarreg(false);  
+       
+                 });
+   
+             
+             
+           
+      
+        
+       
+       
+     },
+
   
 
 }

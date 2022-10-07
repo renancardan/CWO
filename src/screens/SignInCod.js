@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { UserContext } from '../contexts/UserContext';
 import {Modal, Text, View, StyleSheet, ImageBackground, Image, Button, TouchableHighlight, KeyboardAvoidingView } from 'react-native'
 import SignInput from '../components/SignInput';
+import {FontAwesome} from "@expo/vector-icons";
 
 import Api from '../Api';
 
@@ -121,7 +122,7 @@ export default () => {
 
                 
                    <View  style = {styles.InputAra}>
-                   <Image source={require('../assets/codigo.svg')}  style={styles.imageIcon } resizeMode="center" />
+                   <FontAwesome name="expeditedssl" size={40} color="black" />
             <SignInput
                     
                         placeholder="Digite o Código" 
