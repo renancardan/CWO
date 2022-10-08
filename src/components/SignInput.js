@@ -10,7 +10,8 @@ export default ({IconSvg, placeholder, value, onChangeText, password, autoCapita
             fontSize: 20,
             color: '#000',
             marginLeft: 1,
-            outlineStyle: 'none'
+            outlineStyle: 'none',
+            borderColor: "#fff",
            
         },
       

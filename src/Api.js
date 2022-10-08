@@ -588,7 +588,243 @@ export default {
        
        
      },
+     Apostando: async(QuanJog, ValApos, ValPreDemos,  ValorReal, SimAp, ValPremi, Cambis, TelCli, NomeCli, ValCambis, setCarre, setLinkEnv, setAlert, setAlertTipo, setVerNotajogo, setModalCalend, setSimAp, setValorReal,  setValPremi, setCambis, setTelCli, setNomeCli, setValCambis, setValPreDemos, VaToCo, setVaToCo)=> {
+      var Msg = ""
+      var IdUser = ""
+      var Nome = ""
+      var tel = await AsyncStorage.getItem('Tel');
+      var time = await AsyncStorage.getItem('@entrada');
+      var temp = parseInt(time)
+      await firestore.collection("users")
+      .where("Telefone", "==", tel)
+      .where("DataEntCel", "==", temp)
+      .get().then( async(querySnapshot) => {
+     
+        if(querySnapshot.size !== 0){
+          querySnapshot.forEach( async (doc) => {
+            IdUser = doc.id,
+            Nome = doc.data().Nome
 
+            });
+
+            if(Cambis === false){
+     
+              await firestore.collection("CompApostas")
+              .add({
+      
+              Nome:Nome,
+              Tel:tel,
+              IdCri:IdUser,
+              Cambista:Cambis,
+              NomeComp:NomeCli,
+              TelComp:TelCli,
+              Pago:false,
+              PremioPago:false,
+              AnaliTotal:false,
+              Aprovado:false,
+              DataApost:new Date().getTime(),
+              ValorPremio: ValPreDemos,
+              ValorAposta: ValorReal,
+              Bets:SimAp,
+              ValCambis:ValCambis,
+              CotaGeral:VaToCo,
+              valorAposSimb:ValApos,
+      
+           
+              }).then(async (def) => {
+              
+               var data = new URLSearchParams();
+                 data.append('Valor', ValorReal);
+                 data.append('Nome', Nome);
+                 data.append('Tel', tel);
+                 data.append('IdApos', def.id);
+           
+             const req = await fetch(" https://us-central1-pixbetcash.cloudfunctions.net/api/criarPagamento", {
+               method: 'POST',
+               headers:{
+                 'Content-Type': 'application/x-www-form-urlencoded'
+               },
+               body: data.toString(),
+               json: true,
+             });
+            
+             const json = await req.json();
+           
+             if(json){
+              
+               setLinkEnv(json.resposta.response.init_point);
+               setCarre(false);
+               setAlert("Aposta Criada Com Sucesso!");
+               setAlertTipo("success");
+               setVerNotajogo(false);
+               setModalCalend(true)
+               setSimAp([]);
+               setValCambis("");
+               setValorReal(0);
+               setValPremi(0);
+               setTelCli("");
+               setNomeCli("");
+               setCambis(false);
+               setValPreDemos("");
+               setVaToCo(0)
+      
+              
+              }
+           
+           
+              
+           
+             
+           
+           })
+            .catch((error) => {
+                console.error("Error adding document: ", error);
+            }); 
+           
+           
+          } else {
+      
+            
+            var ver = TelCli.replace("(", "55");
+            var par1 = ver.replace(")", "");
+            var par3 = par1.replace("-", "");
+         
+            const req = await fetch(`https://api.z-api.io/instances/3A9D95BC49F730DF458B76215AA2744C/token/A2A3E65C2FE0E21916E8A2AE/phone-exists/${par3}`, 
+            {
+                  method: 'GET',
+                  headers:{
+                    'Content-Type': 'application/json'
+                  },
+                 
+                });
+        
+            
+              
+                const json = await req.json(); 
+                
+                if(json.exists === true){
+      
+                  await firestore.collection("CompApostas")
+                  .add({
+          
+                  Nome:Nome,
+                  Tel:tel,
+                  IdCri:IdUser,
+                  Cambista:Cambis,
+                  NomeComp:NomeCli,
+                  TelComp:TelCli,
+                  Pago:false,
+                  PremioPago:false,
+                  Aprovado:false,
+                  AnaliTotal:false,
+                  DataApost:new Date().getTime(),
+                  ValorPremio: ValPreDemos,
+                  ValorAposta: ValorReal,
+                  Bets:SimAp,
+                  ValCambis:ValCambis,
+                  CotaGeral:VaToCo,
+                  valorAposSimb:ValApos,
+          
+               
+                  }).then(async (def) => {
+                    console.log(def.id)
+                   var data = new URLSearchParams();
+                     data.append('Valor', ValorReal);
+                     data.append('Nome', Nome);
+                     data.append('Tel', tel);
+                     data.append('IdApos', def.id);
+               
+                 const req = await fetch("https://us-central1-pixbetcash.cloudfunctions.net/api/criarPagamento", {
+                   method: 'POST',
+                   headers:{
+                     'Content-Type': 'application/x-www-form-urlencoded',
+                   },
+                   body: data.toString(),
+                   json: true,
+                 });
+                
+                 const json = await req.json();
+               
+                 if(json){
+                   console.log(json.resposta.response.init_point)
+                   setLinkEnv(json.resposta.response.init_point);
+                   setCarre(false);
+                   setAlert("Aposta Criada Com Sucesso!");
+                   setAlertTipo("success");
+                   setVerNotajogo(false)
+                   setModalCalend(true)
+                   setSimAp([]);
+                   setValCambis("");
+                   setValorReal(0);
+                   setValPremi(0);
+                   setTelCli("");
+                   setNomeCli("");
+                   setCambis(false);
+                   setValPreDemos("");
+                   setVaToCo(0)
+          
+                  
+                  }
+               
+               
+                  
+               
+                 
+               
+               })
+                .catch((error) => {
+                    console.error("Error adding document: ", error);
+                }); 
+      
+                
+                } else {
+      
+                  setVerNotajogo(false)
+                  setModalCalend(true)
+                  setAlert("O Telefone do Cliente Não é um Whatsapp!");
+                  setAlertTipo("danger");
+                  setCarre(false);
+               
+               
+               
+                }
+          
+          
+          
+          
+          
+          
+          
+          }
+      
+
+          } else {
+            setAlert("Ouve um erro na Sua Conta Você Não Esta Logado")
+            setAlertTipo("danger")
+            setVerNotajogo(false)
+            setModalCalend(true)
+            setCarre(false);
+          }
+        });
+
+
+    
+     
+     
+         
+     
+     
+     
+     
+     
+     
+     
+     
+              
+     
+         
+       
+       },
   
 
 }

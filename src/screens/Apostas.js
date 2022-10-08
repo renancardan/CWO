@@ -5,10 +5,12 @@ import {FontAwesome} from "@expo/vector-icons";
 import { ModalDatePicker } from "react-native-material-date-picker";
 import Hora from '../components/Hora';
 import SignInput from '../components/SignInputIni';
+import Telefone from '../components/NumberTel';
 import { Calendar } from 'react-native-calendario';
 import { DatePickerModal, TimePickerModal } from 'react-native-paper-dates'
 import Api from '../Api';
 import DataTime from '../components/datando';
+import Money from '../components/Money';
 //import Datand from '../components/datando';
 
 export default () => {
@@ -63,7 +65,9 @@ export default () => {
   const [ModalVer, setModalVer] = useState(true);
   const [VerNotajogo, setVerNotajogo] = useState(false);
   const [Alert, setAlert] = useState("");
-  const [AlertTipo, setAlertTipo] = useState(false);
+  const [AlertTipo, setAlertTipo] = useState(null);
+  const [Nome, setNome] = useState("");
+  const [Tel, setTel] = useState("");
 
   useEffect(() => {
     if(dataNasc !== null){
@@ -274,6 +278,9 @@ export default () => {
      
       setAlert("Cotação repetida não pode, você já escolheu essa Cotação!");
       setAlertTipo("danger");
+      setModalCalend(true);
+      setVerNotajogo(false);
+
     }else {
       console.log(ListSimu)
       setSimAp([...SimAp, ListSimu ])
@@ -281,6 +288,8 @@ export default () => {
   } else {
     setAlert("Esse Jogo não está mais disponivel !");
     setAlertTipo("danger");
+    setModalCalend(true);
+    setVerNotajogo(false);
   }
   
   //  console.log(item3)
@@ -296,29 +305,12 @@ export default () => {
     }
 
     const ValorPermio = ()=>{
-
-      var preo =  ValApos.split('')
-      console.log(preo)
-      if(preo[2] === '_'){
-        preo[2] = 0
-      }
-
-      if(preo[3] === '_'){
-        preo[3] = 0
-      } 
-      if(preo[4] === '_'){
-        preo[4] = 0
-      } 
-
-      if(preo[6] === '_'){
-        preo[6] = 0
-      }
-
-      if(preo[7] === '_'){
-        preo[7] = 0
-      }
-     
-      var prai = `${preo[2]}${preo[3]}${preo[4]}.${preo[6]}${preo[7]}`
+      console.log(ValApos)
+      var preo =  ValApos.replace("R$", "")
+       preo = preo.replace(".", "")
+  
+      var prai = preo.replace(",", ".")
+      console.log(prai)
      var int = parseFloat(prai)*VaToCo
      var intCam = (parseFloat(prai)*VaToCo)*0.1
       int = int.toFixed(2)
@@ -359,6 +351,98 @@ export default () => {
           setVerNotajogo(false)
         }
 
+        const AposCambis = ()=>{
+          setCambis(!Cambis);
+         }
+
+         const PagandoPix = ()=>{
+          var DateVw = parseInt((new Date().getTime() + 60000)/1000);
+          console.log(DateVw);
+          var verSim = []
+  
+          for(let i in SimAp){
+            console.log(SimAp[i].dataJogo +" - "+DateVw)
+             if(SimAp[i].dataJogo < DateVw){
+              verSim.push(1)
+             } else {
+              verSim.push(2)
+             }
+          }
+           console.log(verSim)
+          if(verSim.includes(1)){
+          
+            setAlert("Algum desses jogos já esta preste a começar ou já começou, exclua e escolha outro jogo!");
+            setAlertTipo("danger");
+            setModalCalend(true);
+            setVerNotajogo(false);
+  
+          } else {
+  
+            if(ValorReal >= 5){
+              if(SimAp.length > 2){
+  
+                 if(Cambis === false){
+                  setCarre(true);
+                  Api.Apostando(QuanJog, ValApos, ValPreDemos,  ValorReal, SimAp, ValPremi, Cambis, TelCli, NomeCli, ValCambis, setCarre, setLinkEnv, setAlert, setAlertTipo, setVerNotajogo, setModalCalend, setSimAp, setValorReal,  setValPremi, setCambis, setTelCli, setNomeCli, setValCambis, setValPreDemos, VaToCo, setVaToCo)
+                 
+                } else {
+  
+                  if(NomeCli !== ""){
+                  
+                 
+                      setCarre(true);
+                      Api.Apostando(QuanJog, ValApos, ValPreDemos, ValorReal, SimAp, ValPremi, Cambis, TelCli, NomeCli, ValCambis, setCarre, setLinkEnv, setAlert, setAlertTipo, setVerNotajogo, setModalCalend, setSimAp, setValorReal,  setValPremi, setCambis, setTelCli, setNomeCli, setValCambis, setValPreDemos, VaToCo, setVaToCo  )
+                 
+                  
+  
+                  } else {
+                    setModalCalend(true);
+                    setVerNotajogo(false);
+                    setAlert("Preencha o Nome Do Cliente");
+                    setAlertTipo("danger");
+  
+                  }
+  
+                 
+                 
+                }
+             
+             
+             
+             
+              } else {
+                setModalCalend(true);
+                setVerNotajogo(false);
+                setAlert("3 jogos são o minimo para aprovar uma aposta");
+                setAlertTipo("danger");
+      
+              }
+    
+            } else {
+              setModalCalend(true);
+              setVerNotajogo(false);
+              setAlert("R$ 5,00 é o menor valor que você pode aposta!");
+              setAlertTipo("danger");
+    
+    
+            }
+  
+          }
+          
+         
+         
+         
+         }
+
+         const SairAlert = ()=>{
+          setAlertTipo(null);
+          setAlert("");
+          setModalCalend(false);
+          setVerNotajogo(false);
+         }
+  
+  
+
     return (
       <View style={styles.Container}>
            <Modal
@@ -369,8 +453,9 @@ export default () => {
               <View style={styles.viewCalend}>
               {VerNotajogo === false ?
               <>
-                 
-               <View  style={styles.QuadCalend}>
+              {AlertTipo === null?
+              <>
+  <View  style={styles.QuadCalend}>
                <TouchableHighlight onPress={()=>setModalCalend(false)} style={styles.CalendBtn}>
                   <Text style={styles.CalendTexSim}>Fechar</Text>
                  </TouchableHighlight>
@@ -433,6 +518,58 @@ export default () => {
                  </TouchableHighlight> */}
                 
                 </View>
+              </>
+
+              :
+              <>
+              {AlertTipo === "danger"?
+              <>
+           
+               <View  style={styles.ModVie}>
+                <View  style={styles.ModVieTex}>
+                <Text style={styles.Avitext2}>{Alert}</Text>
+                </View>
+                <View  style={styles.ModVieBtn}>
+                 {/* <TouchableHighlight style={styles.ModVieBtnBtn}>
+                  <Text style={styles.ModVieTexNao}>Não</Text>
+                 </TouchableHighlight> */}
+                 <TouchableHighlight onPress={()=>SairAlert()} style={styles.ModVieBtnBtn}>
+                  <Text style={styles.ModVieTexSim}>Ok</Text>
+                 </TouchableHighlight>
+                </View>
+               </View>
+       
+            
+              </>
+
+              :
+              <>
+             
+               <View  style={styles.ModVie}>
+                <View  style={styles.ModVieTex}>
+                <Text style={styles.Avitext}>{Alert}</Text>
+                </View>
+                <View  style={styles.ModVieBtn}>
+                 {/* <TouchableHighlight style={styles.ModVieBtnBtn}>
+                  <Text style={styles.ModVieTexNao}>Não</Text>
+                 </TouchableHighlight> */}
+                 <TouchableHighlight onPress={()=>SairAlert()} style={styles.ModVieBtnBtn}>
+                  <Text style={styles.ModVieTexSim}>Ok</Text>
+                 </TouchableHighlight>
+                </View>
+               </View>
+       
+           
+
+              </>
+
+              }
+
+              </>
+
+              }
+                 
+             
             
               </>
 
@@ -475,8 +612,73 @@ export default () => {
                              </a>  */}
                      </View>             
 
-                              ))} 
+                              ))}
+                    <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Qtd. Jogo(s) {QuanJog} </Text>
+                    <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}> Total Cota(s): {VaToCo}</Text> 
+                    <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}> Cash(s) Recebida: {QCash}</Text>  
+                   
+                    <View style={styles.InputHora}>
+                    <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Valor:</Text>  
+                    <Money
+                       
+                       placeholder="Valor R$" 
+                       value={ValApos}
+                       onChangeText={t=>setValApos(t)}
+                       autoCapitalize="none"
+                       keyboardType={"phone-pad"}
+        
+                   />   
+                   </View>
+                 
+                          <View style={styles.Valopre}>
+                            <View style={styles.Titupre}>
+                            <Text  style={{fontWeight:"bold", margin:10, fontSize:15  }}>Valor Do Prêmio: R$ {ValPreDemos}</Text>
+                            </View>
+                            {Cambis === true ?
+                            <>
+                            <TouchableHighlight style={{width:150, height:50, backgroundColor:"#F77474", borderRadius:5, margin:20, justifyContent:"center", alignItems:"center" }}  onPress={()=>AposCambis()}>
+                            <Text  style={{fontWeight:"bold", margin:10, fontSize:15, color:"#FFF"  }}>Sair Do Modo Cambista</Text>
+                            </TouchableHighlight>
+                            <View  style = {styles.InputAra}>
+                           <FontAwesome name="phone-square" size={24} color="black" />
+                            <Telefone                      
+                                placeholder="Whatsapp do Cliente" 
+                                value={TelCli}
+                                onChangeText={t=>setTelCli(t)}
+                                autoCapitalize="none"
+                                keyboardType={"phone-pad"}
+                            
+                            /> 
+                            </View>
+                            <View  style = {styles.InputAra}>
+                            <FontAwesome name="user" size={24} color="black" />
+                             <SignInput
+                                placeholder="Nome do Cliente" 
+                                value={NomeCli}
+                                onChangeText={t=>setNomeCli(t)}
+                                autoCapitalize="none"
+                                keyboardType={"default"}
+                                posi={18}
+                            /> 
+                            </View>
+                            </>
+                            :
+                            <>
+                          <TouchableHighlight style={{width:150, height:50, backgroundColor:"#1AA6D3", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>AposCambis()}>
+                            <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Entrar no Modo Cambista</Text>
+                          </TouchableHighlight>
                         
+                            </>
+                              }
+                          <TouchableHighlight style={{width:150, height:50, backgroundColor:"#1ED31A", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>PagandoPix()}>
+                            <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Pagar a Aposta</Text>
+                          </TouchableHighlight>
+
+                          <TouchableHighlight style={{width:150, height:50, backgroundColor:"#9B1AD3", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>AposCambis()}>
+                            <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Pagar Com Cash</Text>
+                          </TouchableHighlight>
+                          </View>
+                          
                         </>
                         }
 
@@ -920,6 +1122,94 @@ export default () => {
 }
 
 const styles = StyleSheet.create({
+  centeredView4: {
+    backgroundColor:'rgba(0,0,0,0.7)',
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    
+  },
+  BtnText: {
+    fontSize: 18,
+    color: "#FFF212",
+    fontWeight: "bold",
+  },
+  Avitext: {
+    fontSize: 15,
+    color: "#000",
+  },
+  Avitext2: {
+    fontSize: 15,
+    color: "red",
+  },
+  ModVie: {
+    backgroundColor: "#FFF",
+    width:200,
+    height:100,
+    borderRadius:20,
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection:"column"
+  },
+  ModVieTex: {
+    width:180,
+    height:70,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  ModVieBtn: {
+    width:180,
+    height:30,
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection:"row"
+  },
+  ModVieBtnBtn: {
+    width:90,
+    height:30,
+    justifyContent: "center",
+    alignItems: "center",
+    outlineStyle: 'none'
+  },
+  ModVieTexSim: {
+    fontSize: 18,
+    color: "#00C9FB",
+    fontWeight: "bold",
+  },
+  ModVieTexNao: {
+    fontSize: 18,
+    color: "#EB7560",
+    fontWeight: "bold",
+  },
+
+  InputAra :{
+    width:100,
+    height:40,
+    backgroundColor: "#fff",
+    flexDirection:"row",
+    borderRadius:20,
+    alignItems: "center",
+    marginBottom:15,
+    paddingLeft:5,
+    marginTop:15,
+ },
+
+  Valopre:{
+    marginLeft: 10,
+    marginBottom: 10,
+    width: 250,
+    paddingBottom: 10,
+    borderColor:"#000",
+    borderWidth:1,
+
+  },
+
+  Titupre:{
+  width: 248,
+  height: 30,
+  backgroundColor: "#ccc",
+  },
+
   AvisoJgo:{
    backgroundColor:"red",
    width:20,
@@ -1166,7 +1456,7 @@ const styles = StyleSheet.create({
   },
 
   InputHora :{
-    width:"50%",
+    width:"70%",
     height:30,
     backgroundColor: "#fff",
     flexDirection:"row",
@@ -1177,6 +1467,7 @@ const styles = StyleSheet.create({
     marginTop:15,
     borderColor:"#000",
     borderWidth:2,
+    marginLeft:10,
  },
  
   AreaBtn :{
