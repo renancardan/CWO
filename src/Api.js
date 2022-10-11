@@ -10,7 +10,7 @@ const firebaseApp =  firebase.initializeApp(firebaseConfig);
 const firestore = firebaseApp.firestore();
 const storage = firebaseApp.storage();
 
-
+var URL_SITE = "http://pixbetcash.com.br";
 export default {
 
       checkToken: async (tel, cod, time, setIrHome, setIrLogin,  setId, ) => {
@@ -588,6 +588,108 @@ export default {
        
        
      },
+
+     ListJogosCambis: async(Page, setListOc, setCarreg,  Dat, Dat2,)=> {
+   
+      let Antes = Dat;
+      let Depois = Dat2;
+      console.log(Antes);
+      console.log(Depois);
+      var IdUser = ""
+      var Nome = ""
+      var tel = await AsyncStorage.getItem('Tel');
+      var time = await AsyncStorage.getItem('@entrada');
+      var temp = parseInt(time)
+      await firestore.collection("users")
+      .where("Telefone", "==", tel)
+      .where("DataEntCel", "==", temp)
+      .get().then( async(querySnapshot) => {
+     
+        if(querySnapshot.size !== 0){
+          querySnapshot.forEach( async (doc) => {
+            IdUser = doc.id,
+            Nome = doc.data().Nome
+            });
+       
+             await firestore.collection("NotaCambista")
+               .where("dataCriar", ">=", Antes)
+               .where("dataCriar", "<=", Depois)
+               .where("IdCri", "==", IdUser)
+               .onSnapshot((querySnapshot) => {
+
+               var res = []; 
+               console.log("q "+querySnapshot.size)
+               querySnapshot.forEach((doc) => {
+
+                let currentDate = '';
+                let now =new Date(doc.data().dataCriar);
+                let hours = now.getHours();
+                let minutes = now.getMinutes();
+                let Dia = now.getDate();
+                let Mes = (now.getMonth()+1);
+                let Ano = now.getFullYear();
+                let seg = now.getSeconds(); 
+                hours = hours < 10 ? '0'+hours : hours;
+                minutes = minutes < 10 ? '0'+minutes : minutes;
+                seg = seg < 10 ? '0'+seg : seg;
+                Dia = Dia < 10 ? '0'+Dia : Dia;
+                Mes = Mes < 10 ? '0'+Mes : Mes;
+                currentDate = Dia+'/'+Mes+'/'+Ano;
+                currentDate += ' ';
+                currentDate += hours+':'+minutes;
+                 
+                   res.push({
+                    id: doc.id,
+                   dataJogo:doc.data().dataCriar,
+                   NomeCam:doc.data().Nome,
+                   TelCam :doc.data().Tel,
+                   Nome:doc.data().NomeComp,
+                   TelCli:doc.data().TelComp,
+                   Pago:doc.data().Pago,
+                   Concluir:doc.data().Conscluido,
+                   ValPreDemos:doc.data().ValorPremio,
+                   ValorReal:doc.data().ValorAposta,
+                   SimAp:doc.data().Bets,
+                   ValCambis:doc.data().ValCambis,
+                   VaToCo:doc.data().CotaGeral,
+                   ValApos:doc.data().valorAposSimb,
+                   Cash:doc.data().CashGanha, 
+                    dataForm:currentDate,
+   
+                    
+                   });    
+                 
+                 
+               });
+               
+               res.sort((a,b)=>{
+                 if(a.dataJogo > b.dataJogo) {
+                   return 1;
+                 } else {
+                   return -1;
+                 }
+               });
+               console.log(res)
+               setListOc(res);
+               setCarreg(false);  
+       
+                 });
+   
+                } else {
+                  setAlert("Ouve um erro na Sua Conta Você Não Esta Logado")
+                  setAlertTipo("danger")
+                  setVerNotajogo(false)
+                  setModalCalend(true)
+                  setCarre(false);
+                }
+              })  
+             
+           
+      
+        
+       
+       
+     },
      Apostando: async(QuanJog, ValApos, ValPreDemos,  ValorReal, SimAp, ValPremi, Cambis, TelCli, NomeCli, ValCambis, setCarre, setLinkEnv, setAlert, setAlertTipo, setVerNotajogo, setModalCalend, setSimAp, setValorReal,  setValPremi, setCambis, setTelCli, setNomeCli, setValCambis, setValPreDemos, VaToCo, setVaToCo)=> {
       var Msg = ""
       var IdUser = ""
@@ -806,25 +908,862 @@ export default {
             setCarre(false);
           }
         });
-
-
-    
-     
-     
-         
-     
-     
-     
-     
-     
-     
-     
-     
-              
-     
-         
        
        },
+
+       ApostandoCASH: async(QuanJog, ValApos, ValPreDemos, ValorReal, SimAp, ValPremi, Cambis, TelCli, NomeCli, ValCambis, setCarre, setLinkEnv, setAlert, setAlertTipo, setVerNotajogo, setModalCalend, setSimAp, setValorReal,  setValPremi, setCambis, setTelCli, setNomeCli, setValCambis, setValPreDemos, VaToCo, setVaToCo, setPgCash, setIdAposta, setDCash)=> {
+       
+        var Msg = ""
+        var IdUser = ""
+        var Nome = ""
+        var tel = await AsyncStorage.getItem('Tel');
+        var time = await AsyncStorage.getItem('@entrada');
+        var temp = parseInt(time)
+        await firestore.collection("users")
+        .where("Telefone", "==", tel)
+        .where("DataEntCel", "==", temp)
+        .get().then( async(querySnapshot) => {
+       
+          if(querySnapshot.size !== 0){
+            querySnapshot.forEach( async (doc) => {
+              IdUser = doc.id,
+              Nome = doc.data().Nome
+              setDCash(doc.data().Cash)
+              });
+
+              if(Cambis === false){
+       
+            
+       
+       
+       
+                await firestore.collection("CompApostas")
+                .add({
+        
+                Nome:Nome,
+                Tel:tel,
+                IdCri:IdUser,
+                Cambista:Cambis,
+                NomeComp:NomeCli,
+                TelComp:TelCli,
+                Pago:false,
+                PremioPago:false,
+                AnaliTotal:false,
+                Aprovado:false,
+                DataApost:new Date().getTime(),
+                ValorPremio: ValPreDemos,
+                ValorAposta: ValorReal,
+                Bets:SimAp,
+                ValCambis:ValCambis,
+                CotaGeral:VaToCo,
+                valorAposSimb:ValApos,
+        
+             
+                }).then(async (def) => {
+                 setCarre(false);
+                 setIdAposta(def.id);
+                 setPgCash(true);
+             
+             
+                
+             
+               
+             
+             })
+              .catch((error) => {
+                  console.error("Error adding document: ", error);
+              }); 
+             
+             
+            } else {
+        
+              
+              var ver = TelCli.replace("(", "55");
+              var par1 = ver.replace(")", "");
+              var par3 = par1.replace("-", "");
+           
+              const req = await fetch(`https://api.z-api.io/instances/3A9D95BC49F730DF458B76215AA2744C/token/A2A3E65C2FE0E21916E8A2AE/phone-exists/${par3}`, 
+              {
+                    method: 'GET',
+                    headers:{
+                      'Content-Type': 'application/json'
+                    },
+                   
+                  });
+          
+              
+                
+                  const json = await req.json(); 
+                  
+                  if(json.exists === true){
+        
+                    await firestore.collection("CompApostas")
+                    .add({
+            
+                    Nome:Nome,
+                    Tel:tel,
+                    IdCri:IdUser,
+                    Cambista:Cambis,
+                    NomeComp:NomeCli,
+                    TelComp:TelCli,
+                    Pago:false,
+                    PremioPago:false,
+                    Aprovado:false,
+                    AnaliTotal:false,
+                    DataApost:new Date().getTime(),
+                    ValorPremio: ValPreDemos,
+                    ValorAposta: ValorReal,
+                    Bets:SimAp,
+                    ValCambis:ValCambis,
+                    CotaGeral:VaToCo,
+                    valorAposSimb:ValApos,
+            
+                 
+                    }).then(async (def) => {
+                     setCarre(false);
+                     setIdAposta(def.id);
+                     setPgCash(true);
+                   
+                 
+                 })
+                  .catch((error) => {
+                      console.error("Error adding document: ", error);
+                  }); 
+        
+                  
+                  } else {
+        
+                    setVerNotajogo(false)
+                    setModalCalend(true)
+                    setAlert("O Telefone do Cliente Não é um Whatsapp!");
+                    setAlertTipo("danger");
+                    setCarre(false);
+                 
+                 
+                 
+                  }
+            
+            
+            
+            
+            
+            
+            
+            }
+
+
+
+            } else {
+              setAlert("Ouve um erro na Sua Conta Você Não Esta Logado")
+              setAlertTipo("danger")
+              setVerNotajogo(false)
+              setModalCalend(true)
+              setCarre(false);
+            }
+          })
+
+
+  
+         
+         },
+
+         DadosCli:async (Venc, setVenc, setRec, setDatVenc)=>{
+          var tel = await AsyncStorage.getItem('Tel');
+          var time = await AsyncStorage.getItem('@entrada');
+          var temp = parseInt(time)
+          await firestore.collection("users")
+          .where("Telefone", "==", tel)
+          .where("DataEntCel", "==", temp)
+          .onSnapshot((querySnapshot) => {
+         
+            if(querySnapshot.size !== 0){
+
+              querySnapshot.forEach( async (doc) => {
+                let currentDate = '';
+                let now =new Date(doc.data().DataVenc);
+                let hours = now.getHours();
+                let minutes = now.getMinutes();
+                let Dia = now.getDate();
+                let Mes = (now.getMonth()+1);
+                let Ano = now.getFullYear();
+                let seg = now.getSeconds(); 
+                hours = hours < 10 ? '0'+hours : hours;
+                minutes = minutes < 10 ? '0'+minutes : minutes;
+                seg = seg < 10 ? '0'+seg : seg;
+                Dia = Dia < 10 ? '0'+Dia : Dia;
+                Mes = Mes < 10 ? '0'+Mes : Mes;
+                currentDate = Dia+'/'+Mes+'/'+Ano;
+                 setVenc(currentDate)
+                 setRec(doc.data().Dinheiro)
+                 setDatVenc(doc.data().DataVenc)
+
+                });
+             
+
+
+              } 
+            })
+             
+                
+           
+        },
+
+      CriandoCli:async (NomeCli,  TelCli, setRobo, setNomeCli, setTelCli, setCarre,  setAlert, setAlertTipo, setVerNotajogo, setModalCalend, setCriarCli)=>{
+          var temp = new Date().getTime();
+          var IdUser = ""
+          var Nome = ""
+          var tel = await AsyncStorage.getItem('Tel');
+          var time = await AsyncStorage.getItem('@entrada');
+          var temp = parseInt(time)
+          await firestore.collection("users")
+          .where("Telefone", "==", tel)
+          .where("DataEntCel", "==", temp)
+          .get().then( async(querySnapshot) => {
+         
+            if(querySnapshot.size !== 0){
+              querySnapshot.forEach( async (doc) => {
+                IdUser = doc.id,
+                Nome = doc.data().Nome
+                });
+             
+
+                
+        var ver = TelCli.replace("(", "55");
+        var par1 = ver.replace(")", "");
+        var par3 = par1.replace("-", "");
+     
+        const req = await fetch(`https://api.z-api.io/instances/3A9D95BC49F730DF458B76215AA2744C/token/A2A3E65C2FE0E21916E8A2AE/phone-exists/${par3}`, 
+        {
+              method: 'GET',
+              headers:{
+                'Content-Type': 'application/json'
+              },
+             
+            });
+    
+        
+          
+            const json = await req.json(); 
+            
+            if(json.exists === true){
+
+ 
+               firestore.collection("NotaCambista").add({
+                
+
+                 Nome:Nome,
+                 Tel:tel,
+                 IdCri:IdUser,
+                 Cambista:true,
+                 NomeComp:NomeCli,
+                 TelComp:TelCli,
+                 Pago:false,
+                 Conscluido:false,
+                 dataCriar: new Date().getTime(),
+                 ValorPremio: 0,
+                 ValorAposta: 0,
+                 Bets:[],
+                 ValCambis:"",
+                 CotaGeral:"",
+                 valorAposSimb:"R$000,00",
+                 CriarJogoCambio:0,
+
+
+
+                 }).then(async (doc)=>{
+
+                   var res= doc.id;
+                  
+                  var data={
+                     "phone": par3,
+                     "message": `Olá ${NomeCli}, O Cambista ${Nome} lhe enviou Esse Link da PixBetCash, para você criar uma aposta, registre o numero da pixbetcash em sua lista de contato para ter acesso a entrada do link de forma facil. ${URL_SITE}/links/${res}`,
+                     "image": "https://firebasestorage.googleapis.com/v0/b/pixbetcash.appspot.com/o/arquivo%2FLogoPixBetMp.png?alt=media&token=5ff20c89-022e-4dd1-8a87-e1becebde7f9",
+                     "linkUrl": `${URL_SITE}/links/${res}`,
+                     "title": "Link para Palpites de Aposta",
+                     "linkDescription": `O Cambista ${Nome} lhe enviou Esse Link, para você construir sua aposta, clique nesse Link e construa sua aposta!`
+                   }
+                   const req = await fetch("https://api.z-api.io/instances/3A9D95BC49F730DF458B76215AA2744C/token/A2A3E65C2FE0E21916E8A2AE/send-link", 
+                   {
+                         method: 'POST',
+                         headers:{
+                           'Content-Type': 'application/json'
+                         },
+                         body: JSON.stringify(data),
+                       });
+           
+                       const json = await req.json();
+
+                   setRobo(true)
+                  setCarre(false);
+                   setAlert("Criado com Sucesso, O Link Foi enviado Para Seu Cliente!");
+                   setAlertTipo("success");
+                   setCriarCli(false)
+                   setVerNotajogo(false)
+                   setModalCalend(true)
+                   setTelCli("")
+                   setNomeCli("")
+                 });
+               
+                } else {
+                  setAlert("Esse Whatsapp Não Existe!")
+                  setAlertTipo("danger")
+                  setCarre(false);
+                  setRobo(true);
+                }
+
+              } else {
+                setRobo(true)
+                setAlert("Ouve um erro na Sua Conta Você Não Esta Logado, Saia e entre Novamente!")
+                setAlertTipo("danger")
+                setCriarCli(false)
+                setVerNotajogo(false)
+                setModalCalend(true)
+                setCarre(false);
+              }
+            })
+
+             
+                
+           
+        },
+
+         GeradorDeCod:async (Robo, setCarre, setCodLast, setCodG, setAlert, setAlertTipo, setVerNotajogo, setModalCalend)=>{
+          var temp = new Date().getTime();
+          var IdUser = ""
+          var Nome = ""
+          var tel = await AsyncStorage.getItem('Tel');
+          var time = await AsyncStorage.getItem('@entrada');
+          var temp = parseInt(time)
+          await firestore.collection("users")
+          .where("Telefone", "==", tel)
+          .where("DataEntCel", "==", temp)
+          .get().then( async(querySnapshot) => {
+         
+            if(querySnapshot.size !== 0){
+              querySnapshot.forEach( async (doc) => {
+                IdUser = doc.id,
+                Nome = doc.data().Nome
+                });
+             
+                var last = Math.floor((Math.random() * (9999 - 1000)) + 1000);
+                setCodLast(last); 
+                var ver = tel.replace("(", "55");
+                 var par1 = ver.replace(")", "");
+                 var par3 = par1.replace("-", "");
+     
+                 var data={
+                   "phone": par3,
+                   "message": "Código de entrada: "+last,
+                 }   
+                 const req = await fetch("https://api.z-api.io/instances/3A9D95BC49F730DF458B76215AA2744C/token/A2A3E65C2FE0E21916E8A2AE/send-messages", 
+                 {
+                       method: 'POST',
+                       headers:{
+                         'Content-Type': 'application/json'
+                       },
+                       body: JSON.stringify(data),
+                    });
+                   setCarre(false)                 
+                    setCodG(true)
+
+
+              } else {
+                setAlert("Ouve um erro na Sua Conta Você Não Esta Logado")
+                setAlertTipo("danger")
+                setVerNotajogo(false)
+                setModalCalend(true)
+                setCarre(false);
+              }
+            })
+             
+                
+           
+        },
+
+        PgCshAti: async( VCash, IdAposta, setCarre, setLinkEnv, setAlert, setAlertTipo, setModalCalend, setVerNotajogo, setSimAp, setValorReal,  setValPremi, setCambis, setTelCli, setNomeCli, setValCambis, setValPreDemos, VaToCo, setVaToCo, setPgCash, setIdAposta, setDCash, setValApos, setVCash, setRobo, setCodG, setTentativa, setSenha   )=> {
+          var Msg = ""
+          var CashBn = 0;
+          var IdUser = ""
+          var Nome = ""
+          var tempReal = new Date().getTime();
+          var Time =(new Date().getTime());
+          var tel = await AsyncStorage.getItem('Tel');
+          var time = await AsyncStorage.getItem('@entrada');
+          var temp = parseInt(time)
+          await firestore.collection("users")
+          .where("Telefone", "==", tel)
+          .where("DataEntCel", "==", temp)
+          .get().then( async(querySnapshot) => {
+         
+            if(querySnapshot.size !== 0){
+              querySnapshot.forEach( async (doc) => {
+                IdUser = doc.id,
+                Nome = doc.data().Nome
+                CashBn = doc.data().Cash;
+                });
+
+                if(CashBn >= VCash){
+                  var CashAt = CashBn-VCash;
+                await firestore.collection("users")
+                .doc(IdUser)
+                .update({
+                  Cash: CashAt,
+                  Extrato: firebase.firestore.FieldValue.arrayUnion({Data:tempReal, Status:"Pagou", Nivel:"1", Valor:VCash, Moeda:"Cash", IdInf:IdAposta })
+                })
+                .then(async () => {
+      
+                  await firestore.collection("CompApostas")
+                  .doc(IdAposta)
+                  .update({
+                    Pago: true,
+                    DatePago:tempReal,
+                    PgCash:true,
+                  })
+                  .then(async () => {
+                    var Id1nivel = "";
+                    var Id2nivel = "";
+                    var Id3nivel = "";
+                    var Id4nivel = "";
+                    var ValorApo = 0;
+      
+                    await firestore.collection("CompApostas")
+                    .doc(IdAposta)
+                    .get().then(async(doc) => {
+                    Id1nivel = doc.data().IdCri;
+                    ValorApo =parseInt(doc.data().ValorAposta);
+      
+      
+                if(Id1nivel === IdUser){
+      
+                  if(doc.data().Pago === true){
+      
+                  if(doc.data().Cambista === true){
+      
+                      let currentDate25 = '';
+                      let now25 =new Date(Time);
+                      let hours25 = now25.getHours();
+                      let minutes25 = now25.getMinutes();
+                      let Dia25 = now25.getDate();
+                      let Mes25 = (now25.getMonth()+1);
+                      let Ano25 = now25.getFullYear(); 
+                      hours25 = hours25 < 10 ? '0'+hours25 : hours25;
+                      minutes25 = minutes25 < 10 ? '0'+minutes25 : minutes25;
+                      Dia25 = Dia25 < 10 ? '0'+Dia25 : Dia25;
+                      Mes25 = Mes25 < 10 ? '0'+Mes25 : Mes25;
+                      currentDate25 = Dia25+'/'+Mes25+'/'+Ano25;
+                      currentDate25 += ' ';
+                      currentDate25 += hours25+':'+minutes25;
+      
+                        var Msg = ""
+      
+                        Msg = Msg + `----- Boleto de Aposta PixBetCash -----\n`
+                        Msg = Msg + `Nome: ${doc.data().NomeComp}\n`
+                        Msg = Msg + `Telefone: ${doc.data().TelComp}\n`
+                        Msg = Msg + `Pagamento Aprovado\n`
+                        Msg = Msg + `Data: ${currentDate25}\n`
+                        Msg = Msg + `----------------------------------------------\n`
+                        
+                        for(let i in doc.data().Bets){
+      
+                        let currentDate = '';
+                        let now =new Date((doc.data().Bets[i].dataJogo) * 1000);
+                        let hours = now.getHours();
+                        let minutes = now.getMinutes();
+                        let Dia = now.getDate();
+                        let Mes = (now.getMonth()+1);
+                        let Ano = now.getFullYear(); 
+                        hours = hours < 10 ? '0'+hours : hours;
+                        minutes = minutes < 10 ? '0'+minutes : minutes;
+                        Dia = Dia < 10 ? '0'+Dia : Dia;
+                        Mes = Mes < 10 ? '0'+Mes : Mes;
+                        currentDate = Dia+'/'+Mes+'/'+Ano;
+                        currentDate += ' ';
+                        currentDate += hours+':'+minutes;
+      
+      
+                        Msg = Msg + `⚽${doc.data().Bets[i].CasaTime.name.substr(0, 15)} X  ${doc.data().Bets[i].ForaTime.name.substr(0, 15)} \n ☝🏽 Palpite: ${doc.data().Bets[i].Casa} | Cota: ${doc.data().Bets[i].Olds} \n 🥅 (${doc.data().Bets[i].Grupo}) \n ⌚️ ${currentDate}\n ---------------------------------------------\n`
+                        }
+      
+                        Msg = Msg + `Cota Total: ${doc.data().CotaGeral}\n`;
+                        Msg = Msg + `Valor Prêmio: R$ ${doc.data().ValorPremio}\n`;
+                        Msg = Msg + `Valor Pago: ${doc.data().valorAposSimb}\n`;
+                        Msg = Msg + `Cambista: --------------------\n`;
+                        Msg = Msg + `Nome: ${doc.data().Nome}\n`;
+                        Msg = Msg + `Telefone: ${doc.data().Tel}\n`;
+                        Msg = Msg + `Cambista Ganhará 10% em Cima do Prêmio:\n`;
+                        Msg = Msg + `Valor: R$ ${doc.data().ValCambis}\n`;
+                        
+      
+      
+                        var ver = doc.data().TelComp.replace("(", "55");
+                        var par1 = ver.replace(")", "");
+                        var par3 = par1.replace("-", "");
+      
+                        var data={
+                          "phone": par3,
+                          "message": Msg,
+                        }   
+                        const req = await fetch("https://api.z-api.io/instances/3A9D95BC49F730DF458B76215AA2744C/token/A2A3E65C2FE0E21916E8A2AE/send-messages", 
+                        {
+                              method: 'POST',
+                              headers:{
+                                'Content-Type': 'application/json'
+                              },
+                              body: JSON.stringify(data),
+                           });
+      
+      
+                      } else {
+      
+                      let currentDate25 = '';
+                            let now25 =new Date(Time);
+                            let hours25 = now25.getHours();
+                            let minutes25 = now25.getMinutes();
+                            let Dia25 = now25.getDate();
+                            let Mes25 = (now25.getMonth()+1);
+                            let Ano25 = now25.getFullYear(); 
+                            hours25 = hours25 < 10 ? '0'+hours25 : hours25;
+                            minutes25 = minutes25 < 10 ? '0'+minutes25 : minutes25;
+                            Dia25 = Dia25 < 10 ? '0'+Dia25 : Dia25;
+                            Mes25 = Mes25 < 10 ? '0'+Mes25 : Mes25;
+                            currentDate25 = Dia25+'/'+Mes25+'/'+Ano25;
+                            currentDate25 += ' ';
+                            currentDate25 += hours25+':'+minutes25;
+      
+                        var Msg = ""
+      
+                        Msg = Msg + `----- Boleto de Aposta PixBetCash -----\n`
+                        Msg = Msg + `Nome: ${doc.data().Nome}\n`
+                        Msg = Msg + `Telefone: ${doc.data().Tel}\n`
+                        Msg = Msg + `Pagamento Aprovado\n`
+                        Msg = Msg + `Data: ${currentDate25}\n`
+                        Msg = Msg + `----------------------------------------------\n`
+                        
+                        for(let i in doc.data().Bets){
+      
+                        let currentDate = '';
+                        let now =new Date((doc.data().Bets[i].dataJogo) * 1000);
+                        let hours = now.getHours();
+                        let minutes = now.getMinutes();
+                        let Dia = now.getDate();
+                        let Mes = (now.getMonth()+1);
+                        let Ano = now.getFullYear(); 
+                        hours = hours < 10 ? '0'+hours : hours;
+                        minutes = minutes < 10 ? '0'+minutes : minutes;
+                        Dia = Dia < 10 ? '0'+Dia : Dia;
+                        Mes = Mes < 10 ? '0'+Mes : Mes;
+                        currentDate = Dia+'/'+Mes+'/'+Ano;
+                        currentDate += ' ';
+                        currentDate += hours+':'+minutes;
+      
+      
+                        Msg = Msg + `⚽${doc.data().Bets[i].CasaTime.name.substr(0, 15)} X  ${doc.data().Bets[i].ForaTime.name.substr(0, 15)} \n ☝🏽 Palpite: ${doc.data().Bets[i].Casa} | Cota: ${doc.data().Bets[i].Olds} \n 🥅 (${doc.data().Bets[i].Grupo}) \n ⌚️ ${currentDate}\n ---------------------------------------------\n`
+                        }
+      
+                        Msg = Msg + `Cota Total: ${doc.data().CotaGeral}\n`;
+                        Msg = Msg + `Valor Premio: R$ ${doc.data().ValorPremio}\n`;
+                        Msg = Msg + `Valor Pago: ${doc.data().valorAposSimb}\n`;
+                        
+      
+      
+                        var ver = doc.data().Tel.replace("(", "55");
+                        var par1 = ver.replace(")", "");
+                        var par3 = par1.replace("-", "");
+      
+                        var data={
+                          "phone": par3,
+                          "message": Msg,
+                        }   
+                        const req = await fetch("https://api.z-api.io/instances/3A9D95BC49F730DF458B76215AA2744C/token/A2A3E65C2FE0E21916E8A2AE/send-messages", 
+                        {
+                              method: 'POST',
+                              headers:{
+                                'Content-Type': 'application/json'
+                              },
+                              body: JSON.stringify(data),
+                           });
+      
+                        
+      
+      
+      
+                        }
+      
+      
+      
+      
+          //1° nivel ------
+          
+          var cash1 = 0;
+          var TemV1 = 0;
+          var NewTemV1 = 0;
+          var NewCash1 = 0;
+          
+          await firestore.collection("users")
+          .doc(Id1nivel)
+          .get().then((doc11) => {
+           cash1 = doc11.data().Cash; 
+           TemV1 = doc11.data().DataVenc;
+          });
+          
+          if(TemV1 < tempReal){
+          
+           NewTemV1 = tempReal+(86400000*ValorApo);
+           NewCash1 = cash1 + (9*ValorApo);
+          
+          }else {
+          
+          NewTemV1 = TemV1+(86400000*ValorApo);
+          NewCash1 = cash1 + (9*ValorApo);
+          
+          }
+          
+          await firestore.collection("users")
+          .doc(Id1nivel)
+          .update({
+              Cash:NewCash1,
+              DataVenc:NewTemV1,
+              Extrato: firebase.firestore.FieldValue.arrayUnion({Data:tempReal, Status:"Ganhou", Nivel:"1", Valor:(9*ValorApo), Moeda:"Cash", IdInf: IdAposta })
+          })
+      
+      
+           //2° Nivel ----
+           var cash2 = 0;
+           var TemV2 = 0;
+           var NewTemV2 = 0;
+           var NewCash2 = 0;
+           var Status2 = "";
+           
+           await firestore.collection("users")
+           .where("Indicados", "array-contains", Id1nivel)
+           .get().then(async (querySnapshot12) => {
+             if(querySnapshot12.size  !== 0){
+           
+           
+            await querySnapshot12.forEach((doc12) => {
+                 Id2nivel = doc12.id;
+               })
+           
+           await firestore.collection("users")
+           .doc(Id2nivel)
+           .get().then((doc13) => {
+            cash2 = doc13.data().Cash; 
+            TemV2 = doc13.data().DataVenc;
+           });
+           
+           if(TemV2 < tempReal){
+               NewCash2 = cash2;
+               Status2 = "Perdeu";
+              
+              }else {
+              
+              NewCash2 = cash2 + (6*ValorApo);
+              Status2 = "Ganhou";
+              
+              }
+           
+              await firestore.collection("users")
+              .doc(Id2nivel)
+              .update({
+                  Cash:NewCash2,
+                  Extrato: firebase.firestore.FieldValue.arrayUnion({Data:tempReal, Status:Status2, Nivel:"2", Valor:(6*ValorApo), Moeda:"Cash", IdInf:IdAposta })
+              })
+              
+           
+       
+           
+           
+             } 
+           })
+          
+         
+      
+      
+          
+      
+             //3° Nivel ----
+             var cash3 = 0;
+             var TemV3 = 0;
+             var NewTemV3 = 0;
+             var NewCash3 = 0;
+             var Status3 = "";
+      
+             await firestore.collection("users")
+             .where("Indicados", "array-contains", Id2nivel)
+             .get().then(async (querySnapshot13) => {
+               if(querySnapshot13.size  !== 0){
+             
+             
+              await querySnapshot13.forEach((doc131) => {
+                   Id3nivel = doc131.id;
+                 })
+             
+             await firestore.collection("users")
+             .doc(Id3nivel)
+             .get().then((doc132) => {
+              cash3 = doc132.data().Cash; 
+              TemV3 = doc132.data().DataVenc;
+             });
+             
+             if(TemV3 < tempReal){
+                 NewCash3 = cash3;
+                 Status3 = "Perdeu";
+                }else {
+                
+                NewCash3 = cash3 + (3*ValorApo);
+                Status3 = "Ganhou";
+                }
+             
+                await firestore.collection("users")
+                .doc(Id3nivel)
+                .update({
+                    Cash:NewCash3,
+                    Extrato: firebase.firestore.FieldValue.arrayUnion({Data:tempReal, Status:Status3, Nivel:"3", Valor:(3*ValorApo), Moeda:"Cash", IdInf:IdAposta })
+                })
+            
+                
+             
+             
+               } 
+             })
+      
+      
+      
+      
+      
+      
+              
+                //4° Nivel ----
+                var cash4 = 0;
+                var TemV4 = 0;
+                var NewTemV4 = 0;
+                var NewCash4 = 0;
+                var Status4 = "";
+                
+                await firestore.collection("users")
+                .where("Indicados", "array-contains", Id3nivel)
+                .get().then(async (querySnapshot14) => {
+                  if(querySnapshot14.size  !== 0){
+                
+                
+                 await querySnapshot14.forEach((doc141) => {
+                      Id4nivel = doc141.id;
+                    })
+                
+                await firestore.collection("users")
+                .doc(Id4nivel)
+                .get().then((doc142) => {
+                 cash4 = doc142.data().Cash; 
+                 TemV4 = doc142.data().DataVenc;
+                });
+                
+                if(TemV4 < tempReal){
+                    NewCash4 = cash4;
+                    Status4 = "Perdeu";
+                   }else {
+                   
+                   NewCash4 = cash4 + (1*ValorApo);
+                   Status4 = "Ganhou";
+                   }
+                
+                   await firestore.collection("users")
+                   .doc(Id4nivel)
+                   .update({
+                       Cash:NewCash4,
+                       Extrato: firebase.firestore.FieldValue.arrayUnion({Data:tempReal, Status:Status4, Nivel:"4", Valor:(1*ValorApo), Moeda:"Cash", IdInf:IdAposta })
+                   })
+                   
+                
+                
+                  } 
+                })
+      
+      
+                  }
+      
+      
+                  }
+      
+                  });
+                 
+                  setCarre(false);
+                  setAlert("Aposta Paga com Sucesso!");
+                  setAlertTipo("success");
+                  setModalCalend(true);
+                  setVerNotajogo(false);
+                  setSimAp([]);
+                  setValCambis("");
+                  setValorReal(0);
+                  setValPremi(0);
+                  setTelCli("");
+                  setNomeCli("");
+                  setCambis(false);
+                  setValPreDemos("");
+                  setVaToCo(0)
+                  setIdAposta("");
+                  setPgCash(false);
+                  setDCash(0);
+                  setValApos("R$000,00")
+                  setVCash(0);
+                  setCodG(false)
+                  setTentativa(0)
+                  setSenha("")
+                  setRobo(true)
+                 
+                 
+                 
+                 
+                  })
+      
+      
+                  
+              //     var data = new URLSearchParams();
+              //     data.append('DataEnt', DataEnt);
+              //     data.append('Tel', Tel);
+              //     data.append('IdApos', IdAposta);
+            
+              // const req = await fetch("https://us-central1-pixbetcash.cloudfunctions.net/api/PagamentoCash", {
+              //   method: 'POST',
+              //   headers:{
+              //     'Content-Type': 'application/x-www-form-urlencoded'
+              //   },
+              //   body: data.toString(),
+              //   json: true,
+              // });
+             
+              // const json = await req.json();
+            
+              // if(json){
+            
+             
+      
+                
+       
+               
+              //  }
+                })
+                 
+                 
+      
+              
+             } 
+         
+
+         
+         
+         
+        } else {
+          setAlert("Ouve um erro na Sua Conta Você Não Esta Logado")
+          setAlertTipo("danger")
+          setVerNotajogo(false)
+          setModalCalend(true)
+          setCarre(false);
+        }
+      })
+         
+         
+           
+           },
   
 
 }

@@ -13,6 +13,9 @@ import AvisoLoc from '../screens/AvisoLoc';
 import SignInCod from '../screens/SignInCod';
 import MainTab from '../stacks/MainTab';
 import main from '../screens/main';
+import Pagar from '../screens/Pagar';
+import Config from '../screens/Config';
+import Notific from '../screens/Notific';
  //import cadastroSim from '../screens/cadastroSim';
 
 const Stack = createNativeStackNavigator();
@@ -26,6 +29,27 @@ export default function Ret() {
       initialRouteName={"Preload"}
 
       >
+         <Stack.Screen
+
+        options={{
+          headerShown: false
+        }}   
+        name="Pagar" component={Pagar} />
+
+       <Stack.Screen
+     options={{
+        title: 'Configuração',
+        headerShown: false
+    }}   
+     name="Config" component={Config} />
+
+<Stack.Screen
+     options={{
+        title: 'Notificação',
+        headerShown: false
+    }}   
+     name="Notific" component={Notific} />
+        
           <Stack.Screen
      options={{
         title: 'Aviso',
