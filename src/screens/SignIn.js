@@ -31,7 +31,7 @@ export default () => {
     const [ModalText, setModalText] = useState("");
     const [ModalAlert, setModalAlert] = useState(false);
     const [Robo, setRobo] = useState(true)
-    console.log(window.location.href);
+   // console.log(window.location.href);
  
     useEffect(() => {
       console.log(Te1);

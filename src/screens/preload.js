@@ -22,7 +22,7 @@ export default () => {
     const [IdArea, setIdArea] = useState("");
     const [Lat, setLat] = useState("");
     const [Lng, setLng] = useState("");
-  
+   // console.log(window.location.href);
     useEffect(() => {
         if(IrLogin === true){
             irParaLogin();
@@ -41,34 +41,51 @@ export default () => {
        }, [IrHome])
     
     useEffect(()=>{
-                  
-        const checkAuth = async () => {
-            await AsyncStorage.setItem('@empresa', '');
-            var tel = await AsyncStorage.getItem('Tel');
-            var cod = await AsyncStorage.getItem('@codigo');
-            var time = await AsyncStorage.getItem('@entrada');
-            var Emp = await AsyncStorage.getItem('@empresa');
-
-       
-    
-        
-            if(tel){
-                let user = await Api.checkToken(tel, cod, time, setIrHome, setIrLogin,   setId, ); 
-            } else {
-                await navigation.reset({
-                    routes:[{name:'SignIn'}]
-                });
-
-            }
-           
-
-            }
-           
-            checkAuth();
+     
+      EntrandoLinks();
 
 
     }, []);
 
+    const EntrandoLinks = () => {
+      const Site = window.location.href;
+    const VerSite =  Site.split("/");
+    console.log(VerSite)
+    if(VerSite[3] === "links"){
+  
+    navigation.navigate("ApCambis", {
+      id:VerSite[4],
+    });
+
+
+    } else {
+      checkAuth();
+    }  
+     
+    }
+
+
+    const checkAuth = async () => {
+      await AsyncStorage.setItem('@empresa', '');
+      var tel = await AsyncStorage.getItem('Tel');
+      var cod = await AsyncStorage.getItem('@codigo');
+      var time = await AsyncStorage.getItem('@entrada');
+      var Emp = await AsyncStorage.getItem('@empresa');
+
+ 
+
+  
+      if(tel){
+          let user = await Api.checkToken(tel, cod, time, setIrHome, setIrLogin,   setId, ); 
+      } else {
+          await navigation.reset({
+              routes:[{name:'SignIn'}]
+          });
+
+      }
+     
+
+      }
 
 
    const irParaHome = ()=>{

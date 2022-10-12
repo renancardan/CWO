@@ -654,7 +654,7 @@ export default {
                    VaToCo:doc.data().CotaGeral,
                    ValApos:doc.data().valorAposSimb,
                    Cash:doc.data().CashGanha, 
-                    dataForm:currentDate,
+                  dataForm:currentDate,
    
                     
                    });    
@@ -690,6 +690,79 @@ export default {
        
        
      },
+
+     JogoCriadoCamb: async(id, setVaToCo, setValPreDemos, setValorReal, setSimAp, setValApos,setNome, setTelCli, setNomeCam, setTelCam, setConcluir, setPago, setValCambis, setQCash,  )=> {
+   
+      await firestore.collection("NotaCambista").doc(id)
+      .get()
+      .then((doc) => {
+          
+  
+  
+          setNomeCam(doc.data().Nome);
+          setTelCam(doc.data().Tel);
+          setNome(doc.data().NomeComp);
+          setTelCli(doc.data().TelComp);
+          setPago(doc.data().Pago);
+          setConcluir(doc.data().Conscluido);
+          setValPreDemos(doc.data().ValorPremio);
+          setValorReal(doc.data().ValorAposta);
+          setSimAp(doc.data().Bets);
+          setValCambis(doc.data().ValCambis);
+          setVaToCo(doc.data().CotaGeral);
+          setValApos(doc.data().valorAposSimb); 
+          setQCash(doc.data().CashGanha);
+      });
+      
+    },
+
+    ConcluirApost: async(id, setConcluir, setPago)=> {
+   
+   
+      await firestore.collection('NotaCambista')
+        .doc(id).onSnapshot((doc) => {
+         setConcluir(doc.data().Conscluido)
+         setPago(doc.data().Pago)
+         
+      });
+   
+   
+  },
+
+
+    EnviadoAposCam: async(id, VaToCo, ValPreDemos, ValorReal, SimAp, ValApos, Nome, TelCli, NomeCam, TelCam, Concluir, Pago, ValCambis, QCash)=> {
+      console.log(ValPreDemos)
+      await firestore.collection("NotaCambista").doc(id)
+      .update({
+          
+        Pago:Pago,
+        Conscluido:Concluir,
+        ValorPremio:ValPreDemos,
+        ValorAposta:ValorReal,
+        Bets:SimAp,
+        ValCambis:ValCambis,
+        CotaGeral:VaToCo,
+        valorAposSimb:ValApos,
+        CashGanha:QCash,
+  
+    
+      });
+      
+    },
+
+    TiraConcluidoApos: async(IdApos, Concluir)=> {
+ 
+      await firestore.collection("NotaCambista").doc(IdApos)
+      .update({
+  
+        Conscluido:Concluir,
+  
+      }).then(()=>{
+       
+      });
+      
+    },
+
      Apostando: async(QuanJog, ValApos, ValPreDemos,  ValorReal, SimAp, ValPremi, Cambis, TelCli, NomeCli, ValCambis, setCarre, setLinkEnv, setAlert, setAlertTipo, setVerNotajogo, setModalCalend, setSimAp, setValorReal,  setValPremi, setCambis, setTelCli, setNomeCli, setValCambis, setValPreDemos, VaToCo, setVaToCo)=> {
       var Msg = ""
       var IdUser = ""
@@ -1219,6 +1292,85 @@ export default {
                 setVerNotajogo(false)
                 setModalCalend(true)
                 setCarre(false);
+              }
+            })
+
+             
+                
+           
+        },
+
+
+        EnviarLink:async (IdApos, NomeCli,  TelCli, setRobo, setNomeCli, setTelCli, setCarre,  setAlert, setAlertTipo, setVerNotajogo, setModalCalend, setCriarCli, setEnviLin, setIdApos)=>{
+          var temp = new Date().getTime();
+          var IdUser = ""
+          var Nome = ""
+          var tel = await AsyncStorage.getItem('Tel');
+          var time = await AsyncStorage.getItem('@entrada');
+          var temp = parseInt(time)
+          await firestore.collection("users")
+          .where("Telefone", "==", tel)
+          .where("DataEntCel", "==", temp)
+          .get().then( async(querySnapshot) => {
+         
+            if(querySnapshot.size !== 0){
+              querySnapshot.forEach( async (doc) => {
+                IdUser = doc.id,
+                Nome = doc.data().Nome
+                });
+             
+
+                
+        var ver = TelCli.replace("(", "55");
+        var par1 = ver.replace(")", "");
+        var par3 = par1.replace("-", "");
+    
+                
+                  var data={
+                     "phone": par3,
+                     "message": `Olá ${NomeCli}, O Cambista ${Nome} lhe enviou Esse Link da PixBetCash, para você criar uma aposta, registre o numero da pixbetcash em sua lista de contato para ter acesso a entrada do link de forma facil. ${URL_SITE}/links/${IdApos}`,
+                     "image": "https://firebasestorage.googleapis.com/v0/b/pixbetcash.appspot.com/o/arquivo%2FLogoPixBetMp.png?alt=media&token=5ff20c89-022e-4dd1-8a87-e1becebde7f9",
+                     "linkUrl": `${URL_SITE}/links/${IdApos}`,
+                     "title": "Link para Palpites de Aposta",
+                     "linkDescription": `O Cambista ${Nome} lhe enviou Esse Link, para você construir sua aposta, clique nesse Link e construa sua aposta!`
+                   }
+                   const req = await fetch("https://api.z-api.io/instances/3A9D95BC49F730DF458B76215AA2744C/token/A2A3E65C2FE0E21916E8A2AE/send-link", 
+                   {
+                         method: 'POST',
+                         headers:{
+                           'Content-Type': 'application/json'
+                         },
+                         body: JSON.stringify(data),
+                       });
+           
+                       const json = await req.json();
+                       setEnviLin(false)
+                       setRobo(true)
+                       setAlert("Link Enviado Com Sucesso!")
+                       setAlertTipo("sucess")
+                       setCriarCli(false)
+                       setVerNotajogo(false)
+                       setModalCalend(true)
+                       setCarre(false);
+                       setNomeCli("");
+                       setTelCli("");
+                       setIdApos("")
+                 
+               
+             
+
+              } else {
+                setEnviLin(false)
+                setRobo(true)
+                setAlert("Ouve um erro na Sua Conta Você Não Esta Logado, Saia e entre Novamente!")
+                setAlertTipo("danger")
+                setCriarCli(false)
+                setVerNotajogo(false)
+                setModalCalend(true)
+                setCarre(false);
+                setNomeCli("");
+                setTelCli("");
+                setIdApos("")
               }
             })
 

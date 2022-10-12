@@ -23,8 +23,9 @@ export default () => {
   const { state: userState } = useContext(UserContext);
   
   const captcha = useRef(null)
+
   const [dataNasc, setdataNasc] = useState(null);
-   const [ListOc, setListOc] = useState([]);
+  const [ListOc, setListOc] = useState([]);
   const [Page, setPage] = useState(1);
   const [Load, setLoad] = useState(false);
   const [DataPesq, setDataPesq] = useState(new Date().getTime());
@@ -61,6 +62,7 @@ export default () => {
   const [NomeCli, setNomeCli] = useState("");
   const [TelCli, setTelCli] = useState("");
   const [IdAposta, setIdAposta] = useState("")
+  const [IdApos, setIdApos] = useState("")
   const [PgCash, setPgCash] = useState(false);
   const [DCash, setDCash] = useState(0);
   const [VCash, setVCash] = useState(0);
@@ -80,7 +82,12 @@ export default () => {
   const [AbMoney, setAbMoney] = useState(false);
   const [AbVenc, setAbVenc] = useState(false);
   const [CriarCli, setCriarCli] = useState(false);
-   console.log(userState.nome)
+  const [Concluir, setConcluir] = useState(false);
+  const [NomeCam, setNomeCam] = useState("");
+  const [TelCam, setTelCam] = useState("");
+  const [Pago, setPago] = useState(false);
+  const [EnviLin, setEnviLin] = useState(false);
+ 
   useEffect(() => {
     if(dataNasc !== null){
       ListandoOc();
@@ -97,6 +104,13 @@ export default () => {
     }
 
    }, [ListOc])
+
+   useEffect(() => {
+    if(IdApos !== ""){
+      ConcluidoAposta()
+    }
+ 
+   }, [Concluir])
 
    useEffect(() => {
     console.log(SimAp)
@@ -123,6 +137,11 @@ export default () => {
   //     ListandoOc();  
   //   }            
   //  }, [Page]);
+
+  const ConcluidoAposta = ()=>{
+    Api.TiraConcluidoApos(IdApos, Concluir)
+  
+  }
 
   const onChangeRecp = ()=> {
     if(captcha.current.getValue()){
@@ -378,6 +397,24 @@ export default () => {
         }
 
         const Siarnota = ()=>{
+          setNomeCam("");
+            setTelCam("");
+           setTelCli("");
+           setNomeCli("")
+           setPago("");
+           setConcluir("");
+           setValPreDemos("");
+           setValorReal("");
+           setSimAp([]);
+           setValCambis("");
+           setVaToCo("");
+           setValApos(""); 
+           setQCash("");
+           setIdApos("");
+           setQuanJog("");
+           
+           setCambis(true);
+           setVCash("");
          
           setModalCalend(false);
           setVerNotajogo(false);
@@ -479,7 +516,9 @@ export default () => {
           setAlert("");
           setModalCalend(false);
           setVerNotajogo(false);
-          setCriarCli(false)
+          setCriarCli(false);
+          setEnviLin(false);
+          setIdApos("");
          }
 
          const PagandoCash = ()=>{
@@ -609,6 +648,37 @@ export default () => {
              
             }
 
+
+            const EnviandoLink =  async ()=> {
+              if(NomeCli !== ""){
+                if(TelCli !== ""){
+              if(Robo === false){
+                setCarre(true)
+                Api.EnviarLink(IdApos, NomeCli,  TelCli, setRobo, setNomeCli, setTelCli, setCarre,  setAlert, setAlertTipo, setVerNotajogo, setModalCalend, setCriarCli, setEnviLin, setIdApos);
+              } else {
+               
+                setAlert("Por Favor Clique em NÃO SOU ROBÔ!");
+                setAlertTipo("danger")
+              }
+           
+          } else {
+             
+            setAlert("Preencha o Whatsapp Do Cliente");
+            setAlertTipo("danger");
+  
+          }
+        } else {
+             
+          setAlert("Preencha o Nome Do Cliente");
+          setAlertTipo("danger");
+  
+        }
+             
+                
+             
+               
+              }
+
           const CompPgCash = ()=>{
 
             if(parseInt(Senha)  === CodLast){
@@ -652,6 +722,66 @@ export default () => {
             setModalCalend(true);
             setCriarCli(true)
           }
+
+          const AbrirEnviar = (item)=>{
+            setModalCalend(true);
+            setCriarCli(true)
+            setTelCli(item.TelCli);
+            setNomeCli(item.Nome)
+            setEnviLin(true);
+            setIdApos(item.id);
+          }
+
+          const AbrirModal = (item)=>{
+            
+             setNomeCam(item.NomeCam);
+             setTelCam(item.TelCam);
+            setTelCli(item.TelCli);
+            setNomeCli(item.Nome)
+            setPago(item.Pago);
+            setConcluir(item.Concluir);
+            setValPreDemos(item.ValPreDemos);
+            setValorReal(item.ValorReal);
+            setSimAp(item.SimAp);
+            setValCambis(item.ValCambis);
+            setVaToCo(item.VaToCo);
+            setValApos(item.ValApos); 
+            setQCash(item.Cash);
+            setIdApos(item.id);
+            setQuanJog(item.SimAp.length);
+            
+            setCambis(true);
+            setVCash(item.ValorReal*100);
+            setVerNotajogo(true);
+            setModalCalend(true)
+            
+          }
+
+          const FechaModal = ()=>{
+            
+            setNomeCam("");
+            setTelCam("");
+           setTelCli("");
+           setNomeCli("")
+           setPago("");
+           setConcluir("");
+           setValPreDemos("");
+           setValorReal("");
+           setSimAp([]);
+           setValCambis("");
+           setVaToCo("");
+           setValApos(""); 
+           setQCash("");
+           setIdApos("");
+           setQuanJog("");
+           
+           setCambis(true);
+           setVCash("");
+           setVerNotajogo(false);
+           setModalCalend(false);
+           
+           
+         }
   
 
     return (
@@ -676,33 +806,60 @@ export default () => {
                       :
                       <>
                 <View style={styles.QuadNota} >
-                <ScrollView >
-                        <View  style={styles.CaixadeapostaTitulo}  >
-                    <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Criar Cliente</Text> <View  style={styles.fechaModal} ><TouchableHighlight onPress={() =>SairCriar()}><Text>X</Text></TouchableHighlight></View>
-                      </View> 
-                      <View  style = {styles.InputAra}>
+                <ScrollView>
+                  {EnviLin === true ?
+                  <>
+                   <View  style={styles.CaixadeapostaTitulo}  >
+                   <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Enviar Link</Text> <View  style={styles.fechaModal} ><TouchableHighlight onPress={() =>SairCriar()}><Text>X</Text></TouchableHighlight></View>
+                     </View> 
+                     <View  style = {styles.AraCli}>
                            <FontAwesome name="phone-square" size={24} color="black" />
-                            <Telefone                      
-                                placeholder="Whatsapp do Cliente" 
-                                value={TelCli}
-                                onChangeText={t=>setTelCli(t)}
-                                autoCapitalize="none"
-                                keyboardType={"phone-pad"}
-                            
-                            /> 
+                           
+                           <Text  style={{ margin:10, fontSize:17  }}>{TelCli}</Text>
                             </View>
-                            <View  style = {styles.InputAra}>
+                            <View  style = {styles.AraCli}>
                             <FontAwesome name="user" size={24} color="black" />
-                             <SignInput
-                                placeholder="Nome do Cliente" 
-                                value={NomeCli}
-                                onChangeText={t=>setNomeCli(t)}
-                                autoCapitalize="none"
-                                keyboardType={"default"}
-                                posi={18}
-                            />
+                            
+                            
+                            <Text  style={{ margin:10, fontSize:17  }}>{NomeCli}</Text>
                            
                             </View>
+                  </>
+                  :
+                  <>
+                  <View  style={styles.CaixadeapostaTitulo}  >
+                  <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Criar Cliente</Text> <View  style={styles.fechaModal} ><TouchableHighlight onPress={() =>SairCriar()}><Text>X</Text></TouchableHighlight></View>
+                  </View> 
+                  <View  style = {styles.InputAra}>
+                  <FontAwesome name="phone-square" size={24} color="black" />
+                  
+                   <Telefone                      
+                       placeholder="Whatsapp do Cliente" 
+                       value={TelCli}
+                       onChangeText={t=>setTelCli(t)}
+                       autoCapitalize="none"
+                       keyboardType={"phone-pad"}
+                   
+                   /> 
+                   </View>
+                   <View  style = {styles.InputAra}>
+                   <FontAwesome name="user" size={24} color="black" />
+                   
+                   
+                    <SignInput
+                       placeholder="Nome do Cliente" 
+                       value={NomeCli}
+                       onChangeText={t=>setNomeCli(t)}
+                       autoCapitalize="none"
+                       keyboardType={"default"}
+                       posi={18}
+                   />
+                  
+                   </View>
+                   </>
+                  }
+                       
+                      
                <ReCAPTCHA
                           ref={captcha}
                           sitekey="6LdDVDIiAAAAAM8Z3lsWD6qE2o2w94YfwDM7mRf7"
@@ -714,9 +871,18 @@ export default () => {
                             {Alert !== "" &&
                               <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"red"  }}>{Alert}</Text> 
                             }
-                             <TouchableHighlight style={{width:250, height:50, backgroundColor:"#00A859", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>CriandoCliente()}>
+
+                            {EnviLin === true ?
+                              <TouchableHighlight style={{width:250, height:50, backgroundColor:"#00A859", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>EnviandoLink()}>
+                              <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Enviando Link</Text>
+                            </TouchableHighlight>
+                            :
+                            <TouchableHighlight style={{width:250, height:50, backgroundColor:"#00A859", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>CriandoCliente()}>
                             <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Criar Cliente para Jogo</Text>
                           </TouchableHighlight>
+
+                            }
+                           
                           </ScrollView>
               </View>
               </>
@@ -955,9 +1121,7 @@ export default () => {
                      <Text style={styles.TexNota1}>Palpite: {item3.Casa} | Cota: {item3.Olds}</Text>
                      <Text style={styles.TexNota1}>({item3.Grupo})</Text>
                      <Text style={styles.TexNota1}><DataTime  data={item3.dataJogo*1000} /> </Text>
-                     <TouchableHighlight  style={styles.ExcluirJogo} onPress={()=>TirarEsse(index)}>
-                     <FontAwesome name="trash" size={24} color="black" />
-                      </TouchableHighlight>
+                    
                      {/* <a className="btn btn-danger ExcluirJogo" onClick={()=>TirarEsse(index)}>
                             <i class="fas fa-trash"></i> 
                              </a>  */}
@@ -987,30 +1151,30 @@ export default () => {
                             </View>
                             {Cambis === true ?
                             <>
-                            <TouchableHighlight style={{width:150, height:50, backgroundColor:"#F77474", borderRadius:5, margin:20, justifyContent:"center", alignItems:"center" }}  onPress={()=>AposCambis()}>
-                            <Text  style={{fontWeight:"bold", margin:10, fontSize:15, color:"#FFF"  }}>Sair Do Modo Cambista</Text>
-                            </TouchableHighlight>
-                            <View  style = {styles.InputAra}>
+                         
+                            <View  style = {styles.AraCli}>
                            <FontAwesome name="phone-square" size={24} color="black" />
-                            <Telefone                      
+                            {/* <Telefone                      
                                 placeholder="Whatsapp do Cliente" 
                                 value={TelCli}
                                 onChangeText={t=>setTelCli(t)}
                                 autoCapitalize="none"
                                 keyboardType={"phone-pad"}
                             
-                            /> 
+                            />  */}
+                             <Text  style={{ margin:10, fontSize:17  }}>{TelCli}</Text>
                             </View>
-                            <View  style = {styles.InputAra}>
+                            <View  style = {styles.AraCli}>
                             <FontAwesome name="user" size={24} color="black" />
-                             <SignInput
+                             {/* <SignInput
                                 placeholder="Nome do Cliente" 
                                 value={NomeCli}
                                 onChangeText={t=>setNomeCli(t)}
                                 autoCapitalize="none"
                                 keyboardType={"default"}
                                 posi={18}
-                            /> 
+                            />  */}
+                             <Text  style={{ margin:10, fontSize:17  }}>{NomeCli}</Text>
                             </View>
                             </>
                             :
@@ -1021,6 +1185,15 @@ export default () => {
                         
                             </>
                               }
+                              {Concluir === true &&
+                              <>
+                            <Text  style={{ marginLeft:10, fontSize:17, color:"#000"  }}>Cambista</Text>
+                            <Text  style={{ marginLeft:10, fontSize:17, color:"#000"  }}>Aposta Vencedora</Text>
+                            <Text  style={{ marginLeft:10, fontSize:17, color:"#000"  }}>10% do Premio para o Cambista.</Text>
+                            <Text  style={{ marginLeft:10, fontSize:17, color:"#000"  }}>Valor do Ganho: R$ {ValCambis}</Text>
+                            <TouchableHighlight style={{width:150, height:50, backgroundColor:"#F96868", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>setConcluir(false)}>
+                            <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Em Andamento</Text>
+                          </TouchableHighlight>
                           <TouchableHighlight style={{width:150, height:50, backgroundColor:"#1ED31A", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>PagandoPix()}>
                             <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Pagar a Aposta</Text>
                           </TouchableHighlight>
@@ -1028,6 +1201,13 @@ export default () => {
                           <TouchableHighlight style={{width:150, height:50, backgroundColor:"#9B1AD3", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>PagandoCash()}>
                             <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Pagar Com Cash</Text>
                           </TouchableHighlight>
+
+
+                              
+                              </>
+
+                              }
+                        
                           </View>
                           
                         </>
@@ -1198,12 +1378,12 @@ export default () => {
                 </View> 
     
                 <View  style={styles.TempDat}>
-                <TouchableHighlight onPress={()=>AbrirCriar()} style={{backgroundColor:"#DDBE0D", display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column", height:25, marginBottom:5, borderRadius:5, marginRight:10, paddingLeft:5, paddingRight:5,}} >
+                <TouchableHighlight onPress={()=>AbrirEnviar(item)} style={{backgroundColor:"#DDBE0D", display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column", height:25, marginBottom:5, borderRadius:5, marginRight:10, paddingLeft:5, paddingRight:5,}} >
                 <>
               <Text  style={{fontSize:15, color:"#fff", margin:5}}>Enviar Link</Text>
               </>            
               </TouchableHighlight>
-              <TouchableHighlight onPress={()=>AbrirCriar()} style={{backgroundColor:"#009DFF", display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column", height:25, borderRadius:5, marginRight:10, paddingLeft:5, paddingRight:5,}} >
+              <TouchableHighlight onPress={()=>AbrirModal(item)} style={{backgroundColor:"#009DFF", display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column", height:25, borderRadius:5, marginRight:10, paddingLeft:5, paddingRight:5,}} >
                 <>
               <Text  style={{fontSize:15, color:"#fff", margin:5}}>Vizualizar</Text>
               </>            
@@ -1257,19 +1437,7 @@ export default () => {
         animationType="fade" // optional, default is 'none'
         locale={'pt'} // optional, default is automically detected by your system
       />
-         <TouchableHighlight style={styles.VerBole}  onPress={()=>Vernota()}>
-         <>
-         {SimAp.length > 0 &&
-         <View style={styles.AvisoJgo}>
-         <Text style={{color:"#fff", fontSize:15}}>{SimAp.length}</Text>
-         </View>
-
-         }
-         
-         <FontAwesome name="th-list" size={24} color="#fff" />
-         <Text style={{color:"#fff", fontSize:10}}>Jogos</Text>
-         </>
-          </TouchableHighlight>   
+          
 
         </ImageBackground>
       </View>
@@ -1348,6 +1516,18 @@ const styles = StyleSheet.create({
     paddingLeft:5,
     marginTop:15,
  },
+
+ AraCli:{
+  width:200,
+  height:40,
+  backgroundColor: "#fff",
+  flexDirection:"row",
+  borderRadius:20,
+  alignItems: "center",
+  marginBottom:15,
+  paddingLeft:5,
+  marginTop:15,
+},
 
   Valopre:{
     marginLeft: 10,

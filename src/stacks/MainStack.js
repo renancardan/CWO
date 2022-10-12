@@ -16,6 +16,7 @@ import main from '../screens/main';
 import Pagar from '../screens/Pagar';
 import Config from '../screens/Config';
 import Notific from '../screens/Notific';
+import ApostasCambis from '../screens/ApostasCambis';
  //import cadastroSim from '../screens/cadastroSim';
 
 const Stack = createNativeStackNavigator();
@@ -29,6 +30,13 @@ export default function Ret() {
       initialRouteName={"Preload"}
 
       >
+
+    <Stack.Screen
+     options={{
+        title: 'Aposta',
+        headerShown: false
+    }}   
+     name="ApCambis" component={ApostasCambis} />
          <Stack.Screen
 
         options={{

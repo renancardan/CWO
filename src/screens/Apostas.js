@@ -1065,7 +1065,7 @@ export default () => {
         />
         </View>
           
-        <ScrollView>
+        <ScrollView style={{width:400}}>
           { Lista[0] ?
           <>
           {Lista.map((item, key)=>(
@@ -1093,7 +1093,8 @@ export default () => {
                 </View>
 
               </View >
-       
+              <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"#fff", flexWrap:"wrap"}}>
+               <Text style={{  margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Vencedor da partida</Text>
               <View style={styles.Botoes}>
               {item.Best.map((item3, key)=>( 
                 
@@ -1141,9 +1142,32 @@ export default () => {
                </TouchableHighlight>
              
               </View>
+              </View>
               {AdrirMais === item.id &&
                <>
-               <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", flexWrap:"wrap"}}>
+               <View style={styles.Header}>
+               <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Casa.name}</Text>
+                </View> 
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Casa.logo}}  style={styles.ImageTime } />
+                </View>
+                <Text style={styles.Time}>X</Text>
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Fora.logo}}  style={styles.ImageTime } />
+                </View>
+                <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Fora.name}</Text>
+                </View>
+                <View  style={styles.TempDat}>
+                <Image source={{uri:item.liga.logo}}  style={styles.ImageCamp } resizeMode="contain" />
+                <Text style={styles.TexMais}>{item.liga.country}</Text>
+                <Text style={styles.TexMais}>{item.liga.name}</Text>
+                <Text style={styles.Data}>{item.dataForm}</Text>
+                </View>
+
+              </View >
+               <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"#fff", flexWrap:"wrap"}}>
                <Text style={{  margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Vencedor do segundo tempo</Text>
           
                <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"row", padding:15,  backgroundColor:"rgba(0,0,0,0.3)", flexWrap:"wrap"}}>
@@ -1193,7 +1217,28 @@ export default () => {
                </View>
                </View>
               {/* Sessão Olds  Inicio*/}
+              <View style={styles.Header}>
+               <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Casa.name}</Text>
+                </View> 
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Casa.logo}}  style={styles.ImageTime } />
+                </View>
+                <Text style={styles.Time}>X</Text>
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Fora.logo}}  style={styles.ImageTime } />
+                </View>
+                <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Fora.name}</Text>
+                </View>
+                <View  style={styles.TempDat}>
+                <Image source={{uri:item.liga.logo}}  style={styles.ImageCamp } resizeMode="contain" />
+                <Text style={styles.TexMais}>{item.liga.country}</Text>
+                <Text style={styles.TexMais}>{item.liga.name}</Text>
+                <Text style={styles.Data}>{item.dataForm}</Text>
+                </View>
 
+              </View >
               <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
                <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Golos Acima/Abaixo</Text>
                <ScrollView horizontal={true}>
@@ -1247,7 +1292,28 @@ export default () => {
               {/* Sessão Olds  Fim*/}
 
               {/* Sessão Olds  Inicio*/}
+              <View style={styles.Header}>
+               <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Casa.name}</Text>
+                </View> 
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Casa.logo}}  style={styles.ImageTime } />
+                </View>
+                <Text style={styles.Time}>X</Text>
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Fora.logo}}  style={styles.ImageTime } />
+                </View>
+                <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Fora.name}</Text>
+                </View>
+                <View  style={styles.TempDat}>
+                <Image source={{uri:item.liga.logo}}  style={styles.ImageCamp } resizeMode="contain" />
+                <Text style={styles.TexMais}>{item.liga.country}</Text>
+                <Text style={styles.TexMais}>{item.liga.name}</Text>
+                <Text style={styles.Data}>{item.dataForm}</Text>
+                </View>
 
+              </View >
               <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
                <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Gols Acima/Abaixo do Primeiro Tempo</Text>
                <ScrollView horizontal={true}>
@@ -1302,6 +1368,29 @@ export default () => {
 
 
                 {/* Sessão Olds  Inicio*/}
+                <View style={styles.Header}>
+               <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Casa.name}</Text>
+                </View> 
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Casa.logo}}  style={styles.ImageTime } />
+                </View>
+                <Text style={styles.Time}>X</Text>
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Fora.logo}}  style={styles.ImageTime } />
+                </View>
+                <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Fora.name}</Text>
+                </View>
+                <View  style={styles.TempDat}>
+                <Image source={{uri:item.liga.logo}}  style={styles.ImageCamp } resizeMode="contain" />
+                <Text style={styles.TexMais}>{item.liga.country}</Text>
+                <Text style={styles.TexMais}>{item.liga.name}</Text>
+                <Text style={styles.Data}>{item.dataForm}</Text>
+                </View>
+
+              </View >
+                
 
                 <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
                <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Gols Acima/Abaixo - Segundo Tempo</Text>
@@ -1356,6 +1445,29 @@ export default () => {
               {/* Sessão Olds  Fim*/}
               
                 {/* Sessão Olds  Inicio*/}
+
+                <View style={styles.Header}>
+               <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Casa.name}</Text>
+                </View> 
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Casa.logo}}  style={styles.ImageTime } />
+                </View>
+                <Text style={styles.Time}>X</Text>
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Fora.logo}}  style={styles.ImageTime } />
+                </View>
+                <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Fora.name}</Text>
+                </View>
+                <View  style={styles.TempDat}>
+                <Image source={{uri:item.liga.logo}}  style={styles.ImageCamp } resizeMode="contain" />
+                <Text style={styles.TexMais}>{item.liga.country}</Text>
+                <Text style={styles.TexMais}>{item.liga.name}</Text>
+                <Text style={styles.Data}>{item.dataForm}</Text>
+                </View>
+
+              </View >
 
                 <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
                <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Resultado no Intervalo | Resultado Final</Text>
@@ -1412,6 +1524,29 @@ export default () => {
 
                  {/* Sessão Olds  Inicio*/}
 
+                 <View style={styles.Header}>
+               <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Casa.name}</Text>
+                </View> 
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Casa.logo}}  style={styles.ImageTime } />
+                </View>
+                <Text style={styles.Time}>X</Text>
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Fora.logo}}  style={styles.ImageTime } />
+                </View>
+                <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Fora.name}</Text>
+                </View>
+                <View  style={styles.TempDat}>
+                <Image source={{uri:item.liga.logo}}  style={styles.ImageCamp } resizeMode="contain" />
+                <Text style={styles.TexMais}>{item.liga.country}</Text>
+                <Text style={styles.TexMais}>{item.liga.name}</Text>
+                <Text style={styles.Data}>{item.dataForm}</Text>
+                </View>
+
+              </View >
+
                  <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
                <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Time da Casa - Nenhum Gol Solfrido</Text>
                <ScrollView horizontal={true}>
@@ -1465,6 +1600,29 @@ export default () => {
               {/* Sessão Olds  Fim*/}
 
                 {/* Sessão Olds  Inicio*/}
+
+                <View style={styles.Header}>
+               <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Casa.name}</Text>
+                </View> 
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Casa.logo}}  style={styles.ImageTime } />
+                </View>
+                <Text style={styles.Time}>X</Text>
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Fora.logo}}  style={styles.ImageTime } />
+                </View>
+                <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Fora.name}</Text>
+                </View>
+                <View  style={styles.TempDat}>
+                <Image source={{uri:item.liga.logo}}  style={styles.ImageCamp } resizeMode="contain" />
+                <Text style={styles.TexMais}>{item.liga.country}</Text>
+                <Text style={styles.TexMais}>{item.liga.name}</Text>
+                <Text style={styles.Data}>{item.dataForm}</Text>
+                </View>
+
+              </View >
 
                 <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
                <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Time de Fora - Nenhum Gol Solfrido</Text>
@@ -1520,6 +1678,29 @@ export default () => {
 
                 {/* Sessão Olds  Inicio*/}
 
+                <View style={styles.Header}>
+               <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Casa.name}</Text>
+                </View> 
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Casa.logo}}  style={styles.ImageTime } />
+                </View>
+                <Text style={styles.Time}>X</Text>
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Fora.logo}}  style={styles.ImageTime } />
+                </View>
+                <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Fora.name}</Text>
+                </View>
+                <View  style={styles.TempDat}>
+                <Image source={{uri:item.liga.logo}}  style={styles.ImageCamp } resizeMode="contain" />
+                <Text style={styles.TexMais}>{item.liga.country}</Text>
+                <Text style={styles.TexMais}>{item.liga.name}</Text>
+                <Text style={styles.Data}>{item.dataForm}</Text>
+                </View>
+
+              </View >
+
                 <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
                <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Ambas as equipes marcam</Text>
                <ScrollView horizontal={true}>
@@ -1573,6 +1754,29 @@ export default () => {
               {/* Sessão Olds  Fim*/}
 
                 {/* Sessão Olds  Inicio*/}
+
+                <View style={styles.Header}>
+               <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Casa.name}</Text>
+                </View> 
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Casa.logo}}  style={styles.ImageTime } />
+                </View>
+                <Text style={styles.Time}>X</Text>
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Fora.logo}}  style={styles.ImageTime } />
+                </View>
+                <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Fora.name}</Text>
+                </View>
+                <View  style={styles.TempDat}>
+                <Image source={{uri:item.liga.logo}}  style={styles.ImageCamp } resizeMode="contain" />
+                <Text style={styles.TexMais}>{item.liga.country}</Text>
+                <Text style={styles.TexMais}>{item.liga.name}</Text>
+                <Text style={styles.Data}>{item.dataForm}</Text>
+                </View>
+
+              </View >
 
                 <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
                <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Placar Exato</Text>
@@ -1628,6 +1832,29 @@ export default () => {
 
                 {/* Sessão Olds  Inicio*/}
 
+                <View style={styles.Header}>
+               <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Casa.name}</Text>
+                </View> 
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Casa.logo}}  style={styles.ImageTime } />
+                </View>
+                <Text style={styles.Time}>X</Text>
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Fora.logo}}  style={styles.ImageTime } />
+                </View>
+                <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Fora.name}</Text>
+                </View>
+                <View  style={styles.TempDat}>
+                <Image source={{uri:item.liga.logo}}  style={styles.ImageCamp } resizeMode="contain" />
+                <Text style={styles.TexMais}>{item.liga.country}</Text>
+                <Text style={styles.TexMais}>{item.liga.name}</Text>
+                <Text style={styles.Data}>{item.dataForm}</Text>
+                </View>
+
+              </View >
+
                 <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
                <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Resultado Exato - Primeiro Tempo</Text>
                <ScrollView horizontal={true}>
@@ -1681,6 +1908,29 @@ export default () => {
               {/* Sessão Olds  Fim*/}
 
                 {/* Sessão Olds  Inicio*/}
+
+                <View style={styles.Header}>
+               <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Casa.name}</Text>
+                </View> 
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Casa.logo}}  style={styles.ImageTime } />
+                </View>
+                <Text style={styles.Time}>X</Text>
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Fora.logo}}  style={styles.ImageTime } />
+                </View>
+                <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Fora.name}</Text>
+                </View>
+                <View  style={styles.TempDat}>
+                <Image source={{uri:item.liga.logo}}  style={styles.ImageCamp } resizeMode="contain" />
+                <Text style={styles.TexMais}>{item.liga.country}</Text>
+                <Text style={styles.TexMais}>{item.liga.name}</Text>
+                <Text style={styles.Data}>{item.dataForm}</Text>
+                </View>
+
+              </View >
 
                 <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
                <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Chance dupla</Text>
@@ -1736,6 +1986,29 @@ export default () => {
 
                 {/* Sessão Olds  Inicio*/}
 
+                <View style={styles.Header}>
+               <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Casa.name}</Text>
+                </View> 
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Casa.logo}}  style={styles.ImageTime } />
+                </View>
+                <Text style={styles.Time}>X</Text>
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Fora.logo}}  style={styles.ImageTime } />
+                </View>
+                <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Fora.name}</Text>
+                </View>
+                <View  style={styles.TempDat}>
+                <Image source={{uri:item.liga.logo}}  style={styles.ImageCamp } resizeMode="contain" />
+                <Text style={styles.TexMais}>{item.liga.country}</Text>
+                <Text style={styles.TexMais}>{item.liga.name}</Text>
+                <Text style={styles.Data}>{item.dataForm}</Text>
+                </View>
+
+              </View >
+
                 <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
                <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Vencedor do primeiro tempo</Text>
                <ScrollView horizontal={true}>
@@ -1790,6 +2063,29 @@ export default () => {
 
                 {/* Sessão Olds  Inicio*/}
 
+                <View style={styles.Header}>
+               <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Casa.name}</Text>
+                </View> 
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Casa.logo}}  style={styles.ImageTime } />
+                </View>
+                <Text style={styles.Time}>X</Text>
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Fora.logo}}  style={styles.ImageTime } />
+                </View>
+                <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Fora.name}</Text>
+                </View>
+                <View  style={styles.TempDat}>
+                <Image source={{uri:item.liga.logo}}  style={styles.ImageCamp } resizeMode="contain" />
+                <Text style={styles.TexMais}>{item.liga.country}</Text>
+                <Text style={styles.TexMais}>{item.liga.name}</Text>
+                <Text style={styles.Data}>{item.dataForm}</Text>
+                </View>
+
+              </View >
+
                 <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
                <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Equipe a marcar primeiro</Text>
                <ScrollView horizontal={true}>
@@ -1843,6 +2139,28 @@ export default () => {
               {/* Sessão Olds  Fim*/}
 
                 {/* Sessão Olds  Inicio*/}
+                <View style={styles.Header}>
+               <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Casa.name}</Text>
+                </View> 
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Casa.logo}}  style={styles.ImageTime } />
+                </View>
+                <Text style={styles.Time}>X</Text>
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Fora.logo}}  style={styles.ImageTime } />
+                </View>
+                <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Fora.name}</Text>
+                </View>
+                <View  style={styles.TempDat}>
+                <Image source={{uri:item.liga.logo}}  style={styles.ImageCamp } resizeMode="contain" />
+                <Text style={styles.TexMais}>{item.liga.country}</Text>
+                <Text style={styles.TexMais}>{item.liga.name}</Text>
+                <Text style={styles.Data}>{item.dataForm}</Text>
+                </View>
+
+              </View >
 
                 <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
                <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Equipe a marcar por último</Text>
@@ -1898,6 +2216,29 @@ export default () => {
 
                 {/* Sessão Olds  Inicio*/}
 
+                <View style={styles.Header}>
+               <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Casa.name}</Text>
+                </View> 
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Casa.logo}}  style={styles.ImageTime } />
+                </View>
+                <Text style={styles.Time}>X</Text>
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Fora.logo}}  style={styles.ImageTime } />
+                </View>
+                <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Fora.name}</Text>
+                </View>
+                <View  style={styles.TempDat}>
+                <Image source={{uri:item.liga.logo}}  style={styles.ImageCamp } resizeMode="contain" />
+                <Text style={styles.TexMais}>{item.liga.country}</Text>
+                <Text style={styles.TexMais}>{item.liga.name}</Text>
+                <Text style={styles.Data}>{item.dataForm}</Text>
+                </View>
+
+              </View >
+
                 <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
                <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Ganha o 1° e 2° Tempo</Text>
                <ScrollView horizontal={true}>
@@ -1951,6 +2292,29 @@ export default () => {
               {/* Sessão Olds  Fim*/}
 
                 {/* Sessão Olds  Inicio*/}
+
+                <View style={styles.Header}>
+               <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Casa.name}</Text>
+                </View> 
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Casa.logo}}  style={styles.ImageTime } />
+                </View>
+                <Text style={styles.Time}>X</Text>
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Fora.logo}}  style={styles.ImageTime } />
+                </View>
+                <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Fora.name}</Text>
+                </View>
+                <View  style={styles.TempDat}>
+                <Image source={{uri:item.liga.logo}}  style={styles.ImageCamp } resizeMode="contain" />
+                <Text style={styles.TexMais}>{item.liga.country}</Text>
+                <Text style={styles.TexMais}>{item.liga.name}</Text>
+                <Text style={styles.Data}>{item.dataForm}</Text>
+                </View>
+
+              </View >
 
                 <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
                <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Total de Gols Time da Casa</Text>
@@ -2006,6 +2370,29 @@ export default () => {
 
                 {/* Sessão Olds  Inicio*/}
 
+                <View style={styles.Header}>
+               <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Casa.name}</Text>
+                </View> 
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Casa.logo}}  style={styles.ImageTime } />
+                </View>
+                <Text style={styles.Time}>X</Text>
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Fora.logo}}  style={styles.ImageTime } />
+                </View>
+                <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Fora.name}</Text>
+                </View>
+                <View  style={styles.TempDat}>
+                <Image source={{uri:item.liga.logo}}  style={styles.ImageCamp } resizeMode="contain" />
+                <Text style={styles.TexMais}>{item.liga.country}</Text>
+                <Text style={styles.TexMais}>{item.liga.name}</Text>
+                <Text style={styles.Data}>{item.dataForm}</Text>
+                </View>
+
+              </View >
+
                 <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
                <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Total de Gols Time de Fora</Text>
                <ScrollView horizontal={true}>
@@ -2059,6 +2446,29 @@ export default () => {
               {/* Sessão Olds  Fim*/}
 
                 {/* Sessão Olds  Inicio*/}
+
+                <View style={styles.Header}>
+               <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Casa.name}</Text>
+                </View> 
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Casa.logo}}  style={styles.ImageTime } />
+                </View>
+                <Text style={styles.Time}>X</Text>
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Fora.logo}}  style={styles.ImageTime } />
+                </View>
+                <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Fora.name}</Text>
+                </View>
+                <View  style={styles.TempDat}>
+                <Image source={{uri:item.liga.logo}}  style={styles.ImageCamp } resizeMode="contain" />
+                <Text style={styles.TexMais}>{item.liga.country}</Text>
+                <Text style={styles.TexMais}>{item.liga.name}</Text>
+                <Text style={styles.Data}>{item.dataForm}</Text>
+                </View>
+
+              </View >
 
                 <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
                <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Chance dupla - No Primeiro Tempo</Text>
@@ -2114,6 +2524,29 @@ export default () => {
 
                 {/* Sessão Olds  Inicio*/}
 
+                <View style={styles.Header}>
+               <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Casa.name}</Text>
+                </View> 
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Casa.logo}}  style={styles.ImageTime } />
+                </View>
+                <Text style={styles.Time}>X</Text>
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Fora.logo}}  style={styles.ImageTime } />
+                </View>
+                <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Fora.name}</Text>
+                </View>
+                <View  style={styles.TempDat}>
+                <Image source={{uri:item.liga.logo}}  style={styles.ImageCamp } resizeMode="contain" />
+                <Text style={styles.TexMais}>{item.liga.country}</Text>
+                <Text style={styles.TexMais}>{item.liga.name}</Text>
+                <Text style={styles.Data}>{item.dataForm}</Text>
+                </View>
+
+              </View >
+
                 <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
                <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Ambas as equipes marcam - No Primeiro Tempo</Text>
                <ScrollView horizontal={true}>
@@ -2167,6 +2600,29 @@ export default () => {
               {/* Sessão Olds  Fim*/}
 
                 {/* Sessão Olds  Inicio*/}
+
+                <View style={styles.Header}>
+               <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Casa.name}</Text>
+                </View> 
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Casa.logo}}  style={styles.ImageTime } />
+                </View>
+                <Text style={styles.Time}>X</Text>
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Fora.logo}}  style={styles.ImageTime } />
+                </View>
+                <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Fora.name}</Text>
+                </View>
+                <View  style={styles.TempDat}>
+                <Image source={{uri:item.liga.logo}}  style={styles.ImageCamp } resizeMode="contain" />
+                <Text style={styles.TexMais}>{item.liga.country}</Text>
+                <Text style={styles.TexMais}>{item.liga.name}</Text>
+                <Text style={styles.Data}>{item.dataForm}</Text>
+                </View>
+
+              </View >
 
                 <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
                <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Ambas as equipes marcam - No Segunda Tempo</Text>
@@ -2222,6 +2678,29 @@ export default () => {
 
                 {/* Sessão Olds  Inicio*/}
 
+                <View style={styles.Header}>
+               <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Casa.name}</Text>
+                </View> 
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Casa.logo}}  style={styles.ImageTime } />
+                </View>
+                <Text style={styles.Time}>X</Text>
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Fora.logo}}  style={styles.ImageTime } />
+                </View>
+                <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Fora.name}</Text>
+                </View>
+                <View  style={styles.TempDat}>
+                <Image source={{uri:item.liga.logo}}  style={styles.ImageCamp } resizeMode="contain" />
+                <Text style={styles.TexMais}>{item.liga.country}</Text>
+                <Text style={styles.TexMais}>{item.liga.name}</Text>
+                <Text style={styles.Data}>{item.dataForm}</Text>
+                </View>
+
+              </View >
+
                 <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
                <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Ganha Sem Levar Gol</Text>
                <ScrollView horizontal={true}>
@@ -2275,6 +2754,29 @@ export default () => {
               {/* Sessão Olds  Fim*/}
 
                 {/* Sessão Olds  Inicio*/}
+
+                <View style={styles.Header}>
+               <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Casa.name}</Text>
+                </View> 
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Casa.logo}}  style={styles.ImageTime } />
+                </View>
+                <Text style={styles.Time}>X</Text>
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Fora.logo}}  style={styles.ImageTime } />
+                </View>
+                <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Fora.name}</Text>
+                </View>
+                <View  style={styles.TempDat}>
+                <Image source={{uri:item.liga.logo}}  style={styles.ImageCamp } resizeMode="contain" />
+                <Text style={styles.TexMais}>{item.liga.country}</Text>
+                <Text style={styles.TexMais}>{item.liga.name}</Text>
+                <Text style={styles.Data}>{item.dataForm}</Text>
+                </View>
+
+              </View >
 
                 <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
                <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Soma do Resultado Final do Jogo Impar/par</Text>
@@ -2330,6 +2832,29 @@ export default () => {
 
                 {/* Sessão Olds  Inicio*/}
 
+                <View style={styles.Header}>
+               <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Casa.name}</Text>
+                </View> 
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Casa.logo}}  style={styles.ImageTime } />
+                </View>
+                <Text style={styles.Time}>X</Text>
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Fora.logo}}  style={styles.ImageTime } />
+                </View>
+                <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Fora.name}</Text>
+                </View>
+                <View  style={styles.TempDat}>
+                <Image source={{uri:item.liga.logo}}  style={styles.ImageCamp } resizeMode="contain" />
+                <Text style={styles.TexMais}>{item.liga.country}</Text>
+                <Text style={styles.TexMais}>{item.liga.name}</Text>
+                <Text style={styles.Data}>{item.dataForm}</Text>
+                </View>
+
+              </View >
+
                 <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
                <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Soma do Jogo No Primeiro Tempo Impar/par</Text>
                <ScrollView horizontal={true}>
@@ -2383,6 +2908,29 @@ export default () => {
               {/* Sessão Olds  Fim*/}
 
                 {/* Sessão Olds  Inicio*/}
+
+                <View style={styles.Header}>
+               <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Casa.name}</Text>
+                </View> 
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Casa.logo}}  style={styles.ImageTime } />
+                </View>
+                <Text style={styles.Time}>X</Text>
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Fora.logo}}  style={styles.ImageTime } />
+                </View>
+                <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Fora.name}</Text>
+                </View>
+                <View  style={styles.TempDat}>
+                <Image source={{uri:item.liga.logo}}  style={styles.ImageCamp } resizeMode="contain" />
+                <Text style={styles.TexMais}>{item.liga.country}</Text>
+                <Text style={styles.TexMais}>{item.liga.name}</Text>
+                <Text style={styles.Data}>{item.dataForm}</Text>
+                </View>
+
+              </View >
 
                 <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
                <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Resultado Final do Time da Casa Impar/par</Text>
@@ -2438,6 +2986,29 @@ export default () => {
                
                  {/* Sessão Olds  Inicio*/}
 
+                 <View style={styles.Header}>
+               <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Casa.name}</Text>
+                </View> 
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Casa.logo}}  style={styles.ImageTime } />
+                </View>
+                <Text style={styles.Time}>X</Text>
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Fora.logo}}  style={styles.ImageTime } />
+                </View>
+                <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Fora.name}</Text>
+                </View>
+                <View  style={styles.TempDat}>
+                <Image source={{uri:item.liga.logo}}  style={styles.ImageCamp } resizeMode="contain" />
+                <Text style={styles.TexMais}>{item.liga.country}</Text>
+                <Text style={styles.TexMais}>{item.liga.name}</Text>
+                <Text style={styles.Data}>{item.dataForm}</Text>
+                </View>
+
+              </View >
+
                  <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
                <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Resultado Final do Time de Fora Impar/par</Text>
                <ScrollView horizontal={true}>
@@ -2491,6 +3062,29 @@ export default () => {
               {/* Sessão Olds  Fim*/}
 
                {/* Sessão Olds  Inicio*/}
+
+               <View style={styles.Header}>
+               <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Casa.name}</Text>
+                </View> 
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Casa.logo}}  style={styles.ImageTime } />
+                </View>
+                <Text style={styles.Time}>X</Text>
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Fora.logo}}  style={styles.ImageTime } />
+                </View>
+                <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Fora.name}</Text>
+                </View>
+                <View  style={styles.TempDat}>
+                <Image source={{uri:item.liga.logo}}  style={styles.ImageCamp } resizeMode="contain" />
+                <Text style={styles.TexMais}>{item.liga.country}</Text>
+                <Text style={styles.TexMais}>{item.liga.name}</Text>
+                <Text style={styles.Data}>{item.dataForm}</Text>
+                </View>
+
+              </View >
 
                <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
                <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Número exato de Gols do jogo</Text>
@@ -2546,6 +3140,29 @@ export default () => {
 
                {/* Sessão Olds  Inicio*/}
 
+               <View style={styles.Header}>
+               <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Casa.name}</Text>
+                </View> 
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Casa.logo}}  style={styles.ImageTime } />
+                </View>
+                <Text style={styles.Time}>X</Text>
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Fora.logo}}  style={styles.ImageTime } />
+                </View>
+                <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Fora.name}</Text>
+                </View>
+                <View  style={styles.TempDat}>
+                <Image source={{uri:item.liga.logo}}  style={styles.ImageCamp } resizeMode="contain" />
+                <Text style={styles.TexMais}>{item.liga.country}</Text>
+                <Text style={styles.TexMais}>{item.liga.name}</Text>
+                <Text style={styles.Data}>{item.dataForm}</Text>
+                </View>
+
+              </View >
+
                <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
                <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Ganha o 1° ou 2° Tempo</Text>
                <ScrollView horizontal={true}>
@@ -2600,6 +3217,29 @@ export default () => {
 
                {/* Sessão Olds  Inicio*/}
 
+               <View style={styles.Header}>
+               <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Casa.name}</Text>
+                </View> 
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Casa.logo}}  style={styles.ImageTime } />
+                </View>
+                <Text style={styles.Time}>X</Text>
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Fora.logo}}  style={styles.ImageTime } />
+                </View>
+                <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Fora.name}</Text>
+                </View>
+                <View  style={styles.TempDat}>
+                <Image source={{uri:item.liga.logo}}  style={styles.ImageCamp } resizeMode="contain" />
+                <Text style={styles.TexMais}>{item.liga.country}</Text>
+                <Text style={styles.TexMais}>{item.liga.name}</Text>
+                <Text style={styles.Data}>{item.dataForm}</Text>
+                </View>
+
+              </View >
+
                <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
                <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Número exato de Time da Casa</Text>
                <ScrollView horizontal={true}>
@@ -2653,6 +3293,29 @@ export default () => {
               {/* Sessão Olds  Fim*/}
 
                {/* Sessão Olds  Inicio*/}
+
+               <View style={styles.Header}>
+               <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Casa.name}</Text>
+                </View> 
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Casa.logo}}  style={styles.ImageTime } />
+                </View>
+                <Text style={styles.Time}>X</Text>
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Fora.logo}}  style={styles.ImageTime } />
+                </View>
+                <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Fora.name}</Text>
+                </View>
+                <View  style={styles.TempDat}>
+                <Image source={{uri:item.liga.logo}}  style={styles.ImageCamp } resizeMode="contain" />
+                <Text style={styles.TexMais}>{item.liga.country}</Text>
+                <Text style={styles.TexMais}>{item.liga.name}</Text>
+                <Text style={styles.Data}>{item.dataForm}</Text>
+                </View>
+
+              </View >
 
                <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
                <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Número exato de Time de Fora</Text>
@@ -2762,6 +3425,29 @@ export default () => {
 
                {/* Sessão Olds  Inicio*/}
 
+               <View style={styles.Header}>
+               <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Casa.name}</Text>
+                </View> 
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Casa.logo}}  style={styles.ImageTime } />
+                </View>
+                <Text style={styles.Time}>X</Text>
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Fora.logo}}  style={styles.ImageTime } />
+                </View>
+                <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Fora.name}</Text>
+                </View>
+                <View  style={styles.TempDat}>
+                <Image source={{uri:item.liga.logo}}  style={styles.ImageCamp } resizeMode="contain" />
+                <Text style={styles.TexMais}>{item.liga.country}</Text>
+                <Text style={styles.TexMais}>{item.liga.name}</Text>
+                <Text style={styles.Data}>{item.dataForm}</Text>
+                </View>
+
+              </View >
+
                <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
                <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Time da casa marca um gol</Text>
                <ScrollView horizontal={true}>
@@ -2815,6 +3501,29 @@ export default () => {
               {/* Sessão Olds  Fim*/}
 
                {/* Sessão Olds  Inicio*/}
+
+               <View style={styles.Header}>
+               <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Casa.name}</Text>
+                </View> 
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Casa.logo}}  style={styles.ImageTime } />
+                </View>
+                <Text style={styles.Time}>X</Text>
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Fora.logo}}  style={styles.ImageTime } />
+                </View>
+                <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Fora.name}</Text>
+                </View>
+                <View  style={styles.TempDat}>
+                <Image source={{uri:item.liga.logo}}  style={styles.ImageCamp } resizeMode="contain" />
+                <Text style={styles.TexMais}>{item.liga.country}</Text>
+                <Text style={styles.TexMais}>{item.liga.name}</Text>
+                <Text style={styles.Data}>{item.dataForm}</Text>
+                </View>
+
+              </View >
 
                <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
                <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Time de Fora marca um gol</Text>
@@ -2870,6 +3579,29 @@ export default () => {
 
                {/* Sessão Olds  Inicio*/}
 
+               <View style={styles.Header}>
+               <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Casa.name}</Text>
+                </View> 
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Casa.logo}}  style={styles.ImageTime } />
+                </View>
+                <Text style={styles.Time}>X</Text>
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Fora.logo}}  style={styles.ImageTime } />
+                </View>
+                <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Fora.name}</Text>
+                </View>
+                <View  style={styles.TempDat}>
+                <Image source={{uri:item.liga.logo}}  style={styles.ImageCamp } resizeMode="contain" />
+                <Text style={styles.TexMais}>{item.liga.country}</Text>
+                <Text style={styles.TexMais}>{item.liga.name}</Text>
+                <Text style={styles.Data}>{item.dataForm}</Text>
+                </View>
+
+              </View >
+
                <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
                <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Quantidade De Escanteio</Text>
                <ScrollView horizontal={true}>
@@ -2923,6 +3655,29 @@ export default () => {
               {/* Sessão Olds  Fim*/}
 
                {/* Sessão Olds  Inicio*/}
+
+               <View style={styles.Header}>
+               <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Casa.name}</Text>
+                </View> 
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Casa.logo}}  style={styles.ImageTime } />
+                </View>
+                <Text style={styles.Time}>X</Text>
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Fora.logo}}  style={styles.ImageTime } />
+                </View>
+                <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Fora.name}</Text>
+                </View>
+                <View  style={styles.TempDat}>
+                <Image source={{uri:item.liga.logo}}  style={styles.ImageCamp } resizeMode="contain" />
+                <Text style={styles.TexMais}>{item.liga.country}</Text>
+                <Text style={styles.TexMais}>{item.liga.name}</Text>
+                <Text style={styles.Data}>{item.dataForm}</Text>
+                </View>
+
+              </View >
 
                <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
                <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Número exato de gols - primeiro tempo</Text>
@@ -2978,6 +3733,29 @@ export default () => {
 
                {/* Sessão Olds  Inicio*/}
 
+               <View style={styles.Header}>
+               <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Casa.name}</Text>
+                </View> 
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Casa.logo}}  style={styles.ImageTime } />
+                </View>
+                <Text style={styles.Time}>X</Text>
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Fora.logo}}  style={styles.ImageTime } />
+                </View>
+                <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Fora.name}</Text>
+                </View>
+                <View  style={styles.TempDat}>
+                <Image source={{uri:item.liga.logo}}  style={styles.ImageCamp } resizeMode="contain" />
+                <Text style={styles.TexMais}>{item.liga.country}</Text>
+                <Text style={styles.TexMais}>{item.liga.name}</Text>
+                <Text style={styles.Data}>{item.dataForm}</Text>
+                </View>
+
+              </View >
+
                <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
                <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Resultado do Segundo Tempo Impar/par</Text>
                <ScrollView horizontal={true}>
@@ -3032,6 +3810,29 @@ export default () => {
 
                {/* Sessão Olds  Inicio*/}
 
+               <View style={styles.Header}>
+               <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Casa.name}</Text>
+                </View> 
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Casa.logo}}  style={styles.ImageTime } />
+                </View>
+                <Text style={styles.Time}>X</Text>
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Fora.logo}}  style={styles.ImageTime } />
+                </View>
+                <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Fora.name}</Text>
+                </View>
+                <View  style={styles.TempDat}>
+                <Image source={{uri:item.liga.logo}}  style={styles.ImageCamp } resizeMode="contain" />
+                <Text style={styles.TexMais}>{item.liga.country}</Text>
+                <Text style={styles.TexMais}>{item.liga.name}</Text>
+                <Text style={styles.Data}>{item.dataForm}</Text>
+                </View>
+
+              </View >
+
                <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
                <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Time que Marca no 1° e 2° Tempo</Text>
                <ScrollView horizontal={true}>
@@ -3085,6 +3886,29 @@ export default () => {
               {/* Sessão Olds  Fim*/}
 
                {/* Sessão Olds  Inicio*/}
+
+               <View style={styles.Header}>
+               <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Casa.name}</Text>
+                </View> 
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Casa.logo}}  style={styles.ImageTime } />
+                </View>
+                <Text style={styles.Time}>X</Text>
+                <View  style={styles.FotoTime}>
+                <Image source={{uri:item.Fora.logo}}  style={styles.ImageTime } />
+                </View>
+                <View  style={styles.CaixaNome}>
+                <Text style={styles.Time}>{item.Fora.name}</Text>
+                </View>
+                <View  style={styles.TempDat}>
+                <Image source={{uri:item.liga.logo}}  style={styles.ImageCamp } resizeMode="contain" />
+                <Text style={styles.TexMais}>{item.liga.country}</Text>
+                <Text style={styles.TexMais}>{item.liga.name}</Text>
+                <Text style={styles.Data}>{item.dataForm}</Text>
+                </View>
+
+              </View >
 
                  <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
                <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Resultado Final do Time de Fora Impar/par</Text>
