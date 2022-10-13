@@ -520,7 +520,13 @@ export default () => {
           setEnviLin(false);
           setIdApos("");
          }
+ 
 
+         const Atualizar = ()=>{
+          navigation.reset({
+           routes:[{name:"Preload"}]
+       });
+       }
          const PagandoCash = ()=>{
           var DateVw = parseInt((new Date().getTime() + 60000)/1000);
           console.log(DateVw);
@@ -1292,7 +1298,10 @@ export default () => {
               <TouchableHighlight  onPress={()=>IrConfig()}  style={styles.CaixaDados}>
               <FontAwesome name="gear" size={24} color="#fff" />
               </TouchableHighlight>
-
+              
+              <TouchableHighlight  onPress={()=>Atualizar()}  style={styles.CaixaDados}>
+              <FontAwesome name="refresh" size={24} color="#fff" />
+              </TouchableHighlight>
 
            </View>
             </View >
@@ -2053,7 +2062,7 @@ const styles = StyleSheet.create({
         flexDirection:"column",
         alignItems:"center",
         justifyContent:"center",
-
+         marginLeft:10
       }, 
     
   

@@ -363,6 +363,12 @@ export default () => {
        
         }
 
+        const Atualizar = ()=>{
+           navigation.reset({
+            routes:[{name:"Preload"}]
+        });
+        }
+
         const IrNoti = ()=>{
            navigation.navigate("Notific") 
         }
@@ -950,7 +956,7 @@ export default () => {
           resizeMode='cover' 
           style={styles.imageBack} >
             <View style={styles.CaixaTitulo} >
-              <TouchableHighlight  style={styles.CaixaDados}>
+              <TouchableHighlight  onPress={()=>Atualizar()} style={styles.CaixaDados}>
               <Image source={require('../assets/logomarca.svg')}  style={styles.ImageVer2 } />
               </TouchableHighlight>
             
@@ -995,6 +1001,10 @@ export default () => {
 
               <TouchableHighlight  onPress={()=>IrConfig()}  style={styles.CaixaDados}>
               <FontAwesome name="gear" size={24} color="#fff" />
+              </TouchableHighlight>
+
+              <TouchableHighlight  onPress={()=>Atualizar()}  style={styles.CaixaDados}>
+              <FontAwesome name="refresh" size={24} color="#fff" />
               </TouchableHighlight>
 
 
@@ -4620,7 +4630,7 @@ const styles = StyleSheet.create({
         flexDirection:"column",
         alignItems:"center",
         justifyContent:"center",
-
+        marginLeft:10,
       }, 
     
   
