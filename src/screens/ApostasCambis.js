@@ -3225,7 +3225,7 @@ export default ({route}) => {
               </View >
 
                <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
-               <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Número exato de Time da Casa</Text>
+               <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Número exato de Gols/ Time da Casa</Text>
                <ScrollView horizontal={true}>
                <View style={{width:"100%",  display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"row", padding:15,  backgroundColor:"rgba(0,0,0,0.3)", flexWrap:"wrap"}}>
 
@@ -3233,7 +3233,7 @@ export default ({route}) => {
                 
                 < >
                 
-            {item3.Grupo === "Número exato de Time da Casa" &&
+            {item3.Grupo === "Número exato de Gols/ Time da Casa" &&
              <TouchableHighlight key={key} onPress={()=>ColocarNota(item3, item)} style={styles.Btn}>
               <>
               <View style={styles.TituBtn}>
@@ -3302,7 +3302,7 @@ export default ({route}) => {
               </View >
 
                <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
-               <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Número exato de Time de Fora</Text>
+               <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Número exato de Gols/Time de Fora</Text>
                <ScrollView horizontal={true}>
                <View style={{width:"100%",  display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"row", padding:15,  backgroundColor:"rgba(0,0,0,0.3)", flexWrap:"wrap"}}>
 
@@ -3310,7 +3310,7 @@ export default ({route}) => {
                 
                 < >
                 
-            {item3.Grupo === "Número exato de Time de Fora" &&
+            {item3.Grupo === "Número exato de Gols/Time de Fora" &&
              <TouchableHighlight key={key} onPress={()=>ColocarNota(item3, item)} style={styles.Btn}>
               <>
               <View style={styles.TituBtn}>
