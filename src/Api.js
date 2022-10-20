@@ -512,6 +512,7 @@ export default {
        
     },
 
+    
     ListJogos: async(Page, setListOc, setCarreg,  Dat, Dat2,)=> {
    
       let Antes = Dat/1000;
@@ -581,6 +582,157 @@ export default {
                  });
    
              
+             
+           
+      
+        
+       
+       
+     },
+
+     AnaliseOlds: async(SimAp, IdApos,  setAnliAp,  setAproPag, setStatusAp, setAlert, setAlertTipo, setModalCalend, setVerNotajogo, setCarre)=> {
+      var res = [];
+      var rever=[]
+      var IdUser = ""
+      var Nome = ""
+      var tel = await AsyncStorage.getItem('Tel');
+      var time = await AsyncStorage.getItem('@entrada');
+      var temp = parseInt(time)
+      await firestore.collection("users")
+      .where("Telefone", "==", tel)
+      .where("DataEntCel", "==", temp)
+      .get().then( async(querySnapshot) => {
+     
+        if(querySnapshot.size !== 0){
+          querySnapshot.forEach( async (doc) => {
+            IdUser = doc.id,
+            Nome = doc.data().Nome
+            });
+            console.log(SimAp)
+            for(let i in SimAp){
+
+           await  firestore.collection("CasaOlds")
+            .doc(SimAp[i].IdCasa)
+            .get().then((doc) => {
+
+            console.log(doc.id)
+
+            res.push({
+              id:doc.id,
+              Resultado:doc.data().Resultado,
+            })
+
+            rever.push(doc.data().Resultado)
+         
+          
+            });
+          }
+          console.log(res)
+          console.log(rever)
+          setStatusAp(res);
+          setAnliAp(true);
+          setCarre(false);
+          if(rever.includes("Em Analise")){
+            
+            await firestore.collection("CompApostas").doc(IdApos,)
+              .update({
+                AnaliTotal:false,
+                Aprovado:false,
+
+              });
+      
+   
+
+          } else if(rever.includes("Reprovado") ){
+            
+            await firestore.collection("CompApostas").doc(IdApos,)
+            .update({
+              AnaliTotal:true,
+              Aprovado:false,
+
+            });
+
+          } else {
+            await firestore.collection("CompApostas").doc(IdApos,)
+            .update({
+              AnaliTotal:true,
+              Aprovado:true,
+
+            });
+            setAproPag(true);
+    
+
+          }
+
+
+   
+                } else {
+                  setAlert("Ouve um erro na Sua Conta Você Não Esta Logado")
+                  setAlertTipo("danger")
+                  setVerNotajogo(false)
+                  setModalCalend(true)
+                  setCarre(false);
+                }
+              })  
+             
+           
+      
+        
+       
+       
+     },
+
+     Enviandopaga: async(IdApos, ValPreDemos, setPremio, setCarre)=> {
+      var res = [];
+      var rever=[]
+      var IdUser = ""
+      var Nome = ""
+      var Dinheiro = 0;
+      var tel = await AsyncStorage.getItem('Tel');
+      var time = await AsyncStorage.getItem('@entrada');
+      var temp = parseInt(time)
+      await firestore.collection("users")
+      .where("Telefone", "==", tel)
+      .where("DataEntCel", "==", temp)
+      .get().then( async(querySnapshot) => {
+     
+        if(querySnapshot.size !== 0){
+          querySnapshot.forEach( async (doc) => {
+            IdUser = doc.id;
+            Nome = doc.data().Nome;
+            Dinheiro = doc.data().Dinheiro;
+            });
+            
+           var din =  ValPreDemos.replace(",", ".");
+           var diner = parseFloat(din) + Dinheiro;
+        
+          
+            await firestore.collection("CompApostas").doc(IdApos)
+            .update({
+              PremioPago:true,
+            });
+
+        
+            await firestore.collection("users").doc(IdUser)
+            .update({
+              Dinheiro:diner,
+              DateDinheiro:new Date().getTime(),
+            });
+          
+            setPremio(true)
+            setCarre(false);
+          
+
+
+   
+                } else {
+                  setAlert("Ouve um erro na Sua Conta Você Não Esta Logado")
+                  setAlertTipo("danger")
+                  setVerNotajogo(false)
+                  setModalCalend(true)
+                  setCarre(false);
+                }
+              })  
              
            
       
@@ -1857,6 +2009,47 @@ export default {
                   setCarre(false);
                   setRobo(true);
                 }
+
+              } else {
+                setRobo(true)
+                setAlert("Ouve um erro na Sua Conta Você Não Esta Logado, Saia e entre Novamente!")
+                setAlertTipo("danger")
+                setCriarCli(false)
+                setVerNotajogo(false)
+                setModalCalend(true)
+                setCarre(false);
+              }
+            })
+
+             
+                
+           
+        },
+
+        PegarDados:async (QCash , setListOc, setQCash, setCarre)=>{
+          var temp = new Date().getTime();
+          var IdUser = ""
+          var Nome = ""
+          var tel = await AsyncStorage.getItem('Tel');
+          var time = await AsyncStorage.getItem('@entrada');
+          var temp = parseInt(time)
+          await firestore.collection("users")
+          .where("Telefone", "==", tel)
+          .where("DataEntCel", "==", temp)
+          .get().then( async(querySnapshot) => {
+         
+            if(querySnapshot.size !== 0){
+              querySnapshot.forEach( async (doc) => {
+                
+                IdUser = doc.id,
+                Nome = doc.data().Nome
+                setListOc(doc.data().Extrato)
+                setQCash(doc.data().Cash)
+                });
+                setCarre(false)
+               
+
+       
 
               } else {
                 setRobo(true)

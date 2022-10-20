@@ -2866,7 +2866,7 @@ export default () => {
               </View >
 
                 <View style={{width:"100%", display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"column",  backgroundColor:"fff", }}>
-               <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Soma do Jogo No Primeiro Tempo Impar/par</Text>
+               <Text style={{margin:10, fontSize:17, fontWeight:"bold", fontStyle:"italic"}}>Soma de Gols No Primeiro Tempo Impar/par</Text>
                <ScrollView horizontal={true}>
                <View style={{width:"100%",  display:"flex", flex:1, justifyContent:"flex-start", alignItems:"center", flexDirection:"row", padding:15,  backgroundColor:"rgba(0,0,0,0.3)", flexWrap:"wrap"}}>
 

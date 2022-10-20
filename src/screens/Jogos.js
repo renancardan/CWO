@@ -90,6 +90,9 @@ export default () => {
   const [Premio, setPremio] = useState(false);
   const [Aprov, setAprov] = useState(false);
   const [Analisado, setAnalisado] = useState(false)
+  const [AproPag, setAproPag] = useState(false);
+  const [StatusAp, setStatusAp] = useState([]);
+  const [AnliAp, setAnliAp] = useState(false);
  
   useEffect(() => {
     if(dataNasc !== null){
@@ -114,6 +117,13 @@ export default () => {
     }
  
    }, [Concluir])
+
+   useEffect(() => {
+    if(SimAp.length !== 0){
+      AnalisandoOlds();
+    }
+ 
+   }, [SimAp])
 
    useEffect(() => {
     console.log(SimAp)
@@ -144,6 +154,10 @@ export default () => {
   const ConcluidoAposta = ()=>{
     Api.TiraConcluidoApos(IdApos, Concluir)
   
+  }
+  const AnalisandoOlds = ()=>{
+    setCarre(true)
+    Api.AnaliseOlds(SimAp, IdApos, setAnliAp, setAproPag, setStatusAp, setAlert, setAlertTipo, setModalCalend, setVerNotajogo, setCarre)
   }
 
   const onChangeRecp = ()=> {
@@ -420,6 +434,9 @@ export default () => {
            setAprov(false)
            setCambis(true);
            setVCash("");
+           setAnliAp(false);
+           setStatusAp([]);
+           setAproPag(false);
          
           setModalCalend(false);
           setVerNotajogo(false);
@@ -764,6 +781,7 @@ export default () => {
             setVCash(item.ValorReal*100);
             setVerNotajogo(true);
             setModalCalend(true)
+           
             
           }
 
@@ -793,6 +811,10 @@ export default () => {
            setModalCalend(false);
            
            
+         }
+         const PagarDinheiro = ()=>{
+          setCarre(true)
+            Api.Enviandopaga(IdApos, ValPreDemos, setPremio, setCarre)
          }
   
 
@@ -1125,11 +1147,36 @@ export default () => {
                      <Text style={styles.TexNota1}>Palpite: {item3.Casa} | Cota: {item3.Olds}</Text>
                      <Text style={styles.TexNota1}>({item3.Grupo})</Text>
                      <Text style={styles.TexNota1}><DataTime  data={item3.dataJogo*1000} /> </Text>
+                     
+                     {StatusAp.map((item25, index)=>(
+                      <>
+                      {item25.id === item3.IdCasa &&
+                      <>
+                      {item25.Resultado === "Reprovado" ?
+                        <View  style={styles.ExcluirJogo} >
+                        <FontAwesome name="remove" size={24} color="red" />
+                        </View>
+                        :
+                        <>
+                        {item25.Resultado === "Aprovado"?
+                        <View  style={styles.ExcluirJogo} >
+                        <FontAwesome name="check" size={24} color="green" />
+                        </View>
+                        :
+                        <View  style={styles.ExcluirJogo} >
+                        <FontAwesome name="spinner" size={24} color="black" />
+                        </View>
+                        }
+                        
+                        </>
+                      }
+                        
+                     </> 
+
+                      }
+                     </>
+                        ))}
                     
-                     <View  style={styles.ExcluirJogo} onPress={()=>TirarEsse(index)}>
-                   
-                     <FontAwesome name="spinner" size={24} color="black" />
-                      </View>
                      </View>             
 
                               ))}
@@ -1189,24 +1236,31 @@ export default () => {
                               </>
 
                               }
-                          {Aprov === true &&
+                         
+                           {AproPag=== true &&
                           <>
-                          {Premio === false &&
-                           <TouchableHighlight style={{width:150, height:50, backgroundColor:"#E77E1E", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>setConcluir(false)}>
+                          {Premio === false ?
+                           <TouchableHighlight style={{width:150, height:50, backgroundColor:"#E77E1E", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>PagarDinheiro()}>
                            <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Receber Prêmio</Text>
                          </TouchableHighlight>
-
-                          }
+                         :
+                         <Text  style={{ marginLeft:10, fontSize:17, color:"#000"  }}>Premio Enviado Para Pagamento</Text>
+                          } 
                           </>
 
                           }
                       {Pago === true &&
                       <>
                           {Analisado === false &&
-                          <TouchableHighlight style={{width:150, height:50, backgroundColor:"#F96868", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>setConcluir(false)}>
-                          <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Analisar Resultado</Text>
-                        </TouchableHighlight>
+                          <>
+                          {AnliAp === false &&
+                            <TouchableHighlight style={{width:150, height:50, backgroundColor:"#F96868", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>AnalisandoOlds()}>
+                            <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Analisar Resultado</Text>
+                          </TouchableHighlight>
 
+                          }
+                        
+                        </>
                           }
                           </>
                         }
@@ -1374,7 +1428,7 @@ export default () => {
               <View style={{ padding:5, flexDirection:"row",  alignItems:"center", justifyContent:"space-around", height:60, width:400, borderBottomWidth:2, borderColor:"#ccc", backgroundColor:item.Cambista === false? "#fff":"#DCA2E1",}}>
                <View  style={styles.CaixaNome}>
                {item.Cambista === false ?
-                <Text style={styles.Time}>Valor das Cotas {item.VaToCo}</Text>
+                <Text style={styles.Time}>Prêmio: R${item.ValPreDemos}</Text>
                 :
                 <>
                 <Text style={styles.Time}>{item.Nome}</Text>
@@ -1397,10 +1451,11 @@ export default () => {
                   :
                   <>
                    <Text style={styles.Time}>Aprovado</Text>
+                   <Text style={styles.Time}>Aprovado</Text>
                    {item.PremioPago === false ?
                   <Text style={styles.Time}>Receber Prêmio</Text>
                   :
-                  <Text style={styles.Time}>Prêmio Entregue</Text>
+                  <Text style={styles.Time}>Prêmio Enviado</Text>
                     }
                   </>
                  
