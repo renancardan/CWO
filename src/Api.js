@@ -100,6 +100,63 @@ export default {
     
     },
 
+    VerWhatsTransf: async (TelCli, setMsgErro1, setCarre) => {
+
+
+      // var ver = TelCli.replace("(", "55");
+      // var par1 = ver.replace(")", "");
+      // var par3 = par1.replace("-", "");
+      // const req = await fetch(`https://api.z-api.io/instances/3A9D95BC49F730DF458B76215AA2744C/token/A2A3E65C2FE0E21916E8A2AE/phone-exists/${par3}`, 
+      // {
+      //       method: 'GET',
+      //       headers:{
+      //         'Content-Type': 'application/json'
+      //       },
+            
+      //     });
+  
+      
+        
+      //     const json = await req.json(); 
+      //     setTelMsg(json.exists);
+        
+  
+      //     if(json.exists === true){
+            
+      //       setMsgErro1(true);
+      //     } else{
+      //       setMsgErro1(false);
+      //     }
+        
+  
+        
+        
+    },
+
+AnaliseTelTransf: async (TelCli, setMsgErro2, setNome, setLoad, setBtn, setIdTrans) => {
+
+await firestore.collection("users")
+.where("Telefone", "==", TelCli)
+.get().then((querySnapshot) => {
+ 
+  if(querySnapshot.size !== 0){
+    querySnapshot.forEach((doc) => {
+     
+      setIdTrans(doc.id)
+      setNome(doc.data().Nome)
+      setBtn(true);
+    })
+
+  } else {
+    setMsgErro2(true);
+  }
+    });
+
+    setLoad(false)
+
+
+},
+
     AnaliseTel: async (Tel, setTe1, setNome) => {
 
       await firestore.collection("users")
@@ -740,6 +797,8 @@ export default {
        
        
      },
+
+    
 
      MeusJogos: async(Page, setListOc, setCarreg,  Dat, Dat2,)=> {
    
@@ -2036,7 +2095,7 @@ export default {
           await firestore.collection("users")
           .where("Telefone", "==", tel)
           .where("DataEntCel", "==", temp)
-          .get().then( async(querySnapshot) => {
+          .onSnapshot((querySnapshot) => {
          
             if(querySnapshot.size !== 0){
               querySnapshot.forEach( async (doc) => {
@@ -2197,6 +2256,191 @@ export default {
              
                 
            
+        },
+
+        SacarCash: async(NomeCli, TelCli, IdTrans,  setIdTrans, setNome, setCarre,  setAlert, setAlertTipo, setModalCalend, setVerNotajogo,   setTelCli, setNomeCli,  setPgCash,   setRobo, setCodG, setTentativa, setSenha, setBtn, setMsgErro2, setLoad,  setCriarCli  )=> {
+          console.log(NomeCli);
+          var res = parseFloat(NomeCli)/100;
+          var rever=[]
+          var IdUser = ""
+          var Nome = ""
+          var Dinheiro = 0;
+          var CashBn = 0;
+          var CashTran = parseInt(NomeCli);
+          var tel = await AsyncStorage.getItem('Tel');
+          var time = await AsyncStorage.getItem('@entrada');
+          var temp = parseInt(time)
+          var tempReal = new Date().getTime();
+          await firestore.collection("users")
+          .where("Telefone", "==", tel)
+          .where("DataEntCel", "==", temp)
+          .get().then( async(querySnapshot) => {
+         
+            if(querySnapshot.size !== 0){
+              querySnapshot.forEach( async (doc) => {
+                IdUser = doc.id;
+                Nome = doc.data().Nome;
+                Dinheiro = doc.data().Dinheiro;
+                CashBn = doc.data().Cash;
+                });
+                var CashAt = CashBn - CashTran ;  
+               var din =  res;
+               var diner = parseFloat(din) + Dinheiro;
+            
+               await firestore.collection("users")
+               .doc(IdUser)
+               .update({
+                 Cash: CashAt,
+                 Extrato: firebase.firestore.FieldValue.arrayUnion({Data:tempReal, Status:"Sacou", Nivel:"1", Valor:CashTran, Moeda:"Cash", IdInf:"" })
+               })
+               
+            
+                await firestore.collection("users").doc(IdUser)
+                .update({
+                  Dinheiro:diner,
+                  DateDinheiro:new Date().getTime(),
+                });
+              
+                  setNomeCli("");
+                  setTelCli("");
+                  setIdTrans("");
+                  setCarre(false);
+                  setAlert("Saque feita com Sucesso, Seu dinheiro foi pra Lista de transferência da pixbetcash!");
+                  setAlertTipo("success");
+                  setModalCalend(true);
+                  setVerNotajogo(false);
+                  setPgCash(false);
+                  setCodG(false)
+                  setTentativa(0)
+                  setSenha("")
+                  setRobo(true)
+                  setLoad(false);
+                  setNome("");
+                  setBtn(false);
+                  setMsgErro2(false);
+                  setCriarCli(false);
+              
+    
+    
+       
+                    } else {
+                      setAlert("Ouve um erro na Sua Conta Você Não Esta Logado")
+                      setAlertTipo("danger")
+                      setVerNotajogo(false)
+                      setModalCalend(true)
+                      setCarre(false);
+                      setLoad(false);
+                    }
+                  })  
+                 
+               
+          
+            
+           
+           
+         },
+
+        TranfCash: async(NomeCli, TelCli,  IdTrans, setIdTrans, setNome, setCarre,  setAlert, setAlertTipo, setModalCalend, setVerNotajogo,   setTelCli, setNomeCli,  setPgCash,   setRobo, setCodG, setTentativa, setSenha, setBtn, setMsgErro2, setLoad )=> {
+          var Msg = ""
+          var CashBn = 0;
+          var CashTran = parseInt(NomeCli);
+          var IdUser = ""
+          var Nome = ""
+          var tempReal = new Date().getTime();
+          var Time =(new Date().getTime());
+          var tel = await AsyncStorage.getItem('Tel');
+          var time = await AsyncStorage.getItem('@entrada');
+          var temp = parseInt(time)
+          await firestore.collection("users")
+          .where("Telefone", "==", tel)
+          .where("DataEntCel", "==", temp)
+          .get().then( async(querySnapshot) => {
+         
+            if(querySnapshot.size !== 0){
+
+              querySnapshot.forEach( async (doc) => {
+                IdUser = doc.id,
+                Nome = doc.data().Nome
+                CashBn = doc.data().Cash;
+                });
+                var CashAt = CashBn - CashTran ;
+
+                await firestore.collection("users")
+                .doc(IdUser)
+                .update({
+                  Cash: CashAt,
+                  Extrato: firebase.firestore.FieldValue.arrayUnion({Data:tempReal, Status:"Transferiu", Nivel:"1", Valor:CashTran, Moeda:"Cash", IdInf:TelCli })
+                })
+
+              var sfDocRef = firestore.collection("users").doc(IdTrans);
+
+               firestore.runTransaction((transaction) => {
+             
+              return transaction.get(sfDocRef).then((sfDoc) => {
+                 
+                  var newPopulation = sfDoc.data().Cash + CashTran;
+                  transaction.update(sfDocRef, {
+                    Cash: newPopulation, 
+                    Extrato: firebase.firestore.FieldValue.arrayUnion({Data:tempReal, Status:"Recebeu", Nivel:"1", Valor:CashTran, Moeda:"Cash", IdInf:tel })
+                  });
+              });
+              }).then(async () => {
+
+                var ver = TelCli.replace("(", "55");
+                var par1 = ver.replace(")", "");
+                var par3 = par1.replace("-", "");
+
+                var data={
+                  "phone": par3,
+                  "message": `${Nome} Transferiu ${NomeCli} Cash Para Você`,
+                }   
+                const req = await fetch("https://api.z-api.io/instances/3A9D95BC49F730DF458B76215AA2744C/token/A2A3E65C2FE0E21916E8A2AE/send-messages", 
+                {
+                      method: 'POST',
+                      headers:{
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify(data),
+                   });
+
+
+
+                  setNomeCli("");
+                  setTelCli("");
+                  setIdTrans("");
+                  setCarre(false);
+                  setAlert("Transferência feita com Sucesso!");
+                  setAlertTipo("success");
+                  setModalCalend(true);
+                  setVerNotajogo(false);
+                  setPgCash(false);
+                  setCodG(false)
+                  setTentativa(0)
+                  setSenha("")
+                  setRobo(true)
+                  setLoad(false);
+                  setNome("");
+                  setBtn(false);
+                  setMsgErro2(false);
+
+                  
+
+
+              }).catch((error) => {
+                  console.log("Transaction failed: ", error);
+              });
+              
+
+            } else {
+              setAlert("Ouve um erro na Sua Conta Você Não Esta Logado")
+              setAlertTipo("danger")
+              setVerNotajogo(false)
+              setModalCalend(true)
+              setCarre(false);
+              setLoad(false);
+            }
+
+          })
         },
 
         PgCshAti: async( VCash, IdAposta, setCarre, setLinkEnv, setAlert, setAlertTipo, setModalCalend, setVerNotajogo, setSimAp, setValorReal,  setValPremi, setCambis, setTelCli, setNomeCli, setValCambis, setValPreDemos, VaToCo, setVaToCo, setPgCash, setIdAposta, setDCash, setValApos, setVCash, setRobo, setCodG, setTentativa, setSenha   )=> {
@@ -2683,6 +2927,7 @@ export default {
          
            
            },
+           
   
 
 }

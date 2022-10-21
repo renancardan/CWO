@@ -93,6 +93,11 @@ export default () => {
   const [AproPag, setAproPag] = useState(false);
   const [StatusAp, setStatusAp] = useState([]);
   const [AnliAp, setAnliAp] = useState(false);
+  const [MsgErro1, setMsgErro1] = useState(false);
+  const [MsgErro2, setMsgErro2] = useState(false);
+  const [Btn, setBtn] = useState(false);
+  const [IdTrans, setIdTrans] = useState("")
+
  
 
  
@@ -104,6 +109,19 @@ export default () => {
   }, [dataNasc, hr]);
 
   useEffect(() => {
+    if(TelCli !== "" && TelCli.length === 14 ){
+  
+        TelWhats();
+    
+    } else{
+      setMsgErro2(false)
+    }
+    
+
+
+   }, [TelCli])
+
+  useEffect(() => {
     tempo();
   }, [])
   useEffect(() => {
@@ -113,32 +131,32 @@ export default () => {
 
    }, [ListOc])
 
-   useEffect(() => {
-    if(IdApos !== ""){
-      ConcluidoAposta()
-    }
+  //  useEffect(() => {
+  //   if(IdApos !== ""){
+  //     ConcluidoAposta()
+  //   }
  
-   }, [Concluir])
+  //  }, [Concluir])
 
-   useEffect(() => {
-    if(SimAp.length !== 0){
-      AnalisandoOlds();
-    }
+  //  useEffect(() => {
+  //   if(SimAp.length !== 0){
+  //     AnalisandoOlds();
+  //   }
  
-   }, [SimAp])
+  //  }, [SimAp])
 
-   useEffect(() => {
-    console.log(SimAp)
-   setQuanJog(SimAp.length)
-   if(SimAp.length > 0){
-     Caulc();
-   }
+  //  useEffect(() => {
+  //   console.log(SimAp)
+  //  setQuanJog(SimAp.length)
+  //  if(SimAp.length > 0){
+  //    Caulc();
+  //  }
    
-  }, [SimAp])
+  // }, [SimAp])
 
-  useEffect(() => {
-    ValorPermio();
-   }, [ValApos, VaToCo])
+  // useEffect(() => {
+  //   ValorPermio();
+  //  }, [ValApos, VaToCo])
 
    useEffect(() => {
     Pegandodados();
@@ -156,6 +174,13 @@ export default () => {
   //     ListandoOc();  
   //   }            
   //  }, [Page]);
+
+  const TelWhats = ()=>{
+   
+   Api.AnaliseTelTransf(TelCli, setMsgErro2, setNome, setLoad, setBtn, setIdTrans) 
+  
+}
+
 
   const ConcluidoAposta = ()=>{
     Api.TiraConcluidoApos(IdApos, Concluir)
@@ -230,7 +255,7 @@ export default () => {
     let CompDat = new Date(currentDate1+" "+hr+":00.000").getTime();
     CompDat = CompDat;
     let Dat = CompDat;
-    let Dat2 =new Date(currentDate1+" 23:59:00.000").getTime();
+    let Dat2 =new Date().getTime();
     console.log("Dat "+ Dat)
     console.log("Dat2 "+ Dat2)
   
@@ -470,7 +495,7 @@ export default () => {
 
         const Siarnota = ()=>{
           setNomeCam("");
-            setTelCam("");
+          setTelCam("");
            setTelCli("");
            setNomeCli("")
            setPago("");
@@ -481,7 +506,6 @@ export default () => {
            setValCambis("");
            setVaToCo("");
            setValApos(""); 
-           setQCash("");
            setIdApos("");
            setQuanJog("");
            setPremio(false)
@@ -496,6 +520,13 @@ export default () => {
           setModalCalend(false);
           setVerNotajogo(false);
           setCriarCli(false)
+          setMsgErro1(false);
+          setMsgErro2(false);
+          setNome("");
+          setNomeCli("");
+          setTelCli("");
+          setBtn(false);
+          setIdTrans("");
         }
 
         const AposCambis = ()=>{
@@ -599,86 +630,14 @@ export default () => {
          }
 
          const PagandoCash = ()=>{
-          var DateVw = parseInt((new Date().getTime() + 60000)/1000);
-          console.log(DateVw);
-          var verSim = []
-  
-          for(let i in SimAp){
-           
-             if(SimAp[i].dataJogo < DateVw){
-              verSim.push(1)
-             } else {
-              verSim.push(2)
-             }
-          }
-           console.log(verSim)
-          if(verSim.includes(1)){
-            setModalCalend(true);
-            setVerNotajogo(false);
-            setAlert("Algum desses jogos já esta preste a começar ou já começou, exclua e escolha outro jogo!");
-            setAlertTipo("danger");
-  
-  
-          } else {
-  
-            if(ValorReal >= 5){
-              if(SimAp.length > 2){
-  
-                 if(Cambis === false){
-                  setCarre(true);
-                  Api.PagandoJogoCASH(IdApos, QuanJog, ValApos, ValPreDemos,  ValorReal, SimAp, ValPremi, Cambis, TelCli, NomeCli, ValCambis, setCarre, setLinkEnv, setAlert, setAlertTipo, setVerNotajogo, setModalCalend, setSimAp, setValorReal,  setValPremi, setCambis, setTelCli, setNomeCli, setValCambis, setValPreDemos, VaToCo, setVaToCo, setPgCash, setIdAposta, setDCash)
-                 
-                } else {
-  
-                  if(NomeCli !== ""){
-                  
-                 
-                      setCarre(true);
-                      Api.PagandoJogoCASH(IdApos, QuanJog, ValApos, ValPreDemos, ValorReal, SimAp, ValPremi, Cambis, TelCli, NomeCli, ValCambis, setCarre, setLinkEnv, setAlert, setAlertTipo, setVerNotajogo, setModalCalend, setSimAp, setValorReal,  setValPremi, setCambis, setTelCli, setNomeCli, setValCambis, setValPreDemos, VaToCo, setVaToCo, setPgCash, setIdAposta, setDCash)
-                 
-                  
-  
-                  } else {
-                    setModalCalend(true);
-                    setVerNotajogo(false);
-                    setAlert("Preencha o Nome Do Cliente");
-                    setAlertTipo("danger");
-  
-                  }
-  
-                 
-                 
-                }
-             
-             
-             
-             
-              } else {
-                setModalCalend(true);
-              setVerNotajogo(false);
-                setAlert("3 jogos são o minimo para aprovar uma aposta");
-                setAlertTipo("danger");
-      
-              }
-    
-            } else {
-              setModalCalend(true);
-              setVerNotajogo(false);
-              setAlert("R$ 5,00 é o menor valor que você pode aposta!");
-              setAlertTipo("danger");
-    
-    
-            }
-  
-          }
-          
-         
-         
-         
+          setPgCash(true);
+          setVerNotajogo(true)
+          setModalCalend(true)
+
          }
 
          const GerarCod =  async ()=> {
-          
+         
           if(Robo === false){
             
             setCarre(true)
@@ -689,6 +648,7 @@ export default () => {
             setAlert("Por Favor Clique em NÃO SOU ROBÔ!");
             setAlertTipo("danger")
           }
+      
          
             
          
@@ -756,8 +716,22 @@ export default () => {
           const CompPgCash = ()=>{
 
             if(parseInt(Senha)  === CodLast){
-            setCarre(true)
-            Api.PgCshAti(VCash, IdAposta, setCarre, setLinkEnv, setAlert, setAlertTipo, setModalCalend, setVerNotajogo, setSimAp, setValorReal,  setValPremi, setCambis, setTelCli, setNomeCli, setValCambis, setValPreDemos, VaToCo, setVaToCo, setPgCash, setIdAposta, setDCash, setValApos, setVCash, setRobo, setCodG, setTentativa, setSenha  )
+            setLoad(true)
+            Api.TranfCash(NomeCli, TelCli, IdTrans,  setIdTrans, setNome, setCarre,  setAlert, setAlertTipo, setModalCalend, setVerNotajogo,   setTelCli, setNomeCli,  setPgCash,   setRobo, setCodG, setTentativa, setSenha, setBtn, setMsgErro2, setLoad  )
+          } else {
+            setTentativa(Tentativa +1)
+           setAlertTipo("danger")
+            setAlert("Código Errado "+(Tentativa+1)+"° tentativa de 3");
+            setModalCalend(true);
+            setVerNotajogo(false);
+          }
+          }
+
+          const SacarCash = ()=>{
+
+            if(parseInt(Senha)  === CodLast){
+            setLoad(true)
+            Api.SacarCash(NomeCli, TelCli, IdTrans,  setIdTrans, setNome, setCarre,  setAlert, setAlertTipo, setModalCalend, setVerNotajogo,   setTelCli, setNomeCli,  setPgCash,   setRobo, setCodG, setTentativa, setSenha, setBtn, setMsgErro2, setLoad, setCriarCli  )
           } else {
             setTentativa(Tentativa +1)
            setAlertTipo("danger")
@@ -803,12 +777,11 @@ export default () => {
             setCriarCli(true)
           }
 
-          const AbrirEnviar = (item)=>{
+          const AbrirEnviar = ()=>{
             setModalCalend(true);
             setCriarCli(true)
             setEnviLin(true);
-            setPago(item.Pago);
-            setIdApos(item.id);
+           
            
            
           }
@@ -884,7 +857,7 @@ export default () => {
               {CriarCli === true ?
 
               <>
-                {Carre === true ?
+                {Load === true ?
                       <>
                 <Image source={require('../assets/carreg.gif')}  style={styles.ImageVer3 } />
                 <Image source={require('../assets/futebol.gif')}  style={styles.ImageVer5 } />     
@@ -894,75 +867,104 @@ export default () => {
 
                       :
                       <>
+                      
                 <View style={styles.QuadNota} >
                 <ScrollView>
-                  {EnviLin === true ?
-                  <>
+                 
                    <View  style={styles.CaixadeapostaTitulo}  >
-                   <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Enviar Link</Text> <View  style={styles.fechaModal} ><TouchableHighlight onPress={() =>SairCriar()}><Text>X</Text></TouchableHighlight></View>
-                     </View> 
-                     <View  style = {styles.AraCli}>
-                         
-                            </View>
-                           
-                  </>
-                  :
-                  <>
-                  <View  style={styles.CaixadeapostaTitulo}  >
-                  <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Criar Cliente</Text> <View  style={styles.fechaModal} ><TouchableHighlight onPress={() =>SairCriar()}><Text>X</Text></TouchableHighlight></View>
-                  </View> 
-                  <View  style = {styles.InputAra}>
-                  <FontAwesome name="phone-square" size={24} color="black" />
-                  
-                   <Telefone                      
-                       placeholder="Whatsapp do Cliente" 
-                       value={TelCli}
-                       onChangeText={t=>setTelCli(t)}
-                       autoCapitalize="none"
-                       keyboardType={"phone-pad"}
-                   
-                   /> 
-                   </View>
-                   <View  style = {styles.InputAra}>
-                   <FontAwesome name="user" size={24} color="black" />
+                    
+                    <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Saque de Cash</Text> <View  style={styles.fechaModal} ><TouchableHighlight onPress={() =>Siarnota()}><Text>X</Text></TouchableHighlight></View>
+                      </View>
+                      <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Regras Para Saque:</Text>
+                      <Text  style={{ marginLeft:10, fontSize:15  }}>1° Valor minimo para saque é de R$ 10,00  </Text>
+                      <Text  style={{ marginLeft:10, fontSize:15  }}>2° Em 72 horas seu Dinheiro estará em sua Conta </Text>
+                      <Text  style={{ marginLeft:10, fontSize:15  }}>3° Seu Dinheiro Entrará na Lista de transferência da PixBetCash </Text> 
+                      <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Banco de Cash:</Text>
+                      <Text  style={{ marginLeft:10, fontSize:15  }}>{QCash} </Text>
+                      <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>R$ 1,00 vale 100 Cash:</Text>
+                      <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Valor do Saque Em Reis:</Text>
+                      <Text  style={{ marginLeft:10, fontSize:15  }}>R${(NomeCli/100).toFixed(2)}</Text>
+                    {CodG === false?
+                        <>
+                          <View  style = {styles.InputAra}>
+                   <FontAwesome name="ticket" size={24} color="black" />
                    
                    
                     <SignInput
-                       placeholder="Nome do Cliente" 
+                       placeholder="Quantidade Cash" 
                        value={NomeCli}
                        onChangeText={t=>setNomeCli(t)}
                        autoCapitalize="none"
-                       keyboardType={"default"}
+                       keyboardType={"numeric"}
                        posi={18}
                    />
                   
                    </View>
-                   </>
-                  }
+                   {QCash < NomeCli  &&
+                  <Text  style={{ marginLeft:10, fontSize:15, color:"red"  }}>Seu Saldo de Cash Não é suficiente, para essa Transferência!</Text> 
+                   }
+
+                  <ReCAPTCHA
+                  ref={captcha}
+                  sitekey="6LdDVDIiAAAAAM8Z3lsWD6qE2o2w94YfwDM7mRf7"
+                  size="normal"
+                  hl="pt"
+                  theme="dark"
+                  onChange={onChangeRec}
+                    />
+                    {Alert !== "" &&
+                      <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"red"  }}>{Alert}</Text> 
+                    }
+
+                        
+                    {QCash >= NomeCli  &&
+                    <>
+                    {NomeCli >= 1000  &&
+                    <TouchableHighlight style={{width:150, height:50, backgroundColor:"#1ED31A", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>GerarCod()}>
+                      <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Gerar Código de Saque</Text>
+                    </TouchableHighlight>
+                    }
+                    </>
+                      }
                        
+                       </>
+                         :
+                        
+
+                        <>
+                        {Tentativa >= 3 &&
+                        <>
+                         <Text  style={{ marginLeft:10, fontSize:15  }}>Você atingiu a quantidade máxima de erros</Text> 
+                         <TouchableHighlight style={{width:150, height:50, backgroundColor:"#1ED31A", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>RenviarCod()}>
+                        <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Reenviar Codigo</Text>
+                      </TouchableHighlight>
+                        </>
+                        }
+                       
+                      {Tentativa < 3 &&
+                                  <>
+                                   <Text  style={{ marginLeft:10, fontSize:15  }}>Seu Código foi enviado para o Whatsapp</Text> 
+                                   <View  style = {styles.InputAra}>
+                   <FontAwesome name="expeditedssl" size={40} color="black" />           
+                          <SignInputCod
+                              placeholder="Digite o Código" 
+                              value={Senha}
+                              onChangeText={t=>setSenha(t)}
+                              autoCapitalize="none"
+                              keyboardType={"numeric"}
+                          />
+                   </View>
+                    <TouchableHighlight style={{width:150, height:50, backgroundColor:"#1ED31A", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>SacarCash()}>
+                        <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Sacar </Text>
+                      </TouchableHighlight>
                       
-               <ReCAPTCHA
-                          ref={captcha}
-                          sitekey="6LdDVDIiAAAAAM8Z3lsWD6qE2o2w94YfwDM7mRf7"
-                          size="normal"
-                          hl="pt"
-                          theme="dark"
-                          onChange={onChangeRec}
-                            />
-                            {Alert !== "" &&
-                              <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"red"  }}>{Alert}</Text> 
-                            }
-
-                            {EnviLin === true ?
-                              <TouchableHighlight style={{width:250, height:50, backgroundColor:"#00A859", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>EnviandoLink()}>
-                              <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Enviando Link</Text>
-                            </TouchableHighlight>
-                            :
-                            <TouchableHighlight style={{width:250, height:50, backgroundColor:"#00A859", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>CriandoCliente()}>
-                            <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Criar Cliente para Jogo</Text>
-                          </TouchableHighlight>
-
-                            }
+                      
+                        </>
+                        }
+                        </>
+                        }
+                      
+                         
                            
                           </ScrollView>
               </View>
@@ -1099,7 +1101,7 @@ export default () => {
               :
               <>
 
-                {Carre === true ?
+                {Load === true ?
                       <>
                 <Image source={require('../assets/carreg.gif')}  style={styles.ImageVer3 } />
                 <Image source={require('../assets/futebol.gif')}  style={styles.ImageVer5 } />     
@@ -1117,17 +1119,63 @@ export default () => {
                     <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Banco de Cash</Text> <View  style={styles.fechaModal} ><TouchableHighlight onPress={() =>Siarnota()}><Text>X</Text></TouchableHighlight></View>
                       </View> 
                       <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Banco de Cash:</Text>
-                      <Text  style={{ marginLeft:10, fontSize:15  }}>{DCash} </Text>
-                      <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Valor Aposta:</Text>
-                      <Text  style={{ marginLeft:10, fontSize:15  }}>{ValApos} </Text>
-                      <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>R$ 1,00 vale 100 Cash</Text>
-                      <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Valor da Aposta Em Cash:</Text>
-                      <Text  style={{ marginLeft:10, fontSize:15  }}>{VCash} </Text> 
-                      {DCash > VCash ?
-                      <>
+                      <Text  style={{ marginLeft:10, fontSize:15  }}>{QCash} </Text>
+                   
+                      <View  style = {styles.InputAra}>
+                   <FontAwesome name="ticket" size={24} color="black" />
+                   
+                   
+                    <SignInput
+                       placeholder="Quantidade Cash" 
+                       value={NomeCli}
+                       onChangeText={t=>setNomeCli(t)}
+                       autoCapitalize="none"
+                       keyboardType={"numeric"}
+                       posi={18}
+                   />
+                  
+                   </View>
+                   {QCash < NomeCli  &&
+                  <Text  style={{ marginLeft:10, fontSize:15, color:"red"  }}>Seu Saldo de Cash Não é suficiente, para essa Transferência!</Text> 
+                   }
+                   <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Digite o Whatsapp da Tranferência:</Text>
+                      <View  style = {styles.InputAra}>
+                  <FontAwesome name="phone-square" size={24} color="black" />
+                  
+                   <Telefone                      
+                       placeholder="Whatsapp da Conta" 
+                       value={TelCli}
+                       onChangeText={t=>setTelCli(t)}
+                       autoCapitalize="none"
+                       keyboardType={"phone-pad"}
+                   
+                   /> 
+                   </View>
+
+                   {Btn === true &&
+                   <>
+                  <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Nome da Conta</Text>
+                  <Text  style={{ marginLeft:10, fontSize:15  }}>{Nome} </Text>
+
+                   </>
+
+                   }
+
+                
+              
+                
+                   {MsgErro2 === true &&
+                  <Text  style={{ marginLeft:10, fontSize:15, color:"red"  }}>Esse Telefone Não Está Registrado no Sistema!</Text> 
+                   }
+                 
+                 
+                  
+                     
                         {CodG === false?
                         <>
-                       <ReCAPTCHA
+                        {Btn === true &&
+                        <>
+                         <ReCAPTCHA
                           ref={captcha}
                           sitekey="6LdDVDIiAAAAAM8Z3lsWD6qE2o2w94YfwDM7mRf7"
                           size="normal"
@@ -1135,9 +1183,16 @@ export default () => {
                           theme="dark"
                           onChange={onChangeRec}
                             />
+                            {QCash >= NomeCli  &&
                             <TouchableHighlight style={{width:150, height:50, backgroundColor:"#1ED31A", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>GerarCod()}>
                             <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Gerar Código de Pagamento</Text>
                           </TouchableHighlight>
+                              }
+
+                        </>
+
+                        }
+                      
 
               
                      </>
@@ -1168,7 +1223,7 @@ export default () => {
                           />
                    </View>
                     <TouchableHighlight style={{width:150, height:50, backgroundColor:"#1ED31A", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>CompPgCash()}>
-                        <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Pagar</Text>
+                        <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Transferir</Text>
                       </TouchableHighlight>
                       
                       
@@ -1179,12 +1234,7 @@ export default () => {
 
                           }
 
-                        </>
-                        :
-                        <>
-                           <Text  style={{ marginLeft:10, fontSize:15, color:"red"  }}>Seu Código foi enviado para o Whatsapp</Text> 
-                        </>
-                      }
+                      
                           
                         
                        
@@ -1434,14 +1484,14 @@ export default () => {
             </View>
               <View  style={styles.AreaBtnCima}>
               
-                    <TouchableHighlight style={{width:70, height:100, backgroundColor:"#DDBE0D", borderRadius:10, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>CriandoCliente()}>
+                    <TouchableHighlight style={{width:70, height:100, backgroundColor:"#DDBE0D", borderRadius:10, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>PagandoCash()}>
                           <>
                            <FontAwesome name="ticket" size={40} color="#fff" />
                             <Text  style={{ fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Transferir</Text>
                             <Text  style={{ fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Cash</Text>
                             </> 
                        </TouchableHighlight>
-                       <TouchableHighlight style={{width:70, height:100, backgroundColor:"#009DFF", borderRadius:10, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>CriandoCliente()}>
+                       <TouchableHighlight style={{width:70, height:100, backgroundColor:"#009DFF", borderRadius:10, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>AbrirCriar()}>
                            <>
                            <FontAwesome name="money" size={40} color="#FFF" />
                             <Text  style={{  fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Sacar</Text>
@@ -1514,7 +1564,14 @@ export default () => {
                 <View  style={styles.CaixaNome}>
                   
                   <>
+                  {item.Status === "Transferiu" || item.Status === "Recebeu"?
+                  <Text style={styles.Time}>Tel: {item.IdInf}</Text>
+                  :
+                  <>
                   <Text style={styles.Time}>Nivel {item.Nivel}</Text>
+                  </>
+                  }
+                  
                   <Text style={styles.Time}>{item.Status} {item.Moeda}</Text>
               
                   
@@ -1606,11 +1663,12 @@ const styles = StyleSheet.create({
   Avitext2: {
     fontSize: 15,
     color: "red",
+    margin:10
   },
   ModVie: {
     backgroundColor: "#FFF",
     width:200,
-    height:100,
+    height:200,
     borderRadius:20,
     justifyContent: "center",
     alignItems: "center",
