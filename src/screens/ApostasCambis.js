@@ -15,6 +15,7 @@ import Money from '../components/Money';
 import { useNavigation } from '@react-navigation/native';
 import ReCAPTCHA from "react-google-recaptcha";
 import { UserContext } from '../contexts/UserContext';
+import moment from 'moment';
 //import Datand from '../components/datando';
 
 export default ({route}) => {
@@ -210,15 +211,13 @@ export default ({route}) => {
     Dia1 = Dia1 < 10 ? '0'+Dia1 : Dia1;
     Mes1 = Mes1 < 10 ? '0'+Mes1 : Mes1;
     currentDate1 = Ano1+'-'+Mes1+'-'+Dia1;
-    var Ele = new Date().getTime()
+  
+     
+    let CompDat = moment(currentDate1+" "+hr+":00").unix();
+
+    let Dat = CompDat * 1000;
+    let Dat2 =moment(currentDate1+" 23:59:00.000").unix()*1000;
    
-  Ele = Ele - 3600000;
-    let CompDat = new Date(currentDate1+" "+hr+":00.000").getTime();
-    CompDat = CompDat;
-    let Dat = CompDat;
-    let Dat2 =new Date(currentDate1+" 23:59:00.000").getTime();
-    console.log("Dat "+ Dat)
-    console.log("Dat2 "+ Dat2)
     if(Dat < Dat2){
     setCarreg(true)
     Api.ListJogos( Page, setListOc, setCarreg,  Dat, Dat2, );
@@ -237,22 +236,11 @@ export default ({route}) => {
     await setRefreshin(false);
   }
   const tempo = ()=>{
-    let currentDate = '';
-    let now =new Date();
-    let hours = now.getHours();
-    let minutes = now.getMinutes();
-    let Dia = now.getDate();
-    let Mes = (now.getMonth()+1);
-    let Ano = now.getFullYear(); 
-    hours = hours < 10 ? '0'+hours : hours;
-    minutes = minutes < 10 ? '0'+minutes : minutes;
-    Dia = Dia < 10 ? '0'+Dia : Dia;
-    Mes = Mes < 10 ? '0'+Mes : Mes;
-    currentDate = Dia+'/'+Mes+'/'+Ano;
-    setdataNasc(currentDate)
-    setDtEsc(new Date().getTime())
-    setDataMin(new Date().getTime())
-    setDataMax(new Date().getTime() + 604800000)
+    setdataNasc(moment().format("DD/MM/YYYY"))
+   
+    setDtEsc(moment().unix()*1000)
+    setDataMin(moment().unix()*1000)
+    setDataMax((moment().unix()*1000) + 604800000)
     //let currentDate1 = Ano+'-'+Mes+'-'+Dia;
     // let CompDat1 = new Date(currentDate1+"T23:59:59.000").getTime();
     // CompDat1 = CompDat1+10800000;
@@ -818,7 +806,7 @@ export default ({route}) => {
                               ))}
                     <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Qtd. Jogo(s) {QuanJog} </Text>
                     <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}> Total Cota(s): {VaToCo}</Text> 
-                    <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}> Cash(s) Recebida: {QCash}</Text>  
+           
                    
                     <View style={styles.InputHora}>
                     <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Valor:{ValApos}</Text> 
@@ -863,7 +851,7 @@ export default ({route}) => {
                               ))}
                     <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Qtd. Jogo(s) {QuanJog} </Text>
                     <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}> Total Cota(s): {VaToCo}</Text> 
-                    <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}> Cash(s) Recebida: {QCash}</Text>  
+
                    
                     <View style={styles.InputHora}>
                     <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Valor:</Text>  

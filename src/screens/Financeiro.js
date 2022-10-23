@@ -1,6 +1,6 @@
 
 import React, { Component, useState,  useContext, useEffect, useRef } from 'react'
-import {Modal, Text,FlatList, View, StyleSheet, ImageBackground, Image, Button, TouchableHighlight, KeyboardAvoidingView, ScrollView } from 'react-native'
+import {Modal, Text, FlatList, View, StyleSheet, ImageBackground, Image, Button, TouchableHighlight, KeyboardAvoidingView, ScrollView } from 'react-native'
 import {FontAwesome} from "@expo/vector-icons";
 import { ModalDatePicker } from "react-native-material-date-picker";
 import Hora from '../components/Hora';
@@ -15,6 +15,7 @@ import Money from '../components/Money';
 import { useNavigation } from '@react-navigation/native';
 import ReCAPTCHA from "react-google-recaptcha";
 import { UserContext } from '../contexts/UserContext';
+import moment from 'moment';
 //import Datand from '../components/datando';
 
 export default () => {
@@ -249,13 +250,11 @@ export default () => {
     Dia1 = Dia1 < 10 ? '0'+Dia1 : Dia1;
     Mes1 = Mes1 < 10 ? '0'+Mes1 : Mes1;
     currentDate1 = Ano1+'-'+Mes1+'-'+Dia1;
-    var Ele = new Date().getTime()
    
-  Ele = Ele - 3600000;
-    let CompDat = new Date(currentDate1+" "+hr+":00.000").getTime();
-    CompDat = CompDat;
-    let Dat = CompDat;
-    let Dat2 =new Date().getTime();
+    let CompDat = moment(currentDate1+" "+hr+":00").unix();
+   
+    let Dat = CompDat * 1000;
+    let Dat2 = moment().unix()*1000;
     console.log("Dat "+ Dat)
     console.log("Dat2 "+ Dat2)
   
@@ -319,35 +318,11 @@ export default () => {
     await setRefreshin(false);
   }
   const tempo = ()=>{
-    let currentDate = '';
-    let now =new Date();
-    let hours = now.getHours();
-    let minutes = now.getMinutes();
-    let Dia = now.getDate();
-    let Mes = (now.getMonth()+1);
-    let Ano = now.getFullYear(); 
-    hours = hours < 10 ? '0'+hours : hours;
-    minutes = minutes < 10 ? '0'+minutes : minutes;
-    Dia = Dia < 10 ? '0'+Dia : Dia;
-    Mes = Mes < 10 ? '0'+Mes : Mes;
-    currentDate = Dia+'/'+Mes+'/'+Ano;
-    setdataNasc(currentDate)
-    setDtEsc(new Date().getTime())
-    setDataMin(new Date().getTime())
-    setDataMax(new Date().getTime())
-    //let currentDate1 = Ano+'-'+Mes+'-'+Dia;
-    // let CompDat1 = new Date(currentDate1+"T23:59:59.000").getTime();
-    // CompDat1 = CompDat1+10800000;
-    // let CompDat3 = CompDat1+10800000;
-    // let dif = CompDat3-TimeIni;
-    // let div = dif/86400000;
-    // console.log(parseInt(div));
-    // setQuantD(parseInt(div))
-    // setTimeFin(CompDat1);
-    // setTimeEve(CompDat1);
-    // setDataEve(currentDate);
-    // setDataFin(currentDate);
-    // setDaExFin(currentDate)
+    setdataNasc(moment().format("DD/MM/YYYY"))
+    // setDtEsc(new Date().getTime())
+    // setDataMin(new Date().getTime())
+    // setDataMax(new Date().getTime())
+   
   }
 
   const Mudedate = (date)=>{
@@ -1548,11 +1523,10 @@ export default () => {
         <ScrollView>
           {Carre === false ?
           <>
-         {Lista[0] &&
-          <>
+       
           {Lista.map((item, key)=>(
            <>
-            <View  style={styles.Post}>
+            <View key={key}  style={styles.Post}>
               <View style={{ padding:5, flexDirection:"row",  alignItems:"center", justifyContent:"space-around", height:40, width:400, borderBottomWidth:2, borderColor:"#ccc", backgroundColor: "#fff",}}>
                <View  style={styles.CaixaNome}>
               
@@ -1601,8 +1575,7 @@ export default () => {
 
               ))}
 
-              </>
-                  }
+           
                   </>
               :
               <>
@@ -2219,7 +2192,6 @@ AreaBtnCima :{
 
 
   CaixaNome: {
-     width:130,
      height:40,
      display:"flex",
      justifyContent:"center",

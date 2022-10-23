@@ -1,19 +1,31 @@
 
 import React, { Component } from 'react'
 import {Modal, Text, View, StyleSheet, ImageBackground, Image, Button, TouchableHighlight, KeyboardAvoidingView } from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
 
-export default class main extends Component {
-  render() {
+export default () => {
+  const navigation = useNavigation();
+   const Saindo = async()=>{
+    await AsyncStorage.setItem('Tel', "");
+    await AsyncStorage.setItem('@entrada', "");
+    navigation.reset({
+      routes:[{name:"Preload"}]
+  });
+   }
     return (
       <View style={styles.Container}>
           <ImageBackground source={require("../assets/estadio3.jpg")} 
           resizeMode='cover' 
           style={styles.imageBack} >
         <Text style={styles.BtnText} >Configurações</Text>
+        <TouchableHighlight style={{width:150, height:50, backgroundColor:"#F96868", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>Saindo()}>
+                            <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Sair da Conta</Text>
+                          </TouchableHighlight>
         </ImageBackground>
       </View>
     )
-  }
+  
 }
 
 const styles = StyleSheet.create({
