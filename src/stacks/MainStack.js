@@ -17,6 +17,7 @@ import Pagar from '../screens/Pagar';
 import Config from '../screens/Config';
 import Notific from '../screens/Notific';
 import ApostasCambis from '../screens/ApostasCambis';
+import Indicarcao from '../screens/Indicarcao';
  //import cadastroSim from '../screens/cadastroSim';
 
 const Stack = createNativeStackNavigator();
@@ -37,6 +38,13 @@ export default function Ret() {
         headerShown: false
     }}   
      name="ApCambis" component={ApostasCambis} />
+
+<Stack.Screen
+     options={{
+        title: 'Indicação',
+        headerShown: false
+    }}   
+     name="Indicarcao" component={Indicarcao} />
          <Stack.Screen
 
         options={{

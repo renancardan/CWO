@@ -1417,7 +1417,7 @@ export default () => {
                 <Text style={styles.Time}>Prêmio: R${item.ValPreDemos}</Text>
                 :
                 <>
-                <Text style={styles.Time}>{item.Nome}</Text>
+                <Text style={styles.Time}>{item.Nome.substring(0, 10)}</Text>
                 <Text style={styles.Time}>{item.TelCli}</Text>
                 </>
               }
@@ -2092,7 +2092,7 @@ const styles = StyleSheet.create({
 
 
   CaixaNome: {
-     width:130,
+   
      height:40,
      display:"flex",
      justifyContent:"center",

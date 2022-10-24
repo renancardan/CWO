@@ -1360,7 +1360,7 @@ export default () => {
             <View  style={styles.Post}>
               <View style={{ padding:5, flexDirection:"row",  alignItems:"center", justifyContent:"space-around", height:60, width:400, borderBottomWidth:2, borderColor:"#ccc", backgroundColor:item.Concluir === false? "#fff":"#E2F183",}}>
                <View  style={styles.CaixaNome}>
-                <Text style={styles.Time}>{item.Nome}</Text>
+                <Text style={styles.Time}>{item.Nome.substring(0, 10)}</Text>
                 <Text style={styles.Time}>{item.TelCli}</Text>
                 <Text style={styles.Time}>{item.dataForm}</Text>
                 </View> 
@@ -2006,7 +2006,7 @@ const styles = StyleSheet.create({
 
 
   CaixaNome: {
-     width:130,
+  
      height:40,
      display:"flex",
      justifyContent:"center",

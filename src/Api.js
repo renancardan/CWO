@@ -100,6 +100,114 @@ export default {
     
     },
 
+    VerWhatsInd: async (TelCli, setTelMsg, setNomeCli, setBtn,  setLoading) => {
+
+
+      var ver = TelCli.replace("(", "55");
+      var par1 = ver.replace(")", "");
+      var par3 = par1.replace("-", "");
+      const req = await fetch(`https://api.z-api.io/instances/3A9D95BC49F730DF458B76215AA2744C/token/A2A3E65C2FE0E21916E8A2AE/phone-exists/${par3}`, 
+      {
+            method: 'GET',
+            headers:{
+              'Content-Type': 'application/json'
+            },
+           
+          });
+  
+      
+        
+          const json = await req.json(); 
+          setTelMsg(json.exists);
+        
+  
+          if(json.exists === true){
+           
+            setBtn(true);
+          } else{
+            setBtn(false);
+          }
+       
+  
+       
+          await setLoading(false)
+    },
+
+    AnaliseTelIndic: async (TelCli, setTe1, setNomeCli, setBtn1,  setTe2, setBtn2, setDateInd) => {
+      var tim = new Date().getTime();
+      var tel = await AsyncStorage.getItem('Tel');
+      var time = await AsyncStorage.getItem('@entrada');
+      var temp = parseInt(time)
+
+      await firestore.collection("users")
+      .where("Telefone", "==", tel)
+      .where("DataEntCel", "==", temp)
+      .get().then( async(querySnapshot) => {
+     
+        if(querySnapshot.size !== 0){
+
+
+      await firestore.collection("users")
+      .where("Telefone", "==", TelCli)
+      .get().then((querySnapshot) => {
+        if(querySnapshot.size !== 0){
+          querySnapshot.forEach((doc) => {
+            setTe1(true);
+            setBtn1(false);
+            setNomeCli(doc.data().Nome)
+          })
+      
+        } else {
+          setTe1(false);
+          setBtn1(true);
+    
+        }
+         });
+    
+         await firestore.collection("BancoWhats")
+        .where("Telefone", "==", TelCli)
+        .where("DataFin", ">", tim)
+        .where("Aprovado", "==", false)
+        .get().then((querySnapshot) => {
+          console.log("Existe aqui")
+        if(querySnapshot.size !== 0){
+       
+          querySnapshot.forEach((doc) => {
+            let currentDate = '';
+            let now =new Date(doc.data().DataFin);
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            let Dia = now.getDate();
+            let Mes = (now.getMonth()+1);
+            let Ano = now.getFullYear();
+            let seg = now.getSeconds(); 
+            hours = hours < 10 ? '0'+hours : hours;
+            minutes = minutes < 10 ? '0'+minutes : minutes;
+            seg = seg < 10 ? '0'+seg : seg;
+            Dia = Dia < 10 ? '0'+Dia : Dia;
+            Mes = Mes < 10 ? '0'+Mes : Mes;
+            currentDate = Dia+'/'+Mes+'/'+Ano;
+            currentDate += ' ';
+            currentDate += hours+':'+minutes+":"+seg;
+            setTe2(true);
+            setBtn2(false);
+            setDateInd(currentDate)
+          })
+      
+        } else {
+          setTe2(false);
+          setBtn2(true);
+    
+        }
+         });
+
+        }
+      });
+    
+    
+    
+    },
+
     VerWhatsTransf: async (TelCli, setMsgErro1, setCarre) => {
 
 
@@ -1966,8 +2074,94 @@ await firestore.collection("users")
            
         },
 
+        EnviadoApp: async (NomeCli, TelCli, setAlertTipo, setAlert, setLoading, setModalCalend, setBtn, setBtn1, setBtn2, setCodG, setSenha, setTentativa, setRobo, setNomeCli, setTelCli, setCodLast, setDateInd, setTelMsg, setTe1, setTe2) => {
+          let tempVenc = new Date().getTime() + 86400000;
+          var IdUser = ""
+          var Nome = ""
+          var tel = await AsyncStorage.getItem('Tel');
+          var time = await AsyncStorage.getItem('@entrada');
+          var temp = parseInt(time)
+          await firestore.collection("users")
+          .where("Telefone", "==", tel)
+          .where("DataEntCel", "==", temp)
+          .get().then( async(querySnapshot) => {
+         
+            if(querySnapshot.size !== 0){
+              querySnapshot.forEach( async (doc) => {
+                IdUser = doc.id,
+                Nome = doc.data().Nome
+                });
+             
+
+
+        
+          await firestore.collection("BancoWhats").add({
+            Telefone:TelCli,
+            DataFin:tempVenc,
+            Aprovado:false,
+            Soteado:false,
+            idUser:IdUser,
+            NomeConv:NomeCli,
+        })
+        .then(async (docRef) => {
+          console.log("Tel ")
+          var ver = TelCli.replace("(", "55");
+          var par1 = ver.replace(")", "");
+          var par3 = par1.replace("-", "");
+
+          var data={
+            "phone": par3,
+            "message": `Olá ${NomeCli}, ${Nome} lhe enviou Esse Link da PixBetCash, para você se Cadastrar, e começar a usar os benefícios da PixBetCash. ${URL_SITE}`,
+            "image": "https://firebasestorage.googleapis.com/v0/b/pixbetcash.appspot.com/o/arquivo%2FLogoPixBetMp.png?alt=media&token=5ff20c89-022e-4dd1-8a87-e1becebde7f9",
+            "linkUrl": `${URL_SITE}`,
+            "title": "Link para Cadastro",
+            "linkDescription": ` ${Nome} lhe enviou Esse Link, para você poder se cadasdtrar de maneira mais facil!`
+          }
+          const req = await fetch("https://api.z-api.io/instances/3A9D95BC49F730DF458B76215AA2744C/token/A2A3E65C2FE0E21916E8A2AE/send-link", 
+          {
+                method: 'POST',
+                headers:{
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data),
+              });
+  
+       
+        
+              const json = await req.json();  
+             if(json){
+              setLoading(false)
+              setAlert("Indicação Realizada!")
+              setAlertTipo("Sucesss")
+              setModalCalend(true)
+              setBtn(false);
+              setBtn1(false)
+              setBtn2(false);
+              setNomeCli("");
+              setTelCli("");
+              setCodG(false);
+              setCodLast(0);
+              setSenha("");
+              setTentativa(0);
+              setRobo(true)
+              setTe1(false)
+              setTe2(false)
+              setTelMsg(true)
+              setDateInd(0)
+
+             }
+             
+        })
+      }
+    });
+        
+          
+        
+        
+        },
+
       CriandoCli:async (NomeCli,  TelCli, setRobo, setNomeCli, setTelCli, setCarre,  setAlert, setAlertTipo, setVerNotajogo, setModalCalend, setCriarCli)=>{
-          var temp = new Date().getTime();
+         
           var IdUser = ""
           var Nome = ""
           var tel = await AsyncStorage.getItem('Tel');
@@ -2106,6 +2300,253 @@ await firestore.collection("users")
                 setQCash(doc.data().Cash)
                 });
                 setCarre(false)
+               
+
+       
+
+              } else {
+                setRobo(true)
+                setAlert("Ouve um erro na Sua Conta Você Não Esta Logado, Saia e entre Novamente!")
+                setAlertTipo("danger")
+                setCriarCli(false)
+                setVerNotajogo(false)
+                setModalCalend(true)
+                setCarre(false);
+              }
+            })
+
+             
+                
+           
+        },
+        PegarDadosIndiq:async (QCash , setListOc, setQCash, setCarre,  Dat, Dat2)=>{
+          var temp = new Date().getTime();
+          var IdUser = ""
+          var Nome = ""
+          var tel = await AsyncStorage.getItem('Tel');
+          var time = await AsyncStorage.getItem('@entrada');
+          var temp = parseInt(time)
+          await firestore.collection("users")
+          .where("Telefone", "==", tel)
+          .where("DataEntCel", "==", temp)
+          .onSnapshot(async(querySnapshot) => {
+            var res = []
+            var resList = []
+            var QC = 0;
+            if(querySnapshot.size !== 0){
+              querySnapshot.forEach( async (doc) => {
+                
+              
+                res = doc.data().Indicados
+           
+                });
+                console.log(res[0])
+               
+                for(let i in res){
+                  await firestore.collection("users")
+                   .doc(res[i])
+                   .get()
+                   .then((dec)=>{
+
+                    var resLoa = 0;
+                    console.log(Dat)
+                    for(let j in dec.data().Extrato){
+                    
+                      if(dec.data().Extrato[j].Nivel === "1" && dec.data().Extrato[j].Status === "Ganhou" && dec.data().Extrato[j].Moeda === "Cash" && dec.data().Extrato[j].Data >= Dat  ){
+                         var Div = (dec.data().Extrato[j].Valor/9)*6;
+                         resLoa = resLoa + Div; 
+                      } else  if(dec.data().Extrato[j].Nivel === "2" && dec.data().Extrato[j].Status === "Ganhou" && dec.data().Extrato[j].Moeda === "Cash" && dec.data().Extrato[j].Data >= Dat ){
+                        var Div = (dec.data().Extrato[j].Valor/6)*3;
+                        resLoa = resLoa + Div;
+                     } else  if(dec.data().Extrato[j].Nivel === "3" && dec.data().Extrato[j].Status === "Ganhou" && dec.data().Extrato[j].Moeda === "Cash" && dec.data().Extrato[j].Data >= Dat ){
+                      var Div = (dec.data().Extrato[j].Valor/3)*1;
+                      resLoa = resLoa + Div;
+                   }
+                  }
+                   
+                    resList.push({
+                     id:dec.id,
+                     Extrato:dec.data().Extrato,
+                     Nome:dec.data().Nome,
+                     Telefone:dec.data().Telefone,
+                     dataCadas:dec.data().DataCadas,
+                     Indicados:dec.data().Indicados,
+                     Rendeu:resLoa,
+                    })
+                    QC= QC + resLoa;
+                   })
+                 
+                }
+
+                setListOc(resList)
+                setQCash(QC)
+                console.log(resList)
+
+
+
+
+                setCarre(false)
+
+
+               
+
+       
+
+              } else {
+                setRobo(true)
+                setAlert("Ouve um erro na Sua Conta Você Não Esta Logado, Saia e entre Novamente!")
+                setAlertTipo("danger")
+                setCriarCli(false)
+                setVerNotajogo(false)
+                setModalCalend(true)
+                setCarre(false);
+              }
+            })
+
+             
+                
+           
+        },
+
+        PegarDadosIndiq3:async (item , setList3, setQcash3, setCarre, setNive3, Dat, Dat2)=>{
+          var temp = new Date().getTime();
+          var IdUser = ""
+          var Nome = ""
+          var tel = await AsyncStorage.getItem('Tel');
+          var time = await AsyncStorage.getItem('@entrada');
+          var temp = parseInt(time)
+          await firestore.collection("users")
+          .where("Telefone", "==", tel)
+          .where("DataEntCel", "==", temp)
+          .onSnapshot(async(querySnapshot) => {
+            var res = []
+            var resList = []
+            var QC = 0;
+            if(querySnapshot.size !== 0){
+            
+              
+               
+                for(let i in item){
+                  await firestore.collection("users")
+                   .doc(item[i])
+                   .get()
+                   .then((dec)=>{
+
+                    var resLoa = 0;
+                    console.log(Dat)
+                    for(let j in dec.data().Extrato){
+                    
+                      if(dec.data().Extrato[j].Nivel === "1" && dec.data().Extrato[j].Status === "Ganhou" && dec.data().Extrato[j].Moeda === "Cash" && dec.data().Extrato[j].Data >= Dat  ){
+                         var Div = (dec.data().Extrato[j].Valor/9)*3;
+                         resLoa = resLoa + Div; 
+                      } else  if(dec.data().Extrato[j].Nivel === "2" && dec.data().Extrato[j].Status === "Ganhou" && dec.data().Extrato[j].Moeda === "Cash" && dec.data().Extrato[j].Data >= Dat ){
+                        var Div = (dec.data().Extrato[j].Valor/6)*1;
+                        resLoa = resLoa + Div;
+                     } 
+                  }
+                   
+                    resList.push({
+                     id:dec.id,
+                     Extrato:dec.data().Extrato,
+                     Nome:dec.data().Nome,
+                     Telefone:dec.data().Telefone,
+                     dataCadas:dec.data().DataCadas,
+                     Indicados:dec.data().Indicados,
+                     Rendeu:resLoa,
+                    })
+                    QC= QC + resLoa;
+                   })
+                 
+                }
+
+                setList3(resList)
+                setQcash3(QC)
+                console.log(resList)
+
+
+
+                setNive3(true)
+                setCarre(false)
+
+
+               
+
+       
+
+              } else {
+                setRobo(true)
+                setAlert("Ouve um erro na Sua Conta Você Não Esta Logado, Saia e entre Novamente!")
+                setAlertTipo("danger")
+                setCriarCli(false)
+                setVerNotajogo(false)
+                setModalCalend(true)
+                setCarre(false);
+              }
+            })
+
+             
+                
+           
+        },
+
+        PegarDadosIndiq4:async (item , setList4, setQcash4, setCarre, setNive4, Dat, Dat2)=>{
+          var temp = new Date().getTime();
+          var IdUser = ""
+          var Nome = ""
+          var tel = await AsyncStorage.getItem('Tel');
+          var time = await AsyncStorage.getItem('@entrada');
+          var temp = parseInt(time)
+          await firestore.collection("users")
+          .where("Telefone", "==", tel)
+          .where("DataEntCel", "==", temp)
+          .onSnapshot(async(querySnapshot) => {
+            var res = []
+            var resList = []
+            var QC = 0;
+            if(querySnapshot.size !== 0){
+            
+              
+               
+                for(let i in item){
+                  await firestore.collection("users")
+                   .doc(item[i])
+                   .get()
+                   .then((dec)=>{
+
+                    var resLoa = 0;
+                    console.log(Dat)
+                    for(let j in dec.data().Extrato){
+                    
+                      if(dec.data().Extrato[j].Nivel === "1" && dec.data().Extrato[j].Status === "Ganhou" && dec.data().Extrato[j].Moeda === "Cash" && dec.data().Extrato[j].Data >= Dat  ){
+                         var Div = (dec.data().Extrato[j].Valor/9)*1;
+                         resLoa = resLoa + Div; 
+                      } 
+                  }
+                   
+                    resList.push({
+                     id:dec.id,
+                     Extrato:dec.data().Extrato,
+                     Nome:dec.data().Nome,
+                     Telefone:dec.data().Telefone,
+                     dataCadas:dec.data().DataCadas,
+                     Indicados:dec.data().Indicados,
+                     Rendeu:resLoa,
+                    })
+                    QC= QC + resLoa;
+                   })
+                 
+                }
+
+                setList4(resList)
+                setQcash4(QC)
+                console.log(resList)
+
+
+
+                setNive4(true)
+                setCarre(false)
+
+
                
 
        
