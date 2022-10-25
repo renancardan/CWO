@@ -30,11 +30,13 @@ export default () => {
     const [ModalLoad, setModalLoad] = useState(false);
     const [ModalText, setModalText] = useState("");
     const [ModalAlert, setModalAlert] = useState(false);
-    const [Robo, setRobo] = useState(true)
+    const [Robo, setRobo] = useState(true);
+    const [IdInd2, setIdInd2] = useState("");
+    const [VerSite2, setVerSite2] = useState("");
    // console.log(window.location.href);
  
     useEffect(() => {
-      console.log(Te1);
+      EntrandoLinks()
      }, [Te1])
 
   useEffect(() => {
@@ -65,13 +67,25 @@ export default () => {
 
      }, [Tel, Robo])
 
+
+     const EntrandoLinks = () => {
+      const Site = window.location.href;
+    const VerSite =  Site.split("/");
+   
+    if(VerSite[3] === "indicacao"){
+    setIdInd2(VerSite[4])
+    setVerSite2(VerSite[3])
+    }   
+     
+    }
+
    const handleMessageButtonClick = () => {
    
      if(Robo === false){
       if(TelMsg === true){
         if(Tel !== '' && Nome !== '' ) {
             setLoading(true);
-            Api.signIn(Tel, Nome, setIrCad, setIrEnt, setLoading);
+            Api.signIn(Tel, Nome, IdInd2, VerSite2, setIrCad, setIrEnt, setLoading);
              
           
         }  else {

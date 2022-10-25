@@ -61,6 +61,10 @@ export default () => {
    Api.VerWhatsInd(TelCli, setTelMsg, setNomeCli, setBtn, setLoading)
    Api.AnaliseTelIndic(TelCli, setTe1, setNomeCli, setBtn1, setTe2, setBtn2, setDateInd)  
       }
+      const IrIndicar = ()=>{
+        navigation.navigate("ListIndiq")
+     }
+
 
       const onChangeRec = ()=> {
         if(captcha.current.getValue()){
@@ -185,6 +189,7 @@ export default () => {
 
               </View>
               </Modal>
+              
              <View style={styles.CaixaTitulo} >
               <TouchableHighlight  onPress={()=>Voltar()} style={styles.CaixaDados}>
                 <>
@@ -202,7 +207,11 @@ export default () => {
               </TouchableHighlight>
              
             </View >
+           
             <ScrollView>
+            <TouchableHighlight style={{width:200, height:50, backgroundColor:"#1AA6D3", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>IrIndicar()}>
+                    <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Ver Lista de Indicados</Text>
+            </TouchableHighlight>
                 <View style={{padding:10,width:350, borderRadius:10, backgroundColor:"#fff"}}>
                    <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Regras de Indicação:</Text>
                       <Text  style={{ marginLeft:10, fontSize:15  }}>1° Coloque o Whatsapp e o Nome da Pessoa, e será liberado o Botão de Indicar </Text>

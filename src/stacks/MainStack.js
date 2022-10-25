@@ -18,6 +18,8 @@ import Config from '../screens/Config';
 import Notific from '../screens/Notific';
 import ApostasCambis from '../screens/ApostasCambis';
 import Indicarcao from '../screens/Indicarcao';
+import ListIndiq from '../screens/ListIndiq';
+import Graficos from '../screens/Graficos';
  //import cadastroSim from '../screens/cadastroSim';
 
 const Stack = createNativeStackNavigator();
@@ -32,6 +34,13 @@ export default function Ret() {
 
       >
 
+<Stack.Screen
+     options={{
+        title: 'Gráficos',
+        headerShown: false
+    }}   
+     name="Graficos" component={Graficos} />
+
     <Stack.Screen
      options={{
         title: 'Aposta',
@@ -45,6 +54,12 @@ export default function Ret() {
         headerShown: false
     }}   
      name="Indicarcao" component={Indicarcao} />
+     <Stack.Screen
+     options={{
+        title: 'Lista de Indicação',
+        headerShown: false
+    }}   
+     name="ListIndiq" component={ListIndiq} />
          <Stack.Screen
 
         options={{

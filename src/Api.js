@@ -431,10 +431,10 @@ await firestore.collection("users")
 
     },
 
-    signIn: async (Tel, Nome, setIrCad, setIrEnt, setLoading) => {
+    signIn: async (Tel, Nome, IdInd2, VerSite2, setIrCad, setIrEnt, setLoading) => {
       let temp = new Date().getTime();
       var tele = Tel.toString();
-     console.log(Tel);
+   
       await AsyncStorage.setItem('Tel', tele);
   
    
@@ -506,6 +506,8 @@ await firestore.collection("users")
         Dinheiro:0,
         DataVenc:0,
         ADM:false,
+        Nivel3:0,
+        Nivel4:0,
     })
     .then( async (docRef) => {
    
@@ -553,8 +555,123 @@ await firestore.collection("users")
             .update({
               Aprovado:true, 
               })
-  
+
+          firestore.collection("users")
+          .where("Indicados", "array-contains", IdInd)
+          .get()
+          .then((querySnapshot) => {
+            var IdNive3 = "";
+            var Nive3Q = 0;
+            if(querySnapshot.size !== 0){
+
+              querySnapshot.forEach((doc) => {
+                IdNive3 = doc.id;
+                Nive3Q =  doc.data().Nivel3;                 
+               });
+               firestore.collection("users")
+               .doc(IdNive3)
+               .update({
+                Nivel3: Nive3Q + 1
+              })
+
+              firestore.collection("users")
+              .where("Indicados", "array-contains", IdNive3)
+              .get()
+              .then((querySnapshot3) => {
+                var IdNive4 = "";
+                var Nive4Q = 0;
+                if(querySnapshot3.size !== 0){
+    
+                  querySnapshot3.forEach((doc3) => {
+                    IdNive4 = doc3.id;
+                    Nive4Q =  doc3.data().Nivel4;                 
+                   });
+                   firestore.collection("users")
+                   .doc(IdNive4)
+                   .update({
+                    Nivel4: Nive4Q + 1
+                  })
+    
+                  
+    
+    
+                }
+                 
+              })
+
+
+
+            }
+             
+          })
           
+          
+        } else{
+          if(VerSite2 === "indicacao"){
+
+            firestore.collection("users")
+            .doc(IdInd2)
+            .update({
+              Indicados: firebase.firestore.FieldValue.arrayUnion(id)
+             })
+
+             firestore.collection("users")
+             .where("Indicados", "array-contains", IdInd2)
+             .get()
+             .then((querySnapshot) => {
+               var IdNive3 = "";
+               var Nive3Q = 0;
+               if(querySnapshot.size !== 0){
+   
+                 querySnapshot.forEach((doc) => {
+                   IdNive3 = doc.id;
+                   Nive3Q =  doc.data().Nivel3;                 
+                  });
+                 
+                  firestore.collection("users")
+                  .doc(IdNive3)
+                  .update({
+                   Nivel3: Nive3Q + 1
+                 })
+   
+                 firestore.collection("users")
+                 .where("Indicados", "array-contains", IdNive3)
+                 .get()
+                 .then((querySnapshot3) => {
+                   var IdNive4 = "";
+                   var Nive4Q = 0;
+                   if(querySnapshot3.size !== 0){
+       
+                     querySnapshot3.forEach((doc3) => {
+                       IdNive4 = doc3.id;
+                       Nive4Q =  doc3.data().Nivel4;                 
+                      });
+                      console.log(Nive4Q)
+                      console.log(Nive4Q.length)
+                      firestore.collection("users")
+                      .doc(IdNive4)
+                      .update({
+                       Nivel4: Nive4Q + 1
+                     })
+       
+                     
+       
+       
+                   }
+                    
+                 })
+   
+   
+   
+               }
+                
+             })
+
+             
+  
+   
+          }
+
         }
   
         });
@@ -992,6 +1109,196 @@ await firestore.collection("users")
                  }
                });
                console.log(res)
+               setListOc(res);
+               setCarreg(false);  
+       
+                 });
+   
+                } else {
+                  setAlert("Ouve um erro na Sua Conta Você Não Esta Logado")
+                  setAlertTipo("danger")
+                  setVerNotajogo(false)
+                  setModalCalend(true)
+                  setCarre(false);
+                }
+              })  
+             
+           
+      
+        
+       
+       
+     },
+
+     DadosGraficos: async( Page, setNiveis, setJogos, setGanhos,  setCarreg,  Dat, Dat2, )=> {
+   
+      let Antes = Dat ;
+      let Depois = Dat2;
+      let Indicados = [];
+      let Extrato = [];
+      var IdUser = ""
+      var Nome = ""
+      var tel = await AsyncStorage.getItem('Tel');
+      var time = await AsyncStorage.getItem('@entrada');
+      var temp = parseInt(time)
+      await firestore.collection("users")
+      .where("Telefone", "==", tel)
+      .where("DataEntCel", "==", temp)
+      .get().then( async(querySnapshot) => {
+     
+        if(querySnapshot.size !== 0){
+          var N2Q = 0;
+          var N3Q = 0;
+          var N4Q = 0;
+          querySnapshot.forEach( async (doc) => {
+            IdUser = doc.id;
+            Nome = doc.data().Nome;
+            Indicados = doc.data().Indicados;
+            Extrato = doc.data().Extrato;
+            N2Q = doc.data().Indicados.length;
+            N3Q = doc.data().Nivel3;
+            N4Q = doc.data().Nivel4;
+            });
+            console.log(Extrato)
+          var N1ganhos = 0
+          var N2ganhos = 0
+          var N3ganhos = 0
+          var N4ganhos = 0
+
+          var N1Jogos = 0
+          var N2Jogos = 0
+          var N3Jogos = 0
+          var N4Jogos = 0
+          var TotalJogos = 0;
+
+            for(let i in Extrato){
+                    
+              if(Extrato[i].Nivel === "1" &&  Extrato[i].Status === "Ganhou" && Extrato[i].Moeda === "Cash" && Extrato[i].Data >= Dat  ){
+                 var Div = Extrato[i].Valor;
+                 N1ganhos = N1ganhos + Div; 
+                 N1Jogos = N1Jogos + 1; 
+                 TotalJogos = TotalJogos +1;
+              } else if(Extrato[i].Nivel === "2" &&  Extrato[i].Status === "Ganhou" && Extrato[i].Moeda === "Cash" && Extrato[i].Data >= Dat  ){
+                var Div2 = Extrato[i].Valor;
+                N2ganhos = N2ganhos + Div2;
+                N2Jogos = N2Jogos + 1; 
+                TotalJogos = TotalJogos +1; 
+             } else  if(Extrato[i].Nivel === "3" &&  Extrato[i].Status === "Ganhou" && Extrato[i].Moeda === "Cash" && Extrato[i].Data >= Dat ){
+              var Div3 = Extrato[i].Valor;
+              N3ganhos = N3ganhos + Div3;
+              N3Jogos = N3Jogos + 1; 
+              TotalJogos = TotalJogos +1; 
+           } else if(Extrato[i].Nivel === "4" &&  Extrato[i].Status === "Ganhou" && Extrato[i].Moeda === "Cash" && Extrato[i].Data >= Dat ){
+            var Div4 = Extrato[i].Valor;
+            N4ganhos = N4ganhos + Div4; 
+            N2Jogos = N2Jogos + 1; 
+            TotalJogos = TotalJogos +1;
+           } 
+          }
+
+          
+        
+
+         
+        
+   
+    setJogos([N1Jogos/TotalJogos, N2Jogos/TotalJogos, N3Jogos/TotalJogos, N4Jogos/TotalJogos]) 
+    setGanhos([N1ganhos, N2ganhos, N3ganhos, N4ganhos])
+    setNiveis([N2Q, N3Q, N4Q])
+    console.log([N1Jogos, N2Jogos, N3Jogos, N4Jogos]) 
+    console.log(TotalJogos)       
+                 
+                
+                 
+                 
+             
+               
+            
+              
+              
+               setCarreg(false);  
+       
+          
+   
+                } else {
+                  setAlert("Ouve um erro na Sua Conta Você Não Esta Logado")
+                  setAlertTipo("danger")
+                  setVerNotajogo(false)
+                  setModalCalend(true)
+                  setCarre(false);
+                }
+              })  
+             
+           
+      
+        
+       
+       
+     },
+
+     MeusIndicados: async(Page, setListOc, setCarreg,  Dat, Dat2,)=> {
+   
+      let Antes = Dat ;
+      let Depois = Dat2;
+    
+      var IdUser = ""
+      var Nome = ""
+      var tel = await AsyncStorage.getItem('Tel');
+      var time = await AsyncStorage.getItem('@entrada');
+      var temp = parseInt(time)
+      await firestore.collection("users")
+      .where("Telefone", "==", tel)
+      .where("DataEntCel", "==", temp)
+      .get().then( async(querySnapshot) => {
+     
+        if(querySnapshot.size !== 0){
+          querySnapshot.forEach( async (doc) => {
+            IdUser = doc.id,
+            Nome = doc.data().Nome
+            });
+       
+             await firestore.collection("BancoWhats")
+               .where("idUser", "==", IdUser)
+               .orderBy("Aprovado", "desc")
+               .onSnapshot((querySnapshot) => {
+
+               var res = []; 
+               console.log("q "+querySnapshot.size)
+               querySnapshot.forEach((doc) => {
+
+                let currentDate = '';
+                let now =new Date(doc.data().DataFin);
+                let hours = now.getHours();
+                let minutes = now.getMinutes();
+                let Dia = now.getDate();
+                let Mes = (now.getMonth()+1);
+                let Ano = now.getFullYear();
+                let seg = now.getSeconds(); 
+                hours = hours < 10 ? '0'+hours : hours;
+                minutes = minutes < 10 ? '0'+minutes : minutes;
+                seg = seg < 10 ? '0'+seg : seg;
+                Dia = Dia < 10 ? '0'+Dia : Dia;
+                Mes = Mes < 10 ? '0'+Mes : Mes;
+                currentDate = Dia+'/'+Mes+'/'+Ano;
+                currentDate += ' ';
+                currentDate += hours+':'+minutes+":"+seg;
+      
+                  res.push({
+                    id:doc.id,
+                    Nome:doc.data().NomeConv,
+                    Telefone:doc.data().Telefone,
+                    Data:currentDate,
+                    DataFin:doc.data().DataFin,
+                    Aprovado:doc.data().Aprovado,
+                  })
+                 
+                
+                 
+                 
+               });
+               
+            
+              
                setListOc(res);
                setCarreg(false);  
        
@@ -2100,7 +2407,7 @@ await firestore.collection("users")
             DataFin:tempVenc,
             Aprovado:false,
             Soteado:false,
-            idUser:IdUser,
+            IdUser:IdUser,
             NomeConv:NomeCli,
         })
         .then(async (docRef) => {
@@ -2319,7 +2626,7 @@ await firestore.collection("users")
                 
            
         },
-        PegarDadosIndiq:async (QCash , setListOc, setQCash, setCarre,  Dat, Dat2)=>{
+        PegarDadosIndiq:async (QCash , setId, setListOc, setQCash, setCarre,  Dat, Dat2)=>{
           var temp = new Date().getTime();
           var IdUser = ""
           var Nome = ""
@@ -2335,7 +2642,7 @@ await firestore.collection("users")
             var QC = 0;
             if(querySnapshot.size !== 0){
               querySnapshot.forEach( async (doc) => {
-                
+                setId(doc.id)
               
                 res = doc.data().Indicados
            

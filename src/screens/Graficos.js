@@ -1,6 +1,6 @@
 
 import React, { Component, useState,  useContext, useEffect, useRef } from 'react'
-import {Modal, Text, Linking, FlatList, View, StyleSheet, ImageBackground, Image, Button, TouchableHighlight, KeyboardAvoidingView, ScrollView } from 'react-native'
+import {Modal, Text, FlatList, View, StyleSheet, ImageBackground, Image, Button, TouchableHighlight, KeyboardAvoidingView, ScrollView } from 'react-native'
 import {FontAwesome} from "@expo/vector-icons";
 import { ModalDatePicker } from "react-native-material-date-picker";
 import Hora from '../components/Hora';
@@ -16,7 +16,14 @@ import { useNavigation } from '@react-navigation/native';
 import ReCAPTCHA from "react-google-recaptcha";
 import { UserContext } from '../contexts/UserContext';
 import moment from 'moment';
-import * as Clipboard from 'expo-clipboard';
+import {
+  LineChart,
+  BarChart,
+  PieChart,
+  ProgressChart,
+  ContributionGraph,
+  StackedBarChart
+} from "react-native-chart-kit";
 //import Datand from '../components/datando';
 
 export default () => {
@@ -98,25 +105,17 @@ export default () => {
   const [MsgErro1, setMsgErro1] = useState(false);
   const [MsgErro2, setMsgErro2] = useState(false);
   const [Btn, setBtn] = useState(false);
-  const [IdTrans, setIdTrans] = useState("")
-  const [Nive3, setNive3] = useState(false);
-  const [Nive4, setNive4] = useState(false);
-  const [List3, setList3] = useState([]);
-  const [Nome2, setNome2] = useState("");
-  const [Nome3, setNome3] = useState("")
-  const [Qcash3, setQcash3] = useState(0)
-  const [List4, setList4] = useState([]);
-  const [Qcash4, setQcash4] = useState(0)
-  const [Id, setId] = useState("")
-  const [CopiedText, setCopiedText] = useState("");
-  
+  const [IdTrans, setIdTrans] = useState("");
+  const [Ganhos, setGanhos] = useState([]);
+  const [Niveis, setNiveis] = useState([]);
+  const [Jogos, setJogos] = useState([]);
 
  
 
  
   useEffect(() => {
     if(dataNasc !== null){
-      Pegandodados();
+      ListandoOc();
     }
     
   }, [dataNasc, hr]);
@@ -137,12 +136,7 @@ export default () => {
   useEffect(() => {
     tempo();
   }, [])
-  useEffect(() => {
-    if(ListOc.length >= 1){
-      ListandoOc()
-    }
 
-   }, [ListOc])
 
   //  useEffect(() => {
   //   if(IdApos !== ""){
@@ -172,8 +166,8 @@ export default () => {
   //  }, [ValApos, VaToCo])
 
    useEffect(() => {
-   setNomeCli(`http://pixbetcash.com.br/indicacao/${Id}`)
-   }, [Id])
+    Pegandodados();
+   }, [])
 
    useEffect(() => {
     if(LinkEnv !== "nulo"){
@@ -181,7 +175,6 @@ export default () => {
     }
 
    }, [LinkEnv])
-
 
   // useEffect( ()=>{ 
   //   if(Page !== 1){
@@ -195,44 +188,6 @@ export default () => {
   
 }
 
-const EnviarLink = ()=>{
-  if(TelCli.length === 14){
-    var ver = TelCli.replace("(", "55");
-    var par1 = ver.replace(")", "");
-    var par3 = par1.replace("-", "");
-    Linking.canOpenURL(`https://wa.me/${par3}?text=${NomeCli}`).then(supported => {
-      if (supported) {
-        return Linking.openURL(
-          `https://wa.me/${par3}?text=${NomeCli}`
-        );
-      } else {
-        return Linking.openURL(
-          `https://wa.me/${par3}?text=${NomeCli}`
-        );
-      }
-    })
-   
-  } else{
-    setAlert("Coloque o telefone!")
-  }
- 
-}
-
-const copyToClipboard = async () => {
-  await Clipboard.setStringAsync(Id);
- 
-};
-
-const fetchCopiedText = async () => {
-  const text = await Clipboard.getStringAsync();
-  setCopiedText(text);
-};
-
-// const copyToClipboard = async () => {
-//   await Clipboard.setStringAsync(`http://pixbetcash.com.br/indicacao/${Id}`);
- 
-// }
-
 
   const ConcluidoAposta = ()=>{
     Api.TiraConcluidoApos(IdApos, Concluir)
@@ -244,24 +199,8 @@ const fetchCopiedText = async () => {
   }
 
   const Pegandodados = ()=>{
-    let currentDate1 = '';
-    let meg = dataNasc.split("/");
-    console.log(meg);
-    let Dia1 = meg[0];
-    let Mes1 =  meg[1];
-    let Ano1 = meg[2];
-    Dia1 = Dia1 < 10 ? '0'+Dia1 : Dia1;
-    Mes1 = Mes1 < 10 ? '0'+Mes1 : Mes1;
-    currentDate1 = Ano1+'-'+Mes1+'-'+Dia1;
- 
-    let CompDat = moment(currentDate1+" "+hr+":00").unix();
-
-    let Dat = CompDat * 1000;
-    let Dat2 =moment().unix()*1000;
-  
-    setCarre(true)
-    Api.PegarDadosIndiq( QCash , setId, setListOc, setQCash, setCarre, Dat, Dat2)
-   }
+    
+  }
 
   const onChangeRecp = ()=> {
     if(captcha.current.getValue()){
@@ -269,60 +208,6 @@ const fetchCopiedText = async () => {
     } else {
       setRobo(true)
     }
-  }
-
-  const IndoNive3 = (item, Nome)=>{
-    let currentDate1 = '';
-    let meg = dataNasc.split("/");
-    console.log(meg);
-    let Dia1 = meg[0];
-    let Mes1 =  meg[1];
-    let Ano1 = meg[2];
-    Dia1 = Dia1 < 10 ? '0'+Dia1 : Dia1;
-    Mes1 = Mes1 < 10 ? '0'+Mes1 : Mes1;
-    currentDate1 = Ano1+'-'+Mes1+'-'+Dia1;
- 
-    let CompDat = moment(currentDate1+" "+hr+":00").unix();
-
-    let Dat = CompDat * 1000;
-    let Dat2 =moment().unix()*1000;
-    setNome2(Nome)
-    setCarre(true)
-    Api.PegarDadosIndiq3(item , setList3, setQcash3, setCarre, setNive3, Dat, Dat2)
-    
-  }
-
-  const IndoNive4 = (item, Nome)=>{
-    let currentDate1 = '';
-    let meg = dataNasc.split("/");
-    console.log(meg);
-    let Dia1 = meg[0];
-    let Mes1 =  meg[1];
-    let Ano1 = meg[2];
-    Dia1 = Dia1 < 10 ? '0'+Dia1 : Dia1;
-    Mes1 = Mes1 < 10 ? '0'+Mes1 : Mes1;
-    currentDate1 = Ano1+'-'+Mes1+'-'+Dia1;
- 
-    let CompDat = moment(currentDate1+" "+hr+":00").unix();
-
-    let Dat = CompDat * 1000;
-    let Dat2 =moment().unix()*1000;
-   setNome3(Nome)
-    setCarre(true)
-    Api.PegarDadosIndiq4(item , setList4, setQcash4, setCarre, setNive4, Dat, Dat2)
-    
-  }
-
-  const IndoNive2 = ()=>{
-    setNive3(false);
-    setList3([]);
-    setQcash3(0);
-  }
-
-  const VoltNive3 = ()=>{
-    setNive4(false);
-    setList4([]);
-    setQcash4(0);
   }
 
   const PegandoLig = ()=>{
@@ -357,15 +242,45 @@ const fetchCopiedText = async () => {
   }
 
    const ListandoOc = ()=>{
- 
+    var resLis = [];
+    setLista([])
+    setVerLigPais("");
+    setVerLiga("");
+    let currentDate1 = '';
+    let meg = dataNasc.split("/");
+    console.log(meg);
+    let Dia1 = meg[0];
+    let Mes1 =  meg[1];
+    let Ano1 = meg[2];
+    Dia1 = Dia1 < 10 ? '0'+Dia1 : Dia1;
+    Mes1 = Mes1 < 10 ? '0'+Mes1 : Mes1;
+    currentDate1 = Ano1+'-'+Mes1+'-'+Dia1;
+   
+    let CompDat = moment(currentDate1+" "+hr+":00").unix();
+   
+    let Dat = CompDat * 1000;
+    let Dat2 = moment().unix()*1000;
+    console.log("Dat "+ Dat)
+    console.log("Dat2 "+ Dat2)
+  
+    if(Dat < Dat2){
+      setCarreg(true)
+      Api.DadosGraficos( Page, setNiveis, setJogos, setGanhos,  setCarreg,  Dat, Dat2, );
+    } 
 
-    }
+
+
+  
+ 
     
-    
+  }
 
   const TirarEsse = (position) =>{
     setSimAp([...SimAp.filter((item, index) => index !== position)]);
    
+  }
+  const Voltar = ()=>{
+    navigation.goBack();
   }
 
   const refreshList = async ()=>{
@@ -375,23 +290,10 @@ const fetchCopiedText = async () => {
   }
   const tempo = ()=>{
     setdataNasc(moment().format("DD/MM/YYYY"))
+    // setDtEsc(new Date().getTime())
+    // setDataMin(new Date().getTime())
+    // setDataMax(new Date().getTime())
    
-    setDtEsc(moment().unix()*1000)
-    setDataMin(moment().unix()*1000)
-    setDataMax(moment().unix()*1000)
-    //let currentDate1 = Ano+'-'+Mes+'-'+Dia;
-    // let CompDat1 = new Date(currentDate1+"T23:59:59.000").getTime();
-    // CompDat1 = CompDat1+10800000;
-    // let CompDat3 = CompDat1+10800000;
-    // let dif = CompDat3-TimeIni;
-    // let div = dif/86400000;
-    // console.log(parseInt(div));
-    // setQuantD(parseInt(div))
-    // setTimeFin(CompDat1);
-    // setTimeEve(CompDat1);
-    // setDataEve(currentDate);
-    // setDataFin(currentDate);
-    // setDaExFin(currentDate)
   }
 
   const Mudedate = (date)=>{
@@ -523,14 +425,6 @@ const fetchCopiedText = async () => {
        
         }
 
-        const IrIndicar = ()=>{
-           navigation.navigate("Indicarcao")
-        }
-
-        const IrGraf = ()=>{
-          navigation.navigate("Graficos")
-       }
-
         const IrNoti = ()=>{
            navigation.navigate("Notific") 
         }
@@ -549,6 +443,7 @@ const fetchCopiedText = async () => {
           setNomeCam("");
           setTelCam("");
            setTelCli("");
+           setNomeCli("")
            setPago("");
            setConcluir("");
            setValPreDemos("");
@@ -567,13 +462,14 @@ const fetchCopiedText = async () => {
            setAnliAp(false);
            setStatusAp([]);
            setAproPag(false);
-          setAlert("");
+         
           setModalCalend(false);
           setVerNotajogo(false);
           setCriarCli(false)
           setMsgErro1(false);
           setMsgErro2(false);
-  
+          setNome("");
+          setNomeCli("");
           setTelCli("");
           setBtn(false);
           setIdTrans("");
@@ -923,21 +819,25 @@ const fetchCopiedText = async () => {
                  
                    <View  style={styles.CaixadeapostaTitulo}  >
                     
-                    <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Link de Indicação</Text> <View  style={styles.fechaModal} ><TouchableHighlight onPress={() =>Siarnota()}><Text>X</Text></TouchableHighlight></View>
-                      
-                      <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Regras Para Link:</Text>
-                      <Text  style={{ marginLeft:10, fontSize:15  }}>1° Copie o Link segurando o Click no Link por 4 segundos, aparecerá uma barra com o Botão de Copiar. clique no Botão!</Text>
-                      <Text  style={{ marginLeft:10, fontSize:15  }}>2° Cole Em suas Redes Sociais ou envie por Whatsapp </Text>
-                      <Text  style={{ marginLeft:10, fontSize:15  }}>3° Quem Clicar nesse Link e se cadastrar na PIXBETCASH, entrará como sua indicação</Text> 
-                      <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Seu Link:</Text>
-                      
-                     
-                      <View  style = {styles.InputAra}>
-                   <FontAwesome name="link" size={24} color="black" />
+                    <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Saque de Cash</Text> <View  style={styles.fechaModal} ><TouchableHighlight onPress={() =>Siarnota()}><Text>X</Text></TouchableHighlight></View>
+                      </View>
+                      <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Regras Para Saque:</Text>
+                      <Text  style={{ marginLeft:10, fontSize:15  }}>1° Valor minimo para saque é de R$ 10,00  </Text>
+                      <Text  style={{ marginLeft:10, fontSize:15  }}>2° Em 72 horas seu Dinheiro estará em sua Conta </Text>
+                      <Text  style={{ marginLeft:10, fontSize:15  }}>3° Seu Dinheiro Entrará na Lista de transferência da PixBetCash </Text> 
+                      <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Banco de Cash:</Text>
+                      <Text  style={{ marginLeft:10, fontSize:15  }}>{QCash} </Text>
+                      <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>R$ 1,00 vale 100 Cash:</Text>
+                      <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Valor do Saque Em Reis:</Text>
+                      <Text  style={{ marginLeft:10, fontSize:15  }}>R${(NomeCli/100).toFixed(2)}</Text>
+                    {CodG === false?
+                        <>
+                          <View  style = {styles.InputAra}>
+                   <FontAwesome name="ticket" size={24} color="black" />
                    
                    
                     <SignInput
-                       placeholder="Link Recortado" 
+                       placeholder="Quantidade Cash" 
                        value={NomeCli}
                        onChangeText={t=>setNomeCli(t)}
                        autoCapitalize="none"
@@ -946,29 +846,73 @@ const fetchCopiedText = async () => {
                    />
                   
                    </View>
-                   <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Envie Link para Um Whatsapp:</Text>
-                   <View  style = {styles.InputAra}>
-                  <FontAwesome name="phone-square" size={24} color="black" />
-                  
-                   <Telefone                      
-                       placeholder="Whatsapp da Pessoa" 
-                       value={TelCli}
-                       onChangeText={t=>setTelCli(t)}
-                       autoCapitalize="none"
-                       keyboardType={"phone-pad"}
-                   
-                   /> 
-                   </View>
-                   {Alert !== "" &&
-                    <Text  style={{ marginLeft:10, fontSize:15, color:"red"  }}>{Alert}</Text>
+                   {QCash < NomeCli  &&
+                  <Text  style={{ marginLeft:10, fontSize:15, color:"red"  }}>Seu Saldo de Cash Não é suficiente, para essa Transferência!</Text> 
+                   }
+
+                  <ReCAPTCHA
+                  ref={captcha}
+                  sitekey="6LdDVDIiAAAAAM8Z3lsWD6qE2o2w94YfwDM7mRf7"
+                  size="normal"
+                  hl="pt"
+                  theme="dark"
+                  onChange={onChangeRec}
+                    />
+                    {Alert !== "" &&
+                      <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"red"  }}>{Alert}</Text> 
                     }
-                   <TouchableHighlight style={{width:150, height:50, backgroundColor:"#1ED31A", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>EnviarLink()}>
-                      <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Enviar Para Whatsapp</Text>
+
+                        
+                    {QCash >= NomeCli  &&
+                    <>
+                    {NomeCli >= 1000  &&
+                    <TouchableHighlight style={{width:150, height:50, backgroundColor:"#1ED31A", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>GerarCod()}>
+                      <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Gerar Código de Saque</Text>
                     </TouchableHighlight>
-                    </View>
-                   
+                    }
+                    </>
+                      }
+                       
+                       </>
+                         :
+                        
+
+                        <>
+                        {Tentativa >= 3 &&
+                        <>
+                         <Text  style={{ marginLeft:10, fontSize:15  }}>Você atingiu a quantidade máxima de erros</Text> 
+                         <TouchableHighlight style={{width:150, height:50, backgroundColor:"#1ED31A", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>RenviarCod()}>
+                        <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Reenviar Codigo</Text>
+                      </TouchableHighlight>
+                        </>
+                        }
+                       
+                      {Tentativa < 3 &&
+                                  <>
+                                   <Text  style={{ marginLeft:10, fontSize:15  }}>Seu Código foi enviado para o Whatsapp</Text> 
+                                   <View  style = {styles.InputAra}>
+                   <FontAwesome name="expeditedssl" size={40} color="black" />           
+                          <SignInputCod
+                              placeholder="Digite o Código" 
+                              value={Senha}
+                              onChangeText={t=>setSenha(t)}
+                              autoCapitalize="none"
+                              keyboardType={"numeric"}
+                          />
+                   </View>
+                    <TouchableHighlight style={{width:150, height:50, backgroundColor:"#1ED31A", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>SacarCash()}>
+                        <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Sacar </Text>
+                      </TouchableHighlight>
+                      
+                      
+                        </>
+                        }
+                        </>
+                        }
+                      
+                         
                            
-                      </ScrollView>
+                          </ScrollView>
               </View>
               </>
                 }
@@ -1118,14 +1062,11 @@ const fetchCopiedText = async () => {
                         {PgCash ?
                         <>
                         <View  style={styles.CaixadeapostaTitulo}  >
-                    <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Indicando Uma Pessoa</Text> <View  style={styles.fechaModal} ><TouchableHighlight onPress={() =>Siarnota()}><Text>X</Text></TouchableHighlight></View>
+                    <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Banco de Cash</Text> <View  style={styles.fechaModal} ><TouchableHighlight onPress={() =>Siarnota()}><Text>X</Text></TouchableHighlight></View>
                       </View> 
-                      <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Regras de Indicação:</Text>
-                      <Text  style={{ marginLeft:10, fontSize:15  }}>1° Coloque o Whatsapp e o Nome da Pessoa </Text>
-                      <Text  style={{ marginLeft:10, fontSize:15  }}>2° Ao clicar em Indicar, ele receberá um Link em seu Whatsapp para ela ser direcionado para o Cadastro. </Text>
-                      <Text  style={{ marginLeft:10, fontSize:15  }}>3° Essa Indicação terá o prazo de 24 horas, a parti do momento em que você clicar em Indicar. Se a Pessoa não se cadastrar entre essas 24 horas, essa indicação  perde a validade, podendo outro Usuário indicar essa pessoa.  </Text>
-                      <Text  style={{ marginLeft:10, fontSize:15  }}>4° Se a pessoa Indicada já estiver cadastrada no sistema, você não poderá mais indicar ela  </Text>
-                      <Text  style={{ marginLeft:10, fontSize:15  }}>5° Se a pessoa Indicada já foi Indicada por outro usuário, espere passar o tempo de validade da sua indicação para poder indica-la novamente. </Text>
+                      <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Banco de Cash:</Text>
+                      <Text  style={{ marginLeft:10, fontSize:15  }}>{QCash} </Text>
+                   
                       <View  style = {styles.InputAra}>
                    <FontAwesome name="ticket" size={24} color="black" />
                    
@@ -1415,133 +1356,49 @@ const fetchCopiedText = async () => {
           <ImageBackground source={require("../assets/estadio3.jpg")} 
           resizeMode='cover' 
           style={styles.imageBack} >
-            <View style={styles.CaixaTitulo} >
-              <TouchableHighlight  style={styles.CaixaDados}>
-              <Image source={require('../assets/logomarca.svg')}  style={styles.ImageVer2 } />
+              
+              <View style={styles.CaixaTitulo} >
+              <TouchableHighlight  onPress={()=>Voltar()} style={styles.CaixaDados}>
+                <>
+              <FontAwesome name="arrow-circle-left" size={30} color="#fff" />
+            
+              </>
               </TouchableHighlight>
             
-             
+              <Image source={require('../assets/logomarca.svg')}  style={styles.ImageVer2 } />
 
               <TouchableHighlight  style={styles.CaixaDados}>
              <Text style={styles.TextInfo} >
-              Rede
+              Graficos
              </Text>
               </TouchableHighlight>
-              <View  style={styles.AreaBtnTopConf}>
-
-              <TouchableHighlight onPress={()=>AbrinoMoney() } style={styles.CaixaDados}>
-              <>
-              {userState.nome >0 &&
-                <View style={{marginBottom:-15, marginRight:-20, width:20, height:20, backgroundColor:"green", borderRadius:10, flex:1, display:"flex", justifyContent:"center", alignItems:"center"}} ><Text style={{color:"#fff"}}>R</Text></View> 
-              }
-              
-              <FontAwesome name="money" size={24} color="#fff" />
-              </>
-              </TouchableHighlight>
-
-
-              <TouchableHighlight onPress={()=>AbrindoVenc() }  style={styles.CaixaDados}>
-                {userState.DatAti < new Date().getTime() ?
-                <>
-                 <View style={{marginBottom:-15, marginRight:-20, width:20, height:20, backgroundColor:"red", borderRadius:10, flex:1, display:"flex", justifyContent:"center", alignItems:"center"}} ><Text style={{color:"#fff"}}>V</Text></View> 
-                 <FontAwesome name="calendar-times-o" size={24} color="#fff" />
-                </>
-               
-                :
-                <FontAwesome name="calendar-check-o" size={24} color="#fff" />
-                }
-              
-              </TouchableHighlight>
-
-              
-
-              <TouchableHighlight onPress={()=>IrNoti()}  style={styles.CaixaDados}>
-              <FontAwesome name="bell"  size={24} color="#fff" />
-              </TouchableHighlight>
-
-              <TouchableHighlight  onPress={()=>IrConfig()}  style={styles.CaixaDados}>
-              <FontAwesome name="gear" size={24} color="#fff" />
-              </TouchableHighlight>
-
-              <TouchableHighlight  onPress={()=>Atualizar()}  style={styles.CaixaDados}>
-              <FontAwesome name="refresh" size={24} color="#fff" />
-              </TouchableHighlight>
-
-           </View>
+             
             </View >
-            {AbMoney === true &&
-             <View style={styles.TextInforma}>
-             <Text style={{margin:10, fontSize:17, color:"green", fontWeight:"bold"}} >RECEBER: R${userState.nome.toFixed(2)}</Text>
-             </View>
-
-
-            }
-
-            {AbVenc === true &&
-            <View style={styles.TextInforma}>
-
-          <Text style={{margin:10, fontSize:17, color:"#000", fontWeight:"bold"}} >VENCIMENTO: {userState.data_nasc}</Text>
-            </View>
-
-            }
+          
+         
             
-              <View  style={styles.AreaBtnCima}>
-              
-                    <TouchableHighlight style={{width:70, height:100, backgroundColor:"#DDBE0D", borderRadius:10, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>IrIndicar()}>
-                          <>
-                          <FontAwesome name="user"  size={40} color="#fff" />
-                            <Text  style={{ fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Indicar</Text>
-                            <Text  style={{ fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Pessoa</Text>
-                            </> 
-                       </TouchableHighlight>
-                       <TouchableHighlight style={{width:70, height:100, backgroundColor:"#009DFF", borderRadius:10, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>AbrirCriar()}>
-                           <>
-                           <FontAwesome name="link" size={40} color="#FFF" />
-                            <Text  style={{  fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Indicar</Text>
-                            <Text  style={{  fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Link</Text>
-                            </>
-                       </TouchableHighlight>
-                    </View>
-                    <View  style={styles.AreaBtnCima}>
-              
-                    <TouchableHighlight style={{width:70, height:100, backgroundColor:"#30B72D", borderRadius:10, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>IrGraf()}>
-                          <>
-                          <FontAwesome name="signal" size={40} color="#fff" />
-                            <Text  style={{ fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Gráficos</Text>
-                            
-                            </> 
-                       </TouchableHighlight>
-                       {/* <TouchableHighlight style={{width:70, height:100, backgroundColor:"#840D8D", borderRadius:10, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>AbrirCriar()}>
-                           <>
-                           <FontAwesome name="bar-chart-o" size={40} color="#FFF" />
-                            <Text  style={{  fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Gráficos</Text>
-                            <Text  style={{  fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Níveis</Text>
-                            </>
-                       </TouchableHighlight> */}
-                    </View>
-             {Nive3 === false &&
-              <View  style={styles.AreaBtn}>
+                    
+
+          <View  style={styles.AreaBtn}>
           
               
-              <TouchableHighlight onPress={()=>setRelogio(true)}  style={styles.InputHora}>
-                <>
-              <FontAwesome name="clock-o" size={20} color="black" />
-              <Text  style={styles.modalText6}> {hr} </Text>
-              </>     
-                    
-              </TouchableHighlight>
-                           <View  style={styles.AreaBtn4}>
-                           <FontAwesome name="calendar" size={20} color="black" />
-                </View>
-                <TouchableHighlight onPress={()=>setModalCalend(true)}  style={styles.AreaBtn3}>
-                <View style={styles.modalView3}><Text  style={styles.modalText6}> {dataNasc} </Text></View>
-           
-                      </TouchableHighlight>
-              
-              </View>
-
-             }     
+          <TouchableHighlight onPress={()=>setRelogio(true)}  style={styles.InputHora}>
+            <>
+          <FontAwesome name="clock-o" size={20} color="black" />
+          <Text  style={styles.modalText6}> {hr} </Text>
+          </>     
+                
+          </TouchableHighlight>
+                       <View  style={styles.AreaBtn4}>
+                       <FontAwesome name="calendar" size={20} color="black" />
+            </View>
+            <TouchableHighlight onPress={()=>setModalCalend(true)}  style={styles.AreaBtn3}>
+            <View style={styles.modalView3}><Text  style={styles.modalText6}> {dataNasc} </Text></View>
          
+                 
+                  </TouchableHighlight>
+          
+          </View>
 
 
           {/* <View  style={styles.AreaBtnLiga}>
@@ -1562,176 +1419,124 @@ const fetchCopiedText = async () => {
         <ScrollView>
           {Carre === false ?
           <>
-          {Nive3 === false ?
-          <>
-          <TouchableHighlight  style={styles.Post}>
-            <View style={{ padding:5, flexDirection:"row",  alignItems:"center", justifyContent:"space-around", height:40, width:400, borderBottomWidth:2, borderColor:"#ccc", backgroundColor: "#fff",}}>
-            <FontAwesome name="" size={30} color="black" />
-            <Text  style={{  fontWeight:"bold",  fontSize:17, color:"#000"  }}> N2 - {ListOc.length}Cli.</Text>
-            <Text  style={{  fontWeight:"bold",  fontSize:12, color:"#000"  }}>Total {QCash} Cash</Text>
-            </View>
-          </TouchableHighlight>
-          {ListOc.map((item, key)=>(
-           <>
-            <TouchableHighlight key={key} onPress={()=>IndoNive3(item.Indicados, item.Nome)}  style={styles.Post}>
-              <View style={{ padding:5, flexDirection:"row",  alignItems:"center", justifyContent:"space-around", height:40, width:400, borderBottomWidth:2, borderColor:"#ccc", backgroundColor: "#fff",}}>
-               <View  style={styles.CaixaNome}>
-              
-               
-                <Text style={styles.Time}>Cadastro:</Text>
-                <Text style={styles.Time}>{moment(item.dataCadas).format("DD/MM/YYYY")}</Text>
- 
-                </View> 
-                <View  style={styles.CaixaNome}>
-                  
-                  <>
-                  <Text style={styles.Time}>Nome: {item.Nome.substring(0, 10)}</Text>
-                  <Text style={styles.Time}>Tel: {item.Telefone}</Text>
-
-                  </>
-                
-                </View> 
+          <View style={{backgroundColor:"#fff", padding:10, }} >
+          <Text  style={{  fontWeight:"bold",  fontSize:20, color:"#000"  }}>Gráfico de Ganhos</Text>
+          </View>
+<LineChart
+    data={{
+      labels: ["Nivel 1", "Nivel 2", "Nivel 3", "Nivel 4"],
+      datasets: [
+        {
+          data: Ganhos
+        }
+      ]
+    }}
+    width={390} // from react-native
+    height={220}
+    yAxisInterval={1}
+    yLabelsOffset={10} 
+    fromZero={true}// optional, defaults to 1
+    chartConfig={{
+      backgroundColor: "#059D42",
+      backgroundGradientFrom: "#77D99E",
+      backgroundGradientTo: "#066F2F",
+      decimalPlaces: 2, // optional, defaults to 2dp
+      color:(opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+      labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+      style: {
+        borderRadius: 16
+      },
+      propsForDots: {
+        r: "6",
+        strokeWidth: "2",
+        stroke: "#066F2F"
+      }
+    }}
     
-                <View  style={styles.CaixaNome}>
-              
-               
-              <Text style={styles.Time}>Rendeu</Text>
-              <Text style={styles.Time}>{item.Rendeu} Cash</Text>
-
-              </View> 
-
-
-
-              </View >
-       
-             
-           
-
-
-            </TouchableHighlight>
-           
-              </>
-
-              ))}
-
-          </>
-          :
-          <>
-           {Nive4 === false ?
-          <>
-            <TouchableHighlight  onPress={()=>IndoNive2()} style={styles.Post}>
-            <View style={{ padding:5, flexDirection:"row",  alignItems:"center", justifyContent:"space-around", height:40, width:400, borderBottomWidth:2, borderColor:"#ccc", backgroundColor: "#fff",}}>
-            
-            <Text  style={{  fontWeight:"bold",  fontSize:12, color:"#000"  }}>N2 {Nome2.substring(0, 10)}</Text>
-            <FontAwesome name="arrow-circle-left" size={30} color="black" />
-           
-            <Text  style={{  fontWeight:"bold",  fontSize:17, color:"#000"  }}>N3 {List3.length}Cli.</Text>
-            <Text  style={{  fontWeight:"bold",  fontSize:12, color:"#000"  }}>Total {Qcash3} Cash</Text>
-            </View>
-          </TouchableHighlight>
-          {List3.map((item, key)=>(
-           <>
-            <TouchableHighlight key={key} onPress={()=>IndoNive4(item.Indicados, item.Nome)}  style={styles.Post}>
-              <View style={{ padding:5, flexDirection:"row",  alignItems:"center", justifyContent:"space-around", height:40, width:400, borderBottomWidth:2, borderColor:"#ccc", backgroundColor: "#fff",}}>
-               <View  style={styles.CaixaNome}>
-              
-               
-                <Text style={styles.Time}>Cadastro:</Text>
-                <Text style={styles.Time}>{moment(item.dataCadas).format("DD/MM/YYYY")}</Text>
- 
-                </View> 
-                <View  style={styles.CaixaNome}>
-                  
-                  <>
-                  <Text style={styles.Time}>Nome: {item.Nome.substring(0, 10)}</Text>
-                  <Text style={styles.Time}>Tel: {item.Telefone}</Text>
-
-                  </>
-                
-                </View> 
+    bezier
+    style={{
+      marginVertical: 8,
+      borderRadius: 10,
     
-                <View  style={styles.CaixaNome}>
-              
-               
-              <Text style={styles.Time}>Rendeu</Text>
-              <Text style={styles.Time}>{item.Rendeu} Cash</Text>
+    }}
+  />
 
-              </View> 
-
-
-
-              </View >
-       
-             
-           
-
-
-            </TouchableHighlight>
-           
-              </>
-
-              ))}
-
-          </>
-          :
-          <>
-           <TouchableHighlight  onPress={()=>VoltNive3()} style={styles.Post}>
-            <View style={{ padding:5, flexDirection:"row",  alignItems:"center", justifyContent:"space-around", height:40, width:400, borderBottomWidth:2, borderColor:"#ccc", backgroundColor: "#fff",}}>
-            <Text  style={{  fontWeight:"bold",  fontSize:12, color:"#000"  }}>N3 {Nome3.substring(0, 10)}</Text>
-            <FontAwesome name="arrow-circle-left" size={30} color="black" />
-          
-            <Text  style={{  fontWeight:"bold",  fontSize:17, color:"#000"  }}>N4  - {List4.length}Cli.</Text>
-            <Text  style={{  fontWeight:"bold",  fontSize:12, color:"#000"  }}>Total {Qcash4} Cash</Text>
-            </View>
-          </TouchableHighlight>
-          {List4.map((item, key)=>(
-           <>
-            <TouchableHighlight key={key}  style={styles.Post}>
-              <View style={{ padding:5, flexDirection:"row",  alignItems:"center", justifyContent:"space-around", height:40, width:400, borderBottomWidth:2, borderColor:"#ccc", backgroundColor: "#fff",}}>
-               <View  style={styles.CaixaNome}>
-              
-               
-                <Text style={styles.Time}>Cadastro:</Text>
-                <Text style={styles.Time}>{moment(item.dataCadas).format("DD/MM/YYYY")}</Text>
- 
-                </View> 
-                <View  style={styles.CaixaNome}>
-                  
-                  <>
-                  <Text style={styles.Time}>Nome: {item.Nome.substring(0, 10)}</Text>
-                  <Text style={styles.Time}>Tel: {item.Telefone}</Text>
-
-                  </>
-                
-                </View> 
-    
-                <View  style={styles.CaixaNome}>
-              
-               
-              <Text style={styles.Time}>Rendeu</Text>
-              <Text style={styles.Time}>{item.Rendeu} Cash</Text>
-
-              </View> 
-
-
-
-              </View >
-       
-             
-           
-
-
-            </TouchableHighlight>
-           
-              </>
-
-              ))}
-          
-          </>
-          }
-          </>
-          }
-         
+<View style={{backgroundColor:"#fff", padding:10, }} >
+          <Text  style={{  fontWeight:"bold",  fontSize:20, color:"#000"  }}>Gráfico de Jogos/Nivel</Text>
+          </View>
+  <ProgressChart
+  data={{
+    labels: ["Nivel 1", "Nivel 2", "Nivel 3", "Nivel 4"], // optional
+    data: Jogos
+  }}
+  width={390}
+  height={220}
+  strokeWidth={16}
+  radius={32}
+  chartConfig={{
+    backgroundColor: "#07597B",
+    backgroundGradientFrom: "#30A9DB",
+    backgroundGradientTo: "#15ABE9",
+    decimalPlaces: 2, // optional, defaults to 2dp
+    color:(opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+    labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+    style: {
+      borderRadius: 16
+    },
+    propsForDots: {
+      r: "6",
+      strokeWidth: "2",
+      stroke: "#15ABE9"
+    }
+  }}
+  hideLegend={false}
+  style={{
+    marginVertical: 8,
+    borderRadius: 10,
+  
+  }}
+/>
+          <View style={{backgroundColor:"#fff", padding:10, }} >
+          <Text  style={{  fontWeight:"bold",  fontSize:20, color:"#000"  }}>Gráfico de Niveis</Text>
+          </View>
+        
+       <BarChart
+    data={{
+      labels: [ "Nivel 2", "Nivel 3", "Nivel 4"],
+      datasets: [
+        {
+          data: Niveis
+        }
+      ]
+    }}
+    fromZero={true}
+    width={390} // from react-native
+    height={220}
+    yAxisInterval={1} // optional, defaults to 1
+    chartConfig={{
+      backgroundColor: "#059D42",
+      backgroundGradientFrom: "#77D99E",
+      backgroundGradientTo: "#066F2F",
+      decimalPlaces: 2, // optional, defaults to 2dp
+      color:(opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+      labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+      style: {
+        borderRadius: 16
+      },
+      propsForDots: {
+        r: "6",
+        strokeWidth: "2",
+        stroke: "#066F2F"
+      }
+    }}
+    bezier
+    style={{
+      marginVertical: 8,
+      borderRadius: 10,
+    }}
+  />
+  
+   
            
                   </>
               :
@@ -1973,11 +1778,11 @@ const styles = StyleSheet.create({
    flexDirection:"column",
    textAlign: "center",
    width:300,
+   height:30,
    flex:1,
-
+   alignItems:"center",
    justifyContent:"center",
-   backgroundColor:"#fff",
-   padding:30
+   backgroundColor:"#fff"
     
   },
 
@@ -2154,7 +1959,8 @@ AreaBtnCima :{
   justifyContent:"center",
   alignItems:"center",
   flexDirection:"row",
- 
+  marginBottom:10,
+  padding:10,
  },
  
   AreaBtn :{
@@ -2348,7 +2154,6 @@ AreaBtnCima :{
 
 
   CaixaNome: {
-
      height:40,
      display:"flex",
      justifyContent:"center",
