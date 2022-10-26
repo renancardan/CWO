@@ -1,17 +1,197 @@
 
-import React, { Component } from 'react'
-import {Modal, Text, View, StyleSheet, ImageBackground, Image, Button, TouchableHighlight, KeyboardAvoidingView } from 'react-native'
+import React, { Component, useState,  useContext, useEffect, useRef } from 'react'
+import {Modal, Text,FlatList, View, StyleSheet, ImageBackground, Image, Button, TouchableHighlight, KeyboardAvoidingView, ScrollView } from 'react-native'
 import {FontAwesome} from "@expo/vector-icons";
 import { useNavigation } from '@react-navigation/native';
-
+import SignInput from '../components/SignInputIni';
+import MensagemItem from '../components/MensgItem/MensagemItem';
+import * as ImagePicker from 'expo-image-picker';
+import Api from '../Api';
 
 export default () => {
+  const body = useRef();
   const navigation = useNavigation();
+  const [Msg, setMsg] = useState("");
+  const [InfoAudi, setInfoAudi] = useState('');
+  const [ImgTmp, setImgTmp] = useState('');
+  const [AudTmp, setAudTmp] = useState('');
+  const [Ocorre, setOcorre] = useState("nada");
+  const [TmpMsg, setTmpMsg] = useState(null);
+  const [MstImage, setMstImage] = useState(false);
+  const [MsgVideo, setMsgVideo] = useState(false);
+  const [Quadro1, setQuadro1] = useState(false);
+  const [Quadro2, setQuadro2] = useState(false);
+  const [Quadro3, setQuadro3] = useState(false);
+  const [Quadro4, setQuadro4] = useState(false);
+  const [QuadroG, setQuadroG] = useState(false);
+  const [VideoTmp, setVideoTmp] = useState('');
+  const [Quadro5, setQuadro5] = useState(false);
+  const [Mudar, setMudar] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [ModalImg, setModalImg] = useState(false);
+  const [Bady, setBady] = useState('');
+  const [Carreg, setCarreg] = useState(false);
+  const [AparCamera, setAparCamera] = useState(false)
+  const [Ativo, setAtivo] = useState(false);
+  const [TemUlt, setTemUlt] = useState('');
+  const [Cont, setCont] = useState('');
+  const [Dig, setDig] = useState(false);
+  const [VizuS, setVizuS] = useState(0);
+  const [ModalLoc, setModalLoc] = useState(false);
+  const [TraLoc, setTraLoc] = useState(false)
+  const [ModalCalend, setModalCalend] = useState(false);
+  const [VerImg, setVerImg] = useState(false)
+  const [Carre, setCarre] = useState(false);
+  const [Img, setImg] = useState("");
+
   const Voltar = ()=>{
     navigation.goBack();
   }
+
+  useEffect( ()=>{ 
+    if(Ocorre !== 'nada'){
+    VizualT();  
+    }              
+    }, [TmpMsg, Cont, Ocorre]);
+
+   
+
+    useEffect( ()=>{ 
+     
+      pegarMsg();
+                         
+    }, []);
+
+    const pegarMsg = ()=>{
+      Api.PegarConversas(Ocorre, setTmpMsg, setOcorre, setTemUlt, setCont, setDig, setVizuS);
+  }
+
+  const VizualT = ()=>{
+    Api.VizualVit(Ocorre, Cont);
+  }
+
+  const renderItem = (item, index)=>{
+        
+        
+    return(
+        <MensagemItem
+        inicial={null}
+         data={item} 
+         user={Ocorre} 
+         InfoAudi={InfoAudi} 
+         setInfoAudi={setInfoAudi}
+         Mudar={Mudar}
+         setMudar={setMudar}
+         setModalVisible={setModalVisible}
+         modalVisible={modalVisible}
+         setBady={setBady}
+         Bady={Bady}
+         ModalImg={ModalImg}
+         setModalImg={setModalImg}
+           />
+    );
+}
+
+ 
+const Enviando = async ()=>{
+  if(Msg !== ''){
+    await setMsg('');
+    await  Api.enviandoMsg(Msg);
+    
+  }
+  
+   
+}
+
+const SairCriar = ()=>{
+ 
+  setModalCalend(false);
+  setVerImg(false);
+ 
+ }
+
+ const EnviarImg =()=>{
+  setModalCalend(true);
+  setVerImg(false);
+  setImg("");
+ }
+
+ const openImagePickerAsync = async () => {
+  let pickerResult = await ImagePicker.launchImageLibraryAsync();
+  setImg(pickerResult.uri);
+  console.log(pickerResult)
+}
+
+const ExcluirImg = ()=>{
+  setImg("")
+}
+
+const EnviarImagem = ()=>{
+ Api.enviandoImgMsg(Img, setImg, setModalCalend, setVerImg)
+}
+
     return (
       <View style={styles.Container}>
+         <Modal
+            transparent={true}
+            animationType="slide"
+            visible={ModalCalend}
+            >
+              <View style={styles.viewCalend}>
+              
+              {Carre === true ?
+                      <>
+                <Image source={require('../assets/carreg.gif')}  style={styles.ImageVer3 } />
+                <Image source={require('../assets/futebol.gif')}  style={styles.ImageVer5 } />     
+    
+                      </>
+
+                      :
+                      <>
+                    {VerImg ?
+                    <>
+                     <View  style={styles.CaixadeapostaTitulo}  >
+                   <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Enviar Link</Text> <View  style={styles.fechaModal} ><TouchableHighlight onPress={() =>SairCriar()}><Text>X</Text></TouchableHighlight></View>
+                     </View> 
+                    </>
+                    :
+                    <>
+                    <View style={styles.QuadNota} >
+                   
+                     <View  style={styles.CaixadeapostaTitulo}  >
+                      
+                   <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Enviar Imagem</Text> <View  style={styles.fechaModal} ><TouchableHighlight onPress={() =>SairCriar()}><Text>X</Text></TouchableHighlight></View>
+                     </View>
+                     {Img !== ""?
+                     <>
+                     
+                     <Image  source={{uri:Img }}  style={{ width:200, height:200 }} />
+                      <TouchableHighlight style={{width:250, height:50, backgroundColor:"red", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>ExcluirImg()}>
+                              <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Excluir</Text>
+                        </TouchableHighlight>
+                        <TouchableHighlight style={{width:250, height:50, backgroundColor:"#00A859", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>EnviarImagem()}>
+                              <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Enviar Imagem</Text>
+                        </TouchableHighlight>
+                     </>
+                     :
+                      <>
+                      <View style={{ width:200, height:200, flex:1, display:"flex", justifyContent:"center", alignItems:"center", backgroundColor:"#ccc", borderColor:"#000", borderWidth:1}}>
+                      <FontAwesome name="camera" size={100} color="black" />
+                      </View>
+                      <TouchableHighlight style={{width:250, height:50, backgroundColor:"#00A859", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>openImagePickerAsync()}>
+                              <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Procurar Imagem</Text>
+                        </TouchableHighlight>
+                     </>
+                     }
+                     
+                     </View> 
+                    </>
+                    }
+                  </>
+                  }
+            
+             </View>
+          </Modal>
           <ImageBackground source={require("../assets/estadio3.jpg")} 
           resizeMode='cover' 
           style={styles.imageBack} >
@@ -32,7 +212,37 @@ export default () => {
               </TouchableHighlight>
              
             </View >
-        <Text style={styles.BtnText} >Notificações</Text>
+            {TmpMsg &&
+                 <FlatList
+                 ref={ body }
+                 onContentSizeChange={()=>{body.current.scrollToEnd({animated:true}) }}
+                 onLayout={ ()=>{body.current.scrollToEnd({animated:true}) } }
+                 style={styles.chatArea }
+                 data={TmpMsg}
+                 renderItem={(item)=>renderItem(item)}
+                 keyExtractor={(item, index) => index.toString()}
+                 />
+            }
+        <View style={{height:50, width:"100%", backgroundColor:"#000", flexDirection:"row", position:"absolute", bottom:0}} >
+         <TouchableHighlight onPress={()=>EnviarImg()}  style={{marginLeft:10}}>
+         <FontAwesome name="paperclip" size={40} color="#fff" />
+         </TouchableHighlight>
+         <View  style = {styles.InputAra}>
+         <SignInput
+                       placeholder="Digite a Mensagem" 
+                       value={Msg}
+                       onChangeText={t=>setMsg(t)}
+                       autoCapitalize="none"
+                       keyboardType={"default"}
+                       posi={5000}
+                   />
+                   </View>
+        <TouchableHighlight onPress={()=>Enviando()} >
+        <FontAwesome name="send" size={40} color="#fff" />
+         
+         </TouchableHighlight>
+        </View>
+        
         </ImageBackground>
       </View>
     )
@@ -40,6 +250,11 @@ export default () => {
 }
 
 const styles = StyleSheet.create({
+  chatArea:{
+    flex:1,
+    width:"100%",
+    marginBottom:60,
+  },
   centeredView4: {
     backgroundColor:'rgba(0,0,0,0.7)',
     flex: 1,
@@ -102,15 +317,16 @@ const styles = StyleSheet.create({
   },
 
   InputAra :{
-    width:100,
+    width:270,
     height:40,
     backgroundColor: "#fff",
     flexDirection:"row",
-    borderRadius:20,
+    borderRadius:5,
     alignItems: "center",
-    marginBottom:15,
-    paddingLeft:5,
-    marginTop:15,
+    paddingLeft:10,
+    marginLeft:10,
+    marginTop:5,
+    marginRight:10,
  },
 
  AraCli:{
@@ -319,8 +535,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFF",
     width:300,
     height:600,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent:"center",
+    alignItems:"center",
     flexDirection:"column",
    
   },

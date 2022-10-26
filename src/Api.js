@@ -508,6 +508,27 @@ await firestore.collection("users")
         ADM:false,
         Nivel3:0,
         Nivel4:0,
+        mensagem:[
+          {
+            date:new Date().getTime(),
+            autor:"Sistema",
+            body:"Aqui você terá total atenção da empresa PixBetCash, Fique a vontade, e Bom uso do Sistema!",
+            nome:"PixBetCash",
+            type:"text"
+
+          }
+        ],
+        DigiS:false,
+        DigiV:false,
+        vizualS:0,
+        vizualV:0,
+        ultimaMsg:{
+          data:new Date().getTime(),
+          id:"Sistema",
+          msg:"Aqui você terá total atenção da empresa PixBetCash, Fique a vontade, e Bom uso do Sistema!",
+          nome:"PixBetCash"
+        },
+        userchat:[{}],
     })
     .then( async (docRef) => {
    
@@ -2340,7 +2361,7 @@ await firestore.collection("users")
            
            },
 
-         DadosCli:async (Venc, setVenc, setRec, setDatVenc)=>{
+         DadosCli:async (Venc, setVenc, setRec, setDatVenc, setNotif)=>{
           var tel = await AsyncStorage.getItem('Tel');
           var time = await AsyncStorage.getItem('@entrada');
           var temp = parseInt(time)
@@ -2369,6 +2390,7 @@ await firestore.collection("users")
                  setVenc(currentDate)
                  setRec(doc.data().Dinheiro)
                  setDatVenc(doc.data().DataVenc)
+                 setNotif(doc.data().mensagem.length - doc.data().vizualV)
 
                 });
              
@@ -2466,6 +2488,182 @@ await firestore.collection("users")
         
         
         },
+
+        PegarConversas: async (Ocorre, setTmpMsg, setOcorre, setTemUlt, setCont, setDig, setVizuS) => {
+          let tempVenc = new Date().getTime();
+          var IdUser = ""
+          var Nome = ""
+          var tel = await AsyncStorage.getItem('Tel');
+          var time = await AsyncStorage.getItem('@entrada');
+          var temp = parseInt(time)
+          await firestore.collection("users")
+          .where("Telefone", "==", tel)
+          .where("DataEntCel", "==", temp)
+          .onSnapshot((querySnapshot) => {
+         
+            if(querySnapshot.size !== 0){
+              querySnapshot.forEach( async (doc) => {
+              setOcorre(doc.id);
+              setTmpMsg(doc.data().mensagem);
+              setCont(doc.data().mensagem.length);
+              setTemUlt(doc.data().ultimaMsg.data);
+              setDig(doc.data().DigiS);
+              setVizuS(doc.data().vizualS);
+                });
+        
+         
+
+            
+          }
+        });      
+    
+           
+  },
+
+  enviandoMsg: async (Msg) => {
+    let tempVenc = new Date().getTime() + 86400000;
+    var IdUser = ""
+    var Nome = ""
+    var tel = await AsyncStorage.getItem('Tel');
+    var time = await AsyncStorage.getItem('@entrada');
+    var temp = parseInt(time)
+    await firestore.collection("users")
+    .where("Telefone", "==", tel)
+    .where("DataEntCel", "==", temp)
+    .get().then( async(querySnapshot) => {
+   
+      if(querySnapshot.size !== 0){
+        querySnapshot.forEach( async (doc) => {
+          IdUser = doc.id,
+          Nome = doc.data().Nome
+          });
+
+    let temp = new Date().getTime();
+    let now = temp 
+    firestore.collection("users")
+    .doc(IdUser).update({
+      mensagem: firebase.firestore.FieldValue.arrayUnion ({
+        autor:IdUser,
+        nome: Nome,
+        body: Msg,
+        date: now,
+        type:"text"
+      }),
+      'ultimaMsg':{id:IdUser, nome: Nome, data:now, msg:Msg} 
+  });
+
+    var Add = firestore.collection("users").doc(IdUser);
+    return firestore.runTransaction((transaction) => {
+      // This code may get re-run multiple times if there are conflicts.
+      return transaction.get(Add).then((sfDoc) => {
+          if (!sfDoc.exists) {
+              throw "Document does not exist!";
+          }
+  
+          // Add one person to the city population.
+          // Note: this could be done without a transaction
+          //       by updating the population using FieldValue.increment()
+          var Vizual = sfDoc.data().vizualV + 1;
+          transaction.update(Add, {vizualV : Vizual });
+      });
+  }).then(() => {
+   
+  }).catch((error) => {
+      console.log("Transaction failed: ", error);
+  });
+
+    }
+});      
+
+      
+        
+  },
+
+  enviandoImgMsg: async (Img, setImg, setModalCalend, setVerImg) => {
+    let tempVenc = new Date().getTime() + 86400000;
+    var IdUser = ""
+    var Nome = ""
+    var tel = await AsyncStorage.getItem('Tel');
+    var time = await AsyncStorage.getItem('@entrada');
+    var temp = parseInt(time)
+    await firestore.collection("users")
+    .where("Telefone", "==", tel)
+    .where("DataEntCel", "==", temp)
+    .get().then( async(querySnapshot) => {
+   
+      if(querySnapshot.size !== 0){
+        querySnapshot.forEach( async (doc) => {
+          IdUser = doc.id,
+          Nome = doc.data().Nome
+          });
+
+          let Url1 = "";
+        
+    
+          if(Img= ""){
+            const fileName = await Date.now() + Img;
+            const storageRef = await storage.ref();
+            const fileRef = await storageRef.child(`arquivo/${fileName}`);
+            await await fileRef.put(Img).then((doc)=> {
+              
+            });
+            Url1 =  await fileRef.getDownloadURL();
+          }
+
+    let temp = new Date().getTime();
+    let now = temp 
+    firestore.collection("users")
+    .doc(IdUser).update({
+      mensagem: firebase.firestore.FieldValue.arrayUnion ({
+        autor:IdUser,
+        nome: Nome,
+        body: Url1,
+        date: now,
+        type:"image"
+      }),
+      'ultimaMsg':{id:IdUser, nome: Nome, data:now, msg:"image"} 
+  });
+
+    var Add = firestore.collection("users").doc(IdUser);
+    return firestore.runTransaction((transaction) => {
+      // This code may get re-run multiple times if there are conflicts.
+      return transaction.get(Add).then((sfDoc) => {
+          if (!sfDoc.exists) {
+              throw "Document does not exist!";
+          }
+  
+          // Add one person to the city population.
+          // Note: this could be done without a transaction
+          //       by updating the population using FieldValue.increment()
+          var Vizual = sfDoc.data().vizualV + 1;
+          transaction.update(Add, {vizualV : Vizual });
+      });
+  }).then(() => {
+    setModalCalend(false);
+    setImg("");
+    setVerImg("");
+  }).catch((error) => {
+      console.log("Transaction failed: ", error);
+  });
+
+    }
+});      
+
+      
+        
+  },
+
+  VizualVit: async (Ocorre, Cont) => {
+   
+    await firestore.collection("users")
+    .doc(Ocorre)
+    .update({
+     vizualV: Cont,
+  });
+      
+
+     
+},
 
       CriandoCli:async (NomeCli,  TelCli, setRobo, setNomeCli, setTelCli, setCarre,  setAlert, setAlertTipo, setVerNotajogo, setModalCalend, setCriarCli)=>{
          

@@ -21,7 +21,8 @@ export default function Routes() {
  const { state: userState } = useContext(UserContext);
  const [Venc, setVenc] = useState(0);
  const [Rec, setRec] = useState(0);
- const [DatVenc, setDatVenc] = useState(0)
+ const [DatVenc, setDatVenc] = useState(0);
+ const [ Notif, setNotif] = useState(0)
 
  useEffect(() => {
   inicial();
@@ -32,6 +33,11 @@ export default function Routes() {
   Receber();
 
  }, [Rec])
+
+ useEffect(() => {
+ Noficicar();
+
+ }, [Notif])
 
  useEffect(() => {
   Vencimento();
@@ -45,7 +51,7 @@ export default function Routes() {
 
 
  const inicial = ()=>{
- Api.DadosCli(Venc, setVenc, setRec, setDatVenc)
+ Api.DadosCli(Venc, setVenc, setRec, setDatVenc, setNotif)
 
 
  }
@@ -55,6 +61,17 @@ export default function Routes() {
     type: 'setNome',
     payload:{
       nome: Rec
+    }
+  });
+
+
+
+ }
+ const Noficicar = ()=>{
+  userDispatch({
+    type: 'setNoti',
+    payload:{
+      Noti: Notif
     }
   });
 

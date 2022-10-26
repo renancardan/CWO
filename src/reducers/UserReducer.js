@@ -32,11 +32,15 @@ export const initialState = {
     IdCli:"",
     DatAti:0,
     IdReg:"",
-    versao:"1.5"
+    versao:"1.5",
+    Noti:0
 };
 
 export const UserReducer = (state, action) => {
     switch(action.type) {
+        case 'setNoti':
+            return { ...state, Noti: action.payload.Noti };
+        break;
         case 'setTicketUser':
             return { ...state, TicketUser: action.payload.TicketUser };
         break;

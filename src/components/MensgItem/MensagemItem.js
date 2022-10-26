@@ -1,51 +1,18 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Text, FlatList, StyleSheet, Image, Modal, ImageBackground,  View, } from 'react-native';
-import {
- Container,
- TextFrase,
- TextFrase2,
- TextDate,
- Titulo,
- AdioArea,
- Btnplay,
- LoadingIcon,
- BtnFechar,
- BtnX, 
- TextFechar,
- BtnVideo,
- BtnLoc,
- AreaInfComp,
- TextDate1,
- TextDate2,
- TextDate3,
- BtnCatalogo,
- BtnModal,
-InputArea,
-CustomButton2,
-CustomButtonText,
-CustomButtonText6,
-CustomButtonText1,
-CustomButton3,
-CustomButton4,
-Box,
-Box1,
-AreaBoty,
-Areatitulo,
-Texto1,
-Texto2,
-} from './styles';
+import {Modal, Text,FlatList, View, StyleSheet, ImageBackground, Image, Button, TouchableHighlight, KeyboardAvoidingView, ScrollView } from 'react-native'
+
 //import Video from 'react-native-video';
-import Slider from '@react-native-community/slider';
+//import Slider from '@react-native-community/slider';
 import Play from '../../assets/play.svg';
 import PararAudio from '../../assets/stop.svg';
 import AbrirVideo from '../../assets/video.svg';
 import FecharQ from '../../assets/fechar.svg';
-import { Player, Recorder, MediaStates } from '@react-native-community/audio-toolkit';
+//import { Player, Recorder, MediaStates } from '@react-native-community/audio-toolkit';
 import Api from '../../Api';
 import { useNavigation } from '@react-navigation/native';
 import { UserContext } from '../../contexts/UserContext';
 import Maps from '../../assets/google-maps.svg';
-import CampoText from '../../components/campTextPos';
+//import CampoText from '../../components/campTextPos';
 import Fechar from '../../assets/fechar.svg';
 
 let rever = '';
@@ -74,7 +41,7 @@ export default ({data, user,  setInfoAudi, InfoAudi, Mudar, setMudar, modalVisib
     const [Estado, setEstado] = useState("");
     const [Cidade, setCidade] = useState("");
     const [Carreg, setCarreg] = useState(true);
-    const [NomeUse, setNomeUse] = useState(userState.InforContaUser.nome);
+   
 
     const tempo = ()=>{
         let currentDate = '';
@@ -138,9 +105,7 @@ export default ({data, user,  setInfoAudi, InfoAudi, Mudar, setMudar, modalVisib
             FechaModalCri();
           Api.CriarPosicao(NomeEd, Lat, Log, Estado, Cidade, setNomeEd, setCarreg, setLat, setLog, setCidade, setEstado );
         } else{
-          alert(
-            "AVISO",
-            "Preencha o Nome Da Posição!")
+         
         }
        
       }
@@ -393,8 +358,8 @@ export default ({data, user,  setInfoAudi, InfoAudi, Mudar, setMudar, modalVisib
     
   
     return (
-        <Container style={{backgroundColor: data.item.autor === user ?"#98ABE1":"#A9CFE1", alignSelf: data.item.autor === user ?"flex-end":"flex-start", textAlign: data.item.autor === user ? "right":"left"}} >
-             <Modal
+        <View style={{marginTop:5, marginBottom:5, marginLeft:10,  marginRight:10, padding:10, alignSelf:"baseline", maxWidth:"80%", borderRadius:5, backgroundColor: data.item.autor === user ?"#98ABE1":"#A9CFE1", alignSelf: data.item.autor === user ?"flex-end":"flex-start", textAlign: data.item.autor === user ? "right":"left"}} >
+             {/* <Modal
            animationType="slide"
            visible={ModalCri}
           >
@@ -444,640 +409,25 @@ export default ({data, user,  setInfoAudi, InfoAudi, Mudar, setMudar, modalVisib
           </View>
 
 
-          </Modal>
+          </Modal> */}
             { data.item.autor !== user &&
-                <Titulo style={{color: data.item.autor === user ?"#FFF":"green"}}>{data.item.nome}</Titulo>
+                <Text style={{fontSize:10, fontWeight:"bold", color: data.item.autor === user ?"#FFF":"green"}}>{data.item.nome}</Text>
             }
              {data.item.type === "text" &&
-                <TextFrase  style={{textAlign: data.item.autor === user ?"right":"left"}}>{data.item.body}</TextFrase>
+                <Text  style={{   fontSize:16, textAlign: data.item.autor === user ?"right":"left"}}>{data.item.body}</Text>
             }
 
-        {data.item.type === "BtnEntrega" &&
-        <>
-         <TextFrase  style={{textAlign: data.item.autor === user ?"right":"left"}}>{data.item.body}</TextFrase>
-         { data.item.date <= temp2 ?
-                <TextDate  style={{ color:"red", textAlign:"left" }}>Essa Mensagem Já foi Enviada a mais de 1 hora, por isso não tem acesso a seus botões. Caso queira ter acesso Inicie o Pedido de entrega!</TextDate>
-              : 
-              <>
-              <BtnLoc onPress={()=>SimEntrega()}>
-                <TextFrase2 >Sim</TextFrase2> 
-                </BtnLoc> 
-                <BtnLoc style={{backgroundColor:"red"}} onPress={()=>NaoEntrega()}>
-                <TextFrase2 >Não</TextFrase2> 
-                </BtnLoc> 
-              
-              </>
-         }
-               
-                
-        
-        </>
-               
-            }
-
-      {data.item.type === "BtnAcomp" &&
-        <>
-         <TextFrase  style={{textAlign: data.item.autor === user ?"right":"left"}}>{data.item.body}</TextFrase>
-         { data.item.date <= temp ?
-                <TextDate  style={{ color:"red", textAlign:"left" }}>Essa Mensagem Já foi Enviada a mais de 1 hora, por isso não tem acesso a seus botões. Caso queira ter acesso Inicie o Pedido de entrega!</TextDate>
-              : 
-              <>
-              <BtnLoc onPress={()=>EntrarAtendimento()}>
-                <TextFrase2 >Acompanhar o Atendimento</TextFrase2> 
-                </BtnLoc> 
-              
-              </>
-         }
-               
-                
-        
-        </>
-               
-          }
-
-      {data.item.type === "TicketAvulso" &&
-        <>
-           <Box1 onPress={null}   style={{backgroundColor:"#B553BE" }}>
-                  <ImageBackground source={require("../../assets/ticket.png")} 
-                  resizeMode='cover' 
-                  style={styles.image2} >
-                    <AreaBoty>
-               
-    
-                     <Areatitulo>
-                     <Texto2>Ticket Entrega Avulsa</Texto2>
-                     <Texto1>Pagamento Para O Serviço do Dia:</Texto1> 
-                      <Texto1>{data.item.body.Data}</Texto1>
-                     <Texto1>Valor da Entrega: R$ {data.item.body.ValorCha.toFixed(2).toString().replace("." , ",")}</Texto1>
-                   
-                  
-                     
-                    
-                    
-                     </Areatitulo>
-                   
-                 </AreaBoty>
-                 </ImageBackground>
-                   </Box1>
-         { data.item.date <= temp ?
-                <TextDate  style={{ color:"red", textAlign:"left" }}>Essa Mensagem Já foi Enviada a mais de 1 hora, por isso não tem acesso a seus botões. Caso queira ter acesso Inicie o Pedido de entrega!</TextDate>
-              : 
-              <>
-              <BtnLoc onPress={()=>EntrarFinanceiro()}>
-                <TextFrase2 >Ir Para O Financeiro</TextFrase2> 
-                </BtnLoc> 
-              
-              </>
-         }
-               
-                
-        
-        </>
-               
-          }
-
-    {data.item.type === "BtnInicio" &&
-        <>
-         <TextFrase  style={{textAlign: data.item.autor === user ?"right":"left"}}>{data.item.body}</TextFrase>
-             { data.item.date <= temp2 ?
-                <TextDate  style={{ color:"red", textAlign:"left" }}>Essa Mensagem Já foi Enviada a mais de 1 hora, por isso não tem acesso a seus botões. Caso queira ter acesso Inicie o Pedido de entrega!</TextDate>
-              : 
-              <BtnLoc style={{backgroundColor:"#000"}} onPress={()=>PosiInicial()}>
-              <TextFrase2 style={{color:"#FFF"}} >Enviar Posição Inicial</TextFrase2> 
-              </BtnLoc> 
-              }
-               
-              
-                
-        
-        </>
-               
-            }
-              {data.item.type === "BtnFim" &&
-        <>
-         <TextFrase  style={{textAlign: data.item.autor === user ?"right":"left"}}>{data.item.body}</TextFrase>
-             { data.item.date <= temp2 ?
-                <TextDate  style={{ color:"red", textAlign:"left" }}>Essa Mensagem Já foi Enviada a mais de 1 hora, por isso não tem acesso a seus botões. Caso queira ter acesso Inicie o Pedido de entrega!</TextDate>
-              : 
-              <BtnLoc style={{backgroundColor:"#20AA55"}} onPress={()=>PosiFinal()}>
-              <TextFrase2 style={{color:"#FFF"}} >Enviar Posição Final</TextFrase2> 
-              </BtnLoc> 
-              }
-               
-              
-                
-        
-        </>
-               
-            }
-
-      {data.item.type === "BtnEntAvus" &&
-        <>
-         <TextFrase  style={{textAlign: data.item.autor === user ?"right":"left"}}>{data.item.body}</TextFrase>
-             { data.item.date <= temp2 ?
-                <TextDate  style={{ color:"red", textAlign:"left" }}>Essa Mensagem Já foi Enviada a mais de 1 hora, por isso não tem acesso a seus botões. Caso queira ter acesso Inicie o Pedido de entrega!</TextDate>
-              : 
-              <BtnLoc onPress={()=>EntrarFila(data.item.extra)}>
-             <TextFrase2  >Sim</TextFrase2>
-              </BtnLoc> 
-              }
-               
-              
-                
-        
-        </>
-               
-            }
-
-      {data.item.type === "BtnEmpr" &&
-        <>
-         <TextFrase  style={{textAlign: data.item.autor === user ?"right":"left"}}>{data.item.body}</TextFrase>
-             { data.item.date <= temp2 ?
-                <TextDate  style={{ color:"red", textAlign:"left" }}>Essa Mensagem Já foi Enviada a mais de 1 hora, por isso não tem acesso a seus botões. Caso queira ter acesso Inicie o Pedido de entrega!</TextDate>
-              : 
-              <BtnLoc style={{backgroundColor:"#2e64e5"}}  onPress={()=>PedidoDeEntrega()}>
-              <TextFrase2  >Iniciar</TextFrase2> 
-              </BtnLoc> 
-              }
-               
-              
-                
-        
-        </>
-               
-            }
-             {data.item.type === "botao" &&
-             <>
-             <BtnLoc onPress={()=>inicial()}>
-             <TextFrase2  style={{textAlign: data.item.autor === user ?"right":"left"}}>{data.item.body}</TextFrase2> 
-             </BtnLoc>
-            </>
-            }
+      
 
             {data.item.type === "image" &&
-             <BtnVideo onPress={()=>{AbrirModalImg(data.item.body)}}>
+             <TouchableHighlight style={{display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column"}} onPress={()=>{AbrirModalImg(data.item.body)}}>
                 <Image  source={{uri:`${data.item.body}`}} style={styles.ImageVer } />
-             </BtnVideo>
+             </TouchableHighlight>
             }
 
-            {data.item.type === "Foto" &&
-             <BtnVideo onPress={()=>{Entrar(data.item.body)}}>
-                  <TextDate>Foto da Conta</TextDate>
-                <Image  source={{uri:`${data.item.body.imageUrl}`}} style={styles.ImageVer2 } />
-                
-                {data.item.body.Evento &&
-                <>
-                <TextDate>Evento Participativo</TextDate>
-                <Image  source={{uri:`${data.item.body.Evento.imageUrl}`}} style={styles.ImageVer3 } />
-                </>
+          
 
-                }
-
-
-              
-             </BtnVideo>
-            }
-
-          {data.item.type === "Nota" &&
-       
-             <BtnCatalogo onPress={()=>{Entrar(data.item.body)}}>
-                  <TextDate>Nota Da Compra</TextDate>
-             
-                <AreaInfComp>
-                {data.item.body.map((item, index)=>(
-                     <CustomButton4  key={index}>
-                     <CustomButton3>
-                            <Box>
-                             <CustomButtonText1>Nome do Item ||</CustomButtonText1>
-                           
-                           
-                             <CustomButtonText6 >{item.Nome.substring(0,18)}</CustomButtonText6>
-        
-                             </Box>
-                             <Box>
-                             <CustomButtonText1>Q ||</CustomButtonText1>
-                           
-                           
-                             <CustomButtonText6 >1</CustomButtonText6>
-        
-                             </Box>
-                             <Box>
-                             <CustomButtonText1>Valor      ||</CustomButtonText1>
-                           
-                           
-                             <CustomButtonText6 >R$ {item.Valor}</CustomButtonText6>
-        
-                             </Box>
-                             <Box>
-                             <CustomButtonText1>Desc. ||</CustomButtonText1>
-                           
-                           
-                             <CustomButtonText6 >{item.Desconto}</CustomButtonText6>
-        
-                             </Box>
-                             <Box>
-                             <CustomButtonText1>Valor Real</CustomButtonText1>
-                             <CustomButtonText6 >R$ {item.ValDesc}</CustomButtonText6>
-        
-                             </Box >
-                             </CustomButton3>
-                             </CustomButton4>
-
-                ))
-
-                }
-             <CustomButton4>
-               
-             <CustomButtonText1>Valor Total: R$ {data.item.extra?data.item.extra.toFixed(2).toString().replace("." , ","):0}</CustomButtonText1>
-             </CustomButton4>
-             </AreaInfComp>
-             </BtnCatalogo>
-            
-            }
-
-            {data.item.type === 'Catalogo' &&
-             <BtnCatalogo onPress={()=>{Entrar(data.item.body)}}>
-                  <TextDate>Item do Catálago</TextDate>
-                <Image  source={{uri:`${data.item.body.imageUrl}`}} style={styles.ImageVer2 } />
-                <AreaInfComp>
-                { data.item.date <= temp &&
-                <TextDate  style={{ color:"red", textAlign:"left" }}>Essa Mensagem Já foi Enviada a mais de 12 horas, por isso não tem acesso aos seus botões. Caso queira ter acesso Envie a Mensagem Novamente!</TextDate>
-                }
-                <TextDate1>Nome: {data.item.body.NomePro} </TextDate1>
-                {data.item.body.Desconto === true ?
-                <>
-                 <TextDate1  style={{textDecorationLine: 'line-through', textDecorationStyle: 'solid', color:"#000", fontWeight:"bold"}}>Valor: R$ {data.item.body.Valor} </TextDate1>
-                 <TextDate1>Item Com Desconto</TextDate1>
-                <TextDate1 style={{fontWeight:"bold"}}>Valor: R$ {data.item.body.ValorDesc} </TextDate1>
-                </>
-
-                :
-                <>
-                 <TextDate1 style={{fontWeight:"bold"}}>Valor: R$ {data.item.body.Valor} </TextDate1>
-                </>
-
-                }
-                {/* Esse aqui é pra limitar o botão de compra até 12 horas antes, pois pode fica*/}
-            { data.item.date >= temp &&
-               <>
-                { idOuvi === data.item.body.IdUser ?
-               <>
-                <BtnLoc onPress={()=>ComprarProduto(data.item.body.DescPro, data.item.body.NomePro, data.item.body.Valor, data.item.body.ValorDesc, data.item.body.Desconto, data.item.body.imageUrl,  data.item.body.id)}>
-                <TextFrase2 >Comprar</TextFrase2> 
-                </BtnLoc> 
-                 <BtnLoc style={{backgroundColor:"#0AAC0B"}} onPress={()=>EntrarProduto(data.item.body)}>
-                 <TextFrase2 >Ir Ao Item</TextFrase2> 
-                 </BtnLoc> 
-                 </>
-                :
-                <BtnLoc style={{backgroundColor:"#0AAC0B"}} onPress={()=>EntrarProduto(data.item.body)}>
-                <TextFrase2 >Ir Ao Item</TextFrase2> 
-                </BtnLoc> 
-               }
-               
-               </>
-               }
-              
-               
-                <TextDate1>Descrição: {data.item.body.DescPro} </TextDate1>
-                
-           
-             </AreaInfComp>
-             </BtnCatalogo>
-            
-            }
-
-            {data.item.type === 'Posicao' &&
-             <BtnCatalogo onPress={()=>{Entrar(data.item.body)}}>
-                  <TextDate>Posição</TextDate>
-                  <Maps  width="100" height="100"/>
-                <AreaInfComp>
-              
-                <TextDate1>{data.item.body.Nome} </TextDate1>
-                <TextDate1>Cidade: {data.item.body.Cidade} </TextDate1>
-                <TextDate1>Estado: {data.item.body.Estado} </TextDate1>
-                {/* Esse aqui é pra limitar o botão de compra até 12 horas antes, pois pode fica*/}
-
-             
-                 <BtnLoc style={{backgroundColor:"#0AAC0B"}} onPress={()=>EntrarMap(data.item.body)}>
-                 <TextFrase2 >Ver Mapa</TextFrase2> 
-                 </BtnLoc> 
-               
-                <BtnLoc style={{backgroundColor:"#2e64e5"}} onPress={()=>AbrirModalCri(data.item.body)}>
-                 <TextFrase2 >Guarda Posição</TextFrase2> 
-                 </BtnLoc> 
-                 <BtnLoc onPress={()=>Compartilhando(data.item.body)}>
-                <TextFrase2 >Compatilhar Posição</TextFrase2> 
-                </BtnLoc> 
-                
-                
-              
-               
-              
-              
-               
-             
-                
-           
-             </AreaInfComp>
-             </BtnCatalogo>
-            
-            }
-
-
-
-
-
-
-        {data.item.type === 'Anuncio' &&
-             <BtnCatalogo onPress={()=>{Entrar(data.item.body)}}>
-                  {data.item.body.tipo === "EIEMtUHNoSTbZVRmgrEM" &&
-                    <TextDate>Anúncio Itens Usados</TextDate>
-                    }
-
-                {data.item.body.tipo === "hE9AsRvNKFwi4M2BgC9o" &&
-                    <TextDate>Anúncio Itens Novos</TextDate>
-                    }
-            {data.item.body.tipo === "nniZYaejVLgPjvnQVizz" &&
-                    <TextDate>Anúncio Promoções</TextDate>
-                    }
-            {data.item.body.tipo === "AiBlUlfbFp9ium9jbQ9C" &&
-                    <TextDate>Anúncio Eventos</TextDate>
-                    }
-                  
-                <Image  source={{uri:`${data.item.body.imageUrl}`}} style={styles.ImageVer2 } />
-                {data.item.body.DatFinTime < Time ?
-                <>
-                <TextDate  style={{ color:"red", textAlign:"left" }}>Esse Anúncio já venceu, não tem como ser utilizado!</TextDate>
-                </>
-                :
-                <>
-                {/*Itens Usados */}
-                 {data.item.body.tipo === "EIEMtUHNoSTbZVRmgrEM" &&
-                <>
-                  <AreaInfComp>
-                { data.item.date <= temp &&
-                <TextDate  style={{ color:"red", textAlign:"left" }}>Essa Mensagem Já foi Enviada a mais de 12 horas, por isso não tem acesso aos seus botões. Caso queira ter acesso Envie a Mensagem Novamente!</TextDate>
-                }
-                <TextDate1>Nome: {data.item.body.Nome} </TextDate1>
-              
-                <>
-                 <TextDate1 style={{fontWeight:"bold"}}>Valor: R$ {data.item.body.Valor} </TextDate1>
-                </>
-
-            
-                {/* Esse aqui é pra limitar o botão de compra até 12 horas antes, pois pode fica*/}
-            { data.item.date >= temp &&
-               <>
-                { idOuvi === data.item.body.IdUser ?
-               <>
-                <BtnLoc onPress={()=>ComprandoItens(data.item.body.id, data.item.body.Descricao, data.item.body.Nome, data.item.body.Valor, data.item.body.DatFinTime, data.item.body.imageUrl)}>
-                <TextFrase2 >Comprar</TextFrase2> 
-                </BtnLoc> 
-                 <BtnLoc style={{backgroundColor:"#0AAC0B"}} onPress={()=>EntrarAnuncio(data.item.body)}>
-                 <TextFrase2 >Ir Ao Item</TextFrase2> 
-                 </BtnLoc> 
-                 </>
-                :
-                <BtnLoc style={{backgroundColor:"#0AAC0B"}} onPress={()=>EntrarAnuncio(data.item.body)}>
-                <TextFrase2 >Ir Ao Item</TextFrase2> 
-                </BtnLoc> 
-               }
-               
-               </>
-               }
-              
-               
-                <TextDate1>Descrição: {data.item.body.Descricao} </TextDate1>
-                
-           
-             </AreaInfComp>
-                
-                
-                </>
-
-                }
-                {/* Itens Novos */}
-            {data.item.body.tipo === "hE9AsRvNKFwi4M2BgC9o" &&
-                <>
-                  <AreaInfComp>
-                { data.item.date <= temp &&
-                <TextDate  style={{ color:"red", textAlign:"left" }}>Essa Mensagem Já foi Enviada a mais de 12 horas, por isso não tem acesso aos seus botões. Caso queira ter acesso Envie a Mensagem Novamente!</TextDate>
-                }
-                <TextDate1>Nome: {data.item.body.Nome} </TextDate1>
-              
-                <>
-                 <TextDate1 style={{fontWeight:"bold"}}>Valor: R$ {data.item.body.Valor} </TextDate1>
-                </>
-
-                
-                {/* Esse aqui é pra limitar o botão de compra até 12 horas antes, pois pode fica*/}
-            { data.item.date >= temp &&
-               <>
-                { idOuvi === data.item.body.IdUser ?
-               <>
-                <BtnLoc onPress={()=>ComprandoItens(data.item.body.id, data.item.body.Descricao, data.item.body.Nome, data.item.body.Valor, data.item.body.DatFinTime, data.item.body.imageUrl)}>
-                <TextFrase2 >Comprar</TextFrase2> 
-                </BtnLoc> 
-                 <BtnLoc style={{backgroundColor:"#0AAC0B"}} onPress={()=>EntrarAnuncio(data.item.body)}>
-                 <TextFrase2 >Ir Ao Item</TextFrase2> 
-                 </BtnLoc> 
-                 </>
-                :
-                <BtnLoc style={{backgroundColor:"#0AAC0B"}} onPress={()=>EntrarAnuncio(data.item.body)}>
-                <TextFrase2 >Ir Ao Item</TextFrase2> 
-                </BtnLoc> 
-               }
-               
-               </>
-               }
-              
-               
-                <TextDate1>Descrição: {data.item.body.Descricao} </TextDate1>
-                
-           
-             </AreaInfComp>
-                
-                
-                </>
-
-                }
-            {/*  Promoções*/}
-            {data.item.body.tipo === "nniZYaejVLgPjvnQVizz" &&
-                <>
-                  <AreaInfComp>
-                { data.item.date <= temp &&
-                <TextDate  style={{ color:"red", textAlign:"left" }}>Essa Mensagem Já foi Enviada a mais de 12 horas, por isso não tem acesso aos seus botões. Caso queira ter acesso Envie a Mensagem Novamente!</TextDate>
-                }
-                <TextDate1>Nome: {data.item.body.Nome} </TextDate1>
-              {data.item.body.TipoDesc === "Um só item" ?
-            <>
-            <TextDate1 style={{textDecorationLine: 'line-through', textDecorationStyle: 'solid', color:"#000", fontWeight:"bold"}}>Valor do Item: R$ {data.item.body.Valor} </TextDate1>
-            <TextDate1 style={{fontWeight:"bold"}}>Desconto {data.item.body.Desconto} </TextDate1>
-            <TextDate1 style={{fontWeight:"bold"}}>Valor: R$ {(parseFloat(data.item.body.Valor)-(parseFloat(data.item.body.Valor)*(parseFloat(data.item.body.Desconto)/100))).toFixed(2).toString().replace("." , ",") }</TextDate1>
-            </>
-              :
-              <>
-              <TextDate1 style={{fontWeight:"bold"}}>Toda a Loja</TextDate1>
-              <TextDate1 style={{fontWeight:"bold"}}>Desconto: {data.item.body.Desconto} </TextDate1>
-             </>
-
-              }
-              
-
-                
-                {/* Esse aqui é pra limitar o botão de compra até 12 horas antes, pois pode fica*/}
-            { data.item.date >= temp &&
-               <>
-                { idOuvi === data.item.body.IdUser ?
-               <>
-               {data.item.body.TipoDesc === "Um só item" ?
-                <BtnLoc onPress={()=>ComprarPromcao(data.item.body.id, data.item.body.Nome, data.item.body.Descricao, data.item.body.imageUrl, data.item.body.Valor, data.item.body.Desconto, data.item.body.DatFinTime)}>
-                <TextFrase2 >Comprar</TextFrase2> 
-                </BtnLoc>
-                :
-                <BtnLoc onPress={()=>UtilDesconto(data.item.body.DatFinTime, data.item.body.Desconto, data.item.body.Nome, data.item.body.Descricao, data.item.body.imageUrl, data.item.body.id  )}>
-                <TextFrase2 >Usar Desconto</TextFrase2> 
-                </BtnLoc>
-                
-                }
-                 <BtnLoc style={{backgroundColor:"#0AAC0B"}} onPress={()=>EntrarAnuncio(data.item.body)}>
-                 <TextFrase2 >Ir Ao Anúncio</TextFrase2> 
-                 </BtnLoc> 
-                 </>
-                :
-                <BtnLoc style={{backgroundColor:"#0AAC0B"}} onPress={()=>EntrarAnuncio(data.item.body)}>
-                <TextFrase2 >Ir Ao Anúncio</TextFrase2> 
-                </BtnLoc> 
-               }
-               
-               </>
-               }
-              
-               
-                <TextDate1>Descrição: {data.item.body.Descricao} </TextDate1>
-                
-           
-             </AreaInfComp>
-                
-                
-                </>
-
-                }
-{/* Enventos */}
-        {data.item.body.tipo === "AiBlUlfbFp9ium9jbQ9C" &&
-                <>
-                  <AreaInfComp>
-                { data.item.date <= temp &&
-                <TextDate  style={{ color:"red", textAlign:"left" }}>Essa Mensagem Já foi Enviada a mais de 12 horas, por isso não tem acesso aos seus botões. Caso queira ter acesso Envie a Mensagem Novamente!</TextDate>
-                }
-                <TextDate1>Nome: {data.item.body.Nome} </TextDate1>
-                <TextDate1>Tipo: {data.item.body.TipoEve} </TextDate1>
-                <TextDate1>Data do Evento: {data.item.body.dataFin.replace("23:59:59", "")} </TextDate1>
-                <>
-                {data.item.body.ValorEv === true &&
-                 <TextDate1 style={{fontWeight:"bold"}}>Valor da Entrada: R$ {data.item.body.Valor} </TextDate1>
-                }
-               
-                </>
-
-                
-                {/* Esse aqui é pra limitar o botão de compra até 12 horas antes, pois pode fica*/}
-            { data.item.date >= temp &&
-               <>
-                { idOuvi === data.item.body.IdUser ?
-               <>
-                 {data.item.body.ValorEv === true &&
-                <BtnLoc onPress={()=>ComprandoItens(data.item.body.id, data.item.body.Descricao, data.item.body.Nome, data.item.body.Valor, data.item.body.DatFinTime, data.item.body.imageUrl)}>
-                <TextFrase2 >Comprar</TextFrase2> 
-                </BtnLoc> 
-                    }
-                 <BtnLoc style={{backgroundColor:"#0AAC0B"}} onPress={()=>EntrarEvento(data.item.body)}>
-                 <TextFrase2 >Ir Ao Evento</TextFrase2> 
-                 </BtnLoc> 
-                 </>
-                :
-                <BtnLoc style={{backgroundColor:"#0AAC0B"}} onPress={()=>EntrarEvento(data.item.body)}>
-                <TextFrase2 >Ir Ao Evento</TextFrase2> 
-                </BtnLoc> 
-               }
-               
-               </>
-               }
-              
-               
-                <TextDate1>Descrição: {data.item.body.Descricao} </TextDate1>
-                
-           
-             </AreaInfComp>
-                
-                
-                </>
-
-                }
-
-                
-                </>
-
-                }
-               
-                
-              
-             </BtnCatalogo>
-            
-            }
-
-            {data.item.type === 'Eventos' &&
-             <BtnCatalogo onPress={()=>{Entrar(data.item.body)}}>
-                  <TextDate>Evento</TextDate>
-                <Image  source={{uri:`${data.item.body.imageUrl}`}} style={styles.ImageVer2 } />
-                {data.item.body.DatFinTime < Time ?
-                <>
-                <BtnLoc style={{backgroundColor:"#0AAC0B"}} onPress={()=>EntrarEvento(data.item.body)}>
-                <TextFrase2 >Ir Ao Evento</TextFrase2> 
-                </BtnLoc> 
-                <TextDate  style={{ color:"red", textAlign:"left" }}>Esse Evento já passou, não tem como ser utilizado!</TextDate>
-                </>
-                :
-                <>
-               
-                 <AreaInfComp>
-                { data.item.date <= temp &&
-                <TextDate  style={{ color:"red", textAlign:"left" }}>Essa Mensagem Já foi Enviada a mais de 12 horas, por isso não tem acesso aos seus botões. Caso queira ter acesso Envie a Mensagem Novamente!</TextDate>
-                }
-                <TextDate1>Nome: {data.item.body.Nome} </TextDate1>
-                <TextDate1>Tipo: {data.item.body.TipoEve} </TextDate1>
-                <TextDate1>Data do Evento: {data.item.body.dataFin.replace("23:59:59", "")} </TextDate1>
-                <>
-                {data.item.body.ValorEv === true &&
-                 <TextDate1 style={{fontWeight:"bold"}}>Valor da Entrada: R$ {data.item.body.Valor} </TextDate1>
-                }
-               
-                </>
-         
-               <BtnLoc style={{backgroundColor:"#0AAC0B"}} onPress={()=>EntrarEvento(data.item.body)}>
-                <TextFrase2 >Ir Ao Evento</TextFrase2> 
-                </BtnLoc> 
-               
-                <TextDate1>Descrição: {data.item.body.Descricao} </TextDate1>
-                
-           
-             </AreaInfComp>
-                
-                
-              
-                
-                </>
-
-                }
-               
-                
-              
-             </BtnCatalogo>
-            
-            }
-
-            {data.item.type === "video" &&
+            {/* {data.item.type === "video" &&
                 <>
                 <BtnVideo onPress={()=>{AbrirModal(data.item.body)}}>
                 <Titulo>Vídeo</Titulo>
@@ -1085,9 +435,9 @@ export default ({data, user,  setInfoAudi, InfoAudi, Mudar, setMudar, modalVisib
                 </BtnVideo>
                
                </>
-            }
+            } */}
 
-            {data.item.type === "audio" &&
+            {/* {data.item.type === "audio" &&
             <AdioArea>
                 {Loading === true ?
                <LoadingIcon size="large" color="#FFFFFF" />
@@ -1123,13 +473,13 @@ export default ({data, user,  setInfoAudi, InfoAudi, Mudar, setMudar, modalVisib
 
             </AdioArea>
                 
-            }       
+            }        */}
             
             {time &&
-             <TextDate>{time}</TextDate>
+             <Text style={{marginTop:5, fontSize:10, textAlign:"right"}}>{time}</Text>
             }
             
-        </Container>
+        </View>
         
     )
 }

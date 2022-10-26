@@ -1456,7 +1456,15 @@ const fetchCopiedText = async () => {
               
 
               <TouchableHighlight onPress={()=>IrNoti()}  style={styles.CaixaDados}>
+              <>
+              {userState.Noti >0 &&
+              <>
+                <View style={{marginBottom:-15, marginRight:-20, width:20, height:20, backgroundColor:"red", borderRadius:10, flex:1, display:"flex", justifyContent:"center", alignItems:"center"}} ><Text style={{color:"#fff"}}>{userState.Noti}</Text></View> 
+                
+                </>
+              }
               <FontAwesome name="bell"  size={24} color="#fff" />
+              </>
               </TouchableHighlight>
 
               <TouchableHighlight  onPress={()=>IrConfig()}  style={styles.CaixaDados}>
