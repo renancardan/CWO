@@ -35,10 +35,15 @@ export default () => {
   const [Alert, setAlert] = useState("");
   const [AlertTipo, setAlertTipo] = useState(null);
   const [Carre, setCarre] = useState(false);
-   console.log(userState.nomeCompleto)
+  const [MsgErro, setMsgErro] = useState("");
+  const [MsgErro1, setMsgErro1] = useState("");
+  const [Btn1, setBtn1] = useState(false);
+  const [What2, setWhat2] = useState(false);
+
    const Saindo = async()=>{
     await AsyncStorage.setItem('Tel', "");
     await AsyncStorage.setItem('@entrada', "");
+    await AsyncStorage.setItem('@Id', "");
     navigation.reset({
       routes:[{name:"Preload"}]
   });
@@ -47,6 +52,30 @@ export default () => {
    const Voltar = ()=>{
     navigation.goBack();
   }
+
+  useEffect(() => {
+    if(Tel !== "" && Tel.length === 14 ){
+  
+        TelWhats();
+    
+    } else {
+      setMsgErro("")
+    } 
+    
+
+
+   }, [Tel])
+   useEffect(() => {
+   setNome(userState.nomeCompleto)
+  setTel(userState.telefone)
+
+   }, [userState.nomeCompleto, userState.telefone])
+
+   const TelWhats = ()=>{
+   setCarre(true)
+    Api.AnaliseTelMudar(Tel, setMsgErro,  setBtn1, setCarre) 
+   
+ }
 
    const AbrirModalP1 = ()=>{
     setModalVer(true)
@@ -69,19 +98,45 @@ export default () => {
   const GerarCod =  async ()=> {
           
     if(Robo === false){
-      
+      setMsgErro("");
       setCarre(true)
-      Api.GeradorDeCod(Robo, setCarre, setCodLast, setCodG, setAlert, setAlertTipo, setVerNotajogo, setModalCalend);
+      Api.GeradorDeCod22(Robo, setCarre, setCodLast, setCodG, setAlert, setAlertTipo, setModalVer);
     } else {
-      setModalVer(true);
-      setAlert("Por Favor Clique em NÃO SOU ROBÔ!");
-      setAlertTipo("danger")
+      
+      setMsgErro("Por Favor Clique em NÃO SOU ROBÔ!");
+      
     }
    
       
    
      
     }
+
+    const GerarCod2 =  async ()=> {
+          
+     
+      if(Tel.length === 14){
+        if(parseInt(Senha)  === CodLast){
+          setSenha("")
+          setTentativa(0)
+          setCodLast(0)
+          setMsgErro1("")
+        setCarre(true)
+        Api.GeradorDeCod44(Tel, setCarre, setCodLast, setCodG, setAlert, setAlertTipo, setModalVer, setWhat2);
+      } else {
+        setTentativa(Tentativa +1)
+        setMsgErro1("Código Errado "+(Tentativa+1)+"° tentativa de 3");
+       
+      }
+        } else {
+        
+          setMsgErro1("O Telefone Está Errado!");
+        
+        }
+        
+     
+       
+      }
 
    const AbrirModalP2 = ()=>{
     setModalVer(true)
@@ -100,7 +155,8 @@ export default () => {
     setP3(false)
     setP4(false)
     setP5(false)
-    
+    setNome(userState.nomeCompleto)
+    setMsgErro("")
    }
 
    const AbrirModalP4 = ()=>{
@@ -110,7 +166,7 @@ export default () => {
     setP3(true)
     setP4(false)
     setP5(false)
-    
+    setTel(userState.telefone)
    }
 
    const AbrirModalP5 = ()=>{
@@ -144,7 +200,61 @@ export default () => {
     setP5(false)
     setAlert("")
     setAlertTipo(null)
+    setMsgErro(false)
+    setMsgErro1(false)
+    setSenha("")
+    setCodG(false)
+    setNome("")
+    setTel("")
+    setCodG(false)
+    setTentativa(0);
+    setBtn1(false);
+    setRobo(true)
    }
+
+
+   const Trocardenome = ()=>{
+   if(Nome !== ""){
+    if(parseInt(Senha)  === CodLast){
+    setCarre(true)
+    Api.TrocandoNome(Nome, setAlert, setAlertTipo, setCarre )
+  } else {
+    setTentativa(Tentativa +1)
+    setMsgErro1("Código Errado "+(Tentativa+1)+"° tentativa de 3");
+   
+  }
+    } else {
+    
+      setMsgErro1("O Nome Não Pode Está Vazio!");
+    
+    }
+  }
+
+  const TrocardeNumero = ()=>{
+    if(Tel.length === 14){
+     if(parseInt(Senha) === CodLast){
+     setCarre(true)
+     Api.TrocandoWhats(Tel, setAlert, setAlertTipo, setCarre )
+   } else {
+     setTentativa(Tentativa +1)
+     setMsgErro1("Código Errado "+(Tentativa+1)+"° tentativa de 3");
+    
+   }
+     } else {
+     
+       setMsgErro1("O Telefone Está Errado!");
+     
+     }
+   }
+
+  const RenviarCod = ()=>{
+    setCodG(false);
+    setTentativa(0);
+    setSenha("");
+    setMsgErro1("");
+  }
+
+
     return (
       <View style={styles.Container}>
          <Modal
@@ -214,7 +324,7 @@ export default () => {
           <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Regras PixBetCash</Text> <TouchableHighlight  style={styles.fechaModal} onPress={() =>FecharModal()}><Text>X</Text></TouchableHighlight>
           </View>
           <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Sumário das Regras:</Text>
-                      <Text  style={{ marginLeft:10, fontSize:15  }}>1° - Como Apostar</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>1° - Como Apostar</Text>
               
               </>
               :
@@ -232,6 +342,9 @@ export default () => {
               <View  style={styles.CaixadeapostaTitulo}  >         
               <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Trocar Nome</Text> <TouchableHighlight  style={styles.fechaModal} onPress={() =>FecharModal()}><Text>X</Text></TouchableHighlight>
               </View>
+              <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Regras para Trocar O Nome:</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>1° - Coloque seu Nome Completo</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>2° - Esse Nome tem que ser o mesmo nome que aparecerá na sua conta, quando efetuarmos a transferência via Pix</Text>
               <View  style = {styles.InputAra}>
                             <FontAwesome name="user" size={24} color="black" />
                              <SignInput
@@ -242,7 +355,75 @@ export default () => {
                                 keyboardType={"default"}
                                 posi={1000}
                             /> 
-                            </View>
+                   </View>
+                   {CodG === false?
+                        <>
+                        
+                        <>
+                         <ReCAPTCHA
+                          ref={captcha}
+                          sitekey="6LdDVDIiAAAAAM8Z3lsWD6qE2o2w94YfwDM7mRf7"
+                          size="normal"
+                          hl="pt"
+                          theme="dark"
+                          onChange={onChangeRec}
+                            />
+                            {MsgErro !== "" &&
+                            <Text  style={{color:"red", marginLeft:10, fontSize:17  }}>{MsgErro}</Text>    
+                            }
+                        
+                            <TouchableHighlight style={{width:150, height:50, backgroundColor:"#1ED31A", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>GerarCod()}>
+                            <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Gerar Código Segurança</Text>
+                          </TouchableHighlight>
+                              
+
+                        </>
+
+                        
+                      
+
+              
+                     </>
+                         :
+                        
+
+                        <>
+                        {Tentativa >= 3 &&
+                        <>
+                         <Text  style={{ marginLeft:10, fontSize:15  }}>Você atingiu a quantidade máxima de erros</Text> 
+                         <TouchableHighlight style={{width:150, height:50, backgroundColor:"#1ED31A", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>RenviarCod()}>
+                        <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Reenviar Codigo</Text>
+                      </TouchableHighlight>
+                        </>
+                        }
+                       
+                      {Tentativa < 3 &&
+                                  <>
+                                   <Text  style={{ marginLeft:10, fontSize:15  }}>Seu Código foi enviado para o Whatsapp</Text> 
+                                   <View  style = {styles.InputAra}>
+                   <FontAwesome name="expeditedssl" size={40} color="black" />           
+                          <SignInputCod
+                              placeholder="Digite o Código" 
+                              value={Senha}
+                              onChangeText={t=>setSenha(t)}
+                              autoCapitalize="none"
+                              keyboardType={"numeric"}
+                          />
+                   </View>
+                   {MsgErro1 !== "" &&
+                            <Text  style={{color:"red", marginLeft:10, fontSize:17  }}>{MsgErro1}</Text>    
+                            }
+                    <TouchableHighlight style={{width:150, height:50, backgroundColor:"#1ED31A", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>Trocardenome()}>
+                        <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Trocar de Nome</Text>
+                      </TouchableHighlight>
+                      
+                      
+                        </>
+                        }
+
+                        </>
+
+                          }
               </>
               :
               <>
@@ -251,17 +432,122 @@ export default () => {
               <View  style={styles.CaixadeapostaTitulo}  >         
               <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Trocar Whatsapp</Text> <TouchableHighlight  style={styles.fechaModal} onPress={() =>FecharModal()}><Text>X</Text></TouchableHighlight>
               </View>
+              <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Regras para Trocar de Whatsapp:</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>1° - Digite Um Número de Whatsapp</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>2° - O Numero Não Pode está registrado no Sistema</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>3° - O Numéro do Whatsapp Que está Registrando Tem que Ser o Mesmo Da Chave Pix, aonde A Empresa fará a trasnferencia dos seus pagamentos.</Text>
+              {CodG === false?
+              <View  style = {styles.InputAra}>
+              <FontAwesome name="phone-square" size={24} color="black" />
+               <Telefone                      
+                   placeholder="Whatsapp do Cliente" 
+                   value={Tel}
+                   onChangeText={t=>setTel(t)}
+                   autoCapitalize="none"
+                   keyboardType={"phone-pad"}
+               
+               /> 
+               </View>
+
+              :
               <View  style = {styles.InputAra}>
                            <FontAwesome name="phone-square" size={24} color="black" />
-                            <Telefone                      
-                                placeholder="Whatsapp do Cliente" 
-                                value={Tel}
-                                onChangeText={t=>setTel(t)}
-                                autoCapitalize="none"
-                                keyboardType={"phone-pad"}
-                            
-                            /> 
+                           <View  style={{width:250 , height:50 }}>
+                           <Text  style={{ marginLeft:10, fontSize:20}}>{Tel}</Text>
+                           </View>
                             </View>
+
+              }
+              
+                      {MsgErro !== "" &&
+                      <Text  style={{color:"red", marginLeft:10, fontSize:17  }}>{MsgErro}</Text>    
+                      }
+                      {Btn1 === true &&
+                      <>
+                       {CodG === false ?
+                        <>
+                        
+                        <>
+                         <ReCAPTCHA
+                          ref={captcha}
+                          sitekey="6LdDVDIiAAAAAM8Z3lsWD6qE2o2w94YfwDM7mRf7"
+                          size="normal"
+                          hl="pt"
+                          theme="dark"
+                          onChange={onChangeRec}
+                            />
+                            {MsgErro !== "" &&
+                            <Text  style={{color:"red", marginLeft:10, fontSize:17  }}>{MsgErro}</Text>    
+                            }
+                        
+                            <TouchableHighlight style={{width:150, height:50, backgroundColor:"#1ED31A", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>GerarCod()}>
+                            <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Gerar Código Segurança</Text>
+                          </TouchableHighlight>
+                              
+
+                        </>
+
+                        
+                      
+
+              
+                     </>
+                         :
+                        
+
+                        <>
+                        {Tentativa >= 3 &&
+                        <>
+                         <Text  style={{ marginLeft:10, fontSize:15  }}>Você atingiu a quantidade máxima de erros</Text> 
+                        
+                        </>
+                        }
+                       
+                      {Tentativa < 3 &&
+                                  <>
+                                  {What2 === false ?
+                                  <Text  style={{ marginLeft:10, fontSize:15  }}>Seu Código foi enviado para o seu Whatsapp Antigo</Text> 
+                                  :
+                                  <Text  style={{ marginLeft:10, fontSize:15  }}>Seu Código foi enviado para o seu Whatsapp Novo</Text> 
+                                  }
+                                 
+                                   <View  style = {styles.InputAra}>
+                   <FontAwesome name="expeditedssl" size={40} color="black" />           
+                          <SignInputCod
+                              placeholder="Digite o Código" 
+                              value={Senha}
+                              onChangeText={t=>setSenha(t)}
+                              autoCapitalize="none"
+                              keyboardType={"numeric"}
+                          />
+                   </View>
+                   {MsgErro1 !== "" &&
+                            <Text  style={{color:"red", marginLeft:10, fontSize:17  }}>{MsgErro1}</Text>    
+                            }
+                            {What2 === false ?
+                          <TouchableHighlight style={{width:250, height:50, backgroundColor:"#840D8D", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>GerarCod2()}>
+                          <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Gerar Codigo de Segurança Para O Novo Numéro</Text>
+                        </TouchableHighlight>
+                            :
+                            <TouchableHighlight style={{width:250, height:50, backgroundColor:"#840D8D", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>TrocardeNumero()}>
+                            <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Trocar o Whatsapp</Text>
+                          </TouchableHighlight>
+
+                            }
+                  
+                      
+                      
+                        </>
+                        }
+
+                        </>
+
+                          }
+
+                      </>
+
+                      }
+                     
               </>
               :
               <>
@@ -327,6 +613,12 @@ export default () => {
               </TouchableHighlight>
              
             </View >
+
+            <View style={{ backgroundColor:"#fff", margin:10, borderRadius: 5, padding:5  }} >
+      
+            <Text  style={{  fontWeight:"bold",  fontSize:20, color:"#000",}}>Nome: {userState.nomeCompleto}</Text>
+            <Text  style={{  fontWeight:"bold",  fontSize:20, color:"#000",}}>Telefone: {userState.telefone}</Text>
+            </View>
             <View  style={styles.AreaBtnCima}>
               
               <TouchableHighlight style={{width:70, height:100, backgroundColor:"#DDBE0D", borderRadius:10, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>AbrirModalP1()}>
@@ -1029,8 +1321,7 @@ AreaBtnCima :{
           }, 
 
           imageBack: {
-            width:  "100%",
-            height: "120%",
+           
               flex: 1 ,
               alignItems:"center",     
           },

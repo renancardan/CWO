@@ -732,9 +732,10 @@ export default () => {
           }
 
           const Atualizar = ()=>{
-            navigation.reset({
-             routes:[{name:"Preload"}]
-         });
+            ListandoOc();
+        //     navigation.reset({
+        //      routes:[{name:"Preload"}]
+        //  });
          }
 
           const AbrinoMoney = ()=>{

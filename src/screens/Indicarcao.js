@@ -212,14 +212,7 @@ export default () => {
             <TouchableHighlight style={{width:200, height:50, backgroundColor:"#1AA6D3", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>IrIndicar()}>
                     <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Ver Lista de Indicados</Text>
             </TouchableHighlight>
-                <View style={{padding:10,width:350, borderRadius:10, backgroundColor:"#fff"}}>
-                   <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Regras de Indicação:</Text>
-                      <Text  style={{ marginLeft:10, fontSize:15  }}>1° Coloque o Whatsapp e o Nome da Pessoa, e será liberado o Botão de Indicar </Text>
-                      <Text  style={{ marginLeft:10, fontSize:15  }}>2° Ao clicar em Indicar, ele receberá um Link em seu Whatsapp para ela ser direcionado para o Cadastro. </Text>
-                      <Text  style={{ marginLeft:10, fontSize:15  }}>3° Essa Indicação terá o prazo de 24 horas, a parti do momento em que você clicar em Indicar. Se a Pessoa não se cadastrar entre essas 24 horas, essa indicação  perde a validade, podendo outro Usuário indicar essa pessoa.  </Text>
-                      <Text  style={{ marginLeft:10, fontSize:15  }}>4° Se a pessoa Indicada já estiver cadastrada no sistema, você não poderá mais indica-la  </Text>
-                      <Text  style={{ marginLeft:10, fontSize:15  }}>5° Se a pessoa Indicada já foi Indicada por outro usuário, espere passar o tempo de validade da indicação para poder indica-la novamente. </Text>
-                      </View>
+             
                       <View  style = {styles.InputAra}>
                    <FontAwesome name="user" size={24} color="black" />
                    
@@ -322,19 +315,19 @@ export default () => {
             :
             <>
             {TelMsg=== false &&
-             <View style={{padding:10,width:350, borderRadius:10, backgroundColor:"#fff"}}>
+             <View style={{padding:10,width:350, borderRadius:10, backgroundColor:"#fff", marginBottom:10}}>
              <Text  style={{ marginLeft:10, fontSize:15, color:"red"  }}>Este Telefone Não é um Whatsapp!</Text> 
              </View>
                
                 }
                  {Te1=== true &&
-                  <View style={{padding:10,width:350, borderRadius:10, backgroundColor:"#fff"}}>
+                  <View style={{padding:10,width:350, borderRadius:10, backgroundColor:"#fff", marginBottom:10}}>
                   <Text  style={{ marginLeft:10, fontSize:15, color:"red"  }}>Este Telefone não pode ser indicado, pois ele já está cadastrado na PIXBETCASH!</Text> 
                   </View>
                 }
 
               {Te2=== true &&
-              <View style={{padding:10,width:350, borderRadius:10, backgroundColor:"#fff"}}>
+              <View style={{padding:10,width:350, borderRadius:10, backgroundColor:"#fff", marginBottom:10}}>
               <Text  style={{ marginLeft:10, fontSize:15, color:"red"  }}>Esse Telefone já foi indicado por um usuário. Caso esse Telefone não se cadastre até {DateInd}, você poderá indica-lo novamente, e a inidicação passada não valerá mais.</Text> 
               </View>
               
@@ -350,7 +343,14 @@ export default () => {
                 </>
                      }
 
-
+<View style={{padding:10,width:350, borderRadius:10, backgroundColor:"#fff"}}>
+                   <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Regras de Indicação:</Text>
+                      <Text  style={{ marginLeft:10, fontSize:15  }}>1° Coloque o Whatsapp e o Nome da Pessoa, e será liberado o Botão de Indicar </Text>
+                      <Text  style={{ marginLeft:10, fontSize:15  }}>2° Ao clicar em Indicar, ele receberá um Link em seu Whatsapp para ela ser direcionado para o Cadastro. </Text>
+                      <Text  style={{ marginLeft:10, fontSize:15  }}>3° Essa Indicação terá o prazo de 24 horas, a parti do momento em que você clicar em Indicar. Se a Pessoa não se cadastrar entre essas 24 horas, essa indicação  perde a validade, podendo outro Usuário indicar essa pessoa.  </Text>
+                      <Text  style={{ marginLeft:10, fontSize:15  }}>4° Se a pessoa Indicada já estiver cadastrada no sistema, você não poderá mais indica-la  </Text>
+                      <Text  style={{ marginLeft:10, fontSize:15  }}>5° Se a pessoa Indicada já foi Indicada por outro usuário, espere passar o tempo de validade da indicação para poder indica-la novamente. </Text>
+                      </View>
 
             </ScrollView>
         </ImageBackground>

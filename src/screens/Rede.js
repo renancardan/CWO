@@ -807,9 +807,10 @@ const fetchCopiedText = async () => {
           }
 
           const Atualizar = ()=>{
-            navigation.reset({
-             routes:[{name:"Preload"}]
-         });
+            Pegandodados()
+        //     navigation.reset({
+        //      routes:[{name:"Preload"}]
+        //  });
          }
 
           const AbrinoMoney = ()=>{

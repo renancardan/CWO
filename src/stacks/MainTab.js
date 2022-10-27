@@ -22,7 +22,7 @@ export default function Routes() {
  const [Venc, setVenc] = useState(0);
  const [Rec, setRec] = useState(0);
  const [DatVenc, setDatVenc] = useState(0);
- const [ Notif, setNotif] = useState(0);
+ const [Notif, setNotif] = useState(0);
  const [NomeComp, setNomeComp] = useState("");
  const [Tel, setTel] = useState("")
 

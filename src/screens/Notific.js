@@ -889,8 +889,8 @@ AreaBtnCima :{
           }, 
 
           imageBack: {
-            width:  "100%",
-            height: "120%",
+          
+            
               flex: 1 ,
               alignItems:"center",     
           },

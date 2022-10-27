@@ -171,6 +171,9 @@ export default () => {
   //   }            
   //  }, [Page]);
 
+ 
+
+
   const TelWhats = ()=>{
    
    Api.AnaliseTelTransf(TelCli, setMsgErro2, setNome, setLoad, setBtn, setIdTrans) 
@@ -692,9 +695,10 @@ export default () => {
           }
 
           const Atualizar = ()=>{
-            navigation.reset({
-             routes:[{name:"Preload"}]
-         });
+            ListandoOc()
+        //     navigation.reset({
+        //      routes:[{name:"Preload"}]
+        //  });
          }
 
           const AbrinoMoney = ()=>{
@@ -1361,7 +1365,9 @@ export default () => {
               Lista de Indicados
              </Text>
               </TouchableHighlight>
-             
+              <TouchableHighlight  onPress={()=>Atualizar()}  style={styles.CaixaDados}>
+              <FontAwesome name="refresh" size={24} color="#fff" />
+              </TouchableHighlight>
             </View >
           
          

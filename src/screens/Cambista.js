@@ -510,9 +510,10 @@ export default () => {
  
 
          const Atualizar = ()=>{
-          navigation.reset({
-           routes:[{name:"Preload"}]
-       });
+          ListandoOc()
+      //     navigation.reset({
+      //      routes:[{name:"Preload"}]
+      //  });
        }
          const PagandoCash = ()=>{
           var DateVw = parseInt((new Date().getTime() + 60000)/1000);

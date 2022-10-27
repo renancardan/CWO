@@ -3,7 +3,7 @@ import 'firebase/firebase-auth';
 import 'firebase/firebase-firestore';
 import 'firebase/firebase-storage';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import moment from 'moment';
 import firebaseConfig from './services/firebase';
 
 const firebaseApp =  firebase.initializeApp(firebaseConfig);
@@ -264,6 +264,30 @@ await firestore.collection("users")
 
 
 },
+
+AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
+
+  await firestore.collection("users")
+  .where("Telefone", "==", Tel)
+  .get().then((querySnapshot) => {
+   
+    if(querySnapshot.size !== 0){
+      querySnapshot.forEach((doc) => {
+       
+        setMsgErro("Já Existe Uma Conta Com Esse Whatsapp!");
+       
+      })
+  
+    } else {
+       setBtn1(true);
+      setMsgErro("")
+    }
+      });
+  
+      setCarre(false)
+  
+  
+  },
 
     AnaliseTel: async (Tel, setTe1, setNome) => {
 
@@ -785,6 +809,7 @@ await firestore.collection("users")
             let temp = await time.toString();
             
             await AsyncStorage.setItem('@entrada', temp);
+            await AsyncStorage.setItem('@Id', doc.id);
             await setIrpre(true);
           })
           .catch((error) => {
@@ -1052,21 +1077,13 @@ await firestore.collection("users")
       let Depois = Dat2;
       console.log(Antes);
       console.log(Depois);
-      var IdUser = ""
       var Nome = ""
       var tel = await AsyncStorage.getItem('Tel');
       var time = await AsyncStorage.getItem('@entrada');
+      var IdUser = await AsyncStorage.getItem('@Id');
+   
       var temp = parseInt(time)
-      await firestore.collection("users")
-      .where("Telefone", "==", tel)
-      .where("DataEntCel", "==", temp)
-      .get().then( async(querySnapshot) => {
      
-        if(querySnapshot.size !== 0){
-          querySnapshot.forEach( async (doc) => {
-            IdUser = doc.id,
-            Nome = doc.data().Nome
-            });
        
              await firestore.collection("CompApostas")
                .where("DataApost", ">=", Antes)
@@ -1077,23 +1094,9 @@ await firestore.collection("users")
                var res = []; 
                console.log("q "+querySnapshot.size)
                querySnapshot.forEach((doc) => {
-
-                let currentDate = '';
-                let now =new Date(doc.data().DataApost);
-                let hours = now.getHours();
-                let minutes = now.getMinutes();
-                let Dia = now.getDate();
-                let Mes = (now.getMonth()+1);
-                let Ano = now.getFullYear();
-                let seg = now.getSeconds(); 
-                hours = hours < 10 ? '0'+hours : hours;
-                minutes = minutes < 10 ? '0'+minutes : minutes;
-                seg = seg < 10 ? '0'+seg : seg;
-                Dia = Dia < 10 ? '0'+Dia : Dia;
-                Mes = Mes < 10 ? '0'+Mes : Mes;
-                currentDate = Dia+'/'+Mes+'/'+Ano;
-                currentDate += ' ';
-                currentDate += hours+':'+minutes;
+              
+                let currentDate = moment(doc.data().DataApost).format("DD/MM/YYYY HH:mm");
+               
                  
                    res.push({
                     id: doc.id,
@@ -1135,14 +1138,7 @@ await firestore.collection("users")
        
                  });
    
-                } else {
-                  setAlert("Ouve um erro na Sua Conta Você Não Esta Logado")
-                  setAlertTipo("danger")
-                  setVerNotajogo(false)
-                  setModalCalend(true)
-                  setCarre(false);
-                }
-              })  
+               
              
            
       
@@ -1348,21 +1344,10 @@ await firestore.collection("users")
       let Depois = Dat2;
       console.log(Antes);
       console.log(Depois);
-      var IdUser = ""
       var Nome = ""
-      var tel = await AsyncStorage.getItem('Tel');
-      var time = await AsyncStorage.getItem('@entrada');
-      var temp = parseInt(time)
-      await firestore.collection("users")
-      .where("Telefone", "==", tel)
-      .where("DataEntCel", "==", temp)
-      .get().then( async(querySnapshot) => {
+      var IdUser = await AsyncStorage.getItem('@Id');
      
-        if(querySnapshot.size !== 0){
-          querySnapshot.forEach( async (doc) => {
-            IdUser = doc.id,
-            Nome = doc.data().Nome
-            });
+      
        
              await firestore.collection("NotaCambista")
                .where("dataCriar", ">=", Antes)
@@ -1428,14 +1413,7 @@ await firestore.collection("users")
        
                  });
    
-                } else {
-                  setAlert("Ouve um erro na Sua Conta Você Não Esta Logado")
-                  setAlertTipo("danger")
-                  setVerNotajogo(false)
-                  setModalCalend(true)
-                  setCarre(false);
-                }
-              })  
+              
              
            
       
@@ -2364,15 +2342,13 @@ await firestore.collection("users")
          DadosCli:async (Venc, setVenc, setRec, setDatVenc, setNotif, setNomeComp, setTel)=>{
           var tel = await AsyncStorage.getItem('Tel');
           var time = await AsyncStorage.getItem('@entrada');
+          var IdUser = await AsyncStorage.getItem('@Id');
           var temp = parseInt(time)
           await firestore.collection("users")
-          .where("Telefone", "==", tel)
-          .where("DataEntCel", "==", temp)
-          .onSnapshot((querySnapshot) => {
+         .doc(IdUser)
+          .onSnapshot((doc) => {
          
-            if(querySnapshot.size !== 0){
-
-              querySnapshot.forEach( async (doc) => {
+          
                 let currentDate = '';
                 let now =new Date(doc.data().DataVenc);
                 let hours = now.getHours();
@@ -2393,11 +2369,7 @@ await firestore.collection("users")
                  setNotif(doc.data().mensagem.length - doc.data().vizualV)
                  setNomeComp(doc.data().Nome)
                  setTel(doc.data().Telefone)
-                });
-             
-
-
-              } 
+              
             })
              
                 
@@ -2497,26 +2469,25 @@ await firestore.collection("users")
           var tel = await AsyncStorage.getItem('Tel');
           var time = await AsyncStorage.getItem('@entrada');
           var temp = parseInt(time)
+          var IdUser = await AsyncStorage.getItem('@Id');
+          var temp = parseInt(time)
           await firestore.collection("users")
-          .where("Telefone", "==", tel)
-          .where("DataEntCel", "==", temp)
-          .onSnapshot((querySnapshot) => {
-         
-            if(querySnapshot.size !== 0){
-              querySnapshot.forEach( async (doc) => {
+         .doc(IdUser)
+          .onSnapshot((doc) => {
               setOcorre(doc.id);
               setTmpMsg(doc.data().mensagem);
               setCont(doc.data().mensagem.length);
               setTemUlt(doc.data().ultimaMsg.data);
               setDig(doc.data().DigiS);
               setVizuS(doc.data().vizualS);
-                });
+                
+            });
         
          
 
             
-          }
-        });      
+          
+          
     
            
   },
@@ -2787,41 +2758,29 @@ await firestore.collection("users")
         },
 
         PegarDados:async (QCash , setListOc, setQCash, setCarre)=>{
-          var temp = new Date().getTime();
           var IdUser = ""
           var Nome = ""
           var tel = await AsyncStorage.getItem('Tel');
           var time = await AsyncStorage.getItem('@entrada');
           var temp = parseInt(time)
+          var IdUser = await AsyncStorage.getItem('@Id');
+          var temp = parseInt(time)
           await firestore.collection("users")
-          .where("Telefone", "==", tel)
-          .where("DataEntCel", "==", temp)
-          .onSnapshot((querySnapshot) => {
-         
-            if(querySnapshot.size !== 0){
-              querySnapshot.forEach( async (doc) => {
+         .doc(IdUser)
+          .onSnapshot((doc) => {
                 
                 IdUser = doc.id,
                 Nome = doc.data().Nome
                 setListOc(doc.data().Extrato)
                 setQCash(doc.data().Cash)
+
                 });
                 setCarre(false)
                
 
        
 
-              } else {
-                setRobo(true)
-                setAlert("Ouve um erro na Sua Conta Você Não Esta Logado, Saia e entre Novamente!")
-                setAlertTipo("danger")
-                setCriarCli(false)
-                setVerNotajogo(false)
-                setModalCalend(true)
-                setCarre(false);
-              }
-            })
-
+           
              
                 
            
@@ -2833,20 +2792,20 @@ await firestore.collection("users")
           var tel = await AsyncStorage.getItem('Tel');
           var time = await AsyncStorage.getItem('@entrada');
           var temp = parseInt(time)
+          var IdUser = await AsyncStorage.getItem('@Id');
+          var temp = parseInt(time)
           await firestore.collection("users")
-          .where("Telefone", "==", tel)
-          .where("DataEntCel", "==", temp)
-          .onSnapshot(async(querySnapshot) => {
+         .doc(IdUser)
+          .onSnapshot(async (doc) => {
             var res = []
             var resList = []
             var QC = 0;
-            if(querySnapshot.size !== 0){
-              querySnapshot.forEach( async (doc) => {
+         
                 setId(doc.id)
               
                 res = doc.data().Indicados
            
-                });
+                
                 console.log(res[0])
                
                 for(let i in res){
@@ -2895,20 +2854,11 @@ await firestore.collection("users")
                 setCarre(false)
 
 
-               
+              });  
 
        
 
-              } else {
-                setRobo(true)
-                setAlert("Ouve um erro na Sua Conta Você Não Esta Logado, Saia e entre Novamente!")
-                setAlertTipo("danger")
-                setCriarCli(false)
-                setVerNotajogo(false)
-                setModalCalend(true)
-                setCarre(false);
-              }
-            })
+            
 
              
                 
@@ -3206,6 +3156,110 @@ await firestore.collection("users")
            
         },
 
+        GeradorDeCod22:async (Robo, setCarre, setCodLast, setCodG, setAlert, setAlertTipo, setModalVer)=>{
+          var temp = new Date().getTime();
+          var IdUser = ""
+          var Nome = ""
+          var tel = await AsyncStorage.getItem('Tel');
+          var time = await AsyncStorage.getItem('@entrada');
+          var temp = parseInt(time)
+          await firestore.collection("users")
+          .where("Telefone", "==", tel)
+          .where("DataEntCel", "==", temp)
+          .get().then( async(querySnapshot) => {
+         
+            if(querySnapshot.size !== 0){
+              querySnapshot.forEach( async (doc) => {
+                IdUser = doc.id,
+                Nome = doc.data().Nome
+                });
+             
+                var last = Math.floor((Math.random() * (9999 - 1000)) + 1000);
+                setCodLast(last); 
+                var ver = tel.replace("(", "55");
+                 var par1 = ver.replace(")", "");
+                 var par3 = par1.replace("-", "");
+     
+                 var data={
+                   "phone": par3,
+                   "message": "Código de entrada: "+last,
+                 }   
+                 const req = await fetch("https://api.z-api.io/instances/3A9D95BC49F730DF458B76215AA2744C/token/A2A3E65C2FE0E21916E8A2AE/send-messages", 
+                 {
+                       method: 'POST',
+                       headers:{
+                         'Content-Type': 'application/json'
+                       },
+                       body: JSON.stringify(data),
+                    });
+                   setCarre(false)                 
+                    setCodG(true)
+
+
+              } else {
+                setAlert("Ouve um erro na Sua Conta Você Não Esta Logado")
+                setAlertTipo("danger")
+                setModalVer(true)
+                setCarre(false);
+              }
+            })
+             
+                
+           
+        },
+
+        GeradorDeCod44:async (Tel, setCarre, setCodLast, setCodG, setAlert, setAlertTipo, setModalVer, setWhat2)=>{
+          var temp = new Date().getTime();
+          var IdUser = ""
+          var Nome = ""
+          var tel = await AsyncStorage.getItem('Tel');
+          var time = await AsyncStorage.getItem('@entrada');
+          var temp = parseInt(time)
+          await firestore.collection("users")
+          .where("Telefone", "==", tel)
+          .where("DataEntCel", "==", temp)
+          .get().then( async(querySnapshot) => {
+         
+            if(querySnapshot.size !== 0){
+              querySnapshot.forEach( async (doc) => {
+                IdUser = doc.id,
+                Nome = doc.data().Nome
+                });
+             
+                var last = Math.floor((Math.random() * (9999 - 1000)) + 1000);
+                setCodLast(last); 
+                var ver = Tel.replace("(", "55");
+                 var par1 = ver.replace(")", "");
+                 var par3 = par1.replace("-", "");
+     
+                 var data={
+                   "phone": par3,
+                   "message": "Código de entrada: "+last,
+                 }   
+                 const req = await fetch("https://api.z-api.io/instances/3A9D95BC49F730DF458B76215AA2744C/token/A2A3E65C2FE0E21916E8A2AE/send-messages", 
+                 {
+                       method: 'POST',
+                       headers:{
+                         'Content-Type': 'application/json'
+                       },
+                       body: JSON.stringify(data),
+                    });
+                   setCarre(false)                 
+                    setCodG(true)
+                  setWhat2(true)
+
+              } else {
+                setAlert("Ouve um erro na Sua Conta Você Não Esta Logado")
+                setAlertTipo("danger")
+                setModalVer(true)
+                setCarre(false);
+              }
+            })
+             
+                
+           
+        },
+
         SacarCash: async(NomeCli, TelCli, IdTrans,  setIdTrans, setNome, setCarre,  setAlert, setAlertTipo, setModalCalend, setVerNotajogo,   setTelCli, setNomeCli,  setPgCash,   setRobo, setCodG, setTentativa, setSenha, setBtn, setMsgErro2, setLoad,  setCriarCli  )=> {
           console.log(NomeCli);
           var res = parseFloat(NomeCli)/100;
@@ -3386,6 +3440,102 @@ await firestore.collection("users")
               setModalCalend(true)
               setCarre(false);
               setLoad(false);
+            }
+
+          })
+        },
+
+        TrocandoNome: async(Nome, setAlert, setAlertTipo, setCarre )=> {
+          var IdUser = ""
+          var tel = await AsyncStorage.getItem('Tel');
+          var time = await AsyncStorage.getItem('@entrada');
+          var temp = parseInt(time)
+          await firestore.collection("users")
+          .where("Telefone", "==", tel)
+          .where("DataEntCel", "==", temp)
+          .get().then( async(querySnapshot) => {
+         
+            if(querySnapshot.size !== 0){
+
+              querySnapshot.forEach( async (doc) => {
+                IdUser = doc.id;
+                
+                });
+            
+
+                await firestore.collection("users")
+                .doc(IdUser)
+                .update({
+                  Nome: Nome,
+                 
+                })
+
+                
+
+               
+                  setCarre(false);
+                  setAlert("Nome Trocado com Sucesso!");
+                  setAlertTipo("success");
+               
+
+                  
+
+
+             
+
+            } else {
+              setAlert("Ouve um erro na Sua Conta Você Não Esta Logado")
+              setAlertTipo("danger")   
+              setCarre(false);
+
+            }
+
+          })
+        },
+
+        TrocandoWhats: async(Tel, setAlert, setAlertTipo, setCarre )=> {
+          var IdUser = ""
+          var tel = await AsyncStorage.getItem('Tel');
+          var time = await AsyncStorage.getItem('@entrada');
+          var temp = parseInt(time)
+          await firestore.collection("users")
+          .where("Telefone", "==", tel)
+          .where("DataEntCel", "==", temp)
+          .get().then( async(querySnapshot) => {
+         
+            if(querySnapshot.size !== 0){
+
+              querySnapshot.forEach( async (doc) => {
+                IdUser = doc.id;
+                
+                });
+            
+
+                await firestore.collection("users")
+                .doc(IdUser)
+                .update({
+                  Telefone: Tel,
+                 
+                })
+
+
+                await AsyncStorage.setItem('Tel', Tel);
+               
+                  setCarre(false);
+                  setAlert("Whatsapp Trocado com Sucesso!");
+                  setAlertTipo("success");
+               
+
+                  
+
+
+             
+
+            } else {
+              setAlert("Ouve um erro na Sua Conta Você Não Esta Logado")
+              setAlertTipo("danger")   
+              setCarre(false);
+
             }
 
           })
