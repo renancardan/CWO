@@ -119,7 +119,7 @@ const SairCriar = ()=>{
  const openImagePickerAsync = async () => {
   let pickerResult = await ImagePicker.launchImageLibraryAsync();
   setImg(pickerResult.uri);
-  console.log(pickerResult)
+  console.log(pickerResult.uri.split(','))
 }
 
 const ExcluirImg = ()=>{
@@ -127,7 +127,10 @@ const ExcluirImg = ()=>{
 }
 
 const EnviarImagem = ()=>{
+  setModalCalend(false);
+  setVerImg(false);
  Api.enviandoImgMsg(Img, setImg, setModalCalend, setVerImg)
+
 }
 
     return (

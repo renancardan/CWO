@@ -2361,7 +2361,7 @@ await firestore.collection("users")
            
            },
 
-         DadosCli:async (Venc, setVenc, setRec, setDatVenc, setNotif)=>{
+         DadosCli:async (Venc, setVenc, setRec, setDatVenc, setNotif, setNomeComp, setTel)=>{
           var tel = await AsyncStorage.getItem('Tel');
           var time = await AsyncStorage.getItem('@entrada');
           var temp = parseInt(time)
@@ -2391,7 +2391,8 @@ await firestore.collection("users")
                  setRec(doc.data().Dinheiro)
                  setDatVenc(doc.data().DataVenc)
                  setNotif(doc.data().mensagem.length - doc.data().vizualV)
-
+                 setNomeComp(doc.data().Nome)
+                 setTel(doc.data().Telefone)
                 });
              
 
@@ -2583,6 +2584,7 @@ await firestore.collection("users")
     let tempVenc = new Date().getTime() + 86400000;
     var IdUser = ""
     var Nome = ""
+    var Imagem = Img.split(',');
     var tel = await AsyncStorage.getItem('Tel');
     var time = await AsyncStorage.getItem('@entrada');
     var temp = parseInt(time)
@@ -2597,18 +2599,18 @@ await firestore.collection("users")
           Nome = doc.data().Nome
           });
 
-          let Url1 = "";
+          var Url1 = "";
         
     
-          if(Img= ""){
-            const fileName = await Date.now() + Img;
+          
+            const fileName = await Date.now() + Math.random()*100;
             const storageRef = await storage.ref();
             const fileRef = await storageRef.child(`arquivo/${fileName}`);
-            await await fileRef.put(Img).then((doc)=> {
+            await await fileRef.putString(Imagem[1], 'base64').then((doc)=> {
               
             });
             Url1 =  await fileRef.getDownloadURL();
-          }
+          
 
     let temp = new Date().getTime();
     let now = temp 

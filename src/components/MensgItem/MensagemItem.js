@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import {Modal, Text,FlatList, View, StyleSheet, ImageBackground, Image, Button, TouchableHighlight, KeyboardAvoidingView, ScrollView } from 'react-native'
+import {Modal, Linking, Text,FlatList, View, StyleSheet, ImageBackground, Image, Button, TouchableHighlight, KeyboardAvoidingView, ScrollView } from 'react-native'
 
 //import Video from 'react-native-video';
 //import Slider from '@react-native-community/slider';
@@ -41,6 +41,7 @@ export default ({data, user,  setInfoAudi, InfoAudi, Mudar, setMudar, modalVisib
     const [Estado, setEstado] = useState("");
     const [Cidade, setCidade] = useState("");
     const [Carreg, setCarreg] = useState(true);
+    const [Img, setImg] = useState("")
    
 
     const tempo = ()=>{
@@ -84,12 +85,7 @@ export default ({data, user,  setInfoAudi, InfoAudi, Mudar, setMudar, modalVisib
 
       const AbrirModalCri = (item)=>{
           
-        setNomeEd(item.Nome)
-        setLat(item.Loc.lat)
-        setLog(item.Loc.lng)
-        setCidade(item.Cidade);
-        setEstado(item.Estado);
-        setCarreg(false);
+        setImg(item)
         setModalCri(true);
       }
     
@@ -133,7 +129,7 @@ export default ({data, user,  setInfoAudi, InfoAudi, Mudar, setMudar, modalVisib
     }
     const AbrirModalImg = (data)=>{
         setBady(data);
-        setModalImg(true);
+        setModalCri(true);
     }
 
    
@@ -355,61 +351,41 @@ export default ({data, user,  setInfoAudi, InfoAudi, Mudar, setMudar, modalVisib
         setModalLoad(true);
         Api.ChamarAvulso(NomeOuvi, idOuvi, NomeUse, user, Varia, Ocorre, Extra, setModalLoad )
       }
+
+      const IndoLink = (item)=>{
+        Linking.openURL(item);
+      }
+
+      const SairCriar = ()=>{
+        setModalCri(false)
+        setImg("")
+      }
     
   
     return (
         <View style={{marginTop:5, marginBottom:5, marginLeft:10,  marginRight:10, padding:10, alignSelf:"baseline", maxWidth:"80%", borderRadius:5, backgroundColor: data.item.autor === user ?"#98ABE1":"#A9CFE1", alignSelf: data.item.autor === user ?"flex-end":"flex-start", textAlign: data.item.autor === user ? "right":"left"}} >
-             {/* <Modal
+             <Modal
            animationType="slide"
            visible={ModalCri}
           >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-          <BtnModal onPress={()=>FechaModalCri()}>
-          <Text style={styles.modalText3}>
-          <Fechar width="20" height="20" backgroundColor="#000"/>
-          </Text>
-          </BtnModal>
-          <InputArea>
-                <CampoText
-                        
-                        placeholder="Digite o Nome da Posição" 
-                        value={NomeEd}
-                        onChangeText={t=>setNomeEd(t)}
-                        autoCapitalize="none"
-                        keyboardType={"default"}
-                        posi={24}
-                    />
-                    {Carreg === true ?
-                    <>
-                    <LoadingIcon size="large" color="#fff" />
-                    </>
+          <View style={styles.viewCalend}>
+          <View style={styles.QuadNota} >
+                   
+                 <View  style={styles.CaixadeapostaTitulo}  >
                     
-                    :
-                    <>
-                      <Text style={styles.modalText2}>Posição Encontrada</Text>
-                      <Text style={styles.modalText2}>Latitude: {Lat}</Text>
-                      <Text style={styles.modalText2}>Longitude: {Log}</Text>
-                      <Text style={styles.modalText2}>Cidade: {Cidade}</Text>
-                      <Text style={styles.modalText2}>Estado: {Estado}</Text>    
-                    
-                    </>
+                  <TouchableHighlight style={styles.fechaModal} onPress={() =>SairCriar()}><Text>X</Text></TouchableHighlight>
+                   </View>
+                  
+                   
+                   <Image  source={{uri:Img }}  style={{ width:300, height:300 }} />
+                   
+                </View>
 
-                              }
-                       
-                </InputArea>
-               
-               
-             <CustomButton2 onPress={()=>CriandoPosicao()} >
-                               <CustomButtonText>Guarda a Posição</CustomButtonText>
-                       </CustomButton2>
-        
-          
-          </View>
+
           </View>
 
 
-          </Modal> */}
+          </Modal>
             { data.item.autor !== user &&
                 <Text style={{fontSize:10, fontWeight:"bold", color: data.item.autor === user ?"#FFF":"green"}}>{data.item.nome}</Text>
             }
@@ -420,9 +396,17 @@ export default ({data, user,  setInfoAudi, InfoAudi, Mudar, setMudar, modalVisib
       
 
             {data.item.type === "image" &&
-             <TouchableHighlight style={{display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column"}} onPress={()=>{AbrirModalImg(data.item.body)}}>
+             <TouchableHighlight style={{display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column"}} onPress={()=>{AbrirModalCri(data.item.body)}}>
                 <Image  source={{uri:`${data.item.body}`}} style={styles.ImageVer } />
              </TouchableHighlight>
+            }
+            {data.item.type === "Link" &&
+            <>
+             <Text  style={{   fontSize:16, textAlign: data.item.autor === user ?"right":"left"}}>Link:</Text>
+             <TouchableHighlight style={{display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column"}} onPress={()=>{IndoLink(data.item.body)}}>
+                <Text  style={{ color:"blue",  fontSize:16, textAlign: data.item.autor === user ?"right":"left"}}>{data.item.body}</Text>
+             </TouchableHighlight>
+             </>
             }
 
           
@@ -490,56 +474,633 @@ const styles = StyleSheet.create({
         height:100,
         margin: 5,
       },
-      ImageVer2:{
-        width:200,
-        height:200,
-        margin: 5,
-      },
-      ImageVer3:{
-        width:100,
-        height:100,
-        margin: 5,
-        borderRadius:10,
-      },
-      centeredView: {
-        backgroundColor: "#000",
+      centeredView4: {
+        backgroundColor:'rgba(0,0,0,0.7)',
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
+        
       },
-      modalView: {
-        margin: 20,
-        backgroundColor: "#000",
-        width: '100%',
-        height: '100%',
-        padding: 35,
+      BtnText: {
+        fontSize: 18,
+        color: "#FFF212",
+        fontWeight: "bold",
+      },
+      Avitext: {
+        fontSize: 15,
+        color: "#000",
+      },
+      Avitext2: {
+        fontSize: 15,
+        color: "red",
+      },
+      ModVie: {
+        backgroundColor: "#FFF",
+        width:200,
+        height:100,
+        borderRadius:20,
+        justifyContent: "center",
         alignItems: "center",
-        shadowColor: "#000",
-        shadowOffset: {
-          width: 0,
-          height: 2
+        flexDirection:"column"
+      },
+      ModVieTex: {
+        width:180,
+        height:70,
+        justifyContent: "center",
+        alignItems: "center",
+      },
+      ModVieBtn: {
+        width:180,
+        height:30,
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection:"row"
+      },
+      ModVieBtnBtn: {
+        width:90,
+        height:30,
+        justifyContent: "center",
+        alignItems: "center",
+        outlineStyle: 'none'
+      },
+      ModVieTexSim: {
+        fontSize: 18,
+        color: "#00C9FB",
+        fontWeight: "bold",
+      },
+      ModVieTexNao: {
+        fontSize: 18,
+        color: "#EB7560",
+        fontWeight: "bold",
+      },
+    
+      InputAra :{
+        width:100,
+        height:40,
+        backgroundColor: "#fff",
+        flexDirection:"row",
+        borderRadius:20,
+        alignItems: "center",
+        marginBottom:15,
+        paddingLeft:5,
+        marginTop:15,
+     },
+    
+      Valopre:{
+        marginLeft: 10,
+        marginBottom: 10,
+        width: 250,
+        paddingBottom: 10,
+        borderColor:"#000",
+        borderWidth:1,
+    
+      },
+    
+      Titupre:{
+      width: 248,
+      height: 30,
+      backgroundColor: "#ccc",
+      },
+    
+      AvisoJgo:{
+       backgroundColor:"red",
+       width:20,
+       height:20,
+       borderRadius:10,
+       marginLeft:-30,
+       marginTop:-25,
+      },
+    
+      TexNota1:{
+      color:"#fff",
+      fontSize:15,
+      },
+    
+      VerBole:{
+       width:50,
+       height:50,
+       flex: 1,
+       flexDirection:"column",
+       alignItems:"center",
+       justifyContent:"center",
+       backgroundColor:"#000",
+       marginRight:10,
+       marginTop:10,
+       textAlign:"center",
+       position:"absolute",
+       bottom:50,
+       right:10,
+       borderRadius:5,
+       fontWeight:"bold",
+       paddingTop:10,
+       color:"#fff",
+    
+      },
+    
+      Caixadeaposta:{
+        marginBottom:5,
+        width:300,
+        height:500,
+        flex:1,
+        padding:10,
+        justifyContent:"center",
+        backgroundColor:"#28a745"  
         },
-        shadowOpacity: 0.25,
-        shadowRadius: 4,
-        elevation: 5
+    
+    
+      fechaModal: {
+        textAlign:"center",
+        width:30,
+        height:30,
+        flex:1,
+        flexDirection:"row",
+        alignItems:"center",
+        justifyContent:"center",
+        backgroundColor:"#ccc",
+        borderRadius:15,
+        marginTop:5,
+        marginLeft:250,
+        color:"#000",
+        fontSize:18,
+        fontWeight:"bold",
+        position:"absolute",
+        top:1,
+        right:1,
+        },
+    
+        ExcluirJogo: {
+          textAlign:"center",
+          width:40,
+          height:40,
+          flex:1,
+          flexDirection:"row",
+          alignItems:"center",
+          justifyContent:"center",
+          backgroundColor:"red",
+          borderRadius:5,
+          marginTop:5,
+          marginLeft:250,
+          color:"#000",
+          fontSize:18,
+          fontWeight:"bold",
+          position:"absolute",
+          top:1,
+          right:1,
+          },
+    
+      modaldiv: {
+        
+       width:"100%",
+       height:"100%",
+       backgroundColor:"#000"
+       },
+      
+      
+      CaixadeapostaTitulo: {
+       flexDirection:"column",
+       textAlign: "center",
+       width:300,
+       height:30,
+       flex:1,
+       alignItems:"center",
+       justifyContent:"center",
+       backgroundColor:"#fff"
+        
       },
-      modalText2: {
-        fontSize: 20,
+    
+    
+      flatList: {
+        paddingLeft: 15,
+        paddingRight: 15, // THIS DOESN'T SEEM TO BE WORKING
+        // marginRight: 15   I can't use marginRight because it cuts off the box with whitespace
+      },
+    
+      AreaBox: {
+        backgroundColor:"#fff",
+        display:"flex",
+        justifyContent:"center",
+        alignItems:"center",
+        flexDirection:"column",
+        height:30,
+        borderRadius:5,
+        marginRight:10,
+        borderColor:"#000",
+        borderWidth:2,
+        paddingLeft:5,
+        paddingRight:5,
+      
+      },
+    
+      ImageVer5:{
+        width:50,
+        height:100,
+        marginTop: 10,
+     
+       
+      },  
+      ImageVer3:{
+        width:100,
+        height:90,
+        marginTop: 140,
+    
+       
+      },  
+    
+      CalendBtn: {
+        width:90,
+        height:30,
+        justifyContent: "center",
+        alignItems: "center",
+        outlineStyle: 'none'
+      },
+      CalendTexSim: {
+        fontSize: 18,
+        color: "red",
+        fontWeight: "bold",
+      },
+      viewCalend: {
+        backgroundColor:'rgba(0,0,0,0.7)',
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        
+      },
+      QuadCalend: {
+        backgroundColor: "#FFF",
+        width:300,
+        height:600,
+        borderRadius:20,
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection:"column",
+       
+      },
+    
+      QuadNota: {
+        backgroundColor: "#FFF",
+        width:300,
+        height:600,
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection:"column",
+       
+      },
+    
+      
+    
+    
+    
+      AreaBtn3: {
+        backgroundColor:"#fff",
+        width:100,
+        display:"flex",
+        justifyContent:"center",
+        alignItems:"center",
+        flexDirection:"column",
+        height:30,
+        marginRight:10,
+        borderColor:"#000",
+        borderBottomWidth:2,
+        borderRightWidth:2,
+        borderTopWidth:2,
+        borderBottomRightRadius:5,
+        borderTopRightRadius:5,
+       
+      },
+    
+    
+      AreaBtn4 :{
+        backgroundColor:"#fff",
+        width:60,
+        display:"flex",
+        justifyContent:"center",
+        alignItems:"center",
+        height:30,
+        marginLeft:5,
+        marginRight:-15,
+        borderColor:"#000",
+        borderBottomWidth:2,
+        borderLeftWidth:2,
+        borderTopWidth:2,
+        borderBottomLeftRadius:5,
+        borderTopLeftRadius:5,
+    
+       },
+    
+    
+      modalText6: {
+        fontSize: 17,
         textAlign: "center",
-        color:"#fff"
+        color:"#000"
       },
-      modalText3: {
-        fontSize: 20,
-        textAlign: "center",
-        color:"red",
-      },
-      image2: {
-        width: 200,
+    
+      modalView3: {
+        width: '100%',
         height: 100,
-         flex: 1 ,
-         alignItems:"center",
-         justifyContent:"center",
-         margin: 5,
-  
+        
+        backgroundColor: "#fff",
+        borderRadius: 5,
+       
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+      
       },
+    
+      InputHora :{
+        width:"70%",
+        height:30,
+        backgroundColor: "#fff",
+        flexDirection:"row",
+        borderRadius:5,
+        alignItems: "center",
+        marginBottom:15,
+        paddingLeft:5,
+        marginTop:15,
+        borderColor:"#000",
+        borderWidth:2,
+        marginLeft:10,
+     },
+    
+     TextInforma :{
+    
+      height:40,
+      backgroundColor: "#fff",
+      flexDirection:"row",
+      borderRadius:5,
+      alignItems: "center",
+      paddingLeft:5,
+      marginTop:-25,
+      borderColor:"#000",
+      borderWidth:2,
+      marginLeft:10,
+    },
+     
+      AreaBtn :{
+       width:200,
+       display:"flex",
+       justifyContent:"center",
+       alignItems:"center",
+       flexDirection:"row",
+       marginBottom:10,
+       height:40,
+       padding:10,
+      },
+      AreaBtnTopConf :{
+        width:150,
+        display:"flex",
+        justifyContent:"space-between",
+        alignItems:"center",
+        flexDirection:"row",
+       },
+    
+      AreaBtnLiga :{
+        width: "100%",
+        display:"flex",
+        justifyContent:"center",
+        alignItems:"center",
+        flexDirection:"row",
+        marginBottom:10,
+        height:40,
+        padding:10,
+       },
+    
+      DateNextArea:{
+       flex:1,
+       alignItems:'flex-start',
+      },
+      
+      
+      DateTitle:{
+       fontSize:17,
+       fontWeight:"bold",
+       color:"#000"
+         },
+    
+      DateTitleArea:{
+      width:140,
+      justifyContent:"center",
+      alignItems:"center"
+       },
+    
+    
+      DatePrevArea:{
+       flex:1,
+       justifyContent:'flex-end',
+       alignItems:'flex-end',
+      },
+    
+    
+      DateInfo: {
+      flexDirection:"row",
+          },
+     
+     
+      TextBody: {
+        color:"#000",
+        fontSize:15,
+     
+          },
+    
+      BodyBtn: {
+        width:80,
+        height:40,
+        display:"flex",
+        justifyContent:"center",
+        alignItems:"center",
+        backgroundColor:"#FFE767",
+          },
+    
+    
+      TextTitu: {
+        color:"#fff",
+        fontSize:12,
+     
+          },
+    
+     TituBtn: {
+        width:80,
+        height:20,
+        display:"flex",
+        justifyContent:"center",
+        alignItems:"center",
+        backgroundColor:"#00A859",
+          },
+      Btn: {
+        width:80,
+        height:60,
+        marginRight:10,
+        justifyContent:"center",
+        alignItems:"center",
+        flexDirection:"column",
+        backgroundColor:"#fff",
+          },
+      Botoes: {
+        width:"100%",
+        height:60,
+        display:"flex",
+        justifyContent:"flex-start",
+        alignItems:"center",
+        flexDirection:"row",
+        padding:15,
+        backgroundColor:"rgba(0,0,0,0.3)"
+          },
+          BotoesAbaixo: {
+            width:400,
+            display:"flex",
+            flex:1,
+            justifyContent:"flex-start",
+            alignContent:"center",
+            flexDirection:"row",
+            padding:15,
+            backgroundColor:"rgba(0,0,0,0.3)",
+            flexWrap:"wrap"
+     
+              },
+    
+          BotoesTitulo: {
+            width:400,
+            height:40,
+            display:"flex",
+            justifyContent:"space-between",
+            alignItems:"center",
+            flexDirection:"row",
+            padding:5,
+            backgroundColor:"rgba(0,0,0,0.3)",
+          
+            marginBottom:5,
+              },
+    
+      TexMais: {
+         color:"#000",
+         marginLeft:5,
+         fontSize:8,
+         fontWeight:"bold"
+      
+           },
+     
+      TempDat: {
+        width:"30%",
+        height:40,
+        display:"flex",
+        justifyContent:"center",
+        alignItems:"center",
+        flexDirection:"column",
+      
+           },
+    
+      ImageTime: {
+        width:30,
+        height:30,
+        borderRadius:3,
+      
+           },
+           ImageCamp: {
+            width:20,
+            height:20, 
+               },
+    
+      FotoTime: {
+       width:30,
+       height:30,
+       borderRadius:3,
+       marginLeft:5,
+       marginRight:5,
+          },
+    
+    
+      Time: {
+       color:"#000",
+       fontWeight:"bold",
+       marginLeft:5,
+       fontSize:12
+         },
+    
+         Data: {
+          color:"#000",
+          marginLeft:5,
+          fontSize:12,
+          fontWeight:"bold",
+    
+            },
+     
+    
+    
+      CaixaNome: {
+         width:80,
+         height:40,
+         display:"flex",
+         justifyContent:"center",
+         alignItems:"flex-start",
+         flexDirection:"column",
+         },
+    
+      Post: {
+       backgroundColor:"#FFF",
+       width:"100%",
+        },
+    
+        Header: {
+         padding:5,
+         flexDirection:"row",
+         alignItems:"center",
+         justifyContent:"flex-start",
+         backgroundColor:"#FFF",
+         height:60,
+           },
+    
+      TextInfo: {
+        fontSize: 23,
+        color: "#FFF",
+        fontWeight: "bold",
+        fontStyle:"italic"
+        },
+       
+        BtnText: {
+          fontSize: 18,
+          color: "#000",
+          fontWeight: "bold",
+          },
+    
+          CaixaDados:{
+            display:"flex",
+            flexDirection:"column",
+            alignItems:"center",
+            justifyContent:"center",
+            marginLeft:10,
+          }, 
+        
+      
+            Container:{
+                backgroundColor: "#FFFF",
+                flex:1,
+              justifyContent:"center",
+               
+              }, 
+    
+              imageBack: {
+                width:  "100%",
+                height: "120%",
+                  flex: 1 ,
+                  alignItems:"center",     
+              },
+    
+              CaixaTitulo:{
+               marginTop:10,
+               width:"100%",
+               height:50,
+               display:"flex",
+               justifyContent:"space-around",
+               alignItems:"center",
+               flexDirection:"row",
+               backgroundColor:"#000",
+               paddingLeft:10,
+               paddingRight:10,
+               marginBottom:20,
+               
+              },
+              ImageVer2: {
+                width:  40,
+                height: 40, 
+              }, 
 });

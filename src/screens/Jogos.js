@@ -217,7 +217,7 @@ export default () => {
     let CompDat = moment(currentDate1+" "+hr+":00").unix();
 
     let Dat = CompDat * 1000;
-    let Dat2 =moment(currentDate1+" 23:59:00.000").unix()*1000;
+    let Dat2 =moment().unix()*1000;
     if(Dat < Dat2){
     setCarreg(true)
     Api.MeusJogos( Page, setListOc, setCarreg,  Dat, Dat2, );
@@ -1045,7 +1045,7 @@ export default () => {
                         {PgCash ?
                         <>
                         <View  style={styles.CaixadeapostaTitulo}  >
-                    <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Banco de Cash</Text> <View  style={styles.fechaModal} ><TouchableHighlight onPress={() =>Siarnota()}><Text>X</Text></TouchableHighlight></View>
+                    <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Banco de Cash</Text><TouchableHighlight style={styles.fechaModal} onPress={() =>Siarnota()}><Text>X</Text></TouchableHighlight>
                       </View> 
                       <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Banco de Cash:</Text>
                       <Text  style={{ marginLeft:10, fontSize:15  }}>{DCash} </Text>
@@ -1124,7 +1124,7 @@ export default () => {
                         :
                         <>
                         <View  style={styles.CaixadeapostaTitulo}  >
-                    <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Simulador de Aposta</Text> <View  style={styles.fechaModal} ><TouchableHighlight onPress={() =>Siarnota()}><Text>X</Text></TouchableHighlight></View>
+                    <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Simulador de Aposta</Text> <TouchableHighlight style={styles.fechaModal} onPress={() =>Siarnota()}><Text>X</Text></TouchableHighlight>
                       </View> 
                       {SimAp.map((item3, index)=>( 
                      <View   style={styles.Caixadeaposta}  >
@@ -1414,7 +1414,7 @@ export default () => {
       
 
         <ScrollView>
-          { Lista[0] ?
+          {Carre === false ?
           <>
           {Lista.map((item, key)=>(
            <>

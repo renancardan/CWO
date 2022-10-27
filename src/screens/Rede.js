@@ -923,7 +923,7 @@ const fetchCopiedText = async () => {
                  
                    <View  style={styles.CaixadeapostaTitulo}  >
                     
-                    <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Link de Indicação</Text> <View  style={styles.fechaModal} ><TouchableHighlight onPress={() =>Siarnota()}><Text>X</Text></TouchableHighlight></View>
+                    <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Link de Indicação</Text> <TouchableHighlight  style={styles.fechaModal} onPress={() =>Siarnota()}><Text>X</Text></TouchableHighlight>
                       
                       <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Regras Para Link:</Text>
                       <Text  style={{ marginLeft:10, fontSize:15  }}>1° Copie o Link segurando o Click no Link por 4 segundos, aparecerá uma barra com o Botão de Copiar. clique no Botão!</Text>
@@ -1118,7 +1118,7 @@ const fetchCopiedText = async () => {
                         {PgCash ?
                         <>
                         <View  style={styles.CaixadeapostaTitulo}  >
-                    <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Indicando Uma Pessoa</Text> <View  style={styles.fechaModal} ><TouchableHighlight onPress={() =>Siarnota()}><Text>X</Text></TouchableHighlight></View>
+                    <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Indicando Uma Pessoa</Text> <TouchableHighlight style={styles.fechaModal} onPress={() =>Siarnota()}><Text>X</Text></TouchableHighlight>
                       </View> 
                       <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Regras de Indicação:</Text>
                       <Text  style={{ marginLeft:10, fontSize:15  }}>1° Coloque o Whatsapp e o Nome da Pessoa </Text>
@@ -1248,7 +1248,7 @@ const fetchCopiedText = async () => {
                         :
                         <>
                         <View  style={styles.CaixadeapostaTitulo}  >
-                    <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Simulador de Aposta</Text> <View  style={styles.fechaModal} ><TouchableHighlight onPress={() =>Siarnota()}><Text>X</Text></TouchableHighlight></View>
+                    <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Simulador de Aposta</Text> <TouchableHighlight  style={styles.fechaModal} onPress={() =>Siarnota()}><Text>X</Text></TouchableHighlight>
                       </View> 
                       {SimAp.map((item3, index)=>( 
                      <View   style={styles.Caixadeaposta}  >

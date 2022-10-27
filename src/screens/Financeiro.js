@@ -848,7 +848,7 @@ export default () => {
                  
                    <View  style={styles.CaixadeapostaTitulo}  >
                     
-                    <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Saque de Cash</Text> <View  style={styles.fechaModal} ><TouchableHighlight onPress={() =>Siarnota()}><Text>X</Text></TouchableHighlight></View>
+                    <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Saque de Cash</Text> <TouchableHighlight  style={styles.fechaModal} onPress={() =>Siarnota()}><Text>X</Text></TouchableHighlight>
                       </View>
                       <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Regras Para Saque:</Text>
                       <Text  style={{ marginLeft:10, fontSize:15  }}>1° Valor minimo para saque é de R$ 10,00  </Text>
@@ -1091,7 +1091,7 @@ export default () => {
                         {PgCash ?
                         <>
                         <View  style={styles.CaixadeapostaTitulo}  >
-                    <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Banco de Cash</Text> <View  style={styles.fechaModal} ><TouchableHighlight onPress={() =>Siarnota()}><Text>X</Text></TouchableHighlight></View>
+                    <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Banco de Cash</Text> <TouchableHighlight style={styles.fechaModal} onPress={() =>Siarnota()}><Text>X</Text></TouchableHighlight>
                       </View> 
                       <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Banco de Cash:</Text>
                       <Text  style={{ marginLeft:10, fontSize:15  }}>{QCash} </Text>
@@ -1218,7 +1218,7 @@ export default () => {
                         :
                         <>
                         <View  style={styles.CaixadeapostaTitulo}  >
-                    <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Simulador de Aposta</Text> <View  style={styles.fechaModal} ><TouchableHighlight onPress={() =>Siarnota()}><Text>X</Text></TouchableHighlight></View>
+                    <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Simulador de Aposta</Text><TouchableHighlight style={styles.fechaModal} onPress={() =>Siarnota()}><Text>X</Text></TouchableHighlight>
                       </View> 
                       {SimAp.map((item3, index)=>( 
                      <View   style={styles.Caixadeaposta}  >

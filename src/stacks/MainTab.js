@@ -22,7 +22,9 @@ export default function Routes() {
  const [Venc, setVenc] = useState(0);
  const [Rec, setRec] = useState(0);
  const [DatVenc, setDatVenc] = useState(0);
- const [ Notif, setNotif] = useState(0)
+ const [ Notif, setNotif] = useState(0);
+ const [NomeComp, setNomeComp] = useState("");
+ const [Tel, setTel] = useState("")
 
  useEffect(() => {
   inicial();
@@ -40,6 +42,16 @@ export default function Routes() {
  }, [Notif])
 
  useEffect(() => {
+ VerNome();
+ 
+  }, [NomeComp])
+
+  useEffect(() => {
+    Telefone();
+   
+    }, [Tel])
+
+ useEffect(() => {
   Vencimento();
 
  }, [Venc])
@@ -51,7 +63,7 @@ export default function Routes() {
 
 
  const inicial = ()=>{
- Api.DadosCli(Venc, setVenc, setRec, setDatVenc, setNotif)
+ Api.DadosCli(Venc, setVenc, setRec, setDatVenc, setNotif, setNomeComp, setTel)
 
 
  }
@@ -72,6 +84,30 @@ export default function Routes() {
     type: 'setNoti',
     payload:{
       Noti: Notif
+    }
+  });
+
+
+
+ }
+
+ const VerNome = ()=>{
+  userDispatch({
+    type: 'setNomecompleto',
+    payload:{
+      nomeCompleto: NomeComp
+    }
+  });
+
+
+
+ }
+
+ const Telefone = ()=>{
+  userDispatch({
+    type: 'setTelefone',
+    payload:{
+      telefone: Tel
     }
   });
 
