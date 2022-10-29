@@ -24,7 +24,8 @@ export default function Routes() {
  const [DatVenc, setDatVenc] = useState(0);
  const [Notif, setNotif] = useState(0);
  const [NomeComp, setNomeComp] = useState("");
- const [Tel, setTel] = useState("")
+ const [Tel, setTel] = useState("");
+ const [VersBanc, setVersBanc] = useState("");
 
  useEffect(() => {
   inicial();
@@ -61,9 +62,14 @@ export default function Routes() {
 
  }, [DatVenc])
 
+ useEffect(() => {
+  VendoVersao();
+
+ }, [VersBanc])
+
 
  const inicial = ()=>{
- Api.DadosCli(Venc, setVenc, setRec, setDatVenc, setNotif, setNomeComp, setTel)
+ Api.DadosCli(Venc, setVersBanc, setVenc, setRec, setDatVenc, setNotif, setNomeComp, setTel)
 
 
  }
@@ -73,6 +79,18 @@ export default function Routes() {
     type: 'setNome',
     payload:{
       nome: Rec
+    }
+  });
+
+
+
+ }
+
+ const VendoVersao = ()=>{
+  userDispatch({
+    type: 'setVersaoBanco',
+    payload:{
+      versaoBanco: VersBanc
     }
   });
 

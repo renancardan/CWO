@@ -32,12 +32,16 @@ export const initialState = {
     IdCli:"",
     DatAti:0,
     IdReg:"",
-    versao:"1.5",
+    versao:"1.2.8",
+    versaoBanco:{},
     Noti:0
 };
 
 export const UserReducer = (state, action) => {
     switch(action.type) {
+        case 'setVersaoBanco':
+            return { ...state, versaoBanco: action.payload.versaoBanco };
+        break;
         case 'setNoti':
             return { ...state, Noti: action.payload.Noti };
         break;

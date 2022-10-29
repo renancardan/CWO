@@ -237,7 +237,7 @@ export default ({route}) => {
   }
   const tempo = ()=>{
     setdataNasc(moment().format("DD/MM/YYYY"))
-   
+    sethr(moment().format("HH:mm"))
     setDtEsc(moment().unix()*1000)
     setDataMin(moment().unix()*1000)
     setDataMax((moment().unix()*1000) + 604800000)
@@ -439,7 +439,7 @@ export default ({route}) => {
             setVerNotajogo(false);
   
           } else {
-  
+            if(ValorReal <= 1000 ){
             if(ValorReal >= 5){
               if(SimAp.length > 2){
   
@@ -489,6 +489,14 @@ export default ({route}) => {
     
     
             }
+          } else {
+            setModalCalend(true);
+            setVerNotajogo(false);
+            setAlert("R$ 1000,00 é o Maior valor que você pode aposta!");
+            setAlertTipo("danger");
+  
+  
+          }
   
           }
           
@@ -526,7 +534,7 @@ export default ({route}) => {
   
   
           } else {
-  
+            if(ValorReal <= 1000 ){
             if(ValorReal >= 5){
               if(SimAp.length > 2){
   
@@ -575,6 +583,14 @@ export default ({route}) => {
     
     
             }
+          } else {
+            setModalCalend(true);
+            setVerNotajogo(false);
+            setAlert("R$ 1000,00 é o Maior valor que você pode aposta!");
+            setAlertTipo("danger");
+  
+  
+          }
   
           }
           

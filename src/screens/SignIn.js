@@ -226,12 +226,12 @@ export default () => {
               <View  style = {styles.InputAra}>
               <FontAwesome name="user" size={40} color="black" />
              <SignInput
-                        placeholder="Digite o Nome da Conta" 
+                        placeholder="Digite Nome Completo" 
                         value={Nome}
                         onChangeText={t=>setNome(t)}
                         autoCapitalize="none"
                         keyboardType={"default"}
-                        posi={18}
+                        posi={1000}
                     /> 
                 
                        </View>

@@ -805,8 +805,20 @@ const fetchCopiedText = async () => {
             }
             
           }
+          const BaixandoPag = ()=>{
+            window.location.reload(true);
+          }
+        
+          const VerLinkMsg2 = ()=>{
+        
+            if(userState.versaoBanco.LinkMsg2 !== ""){
+              Linking.openURL(userState.versaoBanco.LinkMsg2);
+            }
+            
+          }
 
           const Atualizar = ()=>{
+            tempo();
             Pegandodados()
         //     navigation.reset({
         //      routes:[{name:"Preload"}]
@@ -1492,6 +1504,22 @@ const fetchCopiedText = async () => {
           <Text style={{margin:10, fontSize:17, color:"#000", fontWeight:"bold"}} >VENCIMENTO: {userState.data_nasc}</Text>
             </View>
 
+            }
+             {userState.versao !== userState.versaoBanco.Versao &&
+            <TouchableHighlight onPress={()=>BaixandoPag()} style={{width:370, marginBottom:5, height:120, backgroundColor:"red", borderRadius:10, padding:10, display:"flex", flexDirection:"row" }}>
+             <>
+             <FontAwesome name="download" size={80} color="#fff" />
+            <Text style={{margin:10, fontSize:15, color:"#fff"}} >{userState.versaoBanco.Msg1}</Text>
+            </>
+            </TouchableHighlight>
+            }
+            {userState.versaoBanco.Msg2 !== "" &&
+            <TouchableHighlight onPress={()=>VerLinkMsg2()} style={{width:370, height:120, backgroundColor:"#00A859", borderRadius:10, padding:10, display:"flex", flexDirection:"row" }}>
+             <>
+             <FontAwesome name="warning"  size={80} color="#fff" />
+            <Text style={{margin:10, fontSize:15, color:"#fff"}} >{userState.versaoBanco.Msg2}</Text>
+            </>
+            </TouchableHighlight>
             }
             
               <View  style={styles.AreaBtnCima}>

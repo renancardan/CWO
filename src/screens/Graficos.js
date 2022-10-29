@@ -1462,7 +1462,7 @@ export default () => {
   />
 
 <View style={{backgroundColor:"#fff", padding:10, }} >
-          <Text  style={{  fontWeight:"bold",  fontSize:20, color:"#000"  }}>Gráfico de Jogos/Nivel</Text>
+          <Text  style={{  fontWeight:"bold",  fontSize:20, color:"#000"  }}>Gráfico de Apostas/Nivel</Text>
           </View>
   <ProgressChart
   data={{

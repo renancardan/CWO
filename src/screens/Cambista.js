@@ -507,9 +507,21 @@ export default () => {
           setEnviLin(false);
           setIdApos("");
          }
+         const BaixandoPag = ()=>{
+          window.location.reload(true);
+        }
+      
+        const VerLinkMsg2 = ()=>{
+      
+          if(userState.versaoBanco.LinkMsg2 !== ""){
+            Linking.openURL(userState.versaoBanco.LinkMsg2);
+          }
+          
+        }
  
 
          const Atualizar = ()=>{
+          tempo();
           ListandoOc()
       //     navigation.reset({
       //      routes:[{name:"Preload"}]
@@ -779,7 +791,7 @@ export default () => {
   
 
     return (
-      <View style={styles.Container}>
+      <KeyboardAvoidingView style={styles.Container}>
            <Modal
             transparent={true}
             animationType="slide"
@@ -822,8 +834,15 @@ export default () => {
                   :
                   <>
                   <View  style={styles.CaixadeapostaTitulo}  >
-                  <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Criar Cliente</Text> <View  style={styles.fechaModal} ><TouchableHighlight onPress={() =>SairCriar()}><Text>X</Text></TouchableHighlight></View>
+                  <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Criar Cliente</Text> <TouchableHighlight   style={styles.fechaModal} onPress={() =>SairCriar()}><Text>X</Text></TouchableHighlight>
                   </View> 
+                  <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Regras de Cambistas:</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>1° - Digite Um Número de Whatsapp do Cliente.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>2° - Digite o Nome do Cliente.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>3° - Clique em Criar Cliente.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>4° - Ele receberá no whatsapp um link para ele poder construir sua aposta.</Text>     
+          <Text  style={{ marginLeft:10, fontSize:15  }}>4° - Ele irá construir uma apostar e aperta em concluir, e você acompanhará pela sessão Cambista.</Text>    
+          <Text  style={{ marginLeft:10, fontSize:15  }}>5° - Você pagará a aposta por aqui, ao pagar o jogo está concluido e pago, ele estará disponível na sessão jogos.</Text>  
                   <View  style = {styles.InputAra}>
                   <FontAwesome name="phone-square" size={24} color="black" />
                   
@@ -1316,6 +1335,22 @@ export default () => {
             </View>
 
             }
+              {userState.versao !== userState.versaoBanco.Versao &&
+            <TouchableHighlight onPress={()=>BaixandoPag()} style={{width:370, marginBottom:5, height:120, backgroundColor:"red", borderRadius:10, padding:10, display:"flex", flexDirection:"row" }}>
+             <>
+             <FontAwesome name="download" size={80} color="#fff" />
+            <Text style={{margin:10, fontSize:15, color:"#fff"}} >{userState.versaoBanco.Msg1}</Text>
+            </>
+            </TouchableHighlight>
+            }
+            {userState.versaoBanco.Msg2 !== "" &&
+            <TouchableHighlight onPress={()=>VerLinkMsg2()} style={{width:370, height:120, backgroundColor:"#00A859", borderRadius:10, padding:10, display:"flex", flexDirection:"row" }}>
+             <>
+             <FontAwesome name="warning"  size={80} color="#fff" />
+            <Text style={{margin:10, fontSize:15, color:"#fff"}} >{userState.versaoBanco.Msg2}</Text>
+            </>
+            </TouchableHighlight>
+            }
            
           <View  style={styles.AreaBtn}>
           
@@ -1445,7 +1480,7 @@ export default () => {
           
 
         </ImageBackground>
-      </View>
+      </KeyboardAvoidingView >
     )
 }
 

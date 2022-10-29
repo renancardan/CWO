@@ -127,9 +127,8 @@ const ExcluirImg = ()=>{
 }
 
 const EnviarImagem = ()=>{
-  setModalCalend(false);
-  setVerImg(false);
- Api.enviandoImgMsg(Img, setImg, setModalCalend, setVerImg)
+ setCarre(true)
+ Api.enviandoImgMsg(Img, setImg, setModalCalend, setVerImg, setCarre )
 
 }
 

@@ -248,7 +248,7 @@ export default () => {
     Mes1 = Mes1 < 10 ? '0'+Mes1 : Mes1;
     currentDate1 = Ano1+'-'+Mes1+'-'+Dia1;
    
-    let CompDat = moment(currentDate1+" "+hr+":00").unix();
+     let CompDat = moment(currentDate1+" "+hr+":00").unix();
    
     let Dat = CompDat * 1000;
     let Dat2 = moment().unix()*1000;
@@ -695,6 +695,7 @@ export default () => {
           }
 
           const Atualizar = ()=>{
+            
             ListandoOc()
         //     navigation.reset({
         //      routes:[{name:"Preload"}]
@@ -1418,7 +1419,7 @@ export default () => {
           {ListOc.map((item, key)=>(
            <>
             <View key={key}  style={styles.Post}>
-              <View style={{ padding:5, flexDirection:"row",  alignItems:"center", justifyContent:"space-around", height:40, width:400, borderBottomWidth:2, borderColor:"#ccc", backgroundColor: item.Aprovado === false && item.DataFin < moment().unix()*1000? "red": "#FFF",}}>
+              <View style={{ padding:5, flexDirection:"row",  alignItems:"center", justifyContent:"space-around", height:40, width:400, borderBottomWidth:2, borderColor:"#ccc", backgroundColor: item.Aprovado === false && item.DataFin < moment().unix()*1000? "red": item.Aprovado === true ? "#8BF39C" :"#FFF",}}>
                <View  style={styles.CaixaNome}>
               
                

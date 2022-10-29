@@ -1,6 +1,6 @@
 
 import React, { Component, useState,  useContext, useEffect, useRef } from 'react'
-import {Modal, Text,FlatList, View, StyleSheet, ImageBackground, Image, Button, TouchableHighlight, KeyboardAvoidingView, ScrollView } from 'react-native'
+import {Modal, Linking, Text,FlatList, View, StyleSheet, ImageBackground, Image, Button, TouchableHighlight, KeyboardAvoidingView, ScrollView } from 'react-native'
 import {FontAwesome} from "@expo/vector-icons";
 import { ModalDatePicker } from "react-native-material-date-picker";
 import Hora from '../components/Hora';
@@ -202,6 +202,7 @@ export default () => {
   }
   const tempo = ()=>{
     setdataNasc(moment().format("DD/MM/YYYY"))
+    sethr(moment().format("HH:mm"))
    
     setDtEsc(moment().unix()*1000)
     setDataMin(moment().unix()*1000)
@@ -265,7 +266,10 @@ export default () => {
     function isCherries(fruit) {
       return fruit.IdCasa === item3.idCasaOlds;
   }
+    
     var dei = new Date().getTime()/1000
+    console.log(dei)
+    console.log(item.dataJogo)
    if(dei < item.dataJogo){
     var ListSimu = {
       IdCasa:item3.idCasaOlds,  
@@ -302,6 +306,19 @@ export default () => {
   //  console.log(item3)
   //  console.log(item)
   }
+  
+  const BaixandoPag = ()=>{
+    window.location.reload(true);
+  }
+
+  const VerLinkMsg2 = ()=>{
+
+    if(userState.versaoBanco.LinkMsg2 !== ""){
+      Linking.openURL(userState.versaoBanco.LinkMsg2);
+    }
+    
+  }
+
 
   const Caulc = ()=>{
     var tre = 1
@@ -402,8 +419,8 @@ export default () => {
             setVerNotajogo(false);
   
           } else {
-  
-            if(ValorReal >= 5){
+            if(ValorReal <= 1000 ){
+            if(ValorReal >= 5 ){
               if(SimAp.length > 2){
   
                  if(Cambis === false){
@@ -451,6 +468,14 @@ export default () => {
     
     
             }
+          } else {
+            setModalCalend(true);
+            setVerNotajogo(false);
+            setAlert("R$ 1000,00 é o Maior valor que você pode aposta!");
+            setAlertTipo("danger");
+  
+  
+          }
   
           }
           
@@ -488,7 +513,7 @@ export default () => {
   
   
           } else {
-  
+            if(ValorReal <= 1000 ){
             if(ValorReal >= 5){
               if(SimAp.length > 2){
   
@@ -536,7 +561,15 @@ export default () => {
               setAlertTipo("danger");
     
     
-            }
+            } 
+          } else {
+            setModalCalend(true);
+            setVerNotajogo(false);
+            setAlert("R$ 1000,00 é o Maior valor que você pode aposta!");
+            setAlertTipo("danger");
+  
+  
+          }
   
           }
           
@@ -1006,6 +1039,8 @@ export default () => {
 
            </View>
             </View >
+           
+           
             {AbMoney === true &&
              <View style={styles.TextInforma}>
              <Text style={{margin:10, fontSize:17, color:"green", fontWeight:"bold"}} >RECEBER: R${userState.nome.toFixed(2)}</Text>
@@ -1020,6 +1055,22 @@ export default () => {
           <Text style={{margin:10, fontSize:17, color:"#000", fontWeight:"bold"}} >VENCIMENTO: {userState.data_nasc}</Text>
             </View>
 
+            }
+             {userState.versao !== userState.versaoBanco.Versao &&
+            <TouchableHighlight onPress={()=>BaixandoPag()} style={{width:370, marginBottom:5, height:120, backgroundColor:"red", borderRadius:10, padding:10, display:"flex", flexDirection:"row" }}>
+             <>
+             <FontAwesome name="download" size={80} color="#fff" />
+            <Text style={{margin:10, fontSize:15, color:"#fff"}} >{userState.versaoBanco.Msg1}</Text>
+            </>
+            </TouchableHighlight>
+            }
+            {userState.versaoBanco.Msg2 !== "" &&
+            <TouchableHighlight onPress={()=>VerLinkMsg2()} style={{width:370, height:120, backgroundColor:"#00A859", borderRadius:10, padding:10, display:"flex", flexDirection:"row" }}>
+             <>
+             <FontAwesome name="warning"  size={80} color="#fff" />
+            <Text style={{margin:10, fontSize:15, color:"#fff"}} >{userState.versaoBanco.Msg2}</Text>
+            </>
+            </TouchableHighlight>
             }
            
           <View  style={styles.AreaBtn}>

@@ -731,7 +731,20 @@ export default () => {
             
           }
 
+          const BaixandoPag = ()=>{
+            window.location.reload(true);
+          }
+        
+          const VerLinkMsg2 = ()=>{
+        
+            if(userState.versaoBanco.LinkMsg2 !== ""){
+              Linking.openURL(userState.versaoBanco.LinkMsg2);
+            }
+            
+          }
+
           const Atualizar = ()=>{
+            tempo();
             ListandoOc();
         //     navigation.reset({
         //      routes:[{name:"Preload"}]
@@ -862,7 +875,7 @@ export default () => {
                       <Text  style={{ marginLeft:10, fontSize:15  }}>R${(NomeCli/100).toFixed(2)}</Text>
                     {CodG === false?
                         <>
-                          <View  style = {styles.InputAra}>
+                          <KeyboardAvoidingView style = {styles.InputAra}>
                    <FontAwesome name="ticket" size={24} color="black" />
                    
                    
@@ -875,7 +888,7 @@ export default () => {
                        posi={18}
                    />
                   
-                   </View>
+                   </KeyboardAvoidingView>
                    {QCash < NomeCli  &&
                   <Text  style={{ marginLeft:10, fontSize:15, color:"red"  }}>Seu Saldo de Cash Não é suficiente, para essa Transferência!</Text> 
                    }
@@ -920,7 +933,7 @@ export default () => {
                       {Tentativa < 3 &&
                                   <>
                                    <Text  style={{ marginLeft:10, fontSize:15  }}>Seu Código foi enviado para o Whatsapp</Text> 
-                                   <View  style = {styles.InputAra}>
+                                   <KeyboardAvoidingView  style = {styles.InputAra}>
                    <FontAwesome name="expeditedssl" size={40} color="black" />           
                           <SignInputCod
                               placeholder="Digite o Código" 
@@ -929,7 +942,7 @@ export default () => {
                               autoCapitalize="none"
                               keyboardType={"numeric"}
                           />
-                   </View>
+                   </KeyboardAvoidingView>
                     <TouchableHighlight style={{width:150, height:50, backgroundColor:"#1ED31A", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>SacarCash()}>
                         <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Sacar </Text>
                       </TouchableHighlight>
@@ -1448,6 +1461,7 @@ export default () => {
 
            </View>
             </View >
+        
             {AbMoney === true &&
              <View style={styles.TextInforma}>
              <Text style={{margin:10, fontSize:17, color:"green", fontWeight:"bold"}} >RECEBER: R${userState.nome.toFixed(2)}</Text>
@@ -1462,6 +1476,22 @@ export default () => {
           <Text style={{margin:10, fontSize:17, color:"#000", fontWeight:"bold"}} >VENCIMENTO: {userState.data_nasc}</Text>
             </View>
 
+            }
+                {userState.versao !== userState.versaoBanco.Versao &&
+            <TouchableHighlight onPress={()=>BaixandoPag()} style={{width:370, marginBottom:5, height:120, backgroundColor:"red", borderRadius:10, padding:10, display:"flex", flexDirection:"row" }}>
+             <>
+             <FontAwesome name="download" size={80} color="#fff" />
+            <Text style={{margin:10, fontSize:15, color:"#fff"}} >{userState.versaoBanco.Msg1}</Text>
+            </>
+            </TouchableHighlight>
+            }
+            {userState.versaoBanco.Msg2 !== "" &&
+            <TouchableHighlight onPress={()=>VerLinkMsg2()} style={{width:370, height:120, backgroundColor:"#00A859", borderRadius:10, padding:10, display:"flex", flexDirection:"row" }}>
+             <>
+             <FontAwesome name="warning"  size={80} color="#fff" />
+            <Text style={{margin:10, fontSize:15, color:"#fff"}} >{userState.versaoBanco.Msg2}</Text>
+            </>
+            </TouchableHighlight>
             }
             <View style={{ backgroundColor:"#fff", margin:10, borderRadius: 5, padding:5  }} > 
             <Text  style={{  fontWeight:"bold",  fontSize:20, color:"#000",}}>Cash {QCash}</Text>

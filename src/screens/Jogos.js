@@ -120,11 +120,11 @@ export default () => {
    }, [Concluir])
 
    useEffect(() => {
-    if(SimAp.length !== 0){
+    if(SimAp.length !== 0 && Pago === true){
       AnalisandoOlds();
     }
  
-   }, [SimAp])
+   }, [SimAp, Pago])
 
    useEffect(() => {
     console.log(SimAp)
@@ -404,7 +404,7 @@ export default () => {
             setTelCam("");
            setTelCli("");
            setNomeCli("")
-           setPago("");
+           setPago(false);
            setConcluir("");
            setValPreDemos("");
            setValorReal("");
@@ -427,6 +427,17 @@ export default () => {
           setModalCalend(false);
           setVerNotajogo(false);
           setCriarCli(false)
+        }
+        const BaixandoPag = ()=>{
+          window.location.reload(true);
+        }
+      
+        const VerLinkMsg2 = ()=>{
+      
+          if(userState.versaoBanco.LinkMsg2 !== ""){
+            Linking.openURL(userState.versaoBanco.LinkMsg2);
+          }
+          
         }
 
         const AposCambis = ()=>{
@@ -455,7 +466,7 @@ export default () => {
             setVerNotajogo(false);
   
           } else {
-  
+            if(ValorReal <= 1000 ){
             if(ValorReal >= 5){
               if(SimAp.length > 2){
   
@@ -504,6 +515,14 @@ export default () => {
     
     
             }
+          } else {
+            setModalCalend(true);
+            setVerNotajogo(false);
+            setAlert("R$ 1000,00 é o Maior valor que você pode aposta!");
+            setAlertTipo("danger");
+  
+  
+          }
   
           }
           
@@ -551,7 +570,7 @@ export default () => {
   
   
           } else {
-  
+            if(ValorReal <= 1000 ){
             if(ValorReal >= 5){
               if(SimAp.length > 2){
   
@@ -600,6 +619,14 @@ export default () => {
     
     
             }
+          } else {
+            setModalCalend(true);
+            setVerNotajogo(false);
+            setAlert("R$ 1000,00 é o Maior valor que você pode aposta!");
+            setAlertTipo("danger");
+  
+  
+          }
   
           }
           
@@ -714,6 +741,7 @@ export default () => {
           }
 
           const Atualizar = ()=>{
+            tempo();
             ListandoOc();
         //     navigation.reset({
         //      routes:[{name:"Preload"}]
@@ -778,7 +806,7 @@ export default () => {
             setTelCam("");
            setTelCli("");
            setNomeCli("")
-           setPago("");
+           setPago(false);
            setConcluir("");
            setValPreDemos("");
            setValorReal("");
@@ -1227,9 +1255,14 @@ export default () => {
                            {AproPag=== true &&
                           <>
                           {Premio === false ?
-                           <TouchableHighlight style={{width:150, height:50, backgroundColor:"#E77E1E", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>PagarDinheiro()}>
-                           <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Receber Prêmio</Text>
-                         </TouchableHighlight>
+                          <>
+                          {Pago === true &&
+                          <TouchableHighlight style={{width:150, height:50, backgroundColor:"#E77E1E", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>PagarDinheiro()}>
+                          <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Receber Prêmio</Text>
+                          </TouchableHighlight>
+                          }
+                         
+                         </>
                          :
                          <Text  style={{ marginLeft:10, fontSize:17, color:"#000"  }}>Premio Enviado Para Pagamento</Text>
                           } 
@@ -1369,6 +1402,22 @@ export default () => {
             </View>
 
             }
+             {userState.versao !== userState.versaoBanco.Versao &&
+            <TouchableHighlight onPress={()=>BaixandoPag()} style={{width:370, marginBottom:5, height:120, backgroundColor:"red", borderRadius:10, padding:10, display:"flex", flexDirection:"row" }}>
+             <>
+             <FontAwesome name="download" size={80} color="#fff" />
+            <Text style={{margin:10, fontSize:15, color:"#fff"}} >{userState.versaoBanco.Msg1}</Text>
+            </>
+            </TouchableHighlight>
+            }
+            {userState.versaoBanco.Msg2 !== "" &&
+            <TouchableHighlight onPress={()=>VerLinkMsg2()} style={{width:370, height:120, backgroundColor:"#00A859", borderRadius:10, padding:10, display:"flex", flexDirection:"row" }}>
+             <>
+             <FontAwesome name="warning"  size={80} color="#fff" />
+            <Text style={{margin:10, fontSize:15, color:"#fff"}} >{userState.versaoBanco.Msg2}</Text>
+            </>
+            </TouchableHighlight>
+            }
            
           <View  style={styles.AreaBtn}>
           
@@ -1420,7 +1469,7 @@ export default () => {
           {Lista.map((item, key)=>(
            <>
             <View  style={styles.Post}>
-              <View style={{ padding:5, flexDirection:"row",  alignItems:"center", justifyContent:"space-around", height:60, width:400, borderBottomWidth:2, borderColor:"#ccc", backgroundColor:item.Cambista === false? "#fff":"#DCA2E1",}}>
+              <View style={{ padding:5, flexDirection:"row",  alignItems:"center", justifyContent:"space-around", height:70, width:400, borderBottomWidth:2, borderColor:"#ccc", backgroundColor:item.Cambista === false? "#fff":"#8BF39C",}}>
                <View  style={styles.CaixaNome}>
                {item.Cambista === false ?
                 <Text style={styles.Time}>Prêmio: R${item.ValPreDemos}</Text>
@@ -1445,7 +1494,6 @@ export default () => {
                     </>
                   :
                   <>
-                   <Text style={styles.Time}>Aprovado</Text>
                    <Text style={styles.Time}>Aprovado</Text>
                    {item.PremioPago === false ?
                   <Text style={styles.Time}>Receber Prêmio</Text>

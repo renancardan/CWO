@@ -1039,7 +1039,17 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
             .update({
               PremioPago:true,
             });
-
+            
+            await firestore.collection("Premios")
+            .add({
+              IdUser: IdUser,
+              DateDinheiro:new Date().getTime(),
+              IdApos: IdApos,
+              ValorPremi:din,
+          })
+          .then((docRef) => {
+              console.log("Document written with ID: ", docRef.id);
+          })
         
             await firestore.collection("users").doc(IdUser)
             .update({
@@ -1262,20 +1272,13 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
       var Nome = ""
       var tel = await AsyncStorage.getItem('Tel');
       var time = await AsyncStorage.getItem('@entrada');
+      var IdUser = await AsyncStorage.getItem('@Id');
       var temp = parseInt(time)
-      await firestore.collection("users")
-      .where("Telefone", "==", tel)
-      .where("DataEntCel", "==", temp)
-      .get().then( async(querySnapshot) => {
-     
-        if(querySnapshot.size !== 0){
-          querySnapshot.forEach( async (doc) => {
-            IdUser = doc.id,
-            Nome = doc.data().Nome
-            });
+    
        
+       console.log(IdUser)
              await firestore.collection("BancoWhats")
-               .where("idUser", "==", IdUser)
+               .where("IdUser", "==", IdUser)
                .orderBy("Aprovado", "desc")
                .onSnapshot((querySnapshot) => {
 
@@ -1321,14 +1324,7 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
        
                  });
    
-                } else {
-                  setAlert("Ouve um erro na Sua Conta Você Não Esta Logado")
-                  setAlertTipo("danger")
-                  setVerNotajogo(false)
-                  setModalCalend(true)
-                  setCarre(false);
-                }
-              })  
+              
              
            
       
@@ -2339,7 +2335,7 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
            
            },
 
-         DadosCli:async (Venc, setVenc, setRec, setDatVenc, setNotif, setNomeComp, setTel)=>{
+         DadosCli:async (Venc, setVersBanc, setVenc, setRec, setDatVenc, setNotif, setNomeComp, setTel)=>{
           var tel = await AsyncStorage.getItem('Tel');
           var time = await AsyncStorage.getItem('@entrada');
           var IdUser = await AsyncStorage.getItem('@Id');
@@ -2371,6 +2367,13 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
                  setTel(doc.data().Telefone)
               
             })
+
+            await firestore.collection("Vesao")
+            .doc("jCzDYjLxyhae1FJE3KS9")
+             .onSnapshot((doc2) => {
+              setVersBanc(doc2.data())
+
+             })
              
                 
            
@@ -2551,7 +2554,7 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
         
   },
 
-  enviandoImgMsg: async (Img, setImg, setModalCalend, setVerImg) => {
+  enviandoImgMsg: async (Img, setImg, setModalCalend, setVerImg, setCarre) => {
     let tempVenc = new Date().getTime() + 86400000;
     var IdUser = ""
     var Nome = ""
@@ -2615,6 +2618,7 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
     setModalCalend(false);
     setImg("");
     setVerImg("");
+    setCarre(false);
   }).catch((error) => {
       console.log("Transaction failed: ", error);
   });
