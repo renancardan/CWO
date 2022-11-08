@@ -323,9 +323,58 @@ export default () => {
           <View  style={styles.CaixadeapostaTitulo}  >         
           <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Regras PixBetCash</Text> <TouchableHighlight  style={styles.fechaModal} onPress={() =>FecharModal()}><Text>X</Text></TouchableHighlight>
           </View>
-          <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Sumário das Regras:</Text>
-          <Text  style={{ marginLeft:10, fontSize:15  }}>1° - Como Apostar</Text>
-              
+          <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Regras de Indicação</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- O responsável pela indicação ganhará comissão nas apostas do seus indicados, o valor da comissão corresponde pelo Nível da Rede de Indicação. A Rede de Indicação tem 4 Níveis.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- Para você ganhar suas comissões é necessário que sua conta não esteja vencida, caso queira saber como manter sua conta atualizada vá para Regras de Vencimento da Conta.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>1.	Nível 1 da Rede de Indicação </Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>  1.1.	Na sua Rede de Indicação o Nível 1 representa você.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>  1.2.	Cada Aposta que o Nível 1 fizer na PixBetCash, você ganhará uma comissão.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>  1.3.	O valor da comissão é referente ao valor da Aposta, a cada 1 real da aposta você ganha 9 cash</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>  1.4.	Exemplo: Nível 1 fez uma aposta no valor R$ 25,00 , se a cada R$ 1,00 você ganha 9 cash, nessa aposta você ganhou 225 cash que representa R$ 2,25 de comissão, que poderá ser sacado no financeiro do aplicativo. </Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>2.	Nível 2 da Rede de Indicação</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>  2.1.	Na sua Rede de Indicação o Nível 2 representa quem Você Indicou para o Aplicativo da PixBetCash.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>  2.2.	Cada Aposta que o Nível 2 fizer na PixBetCash, você ganhará uma comissão.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>  2.3.	O valor da comissão é referente ao valor da Aposta, a cada 1 real da aposta você ganha 6 cash</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>  2.4.	Exemplo: Nível 2 fez uma aposta no valor R$ 25,00 , se a cada R$ 1,00 você ganha 6 cash, nessa aposta você ganhou 150 cash que representa R$ 1,50 de comissão, que poderá ser sacado no financeiro do aplicativo.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>3.	Nível 3 da Rede de Indicação</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>  3.1.	Na sua Rede de Indicação o Nível 3 representa quem o Nível 2 indicou para o Aplicativo da PixBetCash.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>  3.2.	Cada Aposta que o Nível 3 fizer na PixBetCash, você ganhará uma comissão.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>  3.3.	O valor da comissão é referente ao valor da Aposta, a cada 1 real da aposta você ganha 3 cash</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>  3.4.	Exemplo: Nível 3 fez uma aposta no valor R$ 25,00 , se a cada R$ 1,00 você ganha 3 cash, nessa aposta você ganhou 75 cash que representa R$ 0,75 de comissão, que poderá ser sacado no financeiro do aplicativo. </Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>4.	 Nível 4 da Rede de Indicação</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>  4.1.	Na sua Rede de Indicação o Nível 4 representa quem o Nível 3 indicou para o Aplicativo da PixBetCash.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>  4.2.	Cada Aposta que o Nível 4 fizer na PixBetCash, você ganhará uma comissão.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>  4.3.	O valor da comissão é referente ao valor da Aposta, a cada 1 real da aposta você ganha 1 cash</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>  4.4.	Exemplo: Nível 4 fez uma aposta no valor R$ 25,00 , se a cada R$ 1,00 você ganha 1 cash, nessa aposta você ganhou 25 cash que representa R$ 0,25 de comissão, que poderá ser sacado no financeiro do aplicativo. </Text>
+          <Image source={require('../assets/redeind.png')}  style={styles.ImageVer10 } />
+          <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Regras de Vencimento da Conta</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- Para que você possa ganha comissões da sua Rede de Indicação é necessário que sua conta da PixBetCash não esteja vencida.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- Você acompanhará o Vencimento da sua Conta clicando no Calendário que está no topo do Aplicativo do lado Direito. Se o calendário estive com V vermelho ela está vencida.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- Para não deixar sua conta vencida, você tem que atualizar sua conta fazendo apostas na sua conta PixBetCash.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- A cada 1 real apostado, a data de vencimento da conta aumentará um dia.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- Exemplo:  A sua data de vencimento é: 02/10/2017 --- Se você apostou R$ 20,00, a sua Data de Vencimento da Conta vai aumentar mais 20 dias, no entanto a data de vencimento ficará em 22/10/2017</Text>
+          <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Regras de Aposta</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- Na Aposta da PixBetCash tem os Jogos e as Cotações de cada Jogo.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- Você só poderá apostar em uma cotação por jogo</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- Você não poderá apostar em jogos que já começaram</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- Você só poderá concluir a aposta se escolher no mínimo 3 palpites </Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- O Mínimo do valor apostado são R$ 5,00 </Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- O Máximo do valor apostado são R$ 1000,00  </Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- Todos os jogos com suas Cotações estarão analisados até as 12 horas do dia seguinte em que foi realizado o jogo do determinado Campeonato. Sendo assim o Botão para receber o prêmio só será liberado depois das analises das cotações dos jogos. </Text>
+          <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Regras de Cambista</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- Cada aposta feita por cambista você receberá os ganhos do Nível 1 da Rede de Indicação, mais informações nas Regras de Indicação.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- A Nota da Aposta feita pelo Cambista será enviado para o WhatsApp do Cliente</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- O Cambista terá direito de 10% do prêmio ganhado pela aposta do cliente, essa regra será informada na nota enviada para o WhatsApp do Cliente. </Text>
+          <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Regras do Recebimento de Pagamentos</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- No topo do Aplicativo estará informando o Valor que será transferido via Pix para sua conta do Banco.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- Em 72 horas o Dinheiro estará em sua conta</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- O Valor Mínimo para Saque é de R$ 10,00</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- O Nome da Sua Conta da PixBetCash tem que ser o mesmo nome que aparecerá na sua conta de transferência Pix, quando efetuarmos a transferência via Pix com segurança</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- O Número do WhatsApp que está Registrado da sua Conta PixBetCash tem que ser o Mesmo da Chave Pix, para que a empresa possa transferir com segurança.</Text>
+          <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Regras de Notificações</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>-O tempo De resposta de Suas Perguntas nas notificações do Aplicativo será de até no Máximo 24 horas.</Text>
+         
+          
               </>
               :
               <>
@@ -1343,5 +1392,9 @@ AreaBtnCima :{
           ImageVer2: {
             width:  40,
             height: 40, 
-          }, 
+          },
+          ImageVer10: {
+            width:  300,
+            height: 160, 
+          },  
 });

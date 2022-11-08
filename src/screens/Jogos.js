@@ -94,6 +94,7 @@ export default () => {
   const [AproPag, setAproPag] = useState(false);
   const [StatusAp, setStatusAp] = useState([]);
   const [AnliAp, setAnliAp] = useState(false);
+  const [open, setOpen] = useState(true);
  
   useEffect(() => {
     if(dataNasc !== null){
@@ -256,15 +257,28 @@ export default () => {
     // setDaExFin(currentDate)
   }
 
+  const AbrindoClend = ()=>{
+    setModalCalend(true);
+    setOpen(true);
+  }
+
+  const FecharCalend = ()=>{
+    setModalCalend(false);
+    setOpen(false);
+  }
+
   const Mudedate = (date)=>{
+    console.log("entrou data")
+    console.log(date.date)
     setModalCalend(false)
+    setOpen(false);
     setdataNasc("")
     let currentDate = "";
-    let now25 =date.getTime();
+    let now25 =date.date.getTime();
     setDtEsc(now25)
-    let Dia = date.getDate();
-    let Mes = (date.getMonth()+1);
-    let Ano = date.getFullYear();
+    let Dia = date.date.getDate();
+    let Mes = (date.date.getMonth()+1);
+    let Ano = date.date.getFullYear();
     Dia = Dia < 10 ? '0'+Dia : Dia;
     Mes = Mes < 10 ? '0'+Mes : Mes;
     currentDate = Dia+'/'+Mes+'/'+Ano;
@@ -942,59 +956,17 @@ export default () => {
                <TouchableHighlight onPress={()=>setModalCalend(false)} style={styles.CalendBtn}>
                   <Text style={styles.CalendTexSim}>Fechar</Text>
                  </TouchableHighlight>
-                 <Calendar
-                onChange={(range) => console.log(range)}
-                onPress={(range1) => Mudedate(range1)}
-                minDate={new Date(2018, 3, 20)}
-                startDate={new Date(2018, 3, 30)}
-                endDate={new Date(2018, 4, 5)}
-                dayNames={['D', 'S', "T", "Q", "Q", "S", "S"]}
-                monthNames={['Janeiro', 'Fevereiro', "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]}
-                locale={'pt'}
-                theme={{
-              activeDayColor: {},
-              monthTitleTextStyle: {
-                color: '#6d95da',
-                fontWeight: '300',
-                fontSize: 16,
-              },
-              emptyMonthContainerStyle: {},
-              emptyMonthTextStyle: {
-                fontWeight: '300',
-              },
-              weekColumnsContainerStyle: {},
-              weekColumnStyle: {
-                paddingVertical: 10,
-              },
-              weekColumnTextStyle: {
-                color: '#b6c1cd',
-                fontSize: 13,
-              },
-              nonTouchableDayContainerStyle: {},
-              nonTouchableDayTextStyle: {},
-              startDateContainerStyle: {},
-              endDateContainerStyle: {},
-              dayContainerStyle: {},
-              dayTextStyle: {
-                color: '#2d4150',
-                fontWeight: '300',
-                fontSize: 15,
-              },
-              dayOutOfRangeContainerStyle: {},
-              dayOutOfRangeTextStyle: {},
-              todayContainerStyle: {},
-              todayTextStyle: {
-                color: '#6d95da',
-              },
-              activeDayContainerStyle: {
-                backgroundColor: '#6d95da',
-              },
-              activeDayTextStyle: {
-                color: 'white',
-              },
-              nonTouchableLastMonthDayTextStyle: {},
-            }}
-          />
+                 <DatePickerModal
+                  locale="pt"
+                  mode="single"
+                  visible={open}
+                  onDismiss={FecharCalend}
+                  date={new Date(DtEsc)}
+                  saveLabelDisabled={true} 
+                  onChange={(range1) => Mudedate(range1)}
+                editIcon={false} // optional, default is "pencil"
+                
+                />
               
                  {/* <TouchableHighlight style={styles.ModVieBtnBtn}>
                   <Text style={styles.ModVieTexNao}>Não</Text>
@@ -1264,7 +1236,11 @@ export default () => {
                          
                          </>
                          :
+                         <>
+                           <Text  style={{ marginLeft:10, fontSize:15  }}>1° - O Nome da sua Conta da PixBetCash tem que ser o mesmo nome que aparecerá na sua conta de transferência Pix, quando efetuarmos a transferência via Pix</Text>
+                           <Text  style={{ marginLeft:10, fontSize:15  }}>2° - O Numéro do Whatsapp Que está Registrado Tem que Ser o Mesmo Da Chave Pix, aonde A Empresa fará a trasnferencia dos seus pagamentos.</Text>
                          <Text  style={{ marginLeft:10, fontSize:17, color:"#000"  }}>Premio Enviado Para Pagamento</Text>
+                         </> 
                           } 
                           </>
 
@@ -1432,7 +1408,7 @@ export default () => {
                        <View  style={styles.AreaBtn4}>
                        <FontAwesome name="calendar" size={20} color="black" />
             </View>
-            <TouchableHighlight onPress={()=>setModalCalend(true)}  style={styles.AreaBtn3}>
+            <TouchableHighlight onPress={()=>AbrindoClend()}  style={styles.AreaBtn3}>
             <View style={styles.modalView3}><Text  style={styles.modalText6}> {dataNasc} </Text></View>
           {/* <ModalDatePicker
                 button={<View style={styles.modalView3}><Text  style={styles.modalText6}> {dataNasc} </Text></View>} 

@@ -32,7 +32,7 @@ export const initialState = {
     IdCli:"",
     DatAti:0,
     IdReg:"",
-    versao:"1.2.8",
+    versao:"1.3.1",
     versaoBanco:{},
     Noti:0
 };

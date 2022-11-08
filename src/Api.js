@@ -1043,6 +1043,7 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
             await firestore.collection("Premios")
             .add({
               IdUser: IdUser,
+              Tel:tel,
               DateDinheiro:new Date().getTime(),
               IdApos: IdApos,
               ValorPremi:din,
@@ -3306,6 +3307,18 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
                   Dinheiro:diner,
                   DateDinheiro:new Date().getTime(),
                 });
+
+                await firestore.collection("Cash")
+                .add({
+                  IdUser: IdUser,
+                  Tel:tel,
+                  DateDinheiro:new Date().getTime(),
+                  Valor:din,
+              })
+              .then((docRef) => {
+                  console.log("Document written with ID: ", docRef.id);
+              })
+            
               
                   setNomeCli("");
                   setTelCli("");

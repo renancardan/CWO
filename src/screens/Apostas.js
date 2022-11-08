@@ -80,6 +80,7 @@ export default () => {
   const [AdrirMais, setAdrirMais] = useState("");
   const [AbMoney, setAbMoney] = useState(false);
   const [AbVenc, setAbVenc] = useState(false);
+  const [open, setOpen] = useState(true);
    console.log(userState.nome)
   useEffect(() => {
     if(dataNasc !== null){
@@ -182,11 +183,13 @@ export default () => {
 
     let Dat = CompDat * 1000;
     let Dat2 =moment(currentDate1+" 23:59:00.000").unix()*1000;
-  
-    if(Dat < Dat2){
-    setCarreg(true)
-    Api.ListJogos( Page, setListOc, setCarreg,  Dat, Dat2, );
-  } 
+    // if(Dat >= moment().unix()*1000 ){
+      if(Dat < Dat2){
+        setCarreg(true)
+        Api.ListJogos( Page, setListOc, setCarreg,  Dat, Dat2, );
+      } 
+   //  }
+   
     
   }
 
@@ -222,15 +225,28 @@ export default () => {
     // setDaExFin(currentDate)
   }
 
+  const AbrindoClend = ()=>{
+    setModalCalend(true);
+    setOpen(true);
+  }
+
+  const FecharCalend = ()=>{
+    setModalCalend(false);
+    setOpen(false);
+  }
+
   const Mudedate = (date)=>{
+    console.log("entrou data")
+    console.log(date.date)
     setModalCalend(false)
+    setOpen(false);
     setdataNasc("")
     let currentDate = "";
-    let now25 =date.getTime();
+    let now25 =date.date.getTime();
     setDtEsc(now25)
-    let Dia = date.getDate();
-    let Mes = (date.getMonth()+1);
-    let Ano = date.getFullYear();
+    let Dia = date.date.getDate();
+    let Mes = (date.date.getMonth()+1);
+    let Ano = date.date.getFullYear();
     Dia = Dia < 10 ? '0'+Dia : Dia;
     Mes = Mes < 10 ? '0'+Mes : Mes;
     currentDate = Dia+'/'+Mes+'/'+Ano;
@@ -262,14 +278,18 @@ export default () => {
    }
 
    const ColocarNota=( item3, item)=>{
-
+    console.log(item)
+    console.log(item3)
     function isCherries(fruit) {
       return fruit.IdCasa === item3.idCasaOlds;
   }
+
+  function Vertr(frai) {
+    return frai.IdJogo === item.id;
+}
     
     var dei = new Date().getTime()/1000
-    console.log(dei)
-    console.log(item.dataJogo)
+ 
    if(dei < item.dataJogo){
     var ListSimu = {
       IdCasa:item3.idCasaOlds,  
@@ -284,7 +304,9 @@ export default () => {
       Estadio:item.Estadio,
       dataJogo:item.dataJogo,
       liga:item.liga,
+      IdJogo:item.id,
     } 
+
     if(SimAp.find(isCherries)){
      
       setAlert("Cotação repetida não pode, você já escolheu essa Cotação!");
@@ -293,9 +315,23 @@ export default () => {
       setVerNotajogo(false);
 
     }else {
+
+      if(SimAp.find(Vertr)){
+     
+        setAlert("Você já escolheu a uma contação desse jogo, e não pode escolher 2 cotações do mesmo jogo, caso queira escolher outra cotação do mesmo jogo apague a Cotação passada!");
+        setAlertTipo("danger");
+        setModalCalend(true);
+        setVerNotajogo(false);
+
+    }else {
+
       console.log(ListSimu)
       setSimAp([...SimAp, ListSimu ])
+
     }
+
+    }
+  
   } else {
     setAlert("Esse Jogo não está mais disponivel !");
     setAlertTipo("danger");
@@ -651,59 +687,17 @@ export default () => {
                <TouchableHighlight onPress={()=>setModalCalend(false)} style={styles.CalendBtn}>
                   <Text style={styles.CalendTexSim}>Fechar</Text>
                  </TouchableHighlight>
-                 <Calendar
-                onChange={(range) => console.log(range)}
-                onPress={(range1) => Mudedate(range1)}
-                minDate={new Date(DataMin)}
-                maxDate={new Date(DataMax)}
-                startDate={new Date(DtEsc)}
-                //endDate={new Date(2018, 4, 5)}
-                dayNames={['D', 'S', "T", "Q", "Q", "S", "S"]}
-                locale={'pt'}
-                theme={{
-              activeDayColor: {},
-              monthTitleTextStyle: {
-                color: '#6d95da',
-                fontWeight: '300',
-                fontSize: 16,
-              },
-              emptyMonthContainerStyle: {},
-              emptyMonthTextStyle: {
-                fontWeight: '300',
-              },
-              weekColumnsContainerStyle: {},
-              weekColumnStyle: {
-                paddingVertical: 10,
-              },
-              weekColumnTextStyle: {
-                color: '#b6c1cd',
-                fontSize: 13,
-              },
-              nonTouchableDayContainerStyle: {},
-              nonTouchableDayTextStyle: {},
-              startDateContainerStyle: {},
-              endDateContainerStyle: {},
-              dayContainerStyle: {},
-              dayTextStyle: {
-                color: '#2d4150',
-                fontWeight: '300',
-                fontSize: 15,
-              },
-              dayOutOfRangeContainerStyle: {},
-              dayOutOfRangeTextStyle: {},
-              todayContainerStyle: {},
-              todayTextStyle: {
-                color: '#6d95da',
-              },
-              activeDayContainerStyle: {
-                backgroundColor: '#6d95da',
-              },
-              activeDayTextStyle: {
-                color: 'white',
-              },
-              nonTouchableLastMonthDayTextStyle: {},
-            }}
-          />
+                 <DatePickerModal
+        locale="pt"
+        mode="single"
+        visible={open}
+        onDismiss={FecharCalend}
+        date={new Date(DtEsc)}
+        saveLabelDisabled={true} 
+        onChange={(range1) => Mudedate(range1)}
+       editIcon={false} // optional, default is "pencil"
+      
+      />
               
                  {/* <TouchableHighlight style={styles.ModVieBtnBtn}>
                   <Text style={styles.ModVieTexNao}>Não</Text>
@@ -1086,7 +1080,7 @@ export default () => {
                        <View  style={styles.AreaBtn4}>
                        <FontAwesome name="calendar" size={20} color="black" />
             </View>
-            <TouchableHighlight onPress={()=>setModalCalend(true)}  style={styles.AreaBtn3}>
+            <TouchableHighlight onPress={()=>AbrindoClend()}  style={styles.AreaBtn3}>
             <View style={styles.modalView3}><Text  style={styles.modalText6}> {dataNasc} </Text></View>
           {/* <ModalDatePicker
                 button={<View style={styles.modalView3}><Text  style={styles.modalText6}> {dataNasc} </Text></View>} 
@@ -4074,7 +4068,7 @@ export default () => {
          }
          
          <FontAwesome name="th-list" size={24} color="#fff" />
-         <Text style={{color:"#fff", fontSize:10}}>Jogos</Text>
+         <Text style={{color:"#fff", fontSize:10}}>Nota</Text>
          </>
           </TouchableHighlight>   
 
@@ -4107,7 +4101,7 @@ const styles = StyleSheet.create({
   ModVie: {
     backgroundColor: "#FFF",
     width:200,
-    height:100,
+ 
     borderRadius:20,
     justifyContent: "center",
     alignItems: "center",
@@ -4115,7 +4109,7 @@ const styles = StyleSheet.create({
   },
   ModVieTex: {
     width:180,
-    height:70,
+    margin:10,
     justifyContent: "center",
     alignItems: "center",
   },
