@@ -88,7 +88,7 @@ export default () => {
   const [TelCam, setTelCam] = useState("");
   const [Pago, setPago] = useState(false);
   const [EnviLin, setEnviLin] = useState(false);
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
  
   useEffect(() => {
     if(dataNasc !== null){
@@ -413,7 +413,7 @@ export default () => {
            setQCash("");
            setIdApos("");
            setQuanJog("");
-           
+           setPgCash(false)
            setCambis(true);
            setVCash("");
          
@@ -1086,7 +1086,7 @@ export default () => {
                         </>
                         :
                         <>
-                           <Text  style={{ marginLeft:10, fontSize:15, color:"red"  }}>Seu Código foi enviado para o Whatsapp</Text> 
+                           <Text  style={{ marginLeft:10, fontSize:15, color:"red"  }}>Você Não Tem Cash Suficiente!</Text> 
                         </>
                       }
                           

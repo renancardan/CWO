@@ -98,7 +98,7 @@ export default () => {
   const [MsgErro2, setMsgErro2] = useState(false);
   const [Btn, setBtn] = useState(false);
   const [IdTrans, setIdTrans] = useState("")
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   
 
  
@@ -508,7 +508,6 @@ export default () => {
            setAnliAp(false);
            setStatusAp([]);
            setAproPag(false);
-         
           setModalCalend(false);
           setVerNotajogo(false);
           setCriarCli(false)
@@ -519,6 +518,11 @@ export default () => {
           setTelCli("");
           setBtn(false);
           setIdTrans("");
+          setRobo(true);
+          setSenha("");
+          setCodG(false);
+          setTentativa(0);
+          setCodLast(0);
         }
 
         const AposCambis = ()=>{
@@ -1148,7 +1152,7 @@ export default () => {
                             />
                             {QCash >= NomeCli  &&
                             <TouchableHighlight style={{width:150, height:50, backgroundColor:"#1ED31A", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>GerarCod()}>
-                            <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Gerar Código de Pagamento</Text>
+                            <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Gerar Código de Transferência</Text>
                           </TouchableHighlight>
                               }
 

@@ -109,7 +109,7 @@ export default () => {
   const [Ganhos, setGanhos] = useState([]);
   const [Niveis, setNiveis] = useState([]);
   const [Jogos, setJogos] = useState([]);
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
  
 

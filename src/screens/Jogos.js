@@ -94,7 +94,7 @@ export default () => {
   const [AproPag, setAproPag] = useState(false);
   const [StatusAp, setStatusAp] = useState([]);
   const [AnliAp, setAnliAp] = useState(false);
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
  
   useEffect(() => {
     if(dataNasc !== null){
@@ -437,7 +437,7 @@ export default () => {
            setAnliAp(false);
            setStatusAp([]);
            setAproPag(false);
-         
+           setPgCash(false)
           setModalCalend(false);
           setVerNotajogo(false);
           setCriarCli(false)
@@ -1114,7 +1114,7 @@ export default () => {
                         </>
                         :
                         <>
-                           <Text  style={{ marginLeft:10, fontSize:15, color:"red"  }}>Seu Código foi enviado para o Whatsapp</Text> 
+                           <Text  style={{ marginLeft:10, fontSize:15, color:"red"  }}>Você Não Tem Cash Suficiente!</Text> 
                         </>
                       }
                           

@@ -109,7 +109,7 @@ export default () => {
   const [Qcash4, setQcash4] = useState(0)
   const [Id, setId] = useState("")
   const [CopiedText, setCopiedText] = useState("");
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   
 
  
@@ -173,7 +173,7 @@ export default () => {
   //  }, [ValApos, VaToCo])
 
    useEffect(() => {
-   setNomeCli(`http://pixbetcash.com.br/indicacao/${Id}`)
+   setNomeCli(`https://pixbetcashapp.netlify.app/indicacao/${Id}`)
    }, [Id])
 
    useEffect(() => {

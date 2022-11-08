@@ -85,7 +85,7 @@ export default ({route}) => {
   const [Pago, setPago] = useState(false);
   const [id, setid] = useState(route.params.id);
   const [Concluir, setConcluir] = useState(false);
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
    console.log(route.params.id)
   useEffect(() => {
     if(dataNasc !== null){

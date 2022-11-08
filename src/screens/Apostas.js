@@ -80,7 +80,7 @@ export default () => {
   const [AdrirMais, setAdrirMais] = useState("");
   const [AbMoney, setAbMoney] = useState(false);
   const [AbVenc, setAbVenc] = useState(false);
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
    console.log(userState.nome)
   useEffect(() => {
     if(dataNasc !== null){
@@ -426,7 +426,8 @@ export default () => {
         const Siarnota = ()=>{
          
           setModalCalend(false);
-          setVerNotajogo(false)
+          setVerNotajogo(false);
+          setPgCash(false)
         }
 
         const AposCambis = ()=>{
@@ -845,7 +846,7 @@ export default () => {
                         </>
                         :
                         <>
-                           <Text  style={{ marginLeft:10, fontSize:15, color:"red"  }}>Seu Código foi enviado para o Whatsapp</Text> 
+                           <Text  style={{ marginLeft:10, fontSize:15, color:"red"  }}>Você Não Tem Cash Suficiente!</Text> 
                         </>
                       }
                           

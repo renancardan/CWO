@@ -10,7 +10,7 @@ const firebaseApp =  firebase.initializeApp(firebaseConfig);
 const firestore = firebaseApp.firestore();
 const storage = firebaseApp.storage();
 
-var URL_SITE = "http://pixbetcash.com.br";
+var URL_SITE = "https://pixbetcashapp.netlify.app";
 export default {
 
       checkToken: async (tel, cod, time, setIrHome, setIrLogin,  setId, ) => {
