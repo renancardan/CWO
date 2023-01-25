@@ -20,6 +20,8 @@ import ApostasCambis from '../screens/ApostasCambis';
 import Indicarcao from '../screens/Indicarcao';
 import ListIndiq from '../screens/ListIndiq';
 import Graficos from '../screens/Graficos';
+import CartaoVisita from '../screens/CartaoVisita';
+import ListCart from '../screens/ListCart';
  //import cadastroSim from '../screens/cadastroSim';
 
 const Stack = createNativeStackNavigator();
@@ -33,6 +35,18 @@ export default function Ret() {
       initialRouteName={"Preload"}
 
       >
+         <Stack.Screen
+     options={{
+        title: 'Lista de Cartão',
+        headerShown: false
+    }}   
+     name="ListCart" component={ListCart} />
+        <Stack.Screen
+     options={{
+        title: 'Gartão De Visita',
+        headerShown: false
+    }}   
+     name="CartaoVisita" component={CartaoVisita} />
 
 <Stack.Screen
      options={{

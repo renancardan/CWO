@@ -44,7 +44,16 @@ export default () => {
   const [ListLig, setListLig] = useState([]);
   const [VerLiga, setVerLiga] = useState("");
   const [VerLigPais, setVerLigPais] = useState("");
-  const [Lista, setLista] = useState([]);
+  const [Lista, setLista] = useState([
+    {id:1, Nome:"Renan Cardan", Foto:'../assets/perfil1.jpg', Cor:"#168500"},
+    {id:2, Nome:"Daniel Cardan", Foto: '../assets/perfil2.jpg', Cor:"#0DBDE9"},
+    {id:1, Nome:"Zilda Cardan", Foto:'../assets/perfil1.jpg', Cor:"#091A61"},
+    {id:2, Nome:"Luis Cardan", Foto: '../assets/perfil2.jpg', Cor:"#B59C0C"},
+    {id:1, Nome:"Nanci Cardan", Foto:'../assets/perfil1.jpg', Cor:"#430459"},
+    {id:2, Nome:"Davi Cardan", Foto: '../assets/perfil2.jpg', Cor:"#0DBDE9"},
+    {id:1, Nome:"Bruno Cardan", Foto:'../assets/perfil1.jpg', Cor:"#B16909"},
+    {id:2, Nome:"Marli Cardan", Foto: '../assets/perfil2.jpg', Cor:"#9F1F54"},
+  ]);
   const [Vencido, setVencido] = useState(false);
   const [DtEsc, setDtEsc] = useState(0)
   const [SimAp, setSimAp] = useState([]);
@@ -95,13 +104,14 @@ export default () => {
   const [StatusAp, setStatusAp] = useState([]);
   const [AnliAp, setAnliAp] = useState(false);
   const [open, setOpen] = useState(false);
- 
-  useEffect(() => {
-    if(dataNasc !== null){
-      ListandoOc();
-    }
+  
+ console.log()
+  // useEffect(() => {
+  //   if(dataNasc !== null){
+  //     ListandoOc();
+  //   }
     
-  }, [dataNasc, hr]);
+  // }, [dataNasc, hr]);
 
   useEffect(() => {
     tempo();
@@ -406,6 +416,13 @@ export default () => {
         const IrConfig = ()=>{
           navigation.navigate("Config") 
        }
+
+       const IrCartao= ()=>{
+        navigation.navigate("CartaoVisita", {
+          id:"00",
+          Status:"Conta",
+        });
+     }
 
         const Vernota = ()=>{
         
@@ -1298,24 +1315,48 @@ export default () => {
              
                
           {/* </Modal> */}
-          <ImageBackground source={require("../assets/estadio3.jpg")} 
-          resizeMode='cover' 
-          style={styles.imageBack} >
+        
             <View style={styles.CaixaTitulo} >
               <TouchableHighlight  style={styles.CaixaDados}>
-              <Image source={require('../assets/logomarca.svg')}  style={styles.ImageVer2 } />
+              {userState.QN4 >= 8000 ?
+              <>
+              {userState.QN4 >= 64000 ?
+              <>
+               {userState.QN4 >= 216000 ?
+              <>
+  <Image source={require('../assets/Ouro.png')}  style={styles.ImageVer2 } />
+              </>
+              :
+              <>
+              <Image source={require('../assets/Prata.png')}  style={styles.ImageVer2 } />
+              </>
+              }
+
+              </>
+              :
+              <>
+              <Image source={require('../assets/bronze.png')}  style={styles.ImageVer2 } />
+              </>
+              }
+
+              </>
+              :
+              <>
+              <Image source={require('../assets/logoTop.png')}  style={styles.ImageVer2 } />
+              </>
+              }
               </TouchableHighlight>
             
              
 
               <TouchableHighlight  style={styles.CaixaDados}>
              <Text style={styles.TextInfo} >
-              Jogos
+              Meus Contatos
              </Text>
               </TouchableHighlight>
               <View  style={styles.AreaBtnTopConf}>
 
-              <TouchableHighlight onPress={()=>AbrinoMoney() } style={styles.CaixaDados}>
+              {/* <TouchableHighlight onPress={()=>AbrinoMoney() } style={styles.CaixaDados}>
               <>
               {userState.nome >0 &&
                 <View style={{marginBottom:-15, marginRight:-20, width:20, height:20, backgroundColor:"green", borderRadius:10, flex:1, display:"flex", justifyContent:"center", alignItems:"center"}} ><Text style={{color:"#fff"}}>R</Text></View> 
@@ -1323,10 +1364,10 @@ export default () => {
               
               <FontAwesome name="money" size={24} color="#fff" />
               </>
-              </TouchableHighlight>
+              </TouchableHighlight> */}
 
 
-              <TouchableHighlight onPress={()=>AbrindoVenc() }  style={styles.CaixaDados}>
+              {/* <TouchableHighlight onPress={()=>AbrindoVenc() }  style={styles.CaixaDados}>
                 {userState.DatAti < new Date().getTime() ?
                 <>
                  <View style={{marginBottom:-15, marginRight:-20, width:20, height:20, backgroundColor:"red", borderRadius:10, flex:1, display:"flex", justifyContent:"center", alignItems:"center"}} ><Text style={{color:"#fff"}}>V</Text></View> 
@@ -1337,11 +1378,11 @@ export default () => {
                 <FontAwesome name="calendar-check-o" size={24} color="#fff" />
                 }
               
-              </TouchableHighlight>
+              </TouchableHighlight> */}
 
               
 
-              <TouchableHighlight onPress={()=>IrNoti()}  style={styles.CaixaDados}>
+              {/* <TouchableHighlight onPress={()=>IrNoti()}  style={styles.CaixaDados}>
               <>
               {userState.Noti >0 &&
               <>
@@ -1351,7 +1392,7 @@ export default () => {
               }
               <FontAwesome name="bell"  size={24} color="#fff" />
               </>
-              </TouchableHighlight>
+              </TouchableHighlight> */}
 
               <TouchableHighlight  onPress={()=>IrConfig()}  style={styles.CaixaDados}>
               <FontAwesome name="gear" size={24} color="#fff" />
@@ -1378,24 +1419,24 @@ export default () => {
             </View>
 
             }
-             {userState.versao !== userState.versaoBanco.Versao &&
+             {/* {userState.versao !== userState.versaoBanco.Versao &&
             <TouchableHighlight onPress={()=>BaixandoPag()} style={{width:370, marginBottom:5, height:120, backgroundColor:"red", borderRadius:10, padding:10, display:"flex", flexDirection:"row" }}>
              <>
              <FontAwesome name="download" size={80} color="#fff" />
             <Text style={{margin:10, fontSize:15, color:"#fff"}} >{userState.versaoBanco.Msg1}</Text>
             </>
             </TouchableHighlight>
-            }
-            {userState.versaoBanco.Msg2 !== "" &&
+            } */}
+            {/* {userState.versaoBanco.Msg2 !== "" &&
             <TouchableHighlight onPress={()=>VerLinkMsg2()} style={{width:370, height:120, backgroundColor:"#00A859", borderRadius:10, padding:10, display:"flex", flexDirection:"row" }}>
              <>
              <FontAwesome name="warning"  size={80} color="#fff" />
             <Text style={{margin:10, fontSize:15, color:"#fff"}} >{userState.versaoBanco.Msg2}</Text>
             </>
             </TouchableHighlight>
-            }
+            } */}
            
-          <View  style={styles.AreaBtn}>
+          {/* <View  style={styles.AreaBtn}>
           
               
           <TouchableHighlight onPress={()=>setRelogio(true)}  style={styles.InputHora}>
@@ -1410,18 +1451,11 @@ export default () => {
             </View>
             <TouchableHighlight onPress={()=>AbrindoClend()}  style={styles.AreaBtn3}>
             <View style={styles.modalView3}><Text  style={styles.modalText6}> {dataNasc} </Text></View>
-          {/* <ModalDatePicker
-                button={<View style={styles.modalView3}><Text  style={styles.modalText6}> {dataNasc} </Text></View>} 
-                locale="pt" 
-                onSelect={(date) =>Mudedate(date) }
-                isHideOnSelect={true}
-                initialDate={new Date()}
-                language={require('../services/locales.json')}
-                  /> */}
+        
                  
                   </TouchableHighlight>
           
-          </View>
+          </View> */}
 
 
           {/* <View  style={styles.AreaBtnLiga}>
@@ -1445,54 +1479,19 @@ export default () => {
           {Lista.map((item, key)=>(
            <>
             <View  style={styles.Post}>
-              <View style={{ padding:5, flexDirection:"row",  alignItems:"center", justifyContent:"space-around", height:70, width:400, borderBottomWidth:2, borderColor:"#ccc", backgroundColor:item.Cambista === false? "#fff":"#8BF39C",}}>
+              <TouchableHighlight onPress={()=>IrCartao()} style={{ padding:5, flexDirection:"row",  alignItems:"center", justifyContent:"space-around", height:70, width:400, borderBottomWidth:1, marginBottom:5, borderColor:"#ccc", backgroundColor:item.Cor,}}>
+              <>
                <View  style={styles.CaixaNome}>
-               {item.Cambista === false ?
-                <Text style={styles.Time}>Prêmio: R${item.ValPreDemos}</Text>
-                :
-                <>
-                <Text style={styles.Time}>{item.Nome.substring(0, 10)}</Text>
-                <Text style={styles.Time}>{item.TelCli}</Text>
-                </>
-              }
-                
-                <Text style={styles.Time}>{item.dataForm}</Text>
+               <Image source={require('../assets/perfil2.jpg')}  style={{width:50, height:50, borderRadius:25,  borderWidth:2, borderColor:"#fff", }} />
                 </View> 
                 <View  style={styles.CaixaNome}>
-                  {item.Aprovado === false ?
-                    <>
-                  {item.AnaliTotal === false ?
-                  <Text style={styles.Time}>Em Analise</Text>
-                  :
-                  <Text style={styles.Time}>Reprovado</Text>
-                  }
-                    
-                    </>
-                  :
-                  <>
-                   <Text style={styles.Time}>Aprovado</Text>
-                   {item.PremioPago === false ?
-                  <Text style={styles.Time}>Receber Prêmio</Text>
-                  :
-                  <Text style={styles.Time}>Prêmio Enviado</Text>
-                    }
-                  </>
-                 
-                  }
-
-                {item.Pago === false ?
-                  <Text style={styles.Time}>Aposta Em Debito</Text>
-                  :
-                  <Text style={styles.Time}>Aposta Paga</Text>
-                    }
-                    {item.Cambista === true &&
-                  <Text style={styles.Time}>Aposta de Cambista</Text>
                 
-                    }
+                  <Text style={{color:"#FFF", fontSize:17, fontWeight:"bold"}}>{item.Nome}</Text>
+                  <Text style={{color:"#FFF", fontSize:14,}}>Funcionario</Text>
                 
                 </View> 
     
-                <View  style={styles.TempDat}>
+                {/* <View  style={styles.TempDat}>
                 <TouchableHighlight onPress={()=>AbrirEnviar(item)} style={{backgroundColor:"#DDBE0D", display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column", height:25, marginBottom:5, borderRadius:5, marginRight:10, paddingLeft:5, paddingRight:5,}} >
                 <>
               <Text  style={{fontSize:15, color:"#fff", margin:5}}>Enviar Nota</Text>
@@ -1503,11 +1502,11 @@ export default () => {
               <Text  style={{fontSize:15, color:"#fff", margin:5}}>Vizualizar</Text>
               </>            
               </TouchableHighlight>
-                </View>
+                </View> */}
 
 
-
-              </View >
+              </>
+              </TouchableHighlight>
        
              
            
@@ -1523,7 +1522,7 @@ export default () => {
               :
               <>
                 <Image source={require('../assets/carreg.gif')}  style={styles.ImageVer3 } />
-                <Image source={require('../assets/futebol.gif')}  style={styles.ImageVer5 } />     
+              
 
               </>
               }
@@ -1554,7 +1553,7 @@ export default () => {
       />
           
 
-        </ImageBackground>
+        
       </View>
     )
 }
@@ -1797,9 +1796,9 @@ const styles = StyleSheet.create({
    
   },  
   ImageVer3:{
-    width:100,
-    height:90,
-    marginTop: 140,
+    width:200,
+    height:200,
+    marginTop: 40,
 
    
   },  
@@ -1945,7 +1944,7 @@ const styles = StyleSheet.create({
    padding:10,
   },
   AreaBtnTopConf :{
-    width:150,
+    width:70,
     display:"flex",
     justifyContent:"space-between",
     alignItems:"center",
@@ -2134,7 +2133,7 @@ const styles = StyleSheet.create({
      },
 
   Post: {
-   backgroundColor:"#FFF",
+   backgroundColor:"#000",
    width:"100%",
     },
 
@@ -2174,10 +2173,10 @@ const styles = StyleSheet.create({
     
   
         Container:{
-            backgroundColor: "#FFFF",
+            backgroundColor: "#000",
             flex:1,
           justifyContent:"center",
-           
+          alignItems:"center",
           }, 
 
           imageBack: {

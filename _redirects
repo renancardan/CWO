@@ -1,3 +1,2 @@
 # Redirects from what the browser requests to what we serve
-/links/:id/* https://pixbetcashapp.netlify.app/:splat 200
-/indicacao/:id/* https://pixbetcashapp.netlify.app/:splat 200
+/perfil/:id/* https://cartaoweb.online/:splat 200

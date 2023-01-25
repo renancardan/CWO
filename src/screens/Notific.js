@@ -6,11 +6,14 @@ import { useNavigation } from '@react-navigation/native';
 import SignInput from '../components/SignInputIni';
 import MensagemItem from '../components/MensgItem/MensagemItem';
 import * as ImagePicker from 'expo-image-picker';
+import { UserContext } from '../contexts/UserContext';
 import Api from '../Api';
 
 export default () => {
   const body = useRef();
   const navigation = useNavigation();
+  const { dispatch: userDispatch } = useContext(UserContext);
+  const { state: userState } = useContext(UserContext);
   const [Msg, setMsg] = useState("");
   const [InfoAudi, setInfoAudi] = useState('');
   const [ImgTmp, setImgTmp] = useState('');
@@ -205,7 +208,33 @@ const EnviarImagem = ()=>{
               </>
               </TouchableHighlight>
             
+              {userState.QN4 >= 8000 ?
+              <>
+              {userState.QN4 >= 64000 ?
+              <>
+               {userState.QN4 >= 216000 ?
+              <>
+  <Image source={require('../assets/Ouro.png')}  style={styles.ImageVer2 } />
+              </>
+              :
+              <>
+              <Image source={require('../assets/Prata.png')}  style={styles.ImageVer2 } />
+              </>
+              }
+
+              </>
+              :
+              <>
+              <Image source={require('../assets/bronze.png')}  style={styles.ImageVer2 } />
+              </>
+              }
+
+              </>
+              :
+              <>
               <Image source={require('../assets/logomarca.svg')}  style={styles.ImageVer2 } />
+              </>
+              }
 
               <TouchableHighlight  style={styles.CaixaDados}>
              <Text style={styles.TextInfo} >

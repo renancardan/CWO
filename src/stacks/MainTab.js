@@ -25,7 +25,10 @@ export default function Routes() {
  const [Notif, setNotif] = useState(0);
  const [NomeComp, setNomeComp] = useState("");
  const [Tel, setTel] = useState("");
- const [VersBanc, setVersBanc] = useState("");
+ const [VersBanc, setVersBanc] = useState({});
+ const [Ni2, setNi2] = useState(0);
+ const [Ni3, setNi3] = useState(0);
+ const [Ni4, setNi4] = useState(0)
 
  useEffect(() => {
   inicial();
@@ -67,10 +70,56 @@ export default function Routes() {
 
  }, [VersBanc])
 
+ useEffect(() => {
+  VerQN2();
+
+ }, [Ni2])
+
+ useEffect(() => {
+  VerQN3();
+
+ }, [Ni3])
+
+ useEffect(() => {
+  VerQN4();
+
+ }, [Ni4])
+
 
  const inicial = ()=>{
- Api.DadosCli(Venc, setVersBanc, setVenc, setRec, setDatVenc, setNotif, setNomeComp, setTel)
+ Api.DadosCli(Venc, setVersBanc, setVenc, setRec, setDatVenc, setNotif, setNomeComp, setTel, setNi2, setNi3, setNi4)
 
+
+ }
+
+
+ const VerQN2 = ()=>{
+  userDispatch({
+    type: 'setQN2',
+    payload:{
+      QN2: Ni2
+    }
+  });
+
+ }
+
+ const VerQN3 = ()=>{
+  userDispatch({
+    type: 'setQN3',
+    payload:{
+      QN3: Ni3
+    }
+  });
+
+ }
+
+ const VerQN4 = ()=>{
+  userDispatch({
+    type: 'setQN4',
+    payload:{
+      QN4: Ni4
+    }
+  });
 
  }
 
@@ -174,42 +223,42 @@ export default function Routes() {
           }
         }}
         >
-            <Tab.Screen name="Aposta" component={Aposta} 
+            {/* <Tab.Screen name="Aposta" component={Aposta} 
              options={{
               tabBarIcon: ({size, color}) => (
                 <FontAwesome name="futbol-o" size={size} color={color}/>
   
               )
             }}
-          />
-          <Tab.Screen name="Jogos" component={Jogo} 
+          /> */}
+          <Tab.Screen name="Meus Contatos" component={Jogo} 
           options={{
             tabBarIcon: ({size, color}) => (
-              <FontAwesome name="flag-checkered" size={size} color={color}/>
+              <FontAwesome name="list-alt" size={size} color={color}/>
 
             )
           }}
           />
         
-          <Tab.Screen name="Financeiro" component={Financeiro} 
+          {/* <Tab.Screen name="Financeiro" component={Financeiro} 
              options={{
               tabBarIcon: ({size, color}) => (
                 <FontAwesome name="dollar" size={size} color={color}/>
   
               )
             }}
-          />
-          <Tab.Screen name="Rede" component={Rede}
+          /> */}
+          <Tab.Screen name="Pesquisar" component={Rede}
           options={{
             tabBarIcon: ({size, color}) => (
-              <FontAwesome name="sitemap" size={size} color={color} />
+              <FontAwesome name="search" size={size} color={color} />
             )
           }}
           />
-          <Tab.Screen name="Cambista" component={Cambista} 
+          <Tab.Screen name="Meus Cartões" component={Cambista} 
              options={{
               tabBarIcon: ({size, color}) => (
-                <FontAwesome name="calculator"  size={size} color={color}/>
+                <FontAwesome name="th-list"  size={size} color={color}/>
   
               )
             }}

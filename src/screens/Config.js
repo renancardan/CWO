@@ -1,6 +1,6 @@
 
 import React, { Component, useState,  useContext, useEffect, useRef } from 'react'
-import {Modal, Text, View, StyleSheet, ImageBackground, Image, Button, TouchableHighlight, KeyboardAvoidingView, ScrollView } from 'react-native'
+import {Modal, Text, Linking, View, StyleSheet, ImageBackground, Image, Button, TouchableHighlight, KeyboardAvoidingView, ScrollView, } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import {FontAwesome} from "@expo/vector-icons";
@@ -11,6 +11,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { UserContext } from '../contexts/UserContext';
 import moment from 'moment';
 import Api from '../Api';
+import { Video, AVPlaybackStatus } from 'expo-av';
 
 export default () => {
   const navigation = useNavigation();
@@ -24,6 +25,8 @@ export default () => {
   const [P3, setP3] = useState(false);
   const [P4, setP4] = useState(false);
   const [P5, setP5] = useState(false);
+  const [P6, setP6] = useState(false);
+  const [P7, setP7] = useState(false);
   const [LinkEnv, setLinkEnv] = useState("nulo");
   const [Nome, setNome] = useState(userState.nomeCompleto);
   const [Tel, setTel] = useState(userState.telefone);
@@ -39,6 +42,34 @@ export default () => {
   const [MsgErro1, setMsgErro1] = useState("");
   const [Btn1, setBtn1] = useState(false);
   const [What2, setWhat2] = useState(false);
+  const [Listu, setListu] = useState([
+    {id:0, Titulo:"Plano de Metas da PixBetCash", Link:"https://www.youtube.com/watch?v=0VbZdYF2Y-8&t=5s"},
+    {id:0, Titulo:"Como Funciona a PixBetCash", Link:"https://www.youtube.com/watch?v=S_gA2h0bzqY"},
+    {id:1, Titulo:"Como Navegar No Aplicativo PixBetCash(Topo e Rodapé)", Link:"https://www.youtube.com/watch?v=TThE-4NrP9w"},
+    {id:2, Titulo:"Como Fazer Uma Aposta na PixBetCash", Link:"https://www.youtube.com/watch?v=Mn6BvO9NdfA"},
+    {id:3, Titulo:"Como Pagar Um Aposta", Link:"https://www.youtube.com/watch?v=M5SxicNuP3g"},
+    {id:4, Titulo:"Como Pagar Uma Aposta Com Cash", Link:"https://www.youtube.com/watch?v=dNODn6ZgLJg"},
+    {id:5, Titulo:"Como se Cadastrar na PixBetCash", Link:"https://www.youtube.com/watch?v=GLgkdLGTU8E"},
+    {id:6, Titulo:"Como Utiliza-lo Como Aplicativo Android", Link:"https://www.youtube.com/watch?v=S2q7OYgUepo"},
+    {id:7, Titulo:"Como Utiliza-lo Como Aplicativo Para Iphone", Link:"https://www.youtube.com/watch?v=yVFv2bpccGI"},
+    {id:8, Titulo:"Como Acompanhar Uma Aposta", Link:"https://www.youtube.com/watch?v=KocMM_XulVk"},
+    {id:9, Titulo:"Como Transferir Cash", Link:"https://www.youtube.com/watch?v=ndTKp8bYnyI"},
+    {id:10, Titulo:"Como Sacar as Cash", Link:"https://www.youtube.com/watch?v=87-ZP_koxkM"},
+    {id:11, Titulo:"Como Acompanhar Seus Extratos", Link:"https://www.youtube.com/watch?v=iV_z1nW3ZpY"},
+    {id:12, Titulo:"Como Indicar Pessoas", Link:"https://www.youtube.com/watch?v=PJ6TPOBENYE"},
+    {id:13, Titulo:"Como Indicar Por Meio de Link", Link:"https://www.youtube.com/watch?v=Wh937a2wW9s"},
+    {id:14, Titulo:"Como Analisar os Gráficos", Link:"https://www.youtube.com/watch?v=pbY4dc9WWac"},
+    {id:15, Titulo:"Como Ver a Rede de Indicação e os Ganhos de Indicados", Link:"https://www.youtube.com/watch?v=ezkmt4OeUjI"},
+    {id:16, Titulo:"Como Ver Se Sua Conta está Vencida", Link:"https://www.youtube.com/watch?v=s8WqN5G_xqg"},
+    {id:17, Titulo:"Como Criar Um Ticket de Cambista para Produzir uma aposta", Link:"https://www.youtube.com/watch?v=nn2IlrkXIRY"},
+    {id:18, Titulo:"Como trocar o Nome", Link:"https://www.youtube.com/watch?v=9uyJgER1JDg"},
+    {id:19, Titulo:"Como Trocar o Whatsapp", Link:"https://www.youtube.com/watch?v=K2Z5USc-oU8"},
+    {id:20, Titulo:"Como Corrigir o Erro de Pagamento", Link:"https://www.youtube.com/watch?v=y56F4hmPlJE"},
+  ])
+
+  const [DadoTitu, setDadoTitu] = useState(userState.QN3)
+  const [DadoFili, setDadoFili] = useState(userState.QN3)
+  const [DadosBet, setDadosBet] = useState(userState.versaoBanco)
 
    const Saindo = async()=>{
     await AsyncStorage.setItem('Tel', "");
@@ -52,6 +83,13 @@ export default () => {
    const Voltar = ()=>{
     navigation.goBack();
   }
+
+  useEffect(() => {
+    console.log(userState.QN3)
+    setDadoTitu(userState.QN3)
+     setDadoFili(userState.QN3)
+     setDadosBet(userState.versaoBanco)
+  }, [userState.QN4, userState.QN3, userState.versaoBanco])
 
   useEffect(() => {
     if(Tel !== "" && Tel.length === 14 ){
@@ -84,6 +122,8 @@ export default () => {
     setP3(false)
     setP4(false)
     setP5(false)
+    setP6(false)
+    setP7(false)
     
    }
 
@@ -111,6 +151,10 @@ export default () => {
    
      
     }
+
+    const IrLisCart = ()=>{
+      navigation.navigate("ListCart") 
+   }
 
     const GerarCod2 =  async ()=> {
           
@@ -145,6 +189,8 @@ export default () => {
     setP3(false)
     setP4(false)
     setP5(false)
+    setP6(false)
+    setP7(false)
     
    }
 
@@ -157,6 +203,8 @@ export default () => {
     setP5(false)
     setNome(userState.nomeCompleto)
     setMsgErro("")
+    setP6(false)
+    setP7(false)
    }
 
    const AbrirModalP4 = ()=>{
@@ -167,6 +215,8 @@ export default () => {
     setP4(false)
     setP5(false)
     setTel(userState.telefone)
+    setP6(false)
+    setP7(false)
    }
 
    const AbrirModalP5 = ()=>{
@@ -176,6 +226,8 @@ export default () => {
     setP3(true)
     setP4(true)
     setP5(false)
+    setP6(false)
+    setP7(false)
     
    }
 
@@ -186,7 +238,38 @@ export default () => {
     setP3(true)
     setP4(true)
     setP5(true)
+    setP6(false)
+    setP7(false)
     
+   }
+
+   const AbrirModalP7 = ()=>{
+    setModalVer(true)
+    setP1(true)
+    setP2(true)
+    setP3(true)
+    setP4(true)
+    setP5(true)
+    setP6(true)
+    setP7(false)
+    
+   }
+
+   const AbrirModalP8 = ()=>{
+    setModalVer(true)
+    setP1(true)
+    setP2(true)
+    setP3(true)
+    setP4(true)
+    setP5(true)
+    setP6(true)
+    setP7(true)
+    
+   }
+
+   const CriarCartao = ()=>{
+    setCarre(true)
+    Api.CriandoCartao(ModalVer, setAlert, setAlertTipo, setCarre, setModalVer)
    }
 
 
@@ -198,6 +281,8 @@ export default () => {
     setP3(false)
     setP4(false)
     setP5(false)
+    setP6(false)
+    setP7(false)
     setAlert("")
     setAlertTipo(null)
     setMsgErro(false)
@@ -212,6 +297,16 @@ export default () => {
     setRobo(true)
    }
 
+   const AbrirLink = (Link)=>{
+    Linking.openURL(Link);
+   }
+
+
+   const BaixarVideo = ()=>{
+  
+     Api.BaixandoMar(Nome, setAlert, setAlertTipo, setCarre )
+ 
+   }
 
    const Trocardenome = ()=>{
    if(Nome !== ""){
@@ -266,7 +361,7 @@ export default () => {
           {Carre === true ?
                       <>
                 <Image source={require('../assets/carreg.gif')}  style={styles.ImageVer3 } />
-                <Image source={require('../assets/futebol.gif')}  style={styles.ImageVer5 } />     
+              
                       
                       
                       </>
@@ -383,6 +478,18 @@ export default () => {
               <View  style={styles.CaixadeapostaTitulo}  >         
               <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Tutoriais PixBetCash</Text> <TouchableHighlight  style={styles.fechaModal} onPress={() =>FecharModal()}><Text>X</Text></TouchableHighlight>
               </View>
+              {Listu.map((item, key)=>( 
+                <>
+                <TouchableHighlight  style={{margin:10}} onPress={() =>AbrirLink(item.Link)}>
+                  <>
+                  <Text style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>{item.Titulo}</Text>
+                  <Text style={{ marginLeft:10, fontSize:15, color:"blue"  }}>Clique Aqui...</Text>
+                  </>
+                  </TouchableHighlight>
+
+                </>
+
+              ))}
               </>
               :
               <>
@@ -483,8 +590,8 @@ export default () => {
               </View>
               <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Regras para Trocar de Whatsapp:</Text>
           <Text  style={{ marginLeft:10, fontSize:15  }}>1° - Digite Um Número de Whatsapp</Text>
-          <Text  style={{ marginLeft:10, fontSize:15  }}>2° - O Numero Não Pode está registrado no Sistema</Text>
-          <Text  style={{ marginLeft:10, fontSize:15  }}>3° - O Numéro do Whatsapp Que está Registrando Tem que Ser o Mesmo Da Chave Pix, aonde A Empresa fará a trasnferencia dos seus pagamentos.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>2° - O Número Não Pode está registrado no Sistema</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>3° - O Número do Whatsapp Que está Registrando Tem que Ser o Mesmo Da Chave Pix, aonde A Empresa fará a trasnferencia dos seus pagamentos.</Text>
               {CodG === false?
               <View  style = {styles.InputAra}>
               <FontAwesome name="phone-square" size={24} color="black" />
@@ -575,7 +682,7 @@ export default () => {
                             }
                             {What2 === false ?
                           <TouchableHighlight style={{width:250, height:50, backgroundColor:"#840D8D", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>GerarCod2()}>
-                          <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Gerar Codigo de Segurança Para O Novo Numéro</Text>
+                          <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Gerar Codigo de Segurança Para O Novo WhatsApp</Text>
                         </TouchableHighlight>
                             :
                             <TouchableHighlight style={{width:250, height:50, backgroundColor:"#840D8D", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>TrocardeNumero()}>
@@ -605,12 +712,100 @@ export default () => {
               <View  style={styles.CaixadeapostaTitulo}  >         
               <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>APP PARA ANDROID</Text> <TouchableHighlight  style={styles.fechaModal} onPress={() =>FecharModal()}><Text>X</Text></TouchableHighlight>
               </View>
+              <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Primeiro Passo:</Text>
+               <Text  style={{ marginLeft:10, fontSize:15  }}>Entre no Site da PixBetCash pelo Google com o Link, e depois clique nos 3 pontos no topo do lado direito.</Text>
+               <Image source={require('../assets/PrimeiroAndroid.png')}  style={{width:300, height:600}} />
+               <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Segundo Passo:</Text>
+               <Text  style={{ marginLeft:10, fontSize:15  }}>Agora Clique em Adicionar à tela  Inicial.</Text>
+               <Image source={require('../assets/SegundoAndroid.png')}  style={{width:300, height:600}} />
+               <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Terceiro Passo:</Text>
+               <Text  style={{ marginLeft:10, fontSize:15  }}>Clique no Adicionar na Caixa de Dialogo.</Text>
+               <Image source={require('../assets/TerceiroAndroid.png')}  style={{width:300, height:600}} />
+               <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Quarto Passo:</Text>
+               <Text  style={{ marginLeft:10, fontSize:15  }}>- Seu aplicativo vai aparecer na sua tela inicial.</Text>
+               <Image source={require('../assets/QuartoAndroid.png')}  style={{width:300, height:600}} />
               </>
+              
               :
               <>
-              <View  style={styles.CaixadeapostaTitulo}  >         
+              {P6 === false ?
+              <>
+                 <View  style={styles.CaixadeapostaTitulo}  >         
               <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>APP PARA IPHONE</Text> <TouchableHighlight  style={styles.fechaModal} onPress={() =>FecharModal()}><Text>X</Text></TouchableHighlight>
               </View>
+              <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Primeiro Passo:</Text>
+               <Text  style={{ marginLeft:10, fontSize:15  }}>Entre no Site da PixBetCash pelo Safari com o Link, e depois clique no menu abaixo.</Text>
+               <Image source={require('../assets/Primeiro.png')}  style={{width:300, height:600}} />
+               <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Segundo Passo:</Text>
+               <Text  style={{ marginLeft:10, fontSize:15  }}>Agora Clique em Adicionar à tela  de Início.</Text>
+               <Image source={require('../assets/Segundo.png')}  style={{width:300, height:600}} />
+               <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Terceiro Passo:</Text>
+               <Text  style={{ marginLeft:10, fontSize:15  }}>Clique no Adicionar na Caixa de Dialogo.</Text>
+               <Image source={require('../assets/Terceiro.png')}  style={{width:300, height:600}} />
+               <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Quarto Passo:</Text>
+               <Text  style={{ marginLeft:10, fontSize:15  }}>- Seu aplicativo vai aparecer na sua tela inicial.</Text>
+               <Image source={require('../assets/Quarto.png')}  style={{width:300, height:600}} />
+
+              </>
+
+              :
+              <>
+              {P7 === false ?
+              <>
+               <View  style={styles.CaixadeapostaTitulo}  >         
+              <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Meta</Text> <TouchableHighlight  style={styles.fechaModal} onPress={() =>FecharModal()}><Text>X</Text></TouchableHighlight>
+              </View>
+              <Image source={require('../assets/MetasPixbetCash.png')}  style={{width:300, height:1400}} />
+
+              </>
+
+              :
+              <>
+               <View  style={styles.CaixadeapostaTitulo}  >         
+              <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Baixar O Marketing</Text> <TouchableHighlight  style={styles.fechaModal} onPress={() =>FecharModal()}><Text>X</Text></TouchableHighlight>
+              </View >
+              <View  style={{ margin:10,}}  >
+              <Text style={{fontWeight:"bold", marginLeft:10, fontSize:22  }}>Instruções de Como Baixar</Text>
+              <Text style={{ marginLeft:10, fontSize:17  }}>1° passo: Segure o clique na foto ou no vídeo por 5 segundos</Text>
+              <Text style={{ marginLeft:10, fontSize:17  }}>2° passo: Aparecerá um menu, clique em fazer download </Text>
+              </View>
+              {userState.versaoBanco.MarkLink.reverse().map((item, key)=>( 
+                <>
+                <View  style={{margin:10}} >
+                  <>
+                  <Text style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>{item.Titulo}</Text>
+                
+                  {item.Tipo === "imagem" ?
+                 <Image source={{uri:item.Link}}  style={{ width:item.L, height:item.H}} />  
+                  :
+                 
+                  <Video
+                  style={{ width:item.L, height:item.H}}
+                  source={{
+                    uri: item.Link,
+                  }}
+                  useNativeControls
+                  resizeMode="contain"
+                  isLooping
+                  
+                />
+                  }
+                 
+                  </>
+                  </View>
+
+                </>
+
+              ))}
+              </>
+
+              }
+               
+
+              </>
+
+              }
+           
               </>
               }
               </>
@@ -642,9 +837,7 @@ export default () => {
           </View>
 
             </Modal>
-          <ImageBackground source={require("../assets/estadio3.jpg")} 
-          resizeMode='cover' 
-          style={styles.imageBack} >
+
                 <View style={styles.CaixaTitulo} >
               <TouchableHighlight  onPress={()=>Voltar()} style={styles.CaixaDados}>
                 <>
@@ -653,7 +846,33 @@ export default () => {
               </>
               </TouchableHighlight>
             
-              <Image source={require('../assets/logomarca.svg')}  style={styles.ImageVer2 } />
+              {userState.QN4 >= 8000 ?
+              <>
+              {userState.QN4 >= 64000 ?
+              <>
+               {userState.QN4 >= 216000 ?
+              <>
+  <Image source={require('../assets/Ouro.png')}  style={styles.ImageVer2 } />
+              </>
+              :
+              <>
+              <Image source={require('../assets/Prata.png')}  style={styles.ImageVer2 } />
+              </>
+              }
+
+              </>
+              :
+              <>
+              <Image source={require('../assets/bronze.png')}  style={styles.ImageVer2 } />
+              </>
+              }
+
+              </>
+              :
+              <>
+              <Image source={require('../assets/logoTop.png')}  style={styles.ImageVer2 } />
+              </>
+              }
 
               <TouchableHighlight  style={styles.CaixaDados}>
              <Text style={styles.TextInfo} >
@@ -662,29 +881,68 @@ export default () => {
               </TouchableHighlight>
              
             </View >
-
-            <View style={{ backgroundColor:"#fff", margin:10, borderRadius: 5, padding:5  }} >
-      
-            <Text  style={{  fontWeight:"bold",  fontSize:20, color:"#000",}}>Nome: {userState.nomeCompleto}</Text>
-            <Text  style={{  fontWeight:"bold",  fontSize:20, color:"#000",}}>Telefone: {userState.telefone}</Text>
-            </View>
-            <View  style={styles.AreaBtnCima}>
+            {Carre === true ?
+                      <>
+                <Image source={require('../assets/carreg.gif')}  style={styles.ImageVer3 } />
               
-              <TouchableHighlight style={{width:70, height:100, backgroundColor:"#DDBE0D", borderRadius:10, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>AbrirModalP1()}>
+                      
+                      
+                      </>
+
+                      :
+                      <>
+            <ScrollView>
+              
+            <View style={{ backgroundColor:"#000", margin:10, borderRadius: 5, padding:5  }} >
+      
+            <Text  style={{  fontWeight:"bold",  fontSize:20, color:"#FFF",}}>Nome: {userState.nomeCompleto}</Text>
+            <Text  style={{  fontWeight:"bold",  fontSize:20, color:"#FFF",}}>Telefone: {userState.telefone}</Text>
+            </View>
+            {DadoTitu.ADM === true &&
+            <>
+             <View  style={styles.AreaBtnCima}>
+              
+              <TouchableHighlight style={{width:70, height:100, backgroundColor:"#DDBE0D", borderRadius:10, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>CriarCartao()}>
                     <>
                     <FontAwesome name="book"  size={40} color="#fff" />
-                      <Text  style={{ fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Regras</Text>
-                      <Text  style={{ fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>PixBetCash</Text>
+                      <Text  style={{ fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Criar</Text>
+                      <Text  style={{ fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Cartão</Text>
                       </> 
                  </TouchableHighlight>
-                 <TouchableHighlight style={{width:70, height:100, backgroundColor:"#009DFF", borderRadius:10, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>AbrirModalP2()}>
+                 <TouchableHighlight style={{width:70, height:100, backgroundColor:"#009DFF", borderRadius:10, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>IrLisCart()}>
                      <>
-                     <FontAwesome name="youtube-square" size={40} color="#FFF" />
-                      <Text  style={{  fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Tutoriais</Text>
-                      <Text  style={{  fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>PixBetCash</Text>
+                     <FontAwesome name="list-alt" size={40} color="#FFF" />
+                      <Text  style={{  fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Lista de</Text>
+                      <Text  style={{  fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Cartão</Text>
                       </>
                  </TouchableHighlight>
               </View>
+            
+            
+            
+            </>
+
+
+            }
+           
+              {/* <View  style={styles.AreaBtnCima}>
+              <TouchableHighlight style={{width:70, height:100, backgroundColor:"#03B775", borderRadius:10, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>AbrirModalP7()}>
+                    <>
+                    <FontAwesome name="flag-checkered"  size={40} color="#fff" />
+                      <Text  style={{ fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Meta</Text>
+                      <Text  style={{  fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>PixBetCash</Text>
+                      </> 
+                 </TouchableHighlight>
+              
+              <TouchableHighlight style={{width:70, height:100, backgroundColor:"#261A9D", borderRadius:10, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>AbrirModalP8()}>
+                    <>
+                    <FontAwesome name="download"  size={40} color="#fff" />
+                      <Text  style={{ fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Baixar</Text>
+                      <Text  style={{  fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Marketing</Text>
+                      </> 
+                 </TouchableHighlight>
+                
+              </View> */}
               <View  style={styles.AreaBtnCima}>
               
               <TouchableHighlight style={{width:70, height:100, backgroundColor:"#30B72D", borderRadius:10, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>AbrirModalP3()}>
@@ -730,10 +988,13 @@ export default () => {
                  </TouchableHighlight>
                 
               </View>
+              </ScrollView>
+              </>
+            }
         {/* <TouchableHighlight style={{width:150, height:50, backgroundColor:"#F96868", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>Saindo()}>
                             <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Sair da Conta</Text>
                           </TouchableHighlight> */}
-        </ImageBackground>
+    
       </View>
     )
   
@@ -943,7 +1204,7 @@ const styles = StyleSheet.create({
    flex:1,
    alignItems:"center",
    justifyContent:"center",
-   backgroundColor:"#fff"
+   
     
   },
 
@@ -978,12 +1239,12 @@ const styles = StyleSheet.create({
    
   },  
   ImageVer3:{
-    width:100,
-    height:90,
-    marginTop: 140,
+    width:200,
+    height:200,
+    marginTop: 40,
 
    
-  },  
+  },   
 
   CalendBtn: {
     width:90,
@@ -1363,10 +1624,9 @@ AreaBtnCima :{
     
   
         Container:{
-            backgroundColor: "#FFFF",
+            backgroundColor: "#000",
             flex:1,
-          justifyContent:"center",
-           
+          alignItems:"center",
           }, 
 
           imageBack: {

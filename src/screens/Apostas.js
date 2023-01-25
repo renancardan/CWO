@@ -184,10 +184,19 @@ export default () => {
     let Dat = CompDat * 1000;
     let Dat2 =moment(currentDate1+" 23:59:00.000").unix()*1000;
     // if(Dat >= moment().unix()*1000 ){
-      if(Dat < Dat2){
+      var Mart = moment().unix()*1000
+       var Vet = Mart - 120000
+      console.log(Dat)
+      if(Dat > Vet){
         setCarreg(true)
         Api.ListJogos( Page, setListOc, setCarreg,  Dat, Dat2, );
-      } 
+      } else {
+        setModalCalend(true);
+        setVerNotajogo(false);
+        setAlert("Nessa Data Não Existe Mais Jogos!");
+        setAlertTipo("danger")
+      }
+     
    //  }
    
     
@@ -972,7 +981,37 @@ export default () => {
           style={styles.imageBack} >
             <View style={styles.CaixaTitulo} >
               <TouchableHighlight  onPress={()=>Atualizar()} style={styles.CaixaDados}>
+              
+              {userState.QN4 >= 8000 ?
+              <>
+              {userState.QN4 >= 64000 ?
+              <>
+               {userState.QN4 >= 216000 ?
+              <>
+  <Image source={require('../assets/Ouro.png')}  style={styles.ImageVer2 } />
+              </>
+              :
+              <>
+              <Image source={require('../assets/Prata.png')}  style={styles.ImageVer2 } />
+              </>
+              }
+
+              </>
+              :
+              <>
+              <Image source={require('../assets/bronze.png')}  style={styles.ImageVer2 } />
+              </>
+              }
+
+              </>
+              :
+              <>
               <Image source={require('../assets/logomarca.svg')}  style={styles.ImageVer2 } />
+              </>
+              }
+
+             
+              
               </TouchableHighlight>
             
              

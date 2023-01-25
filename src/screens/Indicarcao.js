@@ -8,10 +8,13 @@ import SignInputCod from '../components/SignInput';
 import Telefone from '../components/NumberTel';
 import Api from '../Api';
 import ReCAPTCHA from "react-google-recaptcha";
+import { UserContext } from '../contexts/UserContext';
 
 export default () => {
   const captcha = useRef(null)
   const navigation = useNavigation();
+  const { dispatch: userDispatch } = useContext(UserContext);
+  const { state: userState } = useContext(UserContext);
   const [NomeCli, setNomeCli] = useState("");
   const [TelCli, setTelCli] = useState("");
   const [Carre, setCarre] = useState(false);
@@ -198,7 +201,33 @@ export default () => {
               </>
               </TouchableHighlight>
             
+              {userState.QN4 >= 8000 ?
+              <>
+              {userState.QN4 >= 64000 ?
+              <>
+               {userState.QN4 >= 216000 ?
+              <>
+  <Image source={require('../assets/Ouro.png')}  style={styles.ImageVer2 } />
+              </>
+              :
+              <>
+              <Image source={require('../assets/Prata.png')}  style={styles.ImageVer2 } />
+              </>
+              }
+
+              </>
+              :
+              <>
+              <Image source={require('../assets/bronze.png')}  style={styles.ImageVer2 } />
+              </>
+              }
+
+              </>
+              :
+              <>
               <Image source={require('../assets/logomarca.svg')}  style={styles.ImageVer2 } />
+              </>
+              }
 
               <TouchableHighlight  style={styles.CaixaDados}>
              <Text style={styles.TextInfo} >
@@ -348,8 +377,8 @@ export default () => {
                       <Text  style={{ marginLeft:10, fontSize:15  }}>1° Coloque o Whatsapp e o Nome da Pessoa, e será liberado o Botão de Indicar </Text>
                       <Text  style={{ marginLeft:10, fontSize:15  }}>2° Ao clicar em Indicar, ele receberá um Link em seu Whatsapp para ela ser direcionado para o Cadastro. </Text>
                       <Text  style={{ marginLeft:10, fontSize:15  }}>3° Essa Indicação terá o prazo de 24 horas, a parti do momento em que você clicar em Indicar. Se a Pessoa não se cadastrar entre essas 24 horas, essa indicação  perde a validade, podendo outro Usuário indicar essa pessoa.  </Text>
-                      <Text  style={{ marginLeft:10, fontSize:15  }}>4° Se a pessoa Indicada já estiver cadastrada no sistema, você não poderá mais indica-la  </Text>
-                      <Text  style={{ marginLeft:10, fontSize:15  }}>5° Se a pessoa Indicada já foi Indicada por outro usuário, espere passar o tempo de validade da indicação para poder indica-la novamente. </Text>
+                      <Text  style={{ marginLeft:10, fontSize:15  }}>4° Se a pessoa Indicada já estiver cadastrada no sistema, você não poderá mais indicá-la  </Text>
+                      <Text  style={{ marginLeft:10, fontSize:15  }}>5° Se a pessoa Indicada já foi Indicada por outro usuário, espere passar o tempo de validade da indicação para poder indicá-la novamente. </Text>
                       </View>
 
             </ScrollView>

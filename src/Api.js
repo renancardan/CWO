@@ -10,7 +10,9 @@ const firebaseApp =  firebase.initializeApp(firebaseConfig);
 const firestore = firebaseApp.firestore();
 const storage = firebaseApp.storage();
 
-var URL_SITE = "https://pixbetcashapp.netlify.app";
+var URL_SITE = "https://cartaoweb.online";
+var APIWHATS = "https://api.z-api.io/instances/3A9D95BC49F730DF458B76215AA2744C/token/A2A3E65C2FE0E21916E8A2AE/"; 
+
 export default {
 
       checkToken: async (tel, cod, time, setIrHome, setIrLogin,  setId, ) => {
@@ -47,13 +49,13 @@ export default {
                 },
 
 
-          VerWhats: async (Tel, setTelMsg, setNome, setBtn,  setLoading) => {
-
+          VerWhats: async (Tel,  setTe1, setTelMsg, setNome, setBtn,  setLoading) => {
+         
 
             var ver = Tel.replace("(", "55");
             var par1 = ver.replace(")", "");
             var par3 = par1.replace("-", "");
-            const req = await fetch(`https://api.z-api.io/instances/3A9D95BC49F730DF458B76215AA2744C/token/A2A3E65C2FE0E21916E8A2AE/phone-exists/${par3}`, 
+            const req = await fetch(`${APIWHATS}phone-exists/${par3}`, 
             {
                   method: 'GET',
                   headers:{
@@ -74,6 +76,21 @@ export default {
                 } else{
                   setBtn(false);
                 }
+
+                await firestore.collection("users")
+                .where("Telefone", "==", Tel)
+                .get().then((querySnapshot) => {
+                 
+                  if(querySnapshot.size !== 0){
+                    querySnapshot.forEach((doc) => {
+                     
+                      setTe1(true);
+                      setNome(doc.data().NomeComp)
+                      
+                    })
+                
+                  }
+                  });
               
         
               
@@ -82,20 +99,7 @@ export default {
 
     AnaliseTel: async (Tel, setTe1, setNome) => {
       console.log("Nome ")
-      await firestore.collection("users")
-      .where("Telefone", "==", Tel)
-      .get().then((querySnapshot) => {
-       
-        if(querySnapshot.size !== 0){
-          querySnapshot.forEach((doc) => {
-           
-            setTe1(true);
-            setNome(doc.data().Nome)
-            
-          })
-      
-        }
-          });
+     
     
     
     },
@@ -485,7 +489,7 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
               "phone": par3,
               "message": "Código de entrada: "+last,
             }   
-            const req = await fetch("https://api.z-api.io/instances/3A9D95BC49F730DF458B76215AA2744C/token/A2A3E65C2FE0E21916E8A2AE/send-messages", 
+            const req = await fetch(`${APIWHATS}send-messages`, 
             {
                   method: 'POST',
                   headers:{
@@ -522,7 +526,8 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
         CodigEnt: last,
         Telefone:Tel,
         DataEntCel:0,
-        Nome:Nome,
+        NomeComp:Nome,
+        Nome:"",
         Indicados:[],
         Extrato:[],
         DataCadas: temp,
@@ -536,8 +541,8 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
           {
             date:new Date().getTime(),
             autor:"Sistema",
-            body:"Aqui você terá total atenção da empresa PixBetCash, Fique a vontade, e Bom uso do Sistema!",
-            nome:"PixBetCash",
+            body:"Aqui você terá total atenção da empresa CWO, Fique a vontade e Bom uso do Sistema!",
+            nome:"CWO",
             type:"text"
 
           }
@@ -549,8 +554,8 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
         ultimaMsg:{
           data:new Date().getTime(),
           id:"Sistema",
-          msg:"Aqui você terá total atenção da empresa PixBetCash, Fique a vontade, e Bom uso do Sistema!",
-          nome:"PixBetCash"
+          msg:"Aqui você terá total atenção da empresa CWO, Fique a vontade e Bom uso do Sistema!",
+          nome:"CWO"
         },
         userchat:[{}],
     })
@@ -566,7 +571,7 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
       "phone": par3,
       "message": "Código de entrada: "+last,
     }   
-    const req = await fetch("https://api.z-api.io/instances/3A9D95BC49F730DF458B76215AA2744C/token/A2A3E65C2FE0E21916E8A2AE/send-messages", 
+    const req = await fetch(`${APIWHATS}send-messages`, 
     {
           method: 'POST',
           headers:{
@@ -579,147 +584,478 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
         var IdBanco = "";
         var IdInd = "";
 
-        await firestore.collection("BancoWhats")
-        .where("Telefone", "==", Tel)
-        .where("DataFin", ">=", temp)
-        .get().then((querySnapshot2) => {
+        // await firestore.collection("BancoWhats")
+        // .where("Telefone", "==", Tel)
+        // .where("DataFin", ">=", temp)
+        // .get().then((querySnapshot2) => {
         
-          if(querySnapshot2.size !== 0){
-          querySnapshot2.forEach(async (doc2) => {
-            IdBanco = doc2.id;
-            IdInd = doc2.data().IdUser;
-          });
-            firestore.collection("users")
-            .doc(IdInd)
-            .update({
-              Indicados: firebase.firestore.FieldValue.arrayUnion(id)
-             })
+        //   if(querySnapshot2.size !== 0){
+        //   querySnapshot2.forEach(async (doc2) => {
+        //     IdBanco = doc2.id;
+        //     IdInd = doc2.data().IdUser;
+        //   });
+        //     firestore.collection("users")
+        //     .doc(IdInd)
+        //     .update({
+        //       Indicados: firebase.firestore.FieldValue.arrayUnion(id)
+        //      })
   
-            firestore.collection("BancoWhats")
-            .doc(IdBanco)
-            .update({
-              Aprovado:true, 
-              })
+        //     firestore.collection("BancoWhats")
+        //     .doc(IdBanco)
+        //     .update({
+        //       Aprovado:true, 
+        //       })
 
-          firestore.collection("users")
-          .where("Indicados", "array-contains", IdInd)
-          .get()
-          .then((querySnapshot) => {
-            var IdNive3 = "";
-            var Nive3Q = 0;
-            if(querySnapshot.size !== 0){
+        //   firestore.collection("users")
+        //   .where("Indicados", "array-contains", IdInd)
+        //   .get()
+        //   .then((querySnapshot) => {
+        //     var IdNive3 = "";
+        //     var Nive3Q = 0;
+        //     if(querySnapshot.size !== 0){
 
-              querySnapshot.forEach((doc) => {
-                IdNive3 = doc.id;
-                Nive3Q =  doc.data().Nivel3;                 
-               });
-               firestore.collection("users")
-               .doc(IdNive3)
-               .update({
-                Nivel3: Nive3Q + 1
-              })
+        //       querySnapshot.forEach((doc) => {
+        //         IdNive3 = doc.id;
+        //         Nive3Q =  doc.data().Nivel3;                 
+        //        });
+        //        firestore.collection("users")
+        //        .doc(IdNive3)
+        //        .update({
+        //         Nivel3: Nive3Q + 1
+        //       })
 
-              firestore.collection("users")
-              .where("Indicados", "array-contains", IdNive3)
-              .get()
-              .then((querySnapshot3) => {
-                var IdNive4 = "";
-                var Nive4Q = 0;
-                if(querySnapshot3.size !== 0){
+        //       firestore.collection("users")
+        //       .where("Indicados", "array-contains", IdNive3)
+        //       .get()
+        //       .then((querySnapshot3) => {
+        //         var IdNive4 = "";
+        //         var Nive4Q = 0;
+        //         if(querySnapshot3.size !== 0){
     
-                  querySnapshot3.forEach((doc3) => {
-                    IdNive4 = doc3.id;
-                    Nive4Q =  doc3.data().Nivel4;                 
-                   });
-                   firestore.collection("users")
-                   .doc(IdNive4)
-                   .update({
-                    Nivel4: Nive4Q + 1
-                  })
+        //           querySnapshot3.forEach((doc3) => {
+        //             IdNive4 = doc3.id;
+        //             Nive4Q =  doc3.data().Nivel4;                 
+        //            });
+        //            firestore.collection("users")
+        //            .doc(IdNive4)
+        //            .update({
+        //             Nivel4: Nive4Q + 1
+        //           })
     
                   
     
     
-                }
+        //         }
                  
-              })
+        //       })
 
 
 
-            }
+        //     }
              
-          })
+        //   })
           
           
-        } else{
-          if(VerSite2 === "indicacao"){
+        // } else{
+        //   if(VerSite2 === "indicacao"){
 
-            firestore.collection("users")
-            .doc(IdInd2)
-            .update({
-              Indicados: firebase.firestore.FieldValue.arrayUnion(id)
-             })
+        //     firestore.collection("users")
+        //     .doc(IdInd2)
+        //     .update({
+        //       Indicados: firebase.firestore.FieldValue.arrayUnion(id)
+        //      })
 
-             firestore.collection("users")
-             .where("Indicados", "array-contains", IdInd2)
-             .get()
-             .then((querySnapshot) => {
-               var IdNive3 = "";
-               var Nive3Q = 0;
-               if(querySnapshot.size !== 0){
+        //      firestore.collection("users")
+        //      .where("Indicados", "array-contains", IdInd2)
+        //      .get()
+        //      .then((querySnapshot) => {
+        //        var IdNive3 = "";
+        //        var Nive3Q = 0;
+        //        if(querySnapshot.size !== 0){
    
-                 querySnapshot.forEach((doc) => {
-                   IdNive3 = doc.id;
-                   Nive3Q =  doc.data().Nivel3;                 
-                  });
+        //          querySnapshot.forEach((doc) => {
+        //            IdNive3 = doc.id;
+        //            Nive3Q =  doc.data().Nivel3;                 
+        //           });
                  
-                  firestore.collection("users")
-                  .doc(IdNive3)
-                  .update({
-                   Nivel3: Nive3Q + 1
-                 })
+        //           firestore.collection("users")
+        //           .doc(IdNive3)
+        //           .update({
+        //            Nivel3: Nive3Q + 1
+        //          })
    
-                 firestore.collection("users")
-                 .where("Indicados", "array-contains", IdNive3)
-                 .get()
-                 .then((querySnapshot3) => {
-                   var IdNive4 = "";
-                   var Nive4Q = 0;
-                   if(querySnapshot3.size !== 0){
+        //          firestore.collection("users")
+        //          .where("Indicados", "array-contains", IdNive3)
+        //          .get()
+        //          .then((querySnapshot3) => {
+        //            var IdNive4 = "";
+        //            var Nive4Q = 0;
+        //            if(querySnapshot3.size !== 0){
        
-                     querySnapshot3.forEach((doc3) => {
-                       IdNive4 = doc3.id;
-                       Nive4Q =  doc3.data().Nivel4;                 
-                      });
-                      console.log(Nive4Q)
-                      console.log(Nive4Q.length)
-                      firestore.collection("users")
-                      .doc(IdNive4)
-                      .update({
-                       Nivel4: Nive4Q + 1
-                     })
+        //              querySnapshot3.forEach((doc3) => {
+        //                IdNive4 = doc3.id;
+        //                Nive4Q =  doc3.data().Nivel4;                 
+        //               });
+        //               console.log(Nive4Q)
+        //               console.log(Nive4Q.length)
+        //               firestore.collection("users")
+        //               .doc(IdNive4)
+        //               .update({
+        //                Nivel4: Nive4Q + 1
+        //              })
        
                      
        
        
-                   }
+        //            }
                     
-                 })
+        //          })
    
    
    
-               }
+        //        }
                 
-             })
+        //      })
 
              
   
    
-          }
+        //   }
 
-        }
+        // }
   
+        // });
+        
+  
+  
+  
+  
+    
+        await setIrEnt(true);
+        await setLoading(false);
+  
+      var res = [];
+  
+      // for(let i in Forms ) {
+       
+      //     await firestore().collection("users").add({
+      //       nameComp: "",
+      //       nome:"",
+      //       FotoPerfil:"",
+      //       telefone: Forms[i],
+      //       DataEnt:0,
+      //       conta:"Dependente",
+      //       Dependo: docRef.id,
+      //       entrada:false,
+      //       Tipo:"Pessoal",
+      //       DataCadas: time,
+      //       redeSocial:{cidade:"", estado:""},
+      //   }).then((docRef2) => {
+      //     res.push(docRef2.id)
+      // })
+      //   }
+  
+      //   await firestore().collection("users").doc( docRef.id)
+      //   .update({
+      //     dependentes: res,
+      // }).then((def)=>{
+         
+      // })
+     
+    
+    })
+    .catch((error) => {
+        
+    });
+  
+  
+     
+      
+     }
+   
+  })
+  .catch((error) => {
+   
+  });
+  
+       
+     
+    
+    
+       
+  
+   
+  
+  
+       
+    },
+
+    signInSecund: async (Tel, Nome, setIrEnt, setLoading) => {
+      let temp = new Date().getTime();
+      var tele = Tel.toString();
+   
+      await AsyncStorage.setItem('Tel', tele);
+  
+   
+      var last = Math.floor((Math.random() * (9999 - 1000)) + 1000);
+  
+        await firestore.collection("users")
+        .where("Telefone", "==", Tel)
+        .get().then( async (querySnapshot) => {
+          console.log(querySnapshot.size);
+     if(querySnapshot.size !== 0){
+      querySnapshot.forEach(async (doc) => {
+          
+            let time = new Date().getTime();
+            firestore.collection("users")
+            .doc(doc.id)
+            .update({
+              CodigEnt: last,
+          })
+          .then( async() => {
+            var ver = Tel.replace("(", "55");
+            var par1 = ver.replace(")", "");
+            var par3 = par1.replace("-", "");
+            var data={
+              "phone": par3,
+              "message": "Código de entrada: "+last,
+            }   
+            const req = await fetch(`${APIWHATS}send-messages`, 
+            {
+                  method: 'POST',
+                  headers:{
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(data),
+                });
+              
+                const json = await req.json(); 
+              
+                  await setIrEnt(true);
+                  await setLoading(false);
+                
+                
+          })
+          .catch((error) => {
+          
+            
+          });
+    
+         
+  
+      
+      
+    
+      
+    });
+  
+     } else {
+  
+      var time = new Date().getTime();
+      var Forms = ["off", "off", "off"]
+      await firestore.collection("users").add({
+        CodigEnt: last,
+        Telefone:Tel,
+        DataEntCel:0,
+        NomeComp:Nome,
+        Nome:"",
+        Indicados:[],
+        Extrato:[],
+        DataCadas: temp,
+        Cash:0,
+        Dinheiro:0,
+        DataVenc:0,
+        ADM:false,
+        Nivel3:0,
+        Nivel4:0,
+        mensagem:[
+          {
+            date:new Date().getTime(),
+            autor:"Sistema",
+            body:"Aqui você terá total atenção da empresa CWO, Fique a vontade e Bom uso do Sistema!",
+            nome:"CWO",
+            type:"text"
+
+          }
+        ],
+        DigiS:false,
+        DigiV:false,
+        vizualS:0,
+        vizualV:0,
+        ultimaMsg:{
+          data:new Date().getTime(),
+          id:"Sistema",
+          msg:"Aqui você terá total atenção da empresa CWO, Fique a vontade e Bom uso do Sistema!",
+          nome:"CWO"
+        },
+        userchat:[{}],
+    })
+    .then( async (docRef) => {
+   
+      var id = docRef.id
+   
+  
+    var ver = Tel.replace("(", "55");
+    var par1 = ver.replace(")", "");
+    var par3 = par1.replace("-", "");
+    var data={
+      "phone": par3,
+      "message": "Código de entrada: "+last,
+    }   
+    const req = await fetch(`${APIWHATS}send-messages`, 
+    {
+          method: 'POST',
+          headers:{
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data),
         });
+      
+        const json = await req.json();
+        var IdBanco = "";
+        var IdInd = "";
+
+        // await firestore.collection("BancoWhats")
+        // .where("Telefone", "==", Tel)
+        // .where("DataFin", ">=", temp)
+        // .get().then((querySnapshot2) => {
+        
+        //   if(querySnapshot2.size !== 0){
+        //   querySnapshot2.forEach(async (doc2) => {
+        //     IdBanco = doc2.id;
+        //     IdInd = doc2.data().IdUser;
+        //   });
+        //     firestore.collection("users")
+        //     .doc(IdInd)
+        //     .update({
+        //       Indicados: firebase.firestore.FieldValue.arrayUnion(id)
+        //      })
+  
+        //     firestore.collection("BancoWhats")
+        //     .doc(IdBanco)
+        //     .update({
+        //       Aprovado:true, 
+        //       })
+
+        //   firestore.collection("users")
+        //   .where("Indicados", "array-contains", IdInd)
+        //   .get()
+        //   .then((querySnapshot) => {
+        //     var IdNive3 = "";
+        //     var Nive3Q = 0;
+        //     if(querySnapshot.size !== 0){
+
+        //       querySnapshot.forEach((doc) => {
+        //         IdNive3 = doc.id;
+        //         Nive3Q =  doc.data().Nivel3;                 
+        //        });
+        //        firestore.collection("users")
+        //        .doc(IdNive3)
+        //        .update({
+        //         Nivel3: Nive3Q + 1
+        //       })
+
+        //       firestore.collection("users")
+        //       .where("Indicados", "array-contains", IdNive3)
+        //       .get()
+        //       .then((querySnapshot3) => {
+        //         var IdNive4 = "";
+        //         var Nive4Q = 0;
+        //         if(querySnapshot3.size !== 0){
+    
+        //           querySnapshot3.forEach((doc3) => {
+        //             IdNive4 = doc3.id;
+        //             Nive4Q =  doc3.data().Nivel4;                 
+        //            });
+        //            firestore.collection("users")
+        //            .doc(IdNive4)
+        //            .update({
+        //             Nivel4: Nive4Q + 1
+        //           })
+    
+                  
+    
+    
+        //         }
+                 
+        //       })
+
+
+
+        //     }
+             
+        //   })
+          
+          
+        // } else{
+        //   if(VerSite2 === "indicacao"){
+
+        //     firestore.collection("users")
+        //     .doc(IdInd2)
+        //     .update({
+        //       Indicados: firebase.firestore.FieldValue.arrayUnion(id)
+        //      })
+
+        //      firestore.collection("users")
+        //      .where("Indicados", "array-contains", IdInd2)
+        //      .get()
+        //      .then((querySnapshot) => {
+        //        var IdNive3 = "";
+        //        var Nive3Q = 0;
+        //        if(querySnapshot.size !== 0){
+   
+        //          querySnapshot.forEach((doc) => {
+        //            IdNive3 = doc.id;
+        //            Nive3Q =  doc.data().Nivel3;                 
+        //           });
+                 
+        //           firestore.collection("users")
+        //           .doc(IdNive3)
+        //           .update({
+        //            Nivel3: Nive3Q + 1
+        //          })
+   
+        //          firestore.collection("users")
+        //          .where("Indicados", "array-contains", IdNive3)
+        //          .get()
+        //          .then((querySnapshot3) => {
+        //            var IdNive4 = "";
+        //            var Nive4Q = 0;
+        //            if(querySnapshot3.size !== 0){
+       
+        //              querySnapshot3.forEach((doc3) => {
+        //                IdNive4 = doc3.id;
+        //                Nive4Q =  doc3.data().Nivel4;                 
+        //               });
+        //               console.log(Nive4Q)
+        //               console.log(Nive4Q.length)
+        //               firestore.collection("users")
+        //               .doc(IdNive4)
+        //               .update({
+        //                Nivel4: Nive4Q + 1
+        //              })
+       
+                     
+       
+       
+        //            }
+                    
+        //          })
+   
+   
+   
+        //        }
+                
+        //      })
+
+             
+  
+   
+        //   }
+
+        // }
+  
+        // });
         
   
   
@@ -840,17 +1176,91 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
        
     },
 
+    EntCod: async (IdCart, code, Tel, Nome, Tentativa, setTentativa, setIrEnt, setLoading, setTelMsg5, setUso, setAtivo  ) => {
+      var tel = await AsyncStorage.getItem('Tel');
+      var codig = await parseInt(code); 
+      console.log(codig)
+   await firestore.collection("users")
+   .where("Telefone", "==", tel)
+   .where("CodigEnt", "==", codig)
+   .get().then((querySnapshot) => {
+     if(querySnapshot.size !== 0){
+      querySnapshot.forEach(async (doc) => {
+       
+            await AsyncStorage.setItem('Id', doc.id);
+           
+           await firestore.collection("Cartoes")
+            .doc(IdCart)
+            .update({
+              IdDono:doc.id,
+              Nome:Nome,
+              DataIniUso:new Date().getTime(),
+              DataVenc:new Date().getTime()+31536000000,
+              Ativo:true,
+              EmUso:true,
+          })
+          .then( async() => {
+
+            let time = new Date().getTime();
+            await firestore.collection("users")
+            .doc(doc.id)
+            .update({
+              DataEntCel: time,
+          })
+          .then( async() => {
+           
+            let temp = await time.toString();
+            
+            await AsyncStorage.setItem('@entrada', temp);
+            await AsyncStorage.setItem('@Id', doc.id);
+            setUso(true);
+            setAtivo(true);
+            await setIrEnt(true);
+            setLoading(false);
+          })
+          .catch((error) => {
+          
+            
+          });
+
+          });
+
+
+         
+    
+       
+      
+    
+      
+    });
+  
+     } else {
+      setTelMsg5(true)
+      setLoading(false);
+      setTentativa(Tentativa+1)
+      
+     }
+   
+  })
+  .catch((error) => {
+   
+  });
+  
+  
+  
+       
+    },
+
     
     ListJogos: async(Page, setListOc, setCarreg,  Dat, Dat2,)=> {
-   
+      let time = new Date().getTime();
       let Antes = Dat/1000;
       let Depois = Dat2/1000;
       console.log(Antes);
       console.log(Depois);
        
              await firestore.collection("JogosCirados")
-               .where("DiaJogo", ">=", Antes)
-               .where("DiaJogo", "<=", Depois)
+              .where("DiaJogo", ">=", Antes)
                .get().then((querySnapshot) => {
 
                var res = []; 
@@ -1158,6 +1568,65 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
        
      },
 
+     CartoesCriado: async(ListOc, setListOc, setCarre,  )=> {
+   
+     
+      var Nome = ""
+      var tel = await AsyncStorage.getItem('Tel');
+      var time = await AsyncStorage.getItem('@entrada');
+      var IdUser = await AsyncStorage.getItem('@Id');
+   
+      var temp = parseInt(time)
+     
+       
+             await firestore.collection("Cartoes")
+               .onSnapshot((querySnapshot) => {
+
+               var res = []; 
+               console.log("q "+querySnapshot.size)
+               querySnapshot.forEach((doc) => {
+              
+                let currentDate = moment(doc.data().DataCri).format("DD/MM/YYYY HH:mm");
+                let currentDate3 = moment(doc.data().DataVenc).format("DD/MM/YYYY HH:mm");
+               
+                 
+                   res.push({
+                  id: doc.id,
+                  dataForm:currentDate,
+                  dataCri:doc.data().DataCri,
+                  EmUso:doc.data().EmUso,
+                  DataVenc:doc.data().DataVenc,
+                  DataVenFor:currentDate3,
+                  CartaoConfig:doc.data().CartaoConfig,
+                  CodVeri:doc.data().CodVeri?doc.data().CodVeri:{Ativo:false, Cod:""},
+                    
+                   });    
+                 
+                 
+               });
+               
+               res.sort((a,b)=>{
+                 if(a.dataCri > b.dataCri) {
+                   return 1;
+                 } else {
+                   return -1;
+                 }
+               });
+               console.log(res)
+               setListOc(res);
+               setCarre(false);  
+       
+                 });
+   
+               
+             
+           
+      
+        
+       
+       
+     },
+
      DadosGraficos: async( Page, setNiveis, setJogos, setGanhos,  setCarreg,  Dat, Dat2, )=> {
    
       let Antes = Dat ;
@@ -1256,6 +1725,43 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
                   setCarre(false);
                 }
               })  
+             
+           
+      
+        
+       
+       
+     },
+     
+     PegaCartao: async(IdCart, setCarreg, setInfCart, setIdUser )=> {
+   
+     
+      var IdUser = ""
+      var Nome = ""
+      var tel = await AsyncStorage.getItem('Tel');
+      var time = await AsyncStorage.getItem('@entrada');
+      var IdUser = await AsyncStorage.getItem('@Id');
+       setIdUser(IdUser)
+    
+       
+       console.log(IdUser)
+             await firestore.collection("Cartoes")
+            .doc(IdCart).get().then((doc) => {
+
+            
+                setInfCart(doc.data())
+                setCarreg(false);  
+                 
+               });
+               
+            
+              
+              
+           
+       
+               
+   
+              
              
            
       
@@ -1457,6 +1963,93 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
    
   },
 
+  ConfigCart: async(DadCart, CodVeri, setAlert, setAlertTipo, setCarre, setCodVeri, setDadCart)=> {
+    
+    if(CodVeri === ""){
+      await firestore.collection("Cartoes").doc(DadCart.id)
+      .update({
+          
+        CartaoConfig:true,
+        CodVeri:{Ativo:false, Cod:""}
+    
+      });
+      setAlert("Cartão Codificado")
+      setAlertTipo("success")
+      setCarre(false)
+      setDadCart({})
+      setCodVeri("")
+
+    } else {
+      await firestore.collection("Cartoes").doc(DadCart.id)
+      .update({
+          
+        CartaoConfig:true,
+        CodVeri:{Ativo:true, Cod:CodVeri}
+    
+      });
+      setAlert("Cartão Codificado")
+      setAlertTipo("success")
+      setCarre(false)
+      setDadCart({})
+      setCodVeri("")
+    }
+      
+    
+   
+    
+  },
+
+  LimpCart: async(DadCart, setAlert, setAlertTipo, setCarre, setLimCar)=> {
+    
+    await firestore.collection("Cartoes").doc(DadCart.id)
+    .update({
+        
+            IdDono:"",
+            SalvouNum:[],
+            Nome:"",
+            Config:{
+              Fundo:"",
+              Foto:{Ativar:false, Link:""},
+              Funcao:{Ativar:false, Texto:""},
+              Tel:{Ativar:false, Texto:""},
+              Whats:{Ativar:false, Texto:""},
+              Intagram:{Ativar:false, Link:""},
+              Facebook:{Ativar:false, Link:""},
+              Site:{Ativar:false, Link:""},
+              Twitter:{Ativar:false, Link:""},
+              Tiktok:{Ativar:false, Link:""},
+              Localizacao:{Ativar:false, Link:""},
+              Pix:{Ativar:false, Link:""},
+              Salvar:{Ativar:false, Link:""},
+              Compartilhar:{Ativar:false, Link:""},
+
+            },
+            ListCidade:false,
+            Pessoal:true,
+            Profissao:[],
+            Empresa:[],
+            Cidade:"",
+            Estado:"",
+            Sexo:"",
+            FotoQRCODE:"",
+            EmUso:false,
+            DataIniUso:0,
+            DataCri:new Date().getTime(),
+            CartaoConfig:false,
+            DataVenc:0,
+            Pago:false,
+            CodVeri:{Ativo:false, Cod:""}
+  
+
+  
+    });
+    setAlert("Cartão Limpo")
+    setAlertTipo("success")
+    setCarre(false)
+    setLimCar(false)
+    
+  },
+
 
     EnviadoAposCam: async(id, VaToCo, ValPreDemos, ValorReal, SimAp, ValApos, Nome, TelCli, NomeCam, TelCam, Concluir, Pago, ValCambis, QCash)=> {
       console.log(ValPreDemos)
@@ -1489,6 +2082,80 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
        
       });
       
+    },
+
+    CriandoCartao: async(ModalVer, setAlert, setAlertTipo, setCarre, setModalVer)=>{
+     var num = Math.floor(Math.random() * (7 - 0 + 1)) + 0
+      var Cores = ["#168500", "#0DBDE9", "#091A61", "#B59C0C", "#430459", "#0DBDE9", "#B16909", "#9F1F54" ]
+      var Msg = ""
+      var IdUser = ""
+      var Nome = ""
+      var tel = await AsyncStorage.getItem('Tel');
+      var time = await AsyncStorage.getItem('@entrada');
+      var temp = parseInt(time)
+      await firestore.collection("users")
+      .where("Telefone", "==", tel)
+      .where("DataEntCel", "==", temp)
+      .get().then( async(querySnapshot) => {
+        if(querySnapshot.size !== 0){
+          querySnapshot.forEach( async (doc) => {
+            IdUser = doc.id,
+            Nome = doc.data().Nome
+
+            });
+
+            await firestore.collection("Cartoes")
+            .add({
+            IdDono:"",
+            SalvouNum:[],
+            Nome:"CARLA CWO",
+            descricao:"",
+            Config:{
+              Fundo:"https://firebasestorage.googleapis.com/v0/b/cwoapp-bd594.appspot.com/o/arquivo%2Ffundo1.png?alt=media&token=b152a38c-3771-461d-9416-0b5cd16fa574",
+              Foto:{Ativar:true, Link:"https://firebasestorage.googleapis.com/v0/b/cwoapp-bd594.appspot.com/o/arquivo%2FperfilCWO.png?alt=media&token=454c9582-4fc3-45ef-8429-6dbf2fc85120"},
+              Funcao:{Ativar:true, Texto:"Marketing"},
+              Tel:{Ativar:true, Texto:""},
+              Whats:{Ativar:true, Texto:""},
+              Intagram:{Ativar:true, Link:""},
+              Facebook:{Ativar:true, Link:""},
+              Site:{Ativar:true, Link:""},
+              Twitter:{Ativar:true, Link:""},
+              Tiktok:{Ativar:true, Link:""},
+              Localizacao:{Ativar:true, Link:""},
+              Pix:{Ativar:true, Link:""},
+              Salvar:{Ativar:true, Link:""},
+              Compartilhar:{Ativar:true, Link:""},
+
+            },
+            ListCidade:false,
+            Pessoal:true,
+            Profissao:[],
+            Empresa:[],
+            Cidade:"",
+            Estado:"",
+            Sexo:"",
+            FotoQRCODE:"",
+            EmUso:false,
+            DataIniUso:0,
+            DataCri:new Date().getTime(),
+            CartaoConfig:false,
+            DataVenc:0,
+            Pago:false,
+            CorNalist:Cores[num],
+            CodVeri:{Ativo:false, Cod:""},
+            Ativo:false,
+
+     
+         
+            }).then(async (def) => {
+              setCarre(false);
+              setModalVer(true)
+              setAlert("Criado com Sucesso!");
+              setAlertTipo("success");
+            })
+          }
+
+      });
     },
 
      Apostando: async(QuanJog, ValApos, ValPreDemos,  ValorReal, SimAp, ValPremi, Cambis, TelCli, NomeCli, ValCambis, setCarre, setLinkEnv, setAlert, setAlertTipo, setVerNotajogo, setModalCalend, setSimAp, setValorReal,  setValPremi, setCambis, setTelCli, setNomeCli, setValCambis, setValPreDemos, VaToCo, setVaToCo)=> {
@@ -1741,7 +2408,7 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
                    data.append('Tel', tel);
                    data.append('IdApos', IdApos);
              
-               const req = await fetch(" https://us-central1-pixbetcash.cloudfunctions.net/api/criarPagamento", {
+               const req = await fetch("https://us-central1-pixbetcash.cloudfunctions.net/api/criarPagamento", {
                  method: 'POST',
                  headers:{
                    'Content-Type': 'application/x-www-form-urlencoded'
@@ -1880,6 +2547,87 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
           });
          
          },
+
+
+         CompCash: async( QCash,  NomeCli, setNomeCli, setQCash, setLoad, setLinkEnv, setAlert, setAlertTipo, setVerNotajogo, setModalCalend,)=> {
+          var ValorReal = (NomeCli/100).toFixed(2);
+          var ValorCash = parseInt(NomeCli)
+          var IdUser = ""
+          var Nome = ""
+          var tel = await AsyncStorage.getItem('Tel');
+          var time = await AsyncStorage.getItem('@entrada');
+          var temp = parseInt(time)
+          await firestore.collection("users")
+          .where("Telefone", "==", tel)
+          .where("DataEntCel", "==", temp)
+          .get().then( async(querySnapshot) => {
+         
+            if(querySnapshot.size !== 0){
+              querySnapshot.forEach( async (doc) => {
+                IdUser = doc.id,
+                Nome = doc.data().Nome
+    
+                });
+    
+             
+                firestore.collection("NotaCash").add({
+                  IdUser: IdUser,
+                  Valor: ValorReal,
+                  ValorCash:ValorCash,
+                  Pago:false,
+              })
+              .then(async (docRef) => {
+
+                 var idNot = docRef.id
+                  var data = new URLSearchParams();
+                  data.append('Valor', ValorReal);
+                  data.append('IdApos', idNot);
+            
+              const req = await fetch("https://us-central1-pixbetcash.cloudfunctions.net/api/PagamentoCash", {
+                method: 'POST',
+                headers:{
+                  'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: data.toString(),
+                json: true,
+              });
+             
+              const json = await req.json();
+            
+              if(json){
+               
+                setLinkEnv(json.resposta.response.init_point);
+                setLoad(false);
+                setAlert("Iniciando Pagamento!");
+                setAlertTipo("success");
+                setVerNotajogo(false);
+                setModalCalend(true)
+                setNomeCli("");
+               
+            
+            
+           } 
+              
+              
+                })
+              .catch((error) => {
+                  console.error("Error adding document: ", error);
+              });
+                
+                  
+                 
+          
+    
+              } else {
+                setAlert("Ouve um erro na Sua Conta Você Não Esta Logado")
+                setAlertTipo("danger")
+                setVerNotajogo(false)
+                setModalCalend(true)
+                setCarre(false);
+              }
+            });
+           
+           },
 
          EnviandoNota: async(IdApos, setPago, setRobo,  setCarre,  setAlert, setAlertTipo, setVerNotajogo, setModalCalend, setCriarCli, setEnviLin, setIdApos)=> {
        
@@ -2336,7 +3084,7 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
            
            },
 
-         DadosCli:async (Venc, setVersBanc, setVenc, setRec, setDatVenc, setNotif, setNomeComp, setTel)=>{
+         DadosCli:async (Venc, setVersBanc, setVenc, setRec, setDatVenc, setNotif, setNomeComp, setTel, setNi2, setNi3, setNi4)=>{
           var tel = await AsyncStorage.getItem('Tel');
           var time = await AsyncStorage.getItem('@entrada');
           var IdUser = await AsyncStorage.getItem('@Id');
@@ -2364,13 +3112,16 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
                  setRec(doc.data().Dinheiro)
                  setDatVenc(doc.data().DataVenc)
                  setNotif(doc.data().mensagem.length - doc.data().vizualV)
-                 setNomeComp(doc.data().Nome)
+                 setNomeComp(doc.data().NomeComp)
                  setTel(doc.data().Telefone)
+                 setNi2(doc.data().Indicados.length)
+                 setNi3(doc.data())
+                 setNi4(doc.data().Nivel4)
               
             })
 
             await firestore.collection("Vesao")
-            .doc("jCzDYjLxyhae1FJE3KS9")
+            .doc("lPqmXvy9YyaQv5tz1vkq")
              .onSnapshot((doc2) => {
               setVersBanc(doc2.data())
 
@@ -2801,7 +3552,8 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
           var temp = parseInt(time)
           await firestore.collection("users")
          .doc(IdUser)
-          .onSnapshot(async (doc) => {
+         .get()
+         .then(async (doc)=>{
             var res = []
             var resList = []
             var QC = 0;
@@ -2880,7 +3632,8 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
           await firestore.collection("users")
           .where("Telefone", "==", tel)
           .where("DataEntCel", "==", temp)
-          .onSnapshot(async(querySnapshot) => {
+          .get()
+          .then(async (querySnapshot)=>{
             var res = []
             var resList = []
             var QC = 0;
@@ -2961,7 +3714,8 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
           await firestore.collection("users")
           .where("Telefone", "==", tel)
           .where("DataEntCel", "==", temp)
-          .onSnapshot(async(querySnapshot) => {
+          .get()
+          .then(async (querySnapshot)=>{
             var res = []
             var resList = []
             var QC = 0;
@@ -3462,6 +4216,70 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
           })
         },
 
+        BaixandoMar: async(Nome, setAlert, setAlertTipo, setCarre )=> {
+          var IdUser = ""
+          var tel = await AsyncStorage.getItem('Tel');
+          var time = await AsyncStorage.getItem('@entrada');
+          var temp = parseInt(time)
+          await firestore.collection("users")
+          .where("Telefone", "==", tel)
+          .where("DataEntCel", "==", temp)
+          .get().then( async(querySnapshot) => {
+         
+            if(querySnapshot.size !== 0){
+
+              querySnapshot.forEach( async (doc) => {
+                IdUser = doc.id;
+                
+                });
+              console.log("ent")
+               
+                //const url = await storage.refFromURL('https://firebasestorage.googleapis.com/v0/b/pixbetcash.appspot.com/o/marketing%2FUntitled.mp4?alt=media&token=c4e52d02-1d05-4920-8169-330daf78aff9').getDownloadURL();
+               //var httpsReference = storage.refFromURL('https://firebasestorage.googleapis.com/v0/b/pixbetcash.appspot.com/o/marketing%2FUntitled.mp4?alt=media&token=c4e52d02-1d05-4920-8169-330daf78aff9');
+               const storageRef = storage.ref();
+
+               // [START storage_download_via_url]
+               storageRef.child('marketing/Untitled.mp4').getDownloadURL()
+                 .then((url) => {
+                   // `url` is the download URL for 'images/stars.jpg'
+                 
+                   // This can be downloaded directly:
+                   var xhr = new XMLHttpRequest();
+                   xhr.responseType = 'blob';
+                   xhr.onload = (event) => {
+                     var blob = xhr.response;
+                   };
+                   xhr.open('GET', url);
+                   xhr.send();
+                 
+                   // Or inserted into an <img> element
+                   var img = document.getElementById('myimg');
+                   img.setAttribute('src', url);
+                 })
+                 .catch((error) => {
+                   // Handle any errors
+                 });
+               
+                  setCarre(false);
+                  setAlert("Nome Trocado com Sucesso!");
+                  setAlertTipo("success");
+               
+
+                  
+
+
+             
+
+            } else {
+              setAlert("Ouve um erro na Sua Conta Você Não Esta Logado")
+              setAlertTipo("danger")   
+              setCarre(false);
+
+            }
+
+          })
+        },
+
         TrocandoNome: async(Nome, setAlert, setAlertTipo, setCarre )=> {
           var IdUser = ""
           var tel = await AsyncStorage.getItem('Tel');
@@ -3483,7 +4301,7 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
                 await firestore.collection("users")
                 .doc(IdUser)
                 .update({
-                  Nome: Nome,
+                  NomeComp: Nome,
                  
                 })
 

@@ -523,6 +523,7 @@ export default () => {
           setCodG(false);
           setTentativa(0);
           setCodLast(0);
+          setPgCash(false)
         }
 
         const AposCambis = ()=>{
@@ -530,79 +531,27 @@ export default () => {
          }
 
          const PagandoPix = ()=>{
-          var DateVw = parseInt((new Date().getTime() + 60000)/1000);
-          console.log(DateVw);
-          var verSim = []
-  
-          for(let i in SimAp){
-            console.log(SimAp[i].dataJogo +" - "+DateVw)
-             if(SimAp[i].dataJogo < DateVw){
-              verSim.push(1)
-             } else {
-              verSim.push(2)
-             }
-          }
-           console.log(verSim)
-          if(verSim.includes(1)){
-          
-            setAlert("Algum desses jogos já esta preste a começar ou já começou, exclua e escolha outro jogo!");
-            setAlertTipo("danger");
-            setModalCalend(true);
-            setVerNotajogo(false);
-  
-          } else {
-  
-            if(ValorReal >= 5){
-              if(SimAp.length > 2){
-  
-                 if(Cambis === false){
-                  setCarre(true);
-                  Api.PagandoJogo(IdApos, QuanJog, ValApos, ValPreDemos,  ValorReal, SimAp, ValPremi, Cambis, TelCli, NomeCli, ValCambis, setCarre, setLinkEnv, setAlert, setAlertTipo, setVerNotajogo, setModalCalend, setSimAp, setValorReal,  setValPremi, setCambis, setTelCli, setNomeCli, setValCambis, setValPreDemos, VaToCo, setVaToCo)
-                 
-                } else {
+       
+           
   
                   if(NomeCli !== ""){
                   
                  
-                      setCarre(true);
-                      Api.PagandoJogo(IdApos, QuanJog, ValApos, ValPreDemos, ValorReal, SimAp, ValPremi, Cambis, TelCli, NomeCli, ValCambis, setCarre, setLinkEnv, setAlert, setAlertTipo, setVerNotajogo, setModalCalend, setSimAp, setValorReal,  setValPremi, setCambis, setTelCli, setNomeCli, setValCambis, setValPreDemos, VaToCo, setVaToCo  )
+                      setLoad(true);
+                      Api.CompCash( QCash,  NomeCli, setNomeCli, setQCash, setLoad, setLinkEnv, setAlert, setAlertTipo, setVerNotajogo, setModalCalend,  )
                  
                   
   
                   } else {
                     setModalCalend(true);
                     setVerNotajogo(false);
-                    setAlert("Preencha o Nome Do Cliente");
+                    setAlert("Preencha a Quantidade de Cash");
                     setAlertTipo("danger");
   
                   }
   
                  
-                 
-                }
              
-             
-             
-             
-              } else {
-                setModalCalend(true);
-                setVerNotajogo(false);
-                setAlert("3 jogos são o minimo para aprovar uma aposta");
-                setAlertTipo("danger");
-      
-              }
-    
-            } else {
-              setModalCalend(true);
-              setVerNotajogo(false);
-              setAlert("R$ 5,00 é o menor valor que você pode aposta!");
-              setAlertTipo("danger");
-    
-    
-            }
-  
-          }
-          
          
          
          
@@ -627,6 +576,13 @@ export default () => {
 
          const PagandoCash = ()=>{
           setPgCash(true);
+          setVerNotajogo(true)
+          setModalCalend(true)
+
+         }
+
+         const ComprandoCash = ()=>{
+        
           setVerNotajogo(true)
           setModalCalend(true)
 
@@ -1083,7 +1039,7 @@ export default () => {
                         {PgCash ?
                         <>
                         <View  style={styles.CaixadeapostaTitulo}  >
-                    <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Banco de Cash</Text> <TouchableHighlight style={styles.fechaModal} onPress={() =>Siarnota()}><Text>X</Text></TouchableHighlight>
+                    <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Transferir Cash</Text> <TouchableHighlight style={styles.fechaModal} onPress={() =>Siarnota()}><Text>X</Text></TouchableHighlight>
                       </View> 
                       <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Banco de Cash:</Text>
                       <Text  style={{ marginLeft:10, fontSize:15  }}>{QCash} </Text>
@@ -1210,137 +1166,35 @@ export default () => {
                         :
                         <>
                         <View  style={styles.CaixadeapostaTitulo}  >
-                    <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Simulador de Aposta</Text><TouchableHighlight style={styles.fechaModal} onPress={() =>Siarnota()}><Text>X</Text></TouchableHighlight>
+                    <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Comprar Cash</Text><TouchableHighlight style={styles.fechaModal} onPress={() =>Siarnota()}><Text>X</Text></TouchableHighlight>
                       </View> 
-                      {SimAp.map((item3, index)=>( 
-                     <View   style={styles.Caixadeaposta}  >
+                      
+                      <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Banco de Cash:</Text>
+                      <Text  style={{ marginLeft:10, fontSize:15  }}>{QCash} </Text>
+                      <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>R$ 1,00 vale 100 Cash:</Text>
+                      <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Valor do Saque Em Reis:</Text>
+                      <Text  style={{ marginLeft:10, fontSize:15  }}>R${(NomeCli/100).toFixed(2)}</Text>
                    
-                     <Text style={styles.TexNota1}>{item3.CasaTime.name.substr(0, 15)}. X {item3.ForaTime.name.substr(0, 15)}.</Text> 
-                     <Text style={styles.TexNota1}>Palpite: {item3.Casa} | Cota: {item3.Olds}</Text>
-                     <Text style={styles.TexNota1}>({item3.Grupo})</Text>
-                     <Text style={styles.TexNota1}><DataTime  data={item3.dataJogo*1000} /> </Text>
-                     
-                     {StatusAp.map((item25, index)=>(
-                      <>
-                      {item25.id === item3.IdCasa &&
-                      <>
-                      {item25.Resultado === "Reprovado" ?
-                        <View  style={styles.ExcluirJogo} >
-                        <FontAwesome name="remove" size={24} color="red" />
-                        </View>
-                        :
-                        <>
-                        {item25.Resultado === "Aprovado"?
-                        <View  style={styles.ExcluirJogo} >
-                        <FontAwesome name="check" size={24} color="green" />
-                        </View>
-                        :
-                        <View  style={styles.ExcluirJogo} >
-                        <FontAwesome name="spinner" size={24} color="black" />
-                        </View>
-                        }
-                        
-                        </>
-                      }
-                        
-                     </> 
-
-                      }
-                     </>
-                        ))}
-                    
-                     </View>             
-
-                              ))}
-                    <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Qtd. Jogo(s) {QuanJog} </Text>
-                    <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}> Total Cota(s): {VaToCo}</Text> 
-                    <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}> Cash(s) Recebida: {QCash}</Text>  
-                    
+                          <KeyboardAvoidingView style = {styles.InputAra}>
+                   <FontAwesome name="ticket" size={24} color="black" />
+                   
+                   
+                    <SignInput
+                       placeholder="Quantidade Cash" 
+                       value={NomeCli}
+                       onChangeText={t=>setNomeCli(t)}
+                       autoCapitalize="none"
+                       keyboardType={"numeric"}
+                       posi={18}
+                   />
+                     </KeyboardAvoidingView>
 
 
-                    <View style={styles.InputHora}>
-                    <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Valor:</Text>  
-               
-              <Text  style={{ margin:10, fontSize:17  }}>{ValApos}</Text>
-                  
-                  
-                   </View>
-                 
-                          <View style={styles.Valopre}>
-                            <View style={styles.Titupre}>
-                            <Text  style={{fontWeight:"bold", margin:10, fontSize:15  }}>Valor Do Prêmio: R$ {ValPreDemos}</Text>
-                            </View>
-                            {Cambis === true ?
-                            <>
-                           <Text  style={{ marginLeft:10, fontSize:17, color:"#000"  }}>Cambista</Text>
-                            <Text  style={{ marginLeft:10, fontSize:17, color:"#000"  }}>Aposta Vencedora</Text>
-                            <Text  style={{ marginLeft:10, fontSize:17, color:"#000"  }}>10% do Premio para o Cambista.</Text>
-                            <Text  style={{ marginLeft:10, fontSize:17, color:"#000"  }}>Valor do Ganho: R$ {ValCambis}</Text>
-                            <View  style = {styles.AraCli}>
-                           <FontAwesome name="phone-square" size={24} color="black" />
-                             <Text  style={{ margin:10, fontSize:17  }}>{TelCli}</Text>
-                            </View>
-                            <View  style = {styles.AraCli}>
-                            <FontAwesome name="user" size={24} color="black" />
-                             <Text  style={{ margin:10, fontSize:17  }}>{NomeCli}</Text>
-                            </View>
-                            </>
-                            :
-                            <>
-                          
-                        
-                            </>
-                              }
-                              {Pago === false &&
-                              <>
-                          
-                           
-                          <TouchableHighlight style={{width:150, height:50, backgroundColor:"#1ED31A", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>PagandoPix()}>
-                            <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Pagar a Aposta</Text>
-                          </TouchableHighlight>
-
-                          <TouchableHighlight style={{width:150, height:50, backgroundColor:"#9B1AD3", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>PagandoCash()}>
-                            <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Pagar Com Cash</Text>
-                          </TouchableHighlight>
-
-
-                              
-                              </>
-
-                              }
-                         
-                           {AproPag=== true &&
-                          <>
-                          {Premio === false ?
-                           <TouchableHighlight style={{width:150, height:50, backgroundColor:"#E77E1E", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>PagarDinheiro()}>
-                           <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Receber Prêmio</Text>
+                      <TouchableHighlight style={{width:150, height:50, backgroundColor:"#1ED31A", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>PagandoPix()}>
+                            <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Pagar a Cash</Text>
                          </TouchableHighlight>
-                         :
-                         <Text  style={{ marginLeft:10, fontSize:17, color:"#000"  }}>Premio Enviado Para Pagamento</Text>
-                          } 
-                          </>
-
-                          }
-                      {Pago === true &&
-                      <>
-                          {Analisado === false &&
-                          <>
-                          {AnliAp === false &&
-                            <TouchableHighlight style={{width:150, height:50, backgroundColor:"#F96868", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>AnalisandoOlds()}>
-                            <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Analisar Resultado</Text>
-                          </TouchableHighlight>
-
-                          }
-                        
-                        </>
-                          }
-                          </>
-                        }
-                       
-
-                         
-                        
-                          </View>
+                      
+                     
                           
                         </>
                         }
@@ -1379,7 +1233,33 @@ export default () => {
           style={styles.imageBack} >
             <View style={styles.CaixaTitulo} >
               <TouchableHighlight  style={styles.CaixaDados}>
+              {userState.QN4 >= 8000 ?
+              <>
+              {userState.QN4 >= 64000 ?
+              <>
+               {userState.QN4 >= 216000 ?
+              <>
+  <Image source={require('../assets/Ouro.png')}  style={styles.ImageVer2 } />
+              </>
+              :
+              <>
+              <Image source={require('../assets/Prata.png')}  style={styles.ImageVer2 } />
+              </>
+              }
+
+              </>
+              :
+              <>
+              <Image source={require('../assets/bronze.png')}  style={styles.ImageVer2 } />
+              </>
+              }
+
+              </>
+              :
+              <>
               <Image source={require('../assets/logomarca.svg')}  style={styles.ImageVer2 } />
+              </>
+              }
               </TouchableHighlight>
             
              
@@ -1491,6 +1371,23 @@ export default () => {
                             </>
                        </TouchableHighlight>
                     </View>
+                    <View  style={styles.AreaBtnCima}>
+              
+              {/* <TouchableHighlight style={{width:70, height:100, backgroundColor:"#30B72D", borderRadius:10, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>IrGraf()}>
+                    <>
+                    <FontAwesome name="signal" size={40} color="#fff" />
+                      <Text  style={{ fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Gráficos</Text>
+                      
+                      </> 
+                 </TouchableHighlight> */}
+                 <TouchableHighlight style={{width:70, height:100, backgroundColor:"#840D8D", borderRadius:10, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>ComprandoCash()}>
+                     <>
+                     <FontAwesome name="dollar"  size={40} color="#FFF" />
+                      <Text  style={{  fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Comprar</Text>
+                      <Text  style={{  fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Cash</Text>
+                      </>
+                 </TouchableHighlight>
+              </View>
                     
                     <Text  style={{  fontWeight:"bold",  fontSize:20, color:"#000"  }}>Extrato da Conta</Text>
           <View  style={styles.AreaBtn}>
@@ -2014,8 +1911,7 @@ AreaBtnCima :{
   justifyContent:"center",
   alignItems:"center",
   flexDirection:"row",
-  marginBottom:10,
-  padding:10,
+  
  },
  
   AreaBtn :{

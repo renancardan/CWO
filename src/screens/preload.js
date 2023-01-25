@@ -22,7 +22,8 @@ export default () => {
     const [IdArea, setIdArea] = useState("");
     const [Lat, setLat] = useState("");
     const [Lng, setLng] = useState("");
-   // console.log(window.location.href);
+   console.log(window.location.href);
+
     useEffect(() => {
         if(IrLogin === true){
             irParaLogin();
@@ -51,10 +52,11 @@ export default () => {
       const Site = window.location.href;
     const VerSite =  Site.split("/");
     console.log(VerSite)
-    if(VerSite[3] === "links"){
+    if(VerSite[3] === "perfil"){
   
-    navigation.navigate("ApCambis", {
+    navigation.navigate("CartaoVisita", {
       id:VerSite[4],
+      Status:"Link",
     });
 
 
@@ -118,15 +120,13 @@ export default () => {
       <View style={styles.Container}>
         
         
-           <ImageBackground source={require("../assets/estadio3.jpg")} 
-          resizeMode="cover" 
-          style={styles.imageBack} >
-            <Image source={require('../assets/logomarca.svg')}  style={styles.ImageVer2 } />
+       
+            <Image source={require('../assets/logomarca.png')}  style={styles.ImageVer2 } />
        
       
        <Image source={require('../assets/carreg.gif')}  style={styles.ImageVer3 } />
-       <Image source={require('../assets/futebol.gif')}  style={styles.ImageVer5 } />     
-            </ImageBackground> 
+        
+          
       </View>
     )
   }
@@ -152,13 +152,13 @@ const styles = StyleSheet.create({
          justifyContent: "center",
       },
     ImageVer2:{
-        width:200,
+        width:300,
         height:200,
         marginTop: 300,
        
       },  
       Container:{
-       backgroundColor: "#FFE767",
+       backgroundColor: "#000",
        flex:1,
        justifyContent:"center",
        alignItems:"center",
@@ -182,9 +182,9 @@ const styles = StyleSheet.create({
        
       },  
       ImageVer3:{
-        width:100,
-        height:90,
-        marginTop: 140,
+        width:200,
+        height:200,
+        marginTop: 40,
     
        
       },  

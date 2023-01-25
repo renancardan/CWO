@@ -219,10 +219,18 @@ export default ({route}) => {
     let Dat = CompDat * 1000;
     let Dat2 =moment(currentDate1+" 23:59:00.000").unix()*1000;
    
-    if(Dat < Dat2){
+    var Mart = moment().unix()*1000
+    var Vet = Mart - 120000
+
+    if(Dat > Vet){
     setCarreg(true)
     Api.ListJogos( Page, setListOc, setCarreg,  Dat, Dat2, );
-  } 
+  }  else {
+    setModalCalend(true);
+    setVerNotajogo(false);
+    setAlert("Nessa Data Não Existe Mais Jogos!");
+    setAlertTipo("danger")
+  }
     
   }
 

@@ -1,5 +1,5 @@
 import React, { Component, useEffect, useContext, useState, useRef  } from 'react'
-import {Platform, Modal, Alert, Text, View, StyleSheet, ImageBackground, Image, Button, TouchableHighlight, KeyboardAvoidingView } from 'react-native'
+import {Platform, Modal, Alert, Text, View, StyleSheet, ImageBackground, Image, Button, TouchableHighlight, KeyboardAvoidingView, ScrollView } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import { UserContext } from '../contexts/UserContext';
@@ -33,7 +33,12 @@ export default () => {
     const [Robo, setRobo] = useState(true);
     const [IdInd2, setIdInd2] = useState("");
     const [VerSite2, setVerSite2] = useState("");
-   // console.log(window.location.href);
+ //  console.log(window.location.href);
+   useEffect(() => {
+    
+       console.log(Robo)
+  
+   }, [Robo])
  
     useEffect(() => {
       EntrandoLinks()
@@ -90,18 +95,18 @@ export default () => {
           
         }  else {
           setModalAlert(true);
-          setModText("Preencha todos os campos!")
+          setModalText("Preencha todos os campos!")
       
         }
 
     } else {
       setModalAlert(true);
-      setModText("Este Telefone Não é um Whatsapp!")
+      setModalText("Este Telefone Não é um Whatsapp!")
     }
 
      } else {
       setModalAlert(true);
-      setModText("Clique no Não Sou Robô!")
+      setModalText("Clique no Não Sou Robô!")
     }
       
      
@@ -129,7 +134,7 @@ export default () => {
 
     const TelWhats = ()=>{
        setLoading(true)
-      Api.VerWhats(Tel, setTelMsg, setNome, setBtn, setLoading)
+      Api.VerWhats(Tel,   setTe1 , setTelMsg, setNome, setBtn, setLoading)
       Api.AnaliseTel(Tel, setTe1, setNome) 
      
    }
@@ -184,14 +189,16 @@ export default () => {
        
              </View>
           </Modal>
-        
-        
-           <ImageBackground source={require("../assets/estadio3.jpg")} 
-          resizeMode="cover" 
+         
+        <ScrollView  >
+        <View 
           style={styles.imageBack} >
-            <Image source={require('../assets/logomarca.svg')}  style={styles.ImageVer2 } />
+          <Image source={require('../assets/topoapp.png')}  style={styles.TopoApp } />
+            <Image source={require('../assets/logomarca.png')}  style={styles.ImageVer2 } />
              <View  style={styles.AreaLogin}>
-             <ReCAPTCHA
+            
+                                       <Text style={styles.TexTitu} >ENTRAR</Text>
+                                       <ReCAPTCHA
                                     ref={captcha}
                                         sitekey="6LdDVDIiAAAAAM8Z3lsWD6qE2o2w94YfwDM7mRf7"
                                         size="normal"
@@ -253,14 +260,22 @@ export default () => {
                 :
                <>
                 <Image source={require('../assets/carreg.gif')}  style={styles.ImageVer3 } />
-       <Image source={require('../assets/futebol.gif')}  style={styles.ImageVer5 } />     
+  
                </>
                         }
-              
+                        <View style={{backgroundColor:"#FFF", width:420, height:600}}>
+               <Image source={require('../assets/VideoApre.gif')}  style={styles.ImageVerGif } />
+               <Text style={{marginLeft:20, marginBottom:10, color:"#000", fontSize:25, fontWeight:"bold" }} >Como Funciona a Tecnológia CWO</Text>
+               <Text style={{marginLeft:20, marginBottom:10, color:"#000", fontSize:20,  }} >O CWO é um cartão de visitas tecnológico e digital, perfeito para pessoas e empresas. Basta aproximar seu cartão CWO de um Smartphone, para compartilhar suas informações rapidamente. </Text>
+               <TouchableHighlight  style={styles.BtnCompre} onPress={handleMessageButtonClick} >
+                            <Text style={styles.BtnText}>COMPRE AGORA</Text>
+                 </TouchableHighlight>
+               </View> 
              </View>
-       
+             </View> 
+             </ScrollView>
             
-            </ImageBackground> 
+         
     
       </KeyboardAvoidingView>
     )
@@ -336,9 +351,9 @@ InputAra :{
 },
 
 AreaLogin :{
+
   width:300,
   flexDirection:"column",
-  borderRadius:20,
   alignItems: "center",
   justifyContent:"center",
   marginBottom:15,
@@ -355,6 +370,21 @@ Btn: {
  alignItems: "center",
 borderColor:"#FFF212",
 borderWidth:2,
+marginBottom:10
+ 
+},
+
+BtnCompre: {
+  width:"90%",
+  marginTop:10,
+ height:60,
+ backgroundColor: "#00A859",
+ borderRadius:20,
+ justifyContent:"center",
+ alignItems: "center",
+borderColor:"#FFF212",
+borderWidth:2,
+marginLeft:10,
  
 },
 
@@ -364,6 +394,14 @@ TexMsg: {
   color: "red",
   marginBottom: 15,
   marginTop: -10,
+},
+
+TexTitu: {
+  fontSize: 20,
+  color: "#FFF",
+  fontWeight:"bold",
+  marginTop:5,
+  marginBottom:5,
 },
 
 image: {
@@ -386,17 +424,34 @@ imageLoad: {
 
 imageBack: {
     width:  "100%",
-    height: "120%",
+    height: 1500,
+      flex: 1 ,
+      alignItems:"center",
+      justifyContent: "center",
+    
+  },
+
+  Scrow: {
+   
       flex: 1 ,
       alignItems:"center",
       justifyContent: "center",
     
   },
 ImageVer2:{
-    width:200,
+    width:250,
     height:200,
-    marginTop: 100,
-    marginBottom:15,
+    marginTop: 10,
+   
+    
+},
+
+TopoApp:{
+  width:420,
+  height:600,
+
+ 
+  
 },
     
   InputArea:{
@@ -405,11 +460,11 @@ ImageVer2:{
     
     },  
   Container:{
-    backgroundColor: "#FFE767",
+    backgroundColor: "#000",
     flex:1,
-    justifyContent:"center",
     alignItems:"center",
-    paddingBottom: 100,
+   
+
     
   },  
   ContainerImg:{
@@ -429,10 +484,17 @@ ImageVer2:{
      
     },  
     ImageVer3:{
-      width:100,
-      height:90,
-      marginTop: 140,
+      width:200,
+      height:200,
+      marginTop: 40,
   
      
-    },    
+    },  
+    ImageVerGif:{
+      width:420,
+      height:260,
+      marginTop: 10,
+  
+     
+    }    
 });

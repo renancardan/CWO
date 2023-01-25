@@ -111,11 +111,9 @@ export default () => {
        
              </View>
           </Modal>
-        <ImageBackground source={require("../assets/estadio3.jpg")} 
-          resizeMode='cover' 
-          style={styles.imageBack} >
-            <Image source={require('../assets/logomarca.svg')}  style={styles.ImageVer2 } />
-            <View  style={styles.AreaLogin}>
+      
+            <Image source={require('../assets/logomarca.png')}  style={styles.ImageVer2 } />
+          
            {Loading === false ? 
          
          <View  style={styles.InputArea}>
@@ -143,12 +141,11 @@ export default () => {
             :
             <>
                 <Image source={require('../assets/carreg.gif')}  style={styles.ImageVer3 } />
-       <Image source={require('../assets/futebol.gif')}  style={styles.ImageVer5 } />     
+     
                </>
                 }
 
-      </View>
-        </ImageBackground> 
+       
         </KeyboardAvoidingView>
     )
 
@@ -202,11 +199,12 @@ const styles = StyleSheet.create({
           justifyContent: "center",
           
       },
-    ImageVer2:{
-        width:200,
+      ImageVer2:{
+        width:300,
         height:200,
-        marginTop: 100,
-    },
+        marginTop: 300,
+       
+      },
     TituText:{
         fontSize: 15,
         color: "#fff",
@@ -224,16 +222,24 @@ const styles = StyleSheet.create({
      InputArea:{
         width: "100%",
         padding: 40,
-        
+        marginLeft:30,
         },
         Container:{
-            backgroundColor: "#FFE767",
+          backgroundColor: "#000",
             flex:1,
             justifyContent:"center",
             alignItems:"center",
             paddingBottom: 100,
             
-          },    
+          }, 
+          AreaLogin:{
+           
+              flex:1,
+              justifyContent:"center",
+              alignItems:"center",
+              
+              
+            },    
           imageBack: {
             width:  "100%",
             height: "120%",
@@ -289,9 +295,9 @@ const styles = StyleSheet.create({
            
           },  
           ImageVer3:{
-            width:100,
-            height:90,
-            marginTop: 140,
+            width:200,
+            height:200,
+            marginTop: 40,
         
            
           },    
