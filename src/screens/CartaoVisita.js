@@ -1690,6 +1690,8 @@ console.log(Robo)
           </View> */}
          
          
+
+         
         {Ativo === true &&
           <ScrollView>
             {Carre === false ?
