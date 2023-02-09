@@ -12,8 +12,6 @@ import { UserContext } from '../contexts/UserContext';
 import moment from 'moment';
 import Api from '../Api';
 import { Video, AVPlaybackStatus } from 'expo-av';
-import RNPickerSelect from 'react-native-picker-select';
-import * as ImagePicker from 'expo-image-picker';
 
 export default () => {
   const navigation = useNavigation();
@@ -44,24 +42,34 @@ export default () => {
   const [MsgErro1, setMsgErro1] = useState("");
   const [Btn1, setBtn1] = useState(false);
   const [What2, setWhat2] = useState(false);
-  const [Listu, setListu] = useState([])
+  const [Listu, setListu] = useState([
+    {id:0, Titulo:"Plano de Metas da PixBetCash", Link:"https://www.youtube.com/watch?v=0VbZdYF2Y-8&t=5s"},
+    {id:0, Titulo:"Como Funciona a PixBetCash", Link:"https://www.youtube.com/watch?v=S_gA2h0bzqY"},
+    {id:1, Titulo:"Como Navegar No Aplicativo PixBetCash(Topo e Rodapé)", Link:"https://www.youtube.com/watch?v=TThE-4NrP9w"},
+    {id:2, Titulo:"Como Fazer Uma Aposta na PixBetCash", Link:"https://www.youtube.com/watch?v=Mn6BvO9NdfA"},
+    {id:3, Titulo:"Como Pagar Um Aposta", Link:"https://www.youtube.com/watch?v=M5SxicNuP3g"},
+    {id:4, Titulo:"Como Pagar Uma Aposta Com Cash", Link:"https://www.youtube.com/watch?v=dNODn6ZgLJg"},
+    {id:5, Titulo:"Como se Cadastrar na PixBetCash", Link:"https://www.youtube.com/watch?v=GLgkdLGTU8E"},
+    {id:6, Titulo:"Como Utiliza-lo Como Aplicativo Android", Link:"https://www.youtube.com/watch?v=S2q7OYgUepo"},
+    {id:7, Titulo:"Como Utiliza-lo Como Aplicativo Para Iphone", Link:"https://www.youtube.com/watch?v=yVFv2bpccGI"},
+    {id:8, Titulo:"Como Acompanhar Uma Aposta", Link:"https://www.youtube.com/watch?v=KocMM_XulVk"},
+    {id:9, Titulo:"Como Transferir Cash", Link:"https://www.youtube.com/watch?v=ndTKp8bYnyI"},
+    {id:10, Titulo:"Como Sacar as Cash", Link:"https://www.youtube.com/watch?v=87-ZP_koxkM"},
+    {id:11, Titulo:"Como Acompanhar Seus Extratos", Link:"https://www.youtube.com/watch?v=iV_z1nW3ZpY"},
+    {id:12, Titulo:"Como Indicar Pessoas", Link:"https://www.youtube.com/watch?v=PJ6TPOBENYE"},
+    {id:13, Titulo:"Como Indicar Por Meio de Link", Link:"https://www.youtube.com/watch?v=Wh937a2wW9s"},
+    {id:14, Titulo:"Como Analisar os Gráficos", Link:"https://www.youtube.com/watch?v=pbY4dc9WWac"},
+    {id:15, Titulo:"Como Ver a Rede de Indicação e os Ganhos de Indicados", Link:"https://www.youtube.com/watch?v=ezkmt4OeUjI"},
+    {id:16, Titulo:"Como Ver Se Sua Conta está Vencida", Link:"https://www.youtube.com/watch?v=s8WqN5G_xqg"},
+    {id:17, Titulo:"Como Criar Um Ticket de Cambista para Produzir uma aposta", Link:"https://www.youtube.com/watch?v=nn2IlrkXIRY"},
+    {id:18, Titulo:"Como trocar o Nome", Link:"https://www.youtube.com/watch?v=9uyJgER1JDg"},
+    {id:19, Titulo:"Como Trocar o Whatsapp", Link:"https://www.youtube.com/watch?v=K2Z5USc-oU8"},
+    {id:20, Titulo:"Como Corrigir o Erro de Pagamento", Link:"https://www.youtube.com/watch?v=y56F4hmPlJE"},
+  ])
+
   const [DadoTitu, setDadoTitu] = useState(userState.QN3)
   const [DadoFili, setDadoFili] = useState(userState.QN3)
   const [DadosBet, setDadosBet] = useState(userState.versaoBanco)
-  const [ListOc, setListOc] = useState([]);
-  const [Lista, setLista] = useState([]);
-  const [PesId, setPesId] = useState("");
-  const [Status, setStatus] = useState("");
-  const [DadCart, setDadCart] = useState({});
-  const [LinkDeIn, setLinkDeIn] = useState("")
-  const [LimCar, setLimCar] = useState(false);
-  const [CodVeri, setCodVeri] = useState("")
-  const [IrImg, setIrImg] = useState(false);
-  const [Img, setImg] = useState("")
-
-   useEffect(() => {
-    ListandoOc();
-  }, []);
 
    const Saindo = async()=>{
     await AsyncStorage.setItem('Tel', "");
@@ -75,17 +83,6 @@ export default () => {
    const Voltar = ()=>{
     navigation.goBack();
   }
-
-  useEffect(() => {
-    PesqCod();
-  }, [PesId])
-
-  useEffect(() => {
-    if(DadCart !== {}){
-      setLinkDeIn(`https://cartaoweb.online/perfil/${DadCart}`)
-    }
-  
-    }, [DadCart])
 
   useEffect(() => {
     console.log(userState.QN3)
@@ -106,22 +103,6 @@ export default () => {
 
 
    }, [Tel])
-
-   useEffect(() => {
-    if(ListOc.length >= 1){
-      PegandoLig()
-    }
-
-   }, [ListOc])
-
-   useEffect(() => {
-    if(Status !== ""){
-      StatusLista()
-    }
-   
-   
-  }, [Status])
-
    useEffect(() => {
    setNome(userState.nomeCompleto)
   setTel(userState.telefone)
@@ -134,124 +115,7 @@ export default () => {
    
  }
 
- const StatusLista = ()=>{
-  var resli = [];
-  var resRev = [];
-
- 
-
-    for(let i in ListOc){
-     if(Status === "Em Uso"){
-
-      if(ListOc[i].EmUso === true){
-        resRev.push(ListOc[i])
-      }
-      
-     } else if(Status === "Descodificados"){
-      if(ListOc[i].CartaoConfig === false ){
-        resRev.push(ListOc[i])
-      }
-
-     }  else if(Status === "Codificados"){
-      if(ListOc[i].CartaoConfig === true ){
-        resRev.push(ListOc[i])
-      }
-
-     }  else if(Status === "Livre"){
-      if(ListOc[i].EmUso === false ){
-        resRev.push(ListOc[i])
-      }
-
-     } else if(Status === "Todos"){
-      
-        resRev.push(ListOc[i])
-      
-
-     }
-      
-         
-  
-      }
-   
-      if(resRev.length !== 0){
-        setLista(resRev)
-      } else {
-        setLista([])
-      }
-    
-      
-     
-  
- }
-
- const openImagePickerAsync = async () => {
-  let pickerResult = await ImagePicker.launchImageLibraryAsync();
-  setImg(pickerResult.uri);
-  setIrImg(true)
-
- 
-}
-
- const PesqCod = ()=>{
-   
-  if(PesId !== ""){
-   let listra2 = [];
-   for(let i in Lista ) {
-   
-       if( Lista[i].id.toLowerCase().includes(PesId.toLowerCase())  ) {
-         
-         listra2.push(Lista[i]);   
-       }
-      
-     
-     
-     setLista(listra2);
-    
-   }
-
-  } else {
-   PegandoLig()
-  }
-  
-   
- }
-
- const ListandoOc = ()=>{
-
-  setCarre(true)
-  Api.CartoesCriado( ListOc, setListOc, setCarre, );
-
-  
-}
-
-const PegandoLig = ()=>{
-  var resli = [];
-  var resRev = [];
-  for(let i in ListOc){
-
-  resRev.push(ListOc[i])
-     
-   
-      resli.push({
-        
-      })
-    
-
-
-  }
-
-  resli = resli.filter(function (a) {
-    return !this[JSON.stringify(a)] && (this[JSON.stringify(a)] = true);
-  }, Object.create(null))
-  
-
-  setLista(resRev)
- }
-
-   const AbrirModalP1 = (item)=>{
-    setDadCart(item)
-    console.log(item)
-    setCodVeri(item.CodVeri.Cod)
+   const AbrirModalP1 = ()=>{
     setModalVer(true)
     setP1(false)
     setP2(false)
@@ -260,7 +124,6 @@ const PegandoLig = ()=>{
     setP5(false)
     setP6(false)
     setP7(false)
-    setImg(item.QrCode)
     
    }
 
@@ -288,6 +151,10 @@ const PegandoLig = ()=>{
    
      
     }
+
+    const IrLisCart = ()=>{
+      navigation.navigate("ListCart") 
+   }
 
     const GerarCod2 =  async ()=> {
           
@@ -408,8 +275,6 @@ const PegandoLig = ()=>{
 
 
    const FecharModal = ()=>{
-    setDadCart({})
-    setCodVeri("")
     setModalVer(false)
     setP1(false)
     setP2(false)
@@ -429,8 +294,7 @@ const PegandoLig = ()=>{
     setCodG(false)
     setTentativa(0);
     setBtn1(false);
-    setRobo(true);
-    setLimCar(false)
+    setRobo(true)
    }
 
    const AbrirLink = (Link)=>{
@@ -484,33 +348,6 @@ const PegandoLig = ()=>{
     setSenha("");
     setMsgErro1("");
   }
-
-  const placeholder2 = {
-    label: 'Todos',
-    value: null,
-    color: '#000',
-};
-
-
-const MsgDeLimp= ()=>{
-  setLimCar(!LimCar)
-}
-
-
-const EditandoCart = ()=>{
-  if(Img !== ""){
-    setCarre(true)
-    Api.ConfigCart(Img, IrImg,  DadCart, CodVeri, setAlert, setAlertTipo, setCarre, setCodVeri, setDadCart, )
-  }
- 
- 
-}
-
-const LimpandoCar = ()=>{
- 
-  setCarre(true)
-  Api.LimpCart(DadCart, setAlert, setAlertTipo, setCarre, setLimCar )
-}
 
 
     return (
@@ -579,68 +416,58 @@ const LimpandoCar = ()=>{
                {P1 === false ?
               <>
           <View  style={styles.CaixadeapostaTitulo}  >         
-          <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Editar Cartão</Text> <TouchableHighlight  style={styles.fechaModal} onPress={() =>FecharModal()}><Text>X</Text></TouchableHighlight>
+          <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Regras PixBetCash</Text> <TouchableHighlight  style={styles.fechaModal} onPress={() =>FecharModal()}><Text>X</Text></TouchableHighlight>
           </View>
-          <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>{DadCart.id}</Text>
-          <View  style = {styles.InputAra}>
-                   <FontAwesome name="link" size={24} color="black" />
-                   
-                   
-                    <SignInput
-                       placeholder="Link Recortado" 
-                       value={LinkDeIn}
-                       onChangeText={t=>setLinkDeIn(t)}
-                       autoCapitalize="none"
-                       keyboardType={"numeric"}
-                       posi={18}
-                   />
-                  
-                   </View>
-                   <Text  style={{ marginLeft:10, fontSize:15, color:"#000"  }}>Codigo de Acesso</Text>
-                   <View  style = {styles.InputAra}>
-                   <FontAwesome name="expeditedssl" size={24} color="black" />
-                   
-                   
-                    <SignInput
-                       placeholder="Crie Codigo de Acesso" 
-                       value={CodVeri}
-                       onChangeText={t=>setCodVeri(t)}
-                       autoCapitalize="none"
-                       keyboardType={"numeric"}
-                       posi={18}
-                   />
-                  
-                   </View>
-
-                   <Image  source={{uri:Img }}  style={{ width:200, height:200, marginLeft:50, }} />
-                      <TouchableHighlight style={{width:250, height:50, backgroundColor:"#00A859", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>openImagePickerAsync()}>
-                              <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Procurar Imagem</Text>
-                        </TouchableHighlight>
-              
-                  <TouchableHighlight style={{width:150, height:50, backgroundColor:"#1ED31A", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>EditandoCart()}>
-                  <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Cartão Codificado</Text>
-                  </TouchableHighlight>
-                   
-
-            {LimCar === false ?
-                   <>
-                   <TouchableHighlight style={{width:150, height:50, backgroundColor:"#9B1AD3", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>MsgDeLimp()}>
-                            <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Limpar Cartão</Text>
-                          </TouchableHighlight>
-                   </>
-
-                   :
-                   <>
-                    <Text  style={{ marginLeft:10, fontSize:17, color:"#000"  }}>Você Tem certeza que Limpar Esse Cartão?</Text> 
-                    <TouchableHighlight style={{width:150, height:50, backgroundColor:"#0589CD", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>LimpandoCar()}>
-                           <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Sim</Text>
-                      </TouchableHighlight>
-                          <TouchableHighlight style={{width:150, height:50, backgroundColor:"#F34E4E", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>MsgDeLimp()}>
-                            <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Não</Text>
-                          </TouchableHighlight>
-                   </>
-
-                   }
+          <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Regras de Indicação</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- O responsável pela indicação ganhará comissão nas apostas do seus indicados, o valor da comissão corresponde pelo Nível da Rede de Indicação. A Rede de Indicação tem 4 Níveis.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- Para você ganhar suas comissões é necessário que sua conta não esteja vencida, caso queira saber como manter sua conta atualizada vá para Regras de Vencimento da Conta.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>1.	Nível 1 da Rede de Indicação </Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>  1.1.	Na sua Rede de Indicação o Nível 1 representa você.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>  1.2.	Cada Aposta que o Nível 1 fizer na PixBetCash, você ganhará uma comissão.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>  1.3.	O valor da comissão é referente ao valor da Aposta, a cada 1 real da aposta você ganha 9 cash</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>  1.4.	Exemplo: Nível 1 fez uma aposta no valor R$ 25,00 , se a cada R$ 1,00 você ganha 9 cash, nessa aposta você ganhou 225 cash que representa R$ 2,25 de comissão, que poderá ser sacado no financeiro do aplicativo. </Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>2.	Nível 2 da Rede de Indicação</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>  2.1.	Na sua Rede de Indicação o Nível 2 representa quem Você Indicou para o Aplicativo da PixBetCash.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>  2.2.	Cada Aposta que o Nível 2 fizer na PixBetCash, você ganhará uma comissão.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>  2.3.	O valor da comissão é referente ao valor da Aposta, a cada 1 real da aposta você ganha 6 cash</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>  2.4.	Exemplo: Nível 2 fez uma aposta no valor R$ 25,00 , se a cada R$ 1,00 você ganha 6 cash, nessa aposta você ganhou 150 cash que representa R$ 1,50 de comissão, que poderá ser sacado no financeiro do aplicativo.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>3.	Nível 3 da Rede de Indicação</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>  3.1.	Na sua Rede de Indicação o Nível 3 representa quem o Nível 2 indicou para o Aplicativo da PixBetCash.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>  3.2.	Cada Aposta que o Nível 3 fizer na PixBetCash, você ganhará uma comissão.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>  3.3.	O valor da comissão é referente ao valor da Aposta, a cada 1 real da aposta você ganha 3 cash</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>  3.4.	Exemplo: Nível 3 fez uma aposta no valor R$ 25,00 , se a cada R$ 1,00 você ganha 3 cash, nessa aposta você ganhou 75 cash que representa R$ 0,75 de comissão, que poderá ser sacado no financeiro do aplicativo. </Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>4.	 Nível 4 da Rede de Indicação</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>  4.1.	Na sua Rede de Indicação o Nível 4 representa quem o Nível 3 indicou para o Aplicativo da PixBetCash.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>  4.2.	Cada Aposta que o Nível 4 fizer na PixBetCash, você ganhará uma comissão.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>  4.3.	O valor da comissão é referente ao valor da Aposta, a cada 1 real da aposta você ganha 1 cash</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>  4.4.	Exemplo: Nível 4 fez uma aposta no valor R$ 25,00 , se a cada R$ 1,00 você ganha 1 cash, nessa aposta você ganhou 25 cash que representa R$ 0,25 de comissão, que poderá ser sacado no financeiro do aplicativo. </Text>
+          <Image source={require('../assets/redeind.png')}  style={styles.ImageVer10 } />
+          <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Regras de Vencimento da Conta</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- Para que você possa ganha comissões da sua Rede de Indicação é necessário que sua conta da PixBetCash não esteja vencida.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- Você acompanhará o Vencimento da sua Conta clicando no Calendário que está no topo do Aplicativo do lado Direito. Se o calendário estive com V vermelho ela está vencida.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- Para não deixar sua conta vencida, você tem que atualizar sua conta fazendo apostas na sua conta PixBetCash.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- A cada 1 real apostado, a data de vencimento da conta aumentará um dia.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- Exemplo:  A sua data de vencimento é: 02/10/2017 --- Se você apostou R$ 20,00, a sua Data de Vencimento da Conta vai aumentar mais 20 dias, no entanto a data de vencimento ficará em 22/10/2017</Text>
+          <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Regras de Aposta</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- Na Aposta da PixBetCash tem os Jogos e as Cotações de cada Jogo.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- Você só poderá apostar em uma cotação por jogo</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- Você não poderá apostar em jogos que já começaram</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- Você só poderá concluir a aposta se escolher no mínimo 3 palpites </Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- O Mínimo do valor apostado são R$ 5,00 </Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- O Máximo do valor apostado são R$ 1000,00  </Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- Todos os jogos com suas Cotações estarão analisados até as 12 horas do dia seguinte em que foi realizado o jogo do determinado Campeonato. Sendo assim o Botão para receber o prêmio só será liberado depois das analises das cotações dos jogos. </Text>
+          <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Regras de Cambista</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- Cada aposta feita por cambista você receberá os ganhos do Nível 1 da Rede de Indicação, mais informações nas Regras de Indicação.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- A Nota da Aposta feita pelo Cambista será enviado para o WhatsApp do Cliente</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- O Cambista terá direito de 10% do prêmio ganhado pela aposta do cliente, essa regra será informada na nota enviada para o WhatsApp do Cliente. </Text>
+          <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Regras do Recebimento de Pagamentos</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- No topo do Aplicativo estará informando o Valor que será transferido via Pix para sua conta do Banco.</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- Em 72 horas o Dinheiro estará em sua conta</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- O Valor Mínimo para Saque é de R$ 10,00</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- O Nome da Sua Conta da PixBetCash tem que ser o mesmo nome que aparecerá na sua conta de transferência Pix, quando efetuarmos a transferência via Pix com segurança</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>- O Número do WhatsApp que está Registrado da sua Conta PixBetCash tem que ser o Mesmo da Chave Pix, para que a empresa possa transferir com segurança.</Text>
+          <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:15  }}>Regras de Notificações</Text>
+          <Text  style={{ marginLeft:10, fontSize:15  }}>-O tempo De resposta de Suas Perguntas nas notificações do Aplicativo será de até no Máximo 24 horas.</Text>
          
           
               </>
@@ -1049,7 +876,7 @@ const LimpandoCar = ()=>{
 
               <TouchableHighlight  style={styles.CaixaDados}>
              <Text style={styles.TextInfo} >
-             Lista de Cartão
+             Instrução Instagram
              </Text>
               </TouchableHighlight>
              
@@ -1065,99 +892,102 @@ const LimpandoCar = ()=>{
                       :
                       <>
             <ScrollView>
-              <View style={styles.CaixaDados}>]
-              <View  style={styles.AreaBtn}>
-              <RNPickerSelect
-           placeholder={placeholder2}
-            onValueChange={(value) =>setStatus(value)}
-            items={[
-              {label:"Em Uso", value:"Em Uso", },
-              {label:"Descodificados", value:"Descodificados", },
-              {label:"Codificados", value:"Codificados", },
-              {label:"Livre", value:"Livre", },
-            ]}
-            style={{
-              fontSize: 16,
-              paddingHorizontal: 10,
-              paddingVertical: 8,
-              borderWidth: 0.5,
-              borderColor: 'eggplant',
-              borderRadius: 8,
-              color: 'black',
-              paddingRight: 30, // to ensure the text is never behind the icon
-              textAlign :'right',
-            }}
-            
-        />
-        </View>
-            <View style={styles.InputHora}>
-                  
-                  <SignInput
-                     
-                     placeholder="Digite o Código do Cartão" 
-                     value={PesId}
-                     onChangeText={t=>setPesId(t)}
-                     autoCapitalize="none"
-                     keyboardType={"default"}
+              
+            <View style={{ backgroundColor:"#000", margin:10, borderRadius: 5, padding:5  }} >
       
-                 />   
-                 </View>
-                 </View>
-               {Lista.map((item, key)=>(
-           <>
-            <View  style={styles.Post}>
-              <TouchableHighlight onPress={()=>AbrirModalP1(item)} style={{ padding:5, flexDirection:"row",  alignItems:"center", justifyContent:"space-around", height:70, width:400, borderBottomWidth:1, marginBottom:5, borderColor:"#ccc", backgroundColor:item.EmUso? "#168500":item.CartaoConfig? "#0DBDE9":"#000",}}>
-              <>
-               
-                <View  style={styles.CaixaNome}>
-                
-                  <Text style={{color:"#FFF", fontSize:17, fontWeight:"bold"}}>Id: {item.id}</Text>
-                  <Text style={{color:"#FFF", fontSize:14,}}>Data Cri: {item.dataForm}</Text>
-                
-                </View> 
-                <View  style={styles.CaixaNome}>
-                {item.EmUso ?
-                  <Text style={{color:"#FFF", fontSize:14,}}>Em Uso</Text>
-                :
-                <Text style={{color:"#FFF", fontSize:14,}}>Livre</Text>
-                }
-
-              {item.CartaoConfig ?
-                  <Text style={{color:"#FFF", fontSize:14,}}>Codificado</Text>
-                :
-                <Text style={{color:"#FFF", fontSize:14,}}>Descodificado</Text>
-                }
-                </View> 
-    
-                {/* <View  style={styles.TempDat}>
-                <TouchableHighlight onPress={()=>AbrirEnviar(item)} style={{backgroundColor:"#DDBE0D", display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column", height:25, marginBottom:5, borderRadius:5, marginRight:10, paddingLeft:5, paddingRight:5,}} >
-                <>
-              <Text  style={{fontSize:15, color:"#fff", margin:5}}>Enviar Nota</Text>
-              </>            
-              </TouchableHighlight>
-              <TouchableHighlight onPress={()=>AbrirModal(item)} style={{backgroundColor:"#009DFF", display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column", height:25, borderRadius:5, marginRight:10, paddingLeft:5, paddingRight:5,}} >
-                <>
-              <Text  style={{fontSize:15, color:"#fff", margin:5}}>Vizualizar</Text>
-              </>            
-              </TouchableHighlight>
-                </View> */}
-
-
-              </>
-              </TouchableHighlight>
-       
-             
-           
-
-
+            <Text  style={{  fontWeight:"bold",  fontSize:20, color:"#FFF",}}>Nome: {userState.nomeCompleto}</Text>
+            <Text  style={{  fontWeight:"bold",  fontSize:20, color:"#FFF",}}>Telefone: {userState.telefone}</Text>
             </View>
-           
-              </>
+            {DadoTitu.ADM === true &&
+            <>
+             <View  style={styles.AreaBtnCima}>
+              
+              <TouchableHighlight style={{width:70, height:100, backgroundColor:"#DDBE0D", borderRadius:10, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>CriarCartao()}>
+                    <>
+                    <FontAwesome name="book"  size={40} color="#fff" />
+                      <Text  style={{ fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Criar</Text>
+                      <Text  style={{ fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Cartão</Text>
+                      </> 
+                 </TouchableHighlight>
+                 <TouchableHighlight style={{width:70, height:100, backgroundColor:"#009DFF", borderRadius:10, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>IrLisCart()}>
+                     <>
+                     <FontAwesome name="list-alt" size={40} color="#FFF" />
+                      <Text  style={{  fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Lista de</Text>
+                      <Text  style={{  fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Cartão</Text>
+                      </>
+                 </TouchableHighlight>
+              </View>
+            
+            
+            
+            </>
 
-              ))}
-            
+
+            }
            
-            
+              {/* <View  style={styles.AreaBtnCima}>
+              <TouchableHighlight style={{width:70, height:100, backgroundColor:"#03B775", borderRadius:10, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>AbrirModalP7()}>
+                    <>
+                    <FontAwesome name="flag-checkered"  size={40} color="#fff" />
+                      <Text  style={{ fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Meta</Text>
+                      <Text  style={{  fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>PixBetCash</Text>
+                      </> 
+                 </TouchableHighlight>
+              
+              <TouchableHighlight style={{width:70, height:100, backgroundColor:"#261A9D", borderRadius:10, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>AbrirModalP8()}>
+                    <>
+                    <FontAwesome name="download"  size={40} color="#fff" />
+                      <Text  style={{ fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Baixar</Text>
+                      <Text  style={{  fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Marketing</Text>
+                      </> 
+                 </TouchableHighlight>
+                
+              </View> */}
+              <View  style={styles.AreaBtnCima}>
+              
+              <TouchableHighlight style={{width:70, height:100, backgroundColor:"#30B72D", borderRadius:10, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>AbrirModalP3()}>
+                    <>
+                    <FontAwesome name="user" size={40} color="#fff" />
+                      <Text  style={{ fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Trocar</Text>
+                      <Text  style={{  fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Nome</Text>
+                      </> 
+                 </TouchableHighlight>
+                 <TouchableHighlight style={{width:70, height:100, backgroundColor:"#840D8D", borderRadius:10, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>AbrirModalP4()}>
+                     <>
+                     <FontAwesome name="phone-square" size={40} color="#FFF" />
+                      <Text  style={{  fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Trocar</Text>
+                      <Text  style={{  fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Whatsapp</Text>
+                      </>
+                 </TouchableHighlight>
+              </View>
+              <View  style={styles.AreaBtnCima}>
+              
+              <TouchableHighlight style={{width:70, height:100, backgroundColor:"#E19807", borderRadius:10, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>AbrirModalP5()}>
+                    <>
+                    <FontAwesome name="android" size={40} color="#fff" />
+                      <Text  style={{ fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>APP PARA</Text>
+                      <Text  style={{  fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>ANDROID</Text>
+                      </> 
+                 </TouchableHighlight>
+                 <TouchableHighlight style={{width:70, height:100, backgroundColor:"#86E107", borderRadius:10, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>AbrirModalP6()}>
+                     <>
+                     <FontAwesome name="apple" size={40} color="#FFF" />
+                      <Text  style={{  fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>APP PARA</Text>
+                      <Text  style={{  fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>IPHONE</Text>
+                      </>
+                 </TouchableHighlight>
+              </View>
+              <View  style={styles.AreaBtnCima}>
+              
+              <TouchableHighlight style={{width:70, height:100, backgroundColor:"#F96868", borderRadius:10, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>Saindo()}>
+                    <>
+                    <FontAwesome name="power-off" size={40} color="#fff" />
+                      <Text  style={{ fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Sair Do</Text>
+                      <Text  style={{  fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Sistema</Text>
+                      </> 
+                 </TouchableHighlight>
+                
+              </View>
               </ScrollView>
               </>
             }
@@ -1796,7 +1626,6 @@ AreaBtnCima :{
         Container:{
             backgroundColor: "#000",
             flex:1,
-          
           alignItems:"center",
           }, 
 

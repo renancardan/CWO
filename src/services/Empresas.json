@@ -1,0 +1,231 @@
+[
+    {
+      "id":"111",
+      "Emp":"Advocacia e Serviços Legais"
+
+    },
+    {
+        "id":"112",
+        "Emp":"Agronegócios"
+  
+      },
+      {
+        "id":"113",
+        "Emp":"Alimentos e Bebidas"
+  
+      },
+      {
+        "id":"114",
+        "Emp":"Arquitetura"
+  
+      },
+      {
+        "id":"115",
+        "Emp":"Atacado e Distribuição"
+  
+      },
+      {
+        "id":"116",
+        "Emp":"Cartórios"
+  
+      },
+      {
+        "id":"117",
+        "Emp":"Condomínios e Administradoras"
+  
+      },
+      {
+        "id":"118",
+        "Emp":"Construção Civil"
+  
+      },
+      {
+        "id":"119",
+        "Emp":"Contabilidade"
+  
+      },
+      {
+        "id":"120",
+        "Emp":"Decoração"
+  
+      },
+      {
+        "id":"121",
+        "Emp":"Economia e Finanças"
+  
+      },
+      {
+        "id":"122",
+        "Emp":"Educação"
+  
+      },
+      {
+        "id":"123",
+        "Emp":"Eletro-eletrônica"
+  
+      },
+      {
+        "id":"124",
+        "Emp":"Energia"
+  
+      },
+      {
+        "id":"125",
+        "Emp":"Engenharia"
+  
+      },
+
+      {
+        "id":"126",
+        "Emp":"Esportes"
+  
+      },
+      {
+        "id":"127",
+        "Emp":"Eventos"
+  
+      },
+      {
+        "id":"128",
+        "Emp":"Fábricas e Indústrias"
+  
+      },
+
+      {
+        "id":"129",
+        "Emp":"Farmácias"
+  
+      },
+      {
+        "id":"130",
+        "Emp":"Governamental"
+  
+      },
+
+      {
+        "id":"131",
+        "Emp":"Hospitais e Clínicas Médicas"
+  
+      },
+      {
+        "id":"132",
+        "Emp":"Hotéis, Motéis e Alojamentos"
+  
+      },
+      {
+        "id":"133",
+        "Emp":"Imobiliárias"
+  
+      },
+      {
+        "id":"134",
+        "Emp":"Importadoras e Exportadoras"
+  
+      },
+      {
+        "id":"135",
+        "Emp":"Informática"
+  
+      },
+      {
+        "id":"136",
+        "Emp":"Instituições Religiosas"
+  
+      },
+      {
+        "id":"137",
+        "Emp":"Máquinas e Equipamentos"
+  
+      },
+      {
+        "id":"138",
+        "Emp":"Marketing e Publicidade"
+  
+      },
+      {
+        "id":"139",
+        "Emp":"Materiais de Construção"
+  
+      },
+      {
+        "id":"140",
+        "Emp":"Medicina e Saúde"
+  
+      },
+      {
+        "id":"141",
+        "Emp":"Medicina Veterinária"
+  
+      },
+      {
+        "id":"142",
+        "Emp":"Metalúrgica e Mecânica"
+  
+      },
+      {
+        "id":"143",
+        "Emp":"Mídia e Entretenimento"
+  
+      },
+      {
+        "id":"144",
+        "Emp":"Moda e Indústria Têxtil"
+  
+      },
+      {
+        "id":"145",
+        "Emp":"Papel"
+  
+      },
+      {
+        "id":"146",
+        "Emp":"Química"
+  
+      },
+      {
+        "id":"147",
+        "Emp":"Sem Fins Lucrativos"
+  
+      },
+      {
+        "id":"148",
+        "Emp":"Serviços ao Consumidor"
+  
+      },
+      {
+        "id":"149",
+        "Emp":"Serviços Empresariais"
+  
+      },
+      {
+        "id":"150",
+        "Emp":"Serviços Financeiros"
+  
+      },
+      {
+        "id":"151",
+        "Emp":"Supermercados"
+  
+      },
+      {
+        "id":"152",
+        "Emp":"Telecomunicações"
+  
+      },
+      {
+        "id":"153",
+        "Emp":"Transporte e Logística"
+  
+      },
+      {
+        "id":"154",
+        "Emp":"Varejo"
+  
+      },
+      {
+        "id":"155",
+        "Emp":"Veículos e Auto Peças"
+  
+      }
+
+]

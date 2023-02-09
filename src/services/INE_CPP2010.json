@@ -1,0 +1,6667 @@
+[
+ {
+   "Versão:": "1",
+   "V02014": "0",
+   "Classificação portuguesa das profissões, 2010": "Profissões das Forças Armadas"
+ },
+ {
+   "Versão:": "2",
+   "V02014": "01",
+   "Classificação portuguesa das profissões, 2010": "Oficiais das Forças Armadas"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "011",
+   "Classificação portuguesa das profissões, 2010": "Oficiais das Forças Armadas"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "0111",
+   "Classificação portuguesa das profissões, 2010": "Oficiais da Marinha (NE)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0111.1",
+   "Classificação portuguesa das profissões, 2010": "Oficial de Marinha"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0111.2",
+   "Classificação portuguesa das profissões, 2010": "Oficial de administração naval"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0111.3",
+   "Classificação portuguesa das profissões, 2010": "Oficial engenheiro naval"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0111.4",
+   "Classificação portuguesa das profissões, 2010": "Oficial fuzileiro "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0111.5",
+   "Classificação portuguesa das profissões, 2010": "Outros oficiais da Marinha e equiparados"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "0112",
+   "Classificação portuguesa das profissões, 2010": "Oficiais do Exército (NE)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0112.1",
+   "Classificação portuguesa das profissões, 2010": "Oficial de infantaria"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0112.2",
+   "Classificação portuguesa das profissões, 2010": "Oficial de artilharia"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0112.3",
+   "Classificação portuguesa das profissões, 2010": "Oficial de cavalaria"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0112.4",
+   "Classificação portuguesa das profissões, 2010": "Oficial de transmissões (Exército)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0112.5",
+   "Classificação portuguesa das profissões, 2010": "Oficial de engenharia militar"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0112.6",
+   "Classificação portuguesa das profissões, 2010": "Oficial de material militar (Exército)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0112.7",
+   "Classificação portuguesa das profissões, 2010": "Oficial de administração militar (Exército)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0112.8",
+   "Classificação portuguesa das profissões, 2010": "Outros oficiais do Exército"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "0113",
+   "Classificação portuguesa das profissões, 2010": "Oficiais da Força Aérea (NE)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0113.1",
+   "Classificação portuguesa das profissões, 2010": "Oficial piloto aviador"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0113.2",
+   "Classificação portuguesa das profissões, 2010": "Oficial da área de operações aéreas "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0113.3",
+   "Classificação portuguesa das profissões, 2010": "Oficial da Força Aérea da área de manutenção de sistemas de armas "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0113.4",
+   "Classificação portuguesa das profissões, 2010": "Oficial da Polícia Aérea"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0113.5",
+   "Classificação portuguesa das profissões, 2010": "Outros oficiais da Força Aérea"
+ },
+ {
+   "Versão:": "2",
+   "V02014": "02",
+   "Classificação portuguesa das profissões, 2010": "Sargentos das Forças Armadas"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "021",
+   "Classificação portuguesa das profissões, 2010": "Sargentos das Forças Armadas"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "0211",
+   "Classificação portuguesa das profissões, 2010": "Sargentos da Marinha (NE)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0211.1",
+   "Classificação portuguesa das profissões, 2010": "Sargento de comunicações (Marinha)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0211.2",
+   "Classificação portuguesa das profissões, 2010": "Sargento fuzileiro"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0211.3",
+   "Classificação portuguesa das profissões, 2010": "Sargento mergulhador"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0211.4",
+   "Classificação portuguesa das profissões, 2010": "Sargento de operações (Marinha)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0211.5",
+   "Classificação portuguesa das profissões, 2010": "Sargento de manobra e serviços (Marinha)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0211.6",
+   "Classificação portuguesa das profissões, 2010": "Sargento técnico de armamento (Marinha)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0211.7",
+   "Classificação portuguesa das profissões, 2010": "Outros sargentos de Marinha e equiparados"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "0212",
+   "Classificação portuguesa das profissões, 2010": "Sargentos do Exército (NE)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0212.1",
+   "Classificação portuguesa das profissões, 2010": "Sargento de infantaria"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0212.2",
+   "Classificação portuguesa das profissões, 2010": "Sargento de artilharia"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0212.3",
+   "Classificação portuguesa das profissões, 2010": "Sargento de cavalaria"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0212.4",
+   "Classificação portuguesa das profissões, 2010": "Sargento de transmissões (Exército)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0212.5",
+   "Classificação portuguesa das profissões, 2010": "Sargento de engenharia militar"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0212.6",
+   "Classificação portuguesa das profissões, 2010": "Sargento de material militar (Exército)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0212.7",
+   "Classificação portuguesa das profissões, 2010": "Sargento de administração militar (Exército)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0212.8",
+   "Classificação portuguesa das profissões, 2010": "Outros sargentos do Exército"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "0213",
+   "Classificação portuguesa das profissões, 2010": "Sargentos da Força Aérea (NE)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0213.1",
+   "Classificação portuguesa das profissões, 2010": "Sargento da área de operações aéreas"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0213.2",
+   "Classificação portuguesa das profissões, 2010": "Sargento da Força Aérea da área de manutenção de sistemas de armas"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0213.3",
+   "Classificação portuguesa das profissões, 2010": "Sargento de Polícia Aérea"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0213.4",
+   "Classificação portuguesa das profissões, 2010": "Outros sargentos da Força Aérea"
+ },
+ {
+   "Versão:": "2",
+   "V02014": "03",
+   "Classificação portuguesa das profissões, 2010": "Outro pessoal das Forças Armadas"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "031",
+   "Classificação portuguesa das profissões, 2010": "Outro pessoal das Forças Armadas"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "0311",
+   "Classificação portuguesa das profissões, 2010": "Praças da Marinha (NE)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0311.1",
+   "Classificação portuguesa das profissões, 2010": "Praça de comunicações (Marinha)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0311.2",
+   "Classificação portuguesa das profissões, 2010": "Praça fuzileiro"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0311.3",
+   "Classificação portuguesa das profissões, 2010": "Praça mergulhador"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0311.4",
+   "Classificação portuguesa das profissões, 2010": "Praça de operações (Marinha)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0311.5",
+   "Classificação portuguesa das profissões, 2010": "Praça de manobra e serviços (Marinha)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0311.6",
+   "Classificação portuguesa das profissões, 2010": "Praça técnico de armamento (Marinha)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0311.7",
+   "Classificação portuguesa das profissões, 2010": "Outras praças da Marinha e equiparados"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "0312",
+   "Classificação portuguesa das profissões, 2010": "Praças do Exército (NE)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0312.1",
+   "Classificação portuguesa das profissões, 2010": "Praça de infantaria"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0312.2",
+   "Classificação portuguesa das profissões, 2010": "Praça de artilharia"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0312.3",
+   "Classificação portuguesa das profissões, 2010": "Praça de cavalaria"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0312.4",
+   "Classificação portuguesa das profissões, 2010": "Praça de transmissões (Exército)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0312.5",
+   "Classificação portuguesa das profissões, 2010": "Praça de engenharia militar "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0312.6",
+   "Classificação portuguesa das profissões, 2010": "Praça de material militar (Exército)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0312.7",
+   "Classificação portuguesa das profissões, 2010": "Outras praças do Exército"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "0313",
+   "Classificação portuguesa das profissões, 2010": "Praças da Força Aérea (NE)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0313.1",
+   "Classificação portuguesa das profissões, 2010": "Praça da área de operações aéreas"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0313.2",
+   "Classificação portuguesa das profissões, 2010": "Praça da Força Aérea da área de manutenção de sistemas de armas"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0313.3",
+   "Classificação portuguesa das profissões, 2010": "Praça da Polícia Aérea"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "0313.4",
+   "Classificação portuguesa das profissões, 2010": "Outras praças da Força Aérea"
+ },
+ {
+   "Versão:": "1",
+   "V02014": "1",
+   "Classificação portuguesa das profissões, 2010": "Representantes do poder legislativo e de órgãos executivos, dirigentes, directores e gestores executivos"
+ },
+ {
+   "Versão:": "2",
+   "V02014": "11",
+   "Classificação portuguesa das profissões, 2010": "Representantes do poder legislativo e de órgãos executivos, dirigentes superiores da Administração Pública, de organizações especializadas, directores e gestores de empresas"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "111",
+   "Classificação portuguesa das profissões, 2010": "Representantes do poder legislativo e de órgãos executivos, dirigentes superiores da Administração Pública e de organizações especializadas"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "1111",
+   "Classificação portuguesa das profissões, 2010": "Representantes do poder legislativo e de órgãos executivos "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1111.0",
+   "Classificação portuguesa das profissões, 2010": "Representantes do poder legislativo e de órgãos executivos "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "1112",
+   "Classificação portuguesa das profissões, 2010": "Dirigente superior da Administração Pública"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1112.0",
+   "Classificação portuguesa das profissões, 2010": "Dirigente superior da Administração Pública"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "1113",
+   "Classificação portuguesa das profissões, 2010": "Chefe tradicional e chefe de aldeia"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1113.0",
+   "Classificação portuguesa das profissões, 2010": "Chefe tradicional e chefe de aldeia "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "1114",
+   "Classificação portuguesa das profissões, 2010": "Dirigente de organizações de interesse especial "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1114.0",
+   "Classificação portuguesa das profissões, 2010": "Dirigente de organizações de interesse especial "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "112",
+   "Classificação portuguesa das profissões, 2010": "Director geral e gestor executivo, de empresas "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "1120",
+   "Classificação portuguesa das profissões, 2010": "Director geral e gestor executivo, de empresas "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1120.0",
+   "Classificação portuguesa das profissões, 2010": "Director geral e gestor executivo, de empresas "
+ },
+ {
+   "Versão:": "2",
+   "V02014": "12",
+   "Classificação portuguesa das profissões, 2010": "Directores de serviços administrativos e comerciais"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "121",
+   "Classificação portuguesa das profissões, 2010": "Directores de serviços de negócios e de administração"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "1211",
+   "Classificação portuguesa das profissões, 2010": "Director financeiro"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1211.0",
+   "Classificação portuguesa das profissões, 2010": "Director financeiro"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "1212",
+   "Classificação portuguesa das profissões, 2010": "Director de recursos humanos "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1212.0",
+   "Classificação portuguesa das profissões, 2010": "Director de recursos humanos "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "1213",
+   "Classificação portuguesa das profissões, 2010": "Directores de estratégia e planeamento "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1213.0",
+   "Classificação portuguesa das profissões, 2010": "Directores de estratégia e planeamento "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "1219",
+   "Classificação portuguesa das profissões, 2010": "Outros directores de serviços de negócios e de administração"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1219.0",
+   "Classificação portuguesa das profissões, 2010": "Outros directores de serviços de negócios e de administração"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "122",
+   "Classificação portuguesa das profissões, 2010": "Directores de vendas, marketing e de desenvolvimento de negócios "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "1221",
+   "Classificação portuguesa das profissões, 2010": "Directores de vendas e marketing"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1221.1",
+   "Classificação portuguesa das profissões, 2010": "Director de vendas "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1221.2",
+   "Classificação portuguesa das profissões, 2010": "Director de marketing"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "1222",
+   "Classificação portuguesa das profissões, 2010": "Directores de publicidade e de relações públicas "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1222.1",
+   "Classificação portuguesa das profissões, 2010": "Director de publicidade "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1222.2",
+   "Classificação portuguesa das profissões, 2010": "Director de relações públicas"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "1223",
+   "Classificação portuguesa das profissões, 2010": "Directores de investigação e desenvolvimento"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1223.0",
+   "Classificação portuguesa das profissões, 2010": "Directores de investigação e desenvolvimento"
+ },
+ {
+   "Versão:": "2",
+   "V02014": "13",
+   "Classificação portuguesa das profissões, 2010": "Directores de produção e de serviços especializados"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "131",
+   "Classificação portuguesa das profissões, 2010": "Directores de produção na agricultura, produção animal, floresta e pesca"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "1311",
+   "Classificação portuguesa das profissões, 2010": "Directores de produção na agricultura, produção animal e floresta"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1311.1",
+   "Classificação portuguesa das profissões, 2010": "Director de produção na agricultura"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1311.2",
+   "Classificação portuguesa das profissões, 2010": "Director de produção animal"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1311.3",
+   "Classificação portuguesa das profissões, 2010": "Director de produção florestal"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "1312",
+   "Classificação portuguesa das profissões, 2010": "Directores de produção na pesca e aquicultura"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1312.1",
+   "Classificação portuguesa das profissões, 2010": "Director de produção na pesca"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1312.2",
+   "Classificação portuguesa das profissões, 2010": "Director de produção na aquicultura"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "132",
+   "Classificação portuguesa das profissões, 2010": "Directores das indústrias transformadoras, extractivas, da construção, transportes e distribuição  "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "1321",
+   "Classificação portuguesa das profissões, 2010": "Director das indústrias transformadoras"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1321.0",
+   "Classificação portuguesa das profissões, 2010": "Director das indústrias transformadoras"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "1322",
+   "Classificação portuguesa das profissões, 2010": "Director das indústrias extractivas"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1322.0",
+   "Classificação portuguesa das profissões, 2010": "Director das indústrias extractivas"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "1323",
+   "Classificação portuguesa das profissões, 2010": "Director das indústrias de construção e de engenharia civil"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1323.0",
+   "Classificação portuguesa das profissões, 2010": "Director das indústrias de construção e de engenharia civil"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "1324",
+   "Classificação portuguesa das profissões, 2010": "Directores de compras, transportes, armazenagem, distribuição e relacionados"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1324.1",
+   "Classificação portuguesa das profissões, 2010": "Director de compras "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1324.2",
+   "Classificação portuguesa das profissões, 2010": "Director de transportes"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1324.3",
+   "Classificação portuguesa das profissões, 2010": "Directores de armazenagem, distribuição e relacionados"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "133",
+   "Classificação portuguesa das profissões, 2010": "Directores dos serviços das tecnologias da informação e comunicação (TIC)"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "1330",
+   "Classificação portuguesa das profissões, 2010": "Directores dos serviços das tecnologias da informação e comunicação (TIC)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1330.0",
+   "Classificação portuguesa das profissões, 2010": "Directores dos serviços das tecnologias da informação e comunicação (TIC)"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "134",
+   "Classificação portuguesa das profissões, 2010": "Directores de serviços especializados"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "1341",
+   "Classificação portuguesa das profissões, 2010": "Director dos serviços de cuidados de crianças"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1341.0",
+   "Classificação portuguesa das profissões, 2010": "Director dos serviços de cuidados de crianças"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "1342",
+   "Classificação portuguesa das profissões, 2010": "Director dos serviços de saúde"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1342.0",
+   "Classificação portuguesa das profissões, 2010": "Director dos serviços de saúde"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "1343",
+   "Classificação portuguesa das profissões, 2010": "Director dos serviços de cuidados a pessoas idosas"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1343.0",
+   "Classificação portuguesa das profissões, 2010": "Director dos serviços de cuidados a pessoas idosas"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "1344",
+   "Classificação portuguesa das profissões, 2010": "Director dos serviços de apoio social "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1344.0",
+   "Classificação portuguesa das profissões, 2010": "Director dos serviços de apoio social "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "1345",
+   "Classificação portuguesa das profissões, 2010": "Director dos serviços de educação"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1345.0",
+   "Classificação portuguesa das profissões, 2010": "Director dos serviços de educação"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "1346",
+   "Classificação portuguesa das profissões, 2010": "Director de sucursais de bancos, serviços financeiros e de seguros"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1346.0",
+   "Classificação portuguesa das profissões, 2010": "Director de sucursais de bancos, serviços financeiros e de seguros"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "1349",
+   "Classificação portuguesa das profissões, 2010": "Directores de outros serviços especializados e profissionais com funções de comando, direcção ou chefia, das forças e serviços de segurança"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1349.1",
+   "Classificação portuguesa das profissões, 2010": "Director de bibliotecas, arquivos, museus, galerias de arte e monumentos nacionais "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1349.2",
+   "Classificação portuguesa das profissões, 2010": "Oficiais e outros profissionais, das forças e serviços de segurança, com funções de comando, direcção ou chefia "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1349.3",
+   "Classificação portuguesa das profissões, 2010": "Director de outros serviços especializados, n.e."
+ },
+ {
+   "Versão:": "2",
+   "V02014": "14",
+   "Classificação portuguesa das profissões, 2010": "Directores de hotelaria, restauração, comércio e de outros serviços "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "141",
+   "Classificação portuguesa das profissões, 2010": "Directores e gerentes, de hotelaria e restauração "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "1411",
+   "Classificação portuguesa das profissões, 2010": "Director e gerente, de hotéis e similares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1411.0",
+   "Classificação portuguesa das profissões, 2010": "Director e gerente, de hotéis e similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "1412",
+   "Classificação portuguesa das profissões, 2010": "Director e gerente de restauração (restaurantes e similares)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1412.0",
+   "Classificação portuguesa das profissões, 2010": "Director e gerente de restauração (restaurantes e similares)"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "142",
+   "Classificação portuguesa das profissões, 2010": "Directores e gerentes, do comércio a retalho e por grosso"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "1420",
+   "Classificação portuguesa das profissões, 2010": "Directores e gerentes, do comércio a retalho e por grosso"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1420.1",
+   "Classificação portuguesa das profissões, 2010": "Director e gerente do comércio a retalho "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1420.2",
+   "Classificação portuguesa das profissões, 2010": "Director e gerente do comércio por grosso "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "143",
+   "Classificação portuguesa das profissões, 2010": "Directores e gerentes de outros serviços"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "1431",
+   "Classificação portuguesa das profissões, 2010": "Director e gerente dos centros desportivos, recreativos e culturais"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1431.0",
+   "Classificação portuguesa das profissões, 2010": "Director e gerente dos centros desportivos, recreativos e culturais"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "1439",
+   "Classificação portuguesa das profissões, 2010": "Director e gerente de outros serviços, n.e. "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "1439.0",
+   "Classificação portuguesa das profissões, 2010": "Director e gerente de outros serviços, n.e. "
+ },
+ {
+   "Versão:": "1",
+   "V02014": "2",
+   "Classificação portuguesa das profissões, 2010": "Especialistas das actividades intelectuais e científicas"
+ },
+ {
+   "Versão:": "2",
+   "V02014": "21",
+   "Classificação portuguesa das profissões, 2010": "Especialistas das ciências físicas, matemáticas, engenharias e técnicas afins"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "211",
+   "Classificação portuguesa das profissões, 2010": "Físicos, químicos e especialistas relacionados "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2111",
+   "Classificação portuguesa das profissões, 2010": "Físicos e astrónomos"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2111.1",
+   "Classificação portuguesa das profissões, 2010": "Físico"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2111.2",
+   "Classificação portuguesa das profissões, 2010": "Astrónomo"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2112",
+   "Classificação portuguesa das profissões, 2010": "Meteorologista"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2112.0",
+   "Classificação portuguesa das profissões, 2010": "Meteorologista"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2113",
+   "Classificação portuguesa das profissões, 2010": "Químico "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2113.0",
+   "Classificação portuguesa das profissões, 2010": "Químico "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2114",
+   "Classificação portuguesa das profissões, 2010": "Geólogos, geofísicos e oceanógrafos "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2114.1",
+   "Classificação portuguesa das profissões, 2010": "Geólogo"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2114.2",
+   "Classificação portuguesa das profissões, 2010": "Geofísico"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2114.3",
+   "Classificação portuguesa das profissões, 2010": "Oceanógrafo"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "212",
+   "Classificação portuguesa das profissões, 2010": "Matemáticos, actuários, estaticistas e demógrafos"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2120",
+   "Classificação portuguesa das profissões, 2010": "Matemáticos, actuários, estaticistas e demógrafos"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2120.1",
+   "Classificação portuguesa das profissões, 2010": "Matemático"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2120.2",
+   "Classificação portuguesa das profissões, 2010": "Actuário "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2120.3",
+   "Classificação portuguesa das profissões, 2010": "Estaticista e demógrafo"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "213",
+   "Classificação portuguesa das profissões, 2010": "Especialistas em ciências da vida"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2131",
+   "Classificação portuguesa das profissões, 2010": "Biólogos, botânicos, zoólogos e especialistas relacionados"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2131.1",
+   "Classificação portuguesa das profissões, 2010": "Biólogo"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2131.2",
+   "Classificação portuguesa das profissões, 2010": "Botânico"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2131.3",
+   "Classificação portuguesa das profissões, 2010": "Zoólogo"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2131.4",
+   "Classificação portuguesa das profissões, 2010": "Farmacologista e outros especialistas relacionados "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2132",
+   "Classificação portuguesa das profissões, 2010": "Engenheiros agrónomos, florestais e consultores das pescas "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2132.1",
+   "Classificação portuguesa das profissões, 2010": "Engenheiro agrónomo"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2132.2",
+   "Classificação portuguesa das profissões, 2010": "Engenheiro florestal"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2132.3",
+   "Classificação portuguesa das profissões, 2010": "Consultor de actividades das pescas"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2133",
+   "Classificação portuguesa das profissões, 2010": "Especialista da protecção do ambiente "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2133.0",
+   "Classificação portuguesa das profissões, 2010": "Especialista da protecção do ambiente "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "214",
+   "Classificação portuguesa das profissões, 2010": "Especialistas em engenharia (excepto electrotecnologia)"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2141",
+   "Classificação portuguesa das profissões, 2010": "Engenheiro industrial e de produção"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2141.0",
+   "Classificação portuguesa das profissões, 2010": "Engenheiro industrial e de produção"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2142",
+   "Classificação portuguesa das profissões, 2010": "Engenheiros civis"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2142.1",
+   "Classificação portuguesa das profissões, 2010": "Engenheiro de construção de edifícios "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2142.2",
+   "Classificação portuguesa das profissões, 2010": "Engenheiro de obras de engenharia civil "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2143",
+   "Classificação portuguesa das profissões, 2010": "Engenheiro do ambiente"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2143.0",
+   "Classificação portuguesa das profissões, 2010": "Engenheiro do ambiente"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2144",
+   "Classificação portuguesa das profissões, 2010": "Engenheiro mecânico"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2144.0",
+   "Classificação portuguesa das profissões, 2010": "Engenheiro mecânico"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2145",
+   "Classificação portuguesa das profissões, 2010": "Engenheiro químico "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2145.0",
+   "Classificação portuguesa das profissões, 2010": "Engenheiro químico "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2146",
+   "Classificação portuguesa das profissões, 2010": "Engenheiros de minas, metalurgia e relacionados"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2146.1",
+   "Classificação portuguesa das profissões, 2010": "Engenheiro de minas"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2146.2",
+   "Classificação portuguesa das profissões, 2010": "Engenheiro metalúrgico"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2146.3",
+   "Classificação portuguesa das profissões, 2010": "Outros engenheiros relacionados com minas e metalurgia "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2149",
+   "Classificação portuguesa das profissões, 2010": "Outros especialistas em engenharia (excepto electrotecnologia) "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2149.0",
+   "Classificação portuguesa das profissões, 2010": "Outros especialistas em engenharia (excepto electrotecnologia)"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "215",
+   "Classificação portuguesa das profissões, 2010": "Engenheiros de electrotecnologia"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2151",
+   "Classificação portuguesa das profissões, 2010": "Engenheiro electrotécnico"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2151.0",
+   "Classificação portuguesa das profissões, 2010": "Engenheiro electrotécnico"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2152",
+   "Classificação portuguesa das profissões, 2010": "Engenheiro electrónico"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2152.0",
+   "Classificação portuguesa das profissões, 2010": "Engenheiro electrónico"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2153",
+   "Classificação portuguesa das profissões, 2010": "Engenheiro de telecomunicações"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2153.0",
+   "Classificação portuguesa das profissões, 2010": "Engenheiro de telecomunicações"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "216",
+   "Classificação portuguesa das profissões, 2010": "Arquitectos, urbanistas, agrimensores e designers "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2161",
+   "Classificação portuguesa das profissões, 2010": "Arquitecto de edifícios"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2161.0",
+   "Classificação portuguesa das profissões, 2010": "Arquitecto de edifícios"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2162",
+   "Classificação portuguesa das profissões, 2010": "Arquitecto paisagista "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2162.0",
+   "Classificação portuguesa das profissões, 2010": "Arquitecto paisagista "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2163",
+   "Classificação portuguesa das profissões, 2010": "Designers de produto, têxteis, moda e de interiores "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2163.1",
+   "Classificação portuguesa das profissões, 2010": "Designer de produto industrial ou de equipamento"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2163.2",
+   "Classificação portuguesa das profissões, 2010": "Designer de têxteis e moda"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2163.3",
+   "Classificação portuguesa das profissões, 2010": "Designer de interiores, espaços ou de ambientes"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2164",
+   "Classificação portuguesa das profissões, 2010": "Urbanista de cidade e tráfego"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2164.0",
+   "Classificação portuguesa das profissões, 2010": "Urbanista de cidade e tráfego"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2165",
+   "Classificação portuguesa das profissões, 2010": "Cartógrafo, agrimensor, topógrafo e similares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2165.1",
+   "Classificação portuguesa das profissões, 2010": "Cartógrafo e agrimensor"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2165.2",
+   "Classificação portuguesa das profissões, 2010": "Topógrafo e similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2166",
+   "Classificação portuguesa das profissões, 2010": "Designer, gráfico ou de comunicação e multimédia"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2166.0",
+   "Classificação portuguesa das profissões, 2010": "Designer, gráfico ou de comunicação e multimédia"
+ },
+ {
+   "Versão:": "2",
+   "V02014": "22",
+   "Classificação portuguesa das profissões, 2010": "Profissionais de saúde"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "221",
+   "Classificação portuguesa das profissões, 2010": "Médicos"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2211",
+   "Classificação portuguesa das profissões, 2010": "Médicos generalistas"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2211.1",
+   "Classificação portuguesa das profissões, 2010": "Médico de medicina geral e familiar "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2211.2",
+   "Classificação portuguesa das profissões, 2010": "Outros médicos generalistas"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2212",
+   "Classificação portuguesa das profissões, 2010": "Médicos especializados"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2212.1",
+   "Classificação portuguesa das profissões, 2010": "Médico de especialidades cirúrgicas "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2212.2",
+   "Classificação portuguesa das profissões, 2010": "Médico de especialidades médicas"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2212.3",
+   "Classificação portuguesa das profissões, 2010": "Médico de especialidades técnicas"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "222",
+   "Classificação portuguesa das profissões, 2010": "Profissionais de enfermagem "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2221",
+   "Classificação portuguesa das profissões, 2010": "Enfermeiros e enfermeiros especialistas (excepto em saúde materna e obstétrica)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2221.1",
+   "Classificação portuguesa das profissões, 2010": "Enfermeiro de cuidados gerais"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2221.2",
+   "Classificação portuguesa das profissões, 2010": "Enfermeiro especialista em reabilitação"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2221.3",
+   "Classificação portuguesa das profissões, 2010": "Enfermeiro especialista em saúde infantil e pediátrica"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2221.4",
+   "Classificação portuguesa das profissões, 2010": "Enfermeiro especialista em saúde mental e psiquiátrica"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2221.5",
+   "Classificação portuguesa das profissões, 2010": "Enfermeiro especialista em enfermagem comunitária "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2221.6",
+   "Classificação portuguesa das profissões, 2010": "Enfermeiro especialista em enfermagem médico-cirúrgica"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2221.7",
+   "Classificação portuguesa das profissões, 2010": "Outros enfermeiros especialistas (excepto em saúde materna e obstétrica)"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2222",
+   "Classificação portuguesa das profissões, 2010": "Enfermeiro especialista em saúde materna e obstétrica"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2222.0",
+   "Classificação portuguesa das profissões, 2010": "Enfermeiro especialista em saúde materna e obstétrica"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "223",
+   "Classificação portuguesa das profissões, 2010": "Especialista em medicina tradicional e alternativa"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2230",
+   "Classificação portuguesa das profissões, 2010": "Especialista em medicina tradicional e alternativa"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2230.1",
+   "Classificação portuguesa das profissões, 2010": "Acupunctor "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2230.2",
+   "Classificação portuguesa das profissões, 2010": "Homeopata"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2230.3",
+   "Classificação portuguesa das profissões, 2010": "Outros especialistas em medicina tradicional e alternativa"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "224",
+   "Classificação portuguesa das profissões, 2010": "Profissional paramédico "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2240",
+   "Classificação portuguesa das profissões, 2010": "Profissional paramédico"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2240.0",
+   "Classificação portuguesa das profissões, 2010": "Profissional paramédico"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "225",
+   "Classificação portuguesa das profissões, 2010": "Veterinário "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2250",
+   "Classificação portuguesa das profissões, 2010": "Veterinário "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2250.0",
+   "Classificação portuguesa das profissões, 2010": "Veterinário "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "226",
+   "Classificação portuguesa das profissões, 2010": "Outros profissionais de saúde"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2261",
+   "Classificação portuguesa das profissões, 2010": "Médicos dentistas e estomatologistas"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2261.1",
+   "Classificação portuguesa das profissões, 2010": "Médico estomatologista"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2261.2",
+   "Classificação portuguesa das profissões, 2010": "Médico dentista "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2262",
+   "Classificação portuguesa das profissões, 2010": "Farmacêutico "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2262.0",
+   "Classificação portuguesa das profissões, 2010": "Farmacêutico "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2263",
+   "Classificação portuguesa das profissões, 2010": "Especialista em higiene e saúde, ambiental e laboral"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2263.0",
+   "Classificação portuguesa das profissões, 2010": "Especialista em higiene e saúde, ambiental e laboral"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2264",
+   "Classificação portuguesa das profissões, 2010": "Fisioterapeuta "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2264.0",
+   "Classificação portuguesa das profissões, 2010": "Fisioterapeuta "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2265",
+   "Classificação portuguesa das profissões, 2010": "Dietista e nutricionista "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2265.0",
+   "Classificação portuguesa das profissões, 2010": "Dietista e nutricionista "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2266",
+   "Classificação portuguesa das profissões, 2010": "Audiologistas e terapeutas da fala"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2266.1",
+   "Classificação portuguesa das profissões, 2010": "Audiologista"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2266.2",
+   "Classificação portuguesa das profissões, 2010": "Terapeuta da fala"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2267",
+   "Classificação portuguesa das profissões, 2010": "Optometrista e óptico oftálmico"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2267.0",
+   "Classificação portuguesa das profissões, 2010": "Optometrista e óptico oftálmico"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2269",
+   "Classificação portuguesa das profissões, 2010": "Outros profissionais da saúde, n.e. "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2269.1",
+   "Classificação portuguesa das profissões, 2010": "Terapeuta ocupacional"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2269.2",
+   "Classificação portuguesa das profissões, 2010": "Outros profissionais da saúde diversos, n.e. "
+ },
+ {
+   "Versão:": "2",
+   "V02014": "23",
+   "Classificação portuguesa das profissões, 2010": "Professores"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "231",
+   "Classificação portuguesa das profissões, 2010": "Professor dos ensinos universitário e superior"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2310",
+   "Classificação portuguesa das profissões, 2010": "Professor dos ensinos universitário e superior"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2310.0",
+   "Classificação portuguesa das profissões, 2010": "Professor dos ensinos universitário e superior"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "232",
+   "Classificação portuguesa das profissões, 2010": "Professor dos ensinos, tecnológico, artístico e profissional"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2320",
+   "Classificação portuguesa das profissões, 2010": "Professor dos ensinos, tecnológico, artístico e profissional"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2320.0",
+   "Classificação portuguesa das profissões, 2010": "Professor dos ensinos, tecnológico, artístico e profissional"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "233",
+   "Classificação portuguesa das profissões, 2010": "Professor dos ensinos básico (2º e 3º ciclos) e secundário"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2330",
+   "Classificação portuguesa das profissões, 2010": "Professor dos ensinos básico (2º e 3º ciclos) e secundário"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2330.0",
+   "Classificação portuguesa das profissões, 2010": "Professor dos ensinos básico (2º e 3º ciclos) e secundário"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "234",
+   "Classificação portuguesa das profissões, 2010": "Professores dos ensinos básico (1º ciclo) e educadores de infância"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2341",
+   "Classificação portuguesa das profissões, 2010": "Professor do ensino básico (1º ciclo) "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2341.0",
+   "Classificação portuguesa das profissões, 2010": "Professor do ensino básico (1º ciclo) "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2342",
+   "Classificação portuguesa das profissões, 2010": "Educador de infância "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2342.0",
+   "Classificação portuguesa das profissões, 2010": "Educador de infância "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "235",
+   "Classificação portuguesa das profissões, 2010": "Outros especialistas do ensino"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2351",
+   "Classificação portuguesa das profissões, 2010": "Especialista em métodos de ensino "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2351.0",
+   "Classificação portuguesa das profissões, 2010": "Especialista em métodos de ensino "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2352",
+   "Classificação portuguesa das profissões, 2010": "Professor do ensino especial"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2352.0",
+   "Classificação portuguesa das profissões, 2010": "Professor do ensino especial"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2353",
+   "Classificação portuguesa das profissões, 2010": "Outros professores de línguas "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2353.0",
+   "Classificação portuguesa das profissões, 2010": "Outros professores de línguas "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2354",
+   "Classificação portuguesa das profissões, 2010": "Outros professores de música"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2354.0",
+   "Classificação portuguesa das profissões, 2010": "Outros professores de música "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2355",
+   "Classificação portuguesa das profissões, 2010": "Outros professores de arte "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2355.0",
+   "Classificação portuguesa das profissões, 2010": "Outros professores de arte "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2356",
+   "Classificação portuguesa das profissões, 2010": "Formador em tecnologias de informação"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2356.0",
+   "Classificação portuguesa das profissões, 2010": "Formador em tecnologias de informação"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2359",
+   "Classificação portuguesa das profissões, 2010": "Outros especialistas do ensino, n.e. "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2359.0",
+   "Classificação portuguesa das profissões, 2010": "Outros especialistas do ensino, n.e. "
+ },
+ {
+   "Versão:": "2",
+   "V02014": "24",
+   "Classificação portuguesa das profissões, 2010": "Especialistas em finanças, contabilidade, organização administrativa, relações públicas e comerciais "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "241",
+   "Classificação portuguesa das profissões, 2010": "Especialistas em finanças e contabilidade"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2411",
+   "Classificação portuguesa das profissões, 2010": "Contabilista, auditor, revisor oficial de contas e similares "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2411.0",
+   "Classificação portuguesa das profissões, 2010": "Contabilista, auditor, revisor oficial de contas e similares "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2412",
+   "Classificação portuguesa das profissões, 2010": "Consultor financeiro e de investimentos"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2412.0",
+   "Classificação portuguesa das profissões, 2010": "Consultor financeiro e de investimentos"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2413",
+   "Classificação portuguesa das profissões, 2010": "Analista financeiro "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2413.0",
+   "Classificação portuguesa das profissões, 2010": "Analista financeiro "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "242",
+   "Classificação portuguesa das profissões, 2010": "Especialistas em organização administrativa "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2421",
+   "Classificação portuguesa das profissões, 2010": "Analista em gestão e organização "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2421.0",
+   "Classificação portuguesa das profissões, 2010": "Analista em gestão e organização "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2422",
+   "Classificação portuguesa das profissões, 2010": "Especialista em políticas da administração"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2422.0",
+   "Classificação portuguesa das profissões, 2010": "Especialista em políticas da administração"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2423",
+   "Classificação portuguesa das profissões, 2010": "Especialista em recursos humanos"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2423.0",
+   "Classificação portuguesa das profissões, 2010": "Especialista em recursos humanos"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2424",
+   "Classificação portuguesa das profissões, 2010": "Especialista em formação e desenvolvimento de recursos humanos"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2424.0",
+   "Classificação portuguesa das profissões, 2010": "Especialista em formação e desenvolvimento de recursos humanos"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "243",
+   "Classificação portuguesa das profissões, 2010": "Especialistas em vendas, marketing e relações públicas "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2431",
+   "Classificação portuguesa das profissões, 2010": "Especialista em publicidade e marketing "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2431.0",
+   "Classificação portuguesa das profissões, 2010": "Especialista em publicidade e marketing "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2432",
+   "Classificação portuguesa das profissões, 2010": "Especialista em relações públicas"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2432.0",
+   "Classificação portuguesa das profissões, 2010": "Especialista em relações públicas"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2433",
+   "Classificação portuguesa das profissões, 2010": "Especialistas em vendas de material técnico e médico (excepto TIC)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2433.1",
+   "Classificação portuguesa das profissões, 2010": "Delegado de informação médica"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2433.2",
+   "Classificação portuguesa das profissões, 2010": "Outros especialistas em venda de material técnico e médico (excepto TIC)"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2434",
+   "Classificação portuguesa das profissões, 2010": "Especialista em vendas de tecnologias de informação e comunicação (TIC)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2434.0",
+   "Classificação portuguesa das profissões, 2010": "Especialista em vendas de tecnologias de informação e comunicação (TIC)"
+ },
+ {
+   "Versão:": "2",
+   "V02014": "25",
+   "Classificação portuguesa das profissões, 2010": "Especialistas em tecnologias de informação e comunicação (TIC)"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "251",
+   "Classificação portuguesa das profissões, 2010": "Analistas e programadores, de software, Web e de aplicações "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2511",
+   "Classificação portuguesa das profissões, 2010": "Analista de sistemas"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2511.0",
+   "Classificação portuguesa das profissões, 2010": "Analista de sistemas"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2512",
+   "Classificação portuguesa das profissões, 2010": "Programador de software"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2512.0",
+   "Classificação portuguesa das profissões, 2010": "Programador de software"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2513",
+   "Classificação portuguesa das profissões, 2010": "Programador Web e de multimédia "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2513.0",
+   "Classificação portuguesa das profissões, 2010": "Programador Web e de multimédia "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2514",
+   "Classificação portuguesa das profissões, 2010": "Programador de aplicações"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2514.0",
+   "Classificação portuguesa das profissões, 2010": "Programador de aplicações"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2519",
+   "Classificação portuguesa das profissões, 2010": "Outros analistas e programadores, de software e aplicações"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2519.0",
+   "Classificação portuguesa das profissões, 2010": "Outros analistas e programadores, de software e aplicações"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "252",
+   "Classificação portuguesa das profissões, 2010": "Especialistas em base de dados e redes"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2521",
+   "Classificação portuguesa das profissões, 2010": "Administrador e especialista de concepção de base de dados "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2521.0",
+   "Classificação portuguesa das profissões, 2010": "Administrador e especialista de concepção de base de dados "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2522",
+   "Classificação portuguesa das profissões, 2010": "Administrador de sistemas "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2522.0",
+   "Classificação portuguesa das profissões, 2010": "Administrador de sistemas "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2523",
+   "Classificação portuguesa das profissões, 2010": "Especialista de redes informáticas"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2523.0",
+   "Classificação portuguesa das profissões, 2010": "Especialista de redes informáticas"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2529",
+   "Classificação portuguesa das profissões, 2010": "Outros especialistas em base de dados e redes"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2529.0",
+   "Classificação portuguesa das profissões, 2010": "Outros especialistas em base de dados e redes"
+ },
+ {
+   "Versão:": "2",
+   "V02014": "26",
+   "Classificação portuguesa das profissões, 2010": "Especialistas em assuntos jurídicos, sociais, artísticos e culturais"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "261",
+   "Classificação portuguesa das profissões, 2010": "Especialistas em assuntos jurídicos"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2611",
+   "Classificação portuguesa das profissões, 2010": "Advogados e solicitadores  "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2611.1",
+   "Classificação portuguesa das profissões, 2010": "Advogado"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2611.2",
+   "Classificação portuguesa das profissões, 2010": "Solicitador"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2612",
+   "Classificação portuguesa das profissões, 2010": "Magistrado (Judicial e do Ministério Público)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2612.0",
+   "Classificação portuguesa das profissões, 2010": "Magistrado (Judicial e do Ministério Público)"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2619",
+   "Classificação portuguesa das profissões, 2010": "Outros especialistas em assuntos jurídicos"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2619.1",
+   "Classificação portuguesa das profissões, 2010": "Conservador dos registos civil, automóvel, comercial e predial "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2619.2",
+   "Classificação portuguesa das profissões, 2010": "Notário"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2619.3",
+   "Classificação portuguesa das profissões, 2010": "Outros especialistas em assuntos jurídicos, n.e."
+ },
+ {
+   "Versão:": "3",
+   "V02014": "262",
+   "Classificação portuguesa das profissões, 2010": "Bibliotecários, arquivistas e curadores de museus e similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2621",
+   "Classificação portuguesa das profissões, 2010": "Arquivistas e curadores de museus"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2621.1",
+   "Classificação portuguesa das profissões, 2010": "Arquivista"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2621.2",
+   "Classificação portuguesa das profissões, 2010": "Curador de museus "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2622",
+   "Classificação portuguesa das profissões, 2010": "Bibliotecários e outros especialistas de informação relacionados"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2622.0",
+   "Classificação portuguesa das profissões, 2010": "Bibliotecários e outros especialistas de informação relacionados"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "263",
+   "Classificação portuguesa das profissões, 2010": "Especialistas em ciências sociais e religiosas"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2631",
+   "Classificação portuguesa das profissões, 2010": "Economista "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2631.0",
+   "Classificação portuguesa das profissões, 2010": "Economista "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2632",
+   "Classificação portuguesa das profissões, 2010": "Sociólogos, antropólogos e especialistas relacionados"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2632.1",
+   "Classificação portuguesa das profissões, 2010": "Sociólogo"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2632.2",
+   "Classificação portuguesa das profissões, 2010": "Geógrafo"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2632.3",
+   "Classificação portuguesa das profissões, 2010": "Arqueólogo "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2632.4",
+   "Classificação portuguesa das profissões, 2010": "Antropólogo e similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2633",
+   "Classificação portuguesa das profissões, 2010": "Filósofos, historiadores e especialistas de ciências políticas "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2633.1",
+   "Classificação portuguesa das profissões, 2010": "Filósofo"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2633.2",
+   "Classificação portuguesa das profissões, 2010": "Historiador "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2633.3",
+   "Classificação portuguesa das profissões, 2010": "Especialista em ciências políticas"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2634",
+   "Classificação portuguesa das profissões, 2010": "Psicólogo "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2634.0",
+   "Classificação portuguesa das profissões, 2010": "Psicólogo "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2635",
+   "Classificação portuguesa das profissões, 2010": "Especialista do trabalho social "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2635.0",
+   "Classificação portuguesa das profissões, 2010": "Especialista do trabalho social "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2636",
+   "Classificação portuguesa das profissões, 2010": "Ministro de culto "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2636.0",
+   "Classificação portuguesa das profissões, 2010": "Ministro de culto "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "264",
+   "Classificação portuguesa das profissões, 2010": "Autores, jornalistas e linguistas"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2641",
+   "Classificação portuguesa das profissões, 2010": "Autor e escritor "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2641.0",
+   "Classificação portuguesa das profissões, 2010": "Autor e escritor "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2642",
+   "Classificação portuguesa das profissões, 2010": "Jornalista "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2642.0",
+   "Classificação portuguesa das profissões, 2010": "Jornalista "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2643",
+   "Classificação portuguesa das profissões, 2010": "Filólogos, tradutores, intérpretes e outros linguistas "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2643.1",
+   "Classificação portuguesa das profissões, 2010": "Filólogo"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2643.2",
+   "Classificação portuguesa das profissões, 2010": "Tradutor"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2643.3",
+   "Classificação portuguesa das profissões, 2010": "Intérprete e outros linguistas"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "265",
+   "Classificação portuguesa das profissões, 2010": "Artistas criativos e das artes do espectáculo"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2651",
+   "Classificação portuguesa das profissões, 2010": "Artistas de artes visuais (plásticas)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2651.1",
+   "Classificação portuguesa das profissões, 2010": "Escultor"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2651.2",
+   "Classificação portuguesa das profissões, 2010": "Pintor de arte"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2651.3",
+   "Classificação portuguesa das profissões, 2010": "Caricaturista"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2651.4",
+   "Classificação portuguesa das profissões, 2010": "Outros artistas de artes visuais"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2652",
+   "Classificação portuguesa das profissões, 2010": "Compositores, músicos e cantores "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2652.1",
+   "Classificação portuguesa das profissões, 2010": "Compositor "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2652.2",
+   "Classificação portuguesa das profissões, 2010": "Músico"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2652.3",
+   "Classificação portuguesa das profissões, 2010": "Cantor"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2653",
+   "Classificação portuguesa das profissões, 2010": "Bailarinos e coreógrafos "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2653.1",
+   "Classificação portuguesa das profissões, 2010": "Bailarino"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2653.2",
+   "Classificação portuguesa das profissões, 2010": "Coreógrafo"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2654",
+   "Classificação portuguesa das profissões, 2010": "Realizadores, encenadores, produtores e directores relacionados, de cinema, teatro, televisão e rádio"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2654.1",
+   "Classificação portuguesa das profissões, 2010": "Realizador de cinema e teatro"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2654.2",
+   "Classificação portuguesa das profissões, 2010": "Encenador de teatro"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2654.3",
+   "Classificação portuguesa das profissões, 2010": "Produtor de cinema e teatro"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2654.4",
+   "Classificação portuguesa das profissões, 2010": "Produtor e realizador, de televisão e rádio"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2654.5",
+   "Classificação portuguesa das profissões, 2010": "Director de fotografia e de som, montador e relacionados"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2655",
+   "Classificação portuguesa das profissões, 2010": "Actor"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2655.0",
+   "Classificação portuguesa das profissões, 2010": "Actor"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2656",
+   "Classificação portuguesa das profissões, 2010": "Locutor e apresentador, de rádio, de televisão e de outros meios de comunicação"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2656.0",
+   "Classificação portuguesa das profissões, 2010": "Locutor e apresentador, de rádio, de televisão e de outros meios de comunicação"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "2659",
+   "Classificação portuguesa das profissões, 2010": "Outros artistas e intérpretes criativos das artes do espectáculo"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2659.1",
+   "Classificação portuguesa das profissões, 2010": "Disc jockey"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "2659.2",
+   "Classificação portuguesa das profissões, 2010": "Outros artistas e intérpretes criativos das artes do espectáculo, n.e."
+ },
+ {
+   "Versão:": "1",
+   "V02014": "3",
+   "Classificação portuguesa das profissões, 2010": "Técnicos e profissões de nível intermédio"
+ },
+ {
+   "Versão:": "2",
+   "V02014": "31",
+   "Classificação portuguesa das profissões, 2010": "Técnicos e profissões das ciências e engenharia, de nível intermédio"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "311",
+   "Classificação portuguesa das profissões, 2010": "Técnicos das ciências físicas e de engenharia "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3111",
+   "Classificação portuguesa das profissões, 2010": "Técnicos das ciências físicas e químicas"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3111.1",
+   "Classificação portuguesa das profissões, 2010": "Técnico das ciências físicas "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3111.2",
+   "Classificação portuguesa das profissões, 2010": "Técnico das ciências químicas"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3112",
+   "Classificação portuguesa das profissões, 2010": "Técnico de engenharia civil "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3112.0",
+   "Classificação portuguesa das profissões, 2010": "Técnico de engenharia civil "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3113",
+   "Classificação portuguesa das profissões, 2010": "Técnico de electricidade"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3113.0",
+   "Classificação portuguesa das profissões, 2010": "Técnico de electricidade"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3114",
+   "Classificação portuguesa das profissões, 2010": "Técnico de electrónica "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3114.0",
+   "Classificação portuguesa das profissões, 2010": "Técnico de electrónica "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3115",
+   "Classificação portuguesa das profissões, 2010": "Técnicos e inspectores de mecânica "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3115.1",
+   "Classificação portuguesa das profissões, 2010": "Técnico de inspecção de veículos "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3115.2",
+   "Classificação portuguesa das profissões, 2010": "Outros técnicos e inspectores de mecânica "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3116",
+   "Classificação portuguesa das profissões, 2010": "Técnico de química industrial"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3116.0",
+   "Classificação portuguesa das profissões, 2010": "Técnico de química industrial"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3117",
+   "Classificação portuguesa das profissões, 2010": "Técnico da metalurgia de base e da indústria extractiva "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3117.0",
+   "Classificação portuguesa das profissões, 2010": "Técnico da metalurgia de base e da indústria extractiva "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3118",
+   "Classificação portuguesa das profissões, 2010": "Desenhadores e técnicos afins"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3118.0",
+   "Classificação portuguesa das profissões, 2010": "Desenhadores e técnicos afins"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3119",
+   "Classificação portuguesa das profissões, 2010": "Outros técnicos das ciências físicas e de engenharia "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3119.1",
+   "Classificação portuguesa das profissões, 2010": "Técnico de gás"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3119.2",
+   "Classificação portuguesa das profissões, 2010": "Outros técnicos das ciências físicas e de engenharia, n.e."
+ },
+ {
+   "Versão:": "3",
+   "V02014": "312",
+   "Classificação portuguesa das profissões, 2010": "Encarregados das indústrias extractiva, transformadora e construção"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3121",
+   "Classificação portuguesa das profissões, 2010": "Encarregado da indústria extractiva"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3121.0",
+   "Classificação portuguesa das profissões, 2010": "Encarregado da indústria extractiva"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3122",
+   "Classificação portuguesa das profissões, 2010": "Encarregado da indústria transformadora"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3122.1",
+   "Classificação portuguesa das profissões, 2010": "Encarregados das indústrias alimentares e das bebidas"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3122.2",
+   "Classificação portuguesa das profissões, 2010": "Encarregados das indústrias têxteis, do vestuário, calçado e curtumes"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3122.3",
+   "Classificação portuguesa das profissões, 2010": "Encarregados das indústrias da madeira e cortiça"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3122.4",
+   "Classificação portuguesa das profissões, 2010": "Encarregados das indústrias da pasta, papel, impressão e similares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3122.5",
+   "Classificação portuguesa das profissões, 2010": "Encarregados das indústrias da refinação do petróleo, químicas, produtos farmacêuticos e transformação de matérias plásticas e borracha"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3122.6",
+   "Classificação portuguesa das profissões, 2010": "Encarregados das indústrias da transformação de minerais não metálicos"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3122.7",
+   "Classificação portuguesa das profissões, 2010": "Encarregados das indústrias metalúrgicas de base e fabrico de produtos metálicos"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3122.8",
+   "Classificação portuguesa das profissões, 2010": "Outros encarregados da indústria transformadora"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3123",
+   "Classificação portuguesa das profissões, 2010": "Encarregado da construção "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3123.0",
+   "Classificação portuguesa das profissões, 2010": "Encarregado da construção "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "313",
+   "Classificação portuguesa das profissões, 2010": "Técnicos de operação e controlo de processos industriais "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3131",
+   "Classificação portuguesa das profissões, 2010": "Técnico de operação de instalações de produção de energia "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3131.0",
+   "Classificação portuguesa das profissões, 2010": "Técnico de operação de instalações de produção de energia "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3132",
+   "Classificação portuguesa das profissões, 2010": "Técnicos de operação de incineradores e de instalações de tratamento de água "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3132.1",
+   "Classificação portuguesa das profissões, 2010": "Técnico de operação de incineradores "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3132.2",
+   "Classificação portuguesa das profissões, 2010": "Técnico de operação de instalações de tratamento de água "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3133",
+   "Classificação portuguesa das profissões, 2010": "Técnico de controlo de instalações da indústria química"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3133.0",
+   "Classificação portuguesa das profissões, 2010": "Técnico de controlo de instalações da indústria química"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3134",
+   "Classificação portuguesa das profissões, 2010": "Técnico de operação de instalações de refinação de petróleo e gás natural "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3134.0",
+   "Classificação portuguesa das profissões, 2010": "Técnico de operação de instalações de refinação de petróleo e gás natural "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3135",
+   "Classificação portuguesa das profissões, 2010": "Técnico de controlo de instalações de produção de metais "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3135.0",
+   "Classificação portuguesa das profissões, 2010": "Técnico de controlo de instalações de produção de metais "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3139",
+   "Classificação portuguesa das profissões, 2010": "Outros técnicos de controlo de processos industriais"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3139.0",
+   "Classificação portuguesa das profissões, 2010": "Outros técnicos de controlo de processos industriais"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "314",
+   "Classificação portuguesa das profissões, 2010": "Técnicos e profissões afins das ciências da vida, de nível intermédio "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3141",
+   "Classificação portuguesa das profissões, 2010": "Técnico das ciências da vida (excepto ciências médicas)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3141.0",
+   "Classificação portuguesa das profissões, 2010": "Técnico das ciências da vida (excepto ciências médicas)"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3142",
+   "Classificação portuguesa das profissões, 2010": "Técnicos da agricultura e da produção animal"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3142.1",
+   "Classificação portuguesa das profissões, 2010": "Técnico agrícola"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3142.2",
+   "Classificação portuguesa das profissões, 2010": "Técnico da produção animal"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3143",
+   "Classificação portuguesa das profissões, 2010": "Técnico florestal (inclui cinegético)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3143.0",
+   "Classificação portuguesa das profissões, 2010": "Técnico florestal (inclui cinegético)"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "315",
+   "Classificação portuguesa das profissões, 2010": "Técnicos operacionais e controladores, dos transportes marítimo e aéreo"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3151",
+   "Classificação portuguesa das profissões, 2010": "Oficial maquinista de navios"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3151.0",
+   "Classificação portuguesa das profissões, 2010": "Oficial maquinista de navios"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3152",
+   "Classificação portuguesa das profissões, 2010": "Oficial de convés e piloto de navios"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3152.0",
+   "Classificação portuguesa das profissões, 2010": "Oficial de convés e piloto de navios"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3153",
+   "Classificação portuguesa das profissões, 2010": "Piloto de aeronaves"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3153.0",
+   "Classificação portuguesa das profissões, 2010": "Piloto de aeronaves"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3154",
+   "Classificação portuguesa das profissões, 2010": "Controlador de tráfego aéreo"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3154.0",
+   "Classificação portuguesa das profissões, 2010": "Controlador de tráfego aéreo"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3155",
+   "Classificação portuguesa das profissões, 2010": "Técnico de segurança de sistemas electrónicos aeronáuticos "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3155.0",
+   "Classificação portuguesa das profissões, 2010": "Técnico de segurança de sistemas electrónicos aeronáuticos "
+ },
+ {
+   "Versão:": "2",
+   "V02014": "32",
+   "Classificação portuguesa das profissões, 2010": "Técnicos e profissionais, de nível intermédio da saúde"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "321",
+   "Classificação portuguesa das profissões, 2010": "Técnicos da medicina e farmácia"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3211",
+   "Classificação portuguesa das profissões, 2010": "Técnico de equipamento de diagnóstico e terapêutico"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3211.1",
+   "Classificação portuguesa das profissões, 2010": "Técnico de cardiopneumografia"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3211.2",
+   "Classificação portuguesa das profissões, 2010": "Técnico de radiologia"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3211.3",
+   "Classificação portuguesa das profissões, 2010": "Técnico de medicina nuclear"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3211.4",
+   "Classificação portuguesa das profissões, 2010": "Técnico de radioterapia"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3211.5",
+   "Classificação portuguesa das profissões, 2010": "Outros técnicos de equipamento de diagnóstico e terapêutico"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3212",
+   "Classificação portuguesa das profissões, 2010": "Técnicos de laboratório de anatomia patológica e medicina"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3212.1",
+   "Classificação portuguesa das profissões, 2010": "Técnico de análises clínicas "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3212.2",
+   "Classificação portuguesa das profissões, 2010": "Técnico de anatomia patológica, citológica e tanatológica"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3213",
+   "Classificação portuguesa das profissões, 2010": "Técnicos e assistentes farmacêuticos "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3213.0",
+   "Classificação portuguesa das profissões, 2010": "Técnicos e assistentes farmacêuticos "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3214",
+   "Classificação portuguesa das profissões, 2010": "Técnico de próteses médicas e dentárias"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3214.0",
+   "Classificação portuguesa das profissões, 2010": "Técnico de próteses médicas e dentárias"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "322",
+   "Classificação portuguesa das profissões, 2010": "Auxiliares de enfermagem e parteiras"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3221",
+   "Classificação portuguesa das profissões, 2010": "Auxiliar de enfermagem "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3221.0",
+   "Classificação portuguesa das profissões, 2010": "Auxiliar de enfermagem "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3222",
+   "Classificação portuguesa das profissões, 2010": "Parteira"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3222.0",
+   "Classificação portuguesa das profissões, 2010": "Parteira"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "323",
+   "Classificação portuguesa das profissões, 2010": "Profissionais de nível intermédio da medicina tradicional e complementar"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3230",
+   "Classificação portuguesa das profissões, 2010": "Profissionais de nível intermédio da medicina tradicional e complementar"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3230.0",
+   "Classificação portuguesa das profissões, 2010": "Profissionais de nível intermédio da medicina tradicional e complementar"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "324",
+   "Classificação portuguesa das profissões, 2010": "Técnico e assistente de veterinários"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3240",
+   "Classificação portuguesa das profissões, 2010": "Técnico e assistente de veterinários"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3240.0",
+   "Classificação portuguesa das profissões, 2010": "Técnico e assistente de veterinários"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "325",
+   "Classificação portuguesa das profissões, 2010": "Outros profissionais de nível intermédio da saúde"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3251",
+   "Classificação portuguesa das profissões, 2010": "Terapeuta e assistente dentário "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3251.0",
+   "Classificação portuguesa das profissões, 2010": "Terapeuta e assistente dentário "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3252",
+   "Classificação portuguesa das profissões, 2010": "Técnico de registos médicos e de informação sobre saúde"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3252.0",
+   "Classificação portuguesa das profissões, 2010": "Técnico de registos médicos e de informação sobre saúde"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3253",
+   "Classificação portuguesa das profissões, 2010": "Técnico dos serviços de saúde comunitária"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3253.0",
+   "Classificação portuguesa das profissões, 2010": "Técnico dos serviços de saúde comunitária"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3254",
+   "Classificação portuguesa das profissões, 2010": "Técnicos de óptica ocular e de contactologia"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3254.1",
+   "Classificação portuguesa das profissões, 2010": "Técnico de óptica ocular"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3254.2",
+   "Classificação portuguesa das profissões, 2010": "Técnico de contactologia"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3255",
+   "Classificação portuguesa das profissões, 2010": "Técnico e assistente, de fisioterapia e similares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3255.0",
+   "Classificação portuguesa das profissões, 2010": "Técnico e assistente, de fisioterapia e similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3256",
+   "Classificação portuguesa das profissões, 2010": "Assistente de médicos "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3256.0",
+   "Classificação portuguesa das profissões, 2010": "Assistente de médicos "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3257",
+   "Classificação portuguesa das profissões, 2010": "Inspectores e técnicos, da saúde, do trabalho e ambiente"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3257.0",
+   "Classificação portuguesa das profissões, 2010": "Inspectores e técnicos, da saúde, do trabalho e ambiente"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3258",
+   "Classificação portuguesa das profissões, 2010": "Pessoal de ambulâncias"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3258.0",
+   "Classificação portuguesa das profissões, 2010": "Pessoal de ambulâncias"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3259",
+   "Classificação portuguesa das profissões, 2010": "Outros profissionais de nível intermédio da saúde, n.e."
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3259.0",
+   "Classificação portuguesa das profissões, 2010": "Outros profissionais de nível intermédio da saúde, n.e."
+ },
+ {
+   "Versão:": "2",
+   "V02014": "33",
+   "Classificação portuguesa das profissões, 2010": "Técnicos de nível intermédio, das áreas financeira, administrativa e dos negócios"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "331",
+   "Classificação portuguesa das profissões, 2010": "Técnicos de nível intermédio da área financeira e matemática"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3311",
+   "Classificação portuguesa das profissões, 2010": "Corretor de bolsa, cambista e similares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3311.0",
+   "Classificação portuguesa das profissões, 2010": "Corretor de bolsa, cambista e similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3312",
+   "Classificação portuguesa das profissões, 2010": "Agentes de crédito e empréstimos "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3312.0",
+   "Classificação portuguesa das profissões, 2010": "Agentes de crédito e empréstimos "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3313",
+   "Classificação portuguesa das profissões, 2010": "Técnicos administrativos de contabilidade"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3313.1",
+   "Classificação portuguesa das profissões, 2010": "Tesoureiro"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3313.2",
+   "Classificação portuguesa das profissões, 2010": "Outros técnicos administrativos de contabilidade "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3314",
+   "Classificação portuguesa das profissões, 2010": "Técnicos de nível intermédio, de estatística, matemática e similares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3314.0",
+   "Classificação portuguesa das profissões, 2010": "Técnicos de nível intermédio, de estatística, matemática e similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3315",
+   "Classificação portuguesa das profissões, 2010": "Avaliador de imóveis, seguros e outros bens  "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3315.0",
+   "Classificação portuguesa das profissões, 2010": "Avaliador de imóveis, seguros e outros bens  "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "332",
+   "Classificação portuguesa das profissões, 2010": "Agentes de compras, de vendas e corretores comerciais"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3321",
+   "Classificação portuguesa das profissões, 2010": "Agente de seguros "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3321.0",
+   "Classificação portuguesa das profissões, 2010": "Agente de seguros "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3322",
+   "Classificação portuguesa das profissões, 2010": "Representante comercial "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3322.0",
+   "Classificação portuguesa das profissões, 2010": "Representante comercial "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3323",
+   "Classificação portuguesa das profissões, 2010": "Técnico de compras"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3323.0",
+   "Classificação portuguesa das profissões, 2010": "Técnico de compras"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3324",
+   "Classificação portuguesa das profissões, 2010": "Corretor comercial "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3324.0",
+   "Classificação portuguesa das profissões, 2010": "Corretor comercial "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "333",
+   "Classificação portuguesa das profissões, 2010": "Agentes de negócios"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3331",
+   "Classificação portuguesa das profissões, 2010": "Despachante, transitário e similares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3331.0",
+   "Classificação portuguesa das profissões, 2010": "Despachante, transitário e similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3332",
+   "Classificação portuguesa das profissões, 2010": "Organizador de conferências e eventos"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3332.0",
+   "Classificação portuguesa das profissões, 2010": "Organizador de conferências e eventos"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3333",
+   "Classificação portuguesa das profissões, 2010": "Técnico da área do emprego "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3333.0",
+   "Classificação portuguesa das profissões, 2010": "Técnico da área do emprego "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3334",
+   "Classificação portuguesa das profissões, 2010": "Agente imobiliário e gestor de propriedades "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3334.0",
+   "Classificação portuguesa das profissões, 2010": "Agente imobiliário e gestor de propriedades "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3339",
+   "Classificação portuguesa das profissões, 2010": "Outros agentes de negócios "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3339.0",
+   "Classificação portuguesa das profissões, 2010": "Outros agentes de negócios "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "334",
+   "Classificação portuguesa das profissões, 2010": "Administrativos e secretários especializados "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3341",
+   "Classificação portuguesa das profissões, 2010": "Supervisor de pessoal administrativo "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3341.1",
+   "Classificação portuguesa das profissões, 2010": "Chefe de escritório "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3341.2",
+   "Classificação portuguesa das profissões, 2010": "Encarregado de armazém "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3341.3",
+   "Classificação portuguesa das profissões, 2010": "Chefe de estação de correios "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3341.4",
+   "Classificação portuguesa das profissões, 2010": "Fiscal e encarregado de portagem "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3341.5",
+   "Classificação portuguesa das profissões, 2010": "Supervisor de cargas e descargas"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3341.6",
+   "Classificação portuguesa das profissões, 2010": "Outros supervisores de pessoal administrativo "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3342",
+   "Classificação portuguesa das profissões, 2010": "Secretário da área jurídica"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3342.0",
+   "Classificação portuguesa das profissões, 2010": "Secretário da área jurídica"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3343",
+   "Classificação portuguesa das profissões, 2010": "Secretário administrativo e executivo"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3343.0",
+   "Classificação portuguesa das profissões, 2010": "Secretário administrativo e executivo"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3344",
+   "Classificação portuguesa das profissões, 2010": "Secretário da área da medicina "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3344.0",
+   "Classificação portuguesa das profissões, 2010": "Secretário da área da medicina "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "335",
+   "Classificação portuguesa das profissões, 2010": "Agentes de nível intermédio da Administração Pública, para aplicação da lei e similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3351",
+   "Classificação portuguesa das profissões, 2010": "Inspector de alfândega e de fronteira"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3351.0",
+   "Classificação portuguesa das profissões, 2010": "Inspector de alfândega e de fronteira"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3352",
+   "Classificação portuguesa das profissões, 2010": "Agente da administração tributária "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3352.0",
+   "Classificação portuguesa das profissões, 2010": "Agente da administração tributária "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3353",
+   "Classificação portuguesa das profissões, 2010": "Agente de serviços da segurança social "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3353.0",
+   "Classificação portuguesa das profissões, 2010": "Agente de serviços da segurança social "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3354",
+   "Classificação portuguesa das profissões, 2010": "Agente de serviços de licenciamento "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3354.0",
+   "Classificação portuguesa das profissões, 2010": "Agente de serviços de licenciamento "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3355",
+   "Classificação portuguesa das profissões, 2010": "Inspector e detective da polícia"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3355.0",
+   "Classificação portuguesa das profissões, 2010": "Inspector e detective da polícia"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3359",
+   "Classificação portuguesa das profissões, 2010": "Outros agentes de nível intermédio da Administração Pública, para aplicação da lei e similares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3359.0",
+   "Classificação portuguesa das profissões, 2010": "Outros agentes de nível intermédio da Administração Pública, para aplicação da lei e similares"
+ },
+ {
+   "Versão:": "2",
+   "V02014": "34",
+   "Classificação portuguesa das profissões, 2010": "Técnicos de nível intermédio dos serviços jurídicos, sociais, desportivos, culturais e similares"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "341",
+   "Classificação portuguesa das profissões, 2010": "Técnicos de nível intermédio dos serviços jurídicos, sociais e religiosos"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3411",
+   "Classificação portuguesa das profissões, 2010": "Técnico de nível intermédio dos serviços jurídicos e relacionados "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3411.0",
+   "Classificação portuguesa das profissões, 2010": "Técnico de nível intermédio dos serviços jurídicos e relacionados "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3412",
+   "Classificação portuguesa das profissões, 2010": "Técnico de nível intermédio de apoio social"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3412.0",
+   "Classificação portuguesa das profissões, 2010": "Técnico de nível intermédio de apoio social"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3413",
+   "Classificação portuguesa das profissões, 2010": "Membro de ordem religiosa e técnicos de apoio religioso"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3413.0",
+   "Classificação portuguesa das profissões, 2010": "Membro de ordem religiosa e técnicos de apoio religioso"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "342",
+   "Classificação portuguesa das profissões, 2010": "Técnicos de actividade física e de desporto "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3421",
+   "Classificação portuguesa das profissões, 2010": "Atletas e desportistas de competição "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3421.1",
+   "Classificação portuguesa das profissões, 2010": "Jogador profissional de futebol "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3421.2",
+   "Classificação portuguesa das profissões, 2010": "Ciclista profissional"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3421.3",
+   "Classificação portuguesa das profissões, 2010": "Outros atletas e desportistas de competição "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3422",
+   "Classificação portuguesa das profissões, 2010": "Treinadores, instrutores e árbitros, de desportos"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3422.1",
+   "Classificação portuguesa das profissões, 2010": "Treinador de desportos"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3422.2",
+   "Classificação portuguesa das profissões, 2010": "Árbitro (juiz) de desportos"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3422.3",
+   "Classificação portuguesa das profissões, 2010": "Instrutor de desportos "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3423",
+   "Classificação portuguesa das profissões, 2010": "Instrutores e monitores de actividade física e recreação "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3423.0",
+   "Classificação portuguesa das profissões, 2010": "Instrutores e monitores de actividade física e recreação "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "343",
+   "Classificação portuguesa das profissões, 2010": "Técnicos de nível intermédio das actividades culturais, artísticas e culinárias"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3431",
+   "Classificação portuguesa das profissões, 2010": "Fotógrafo"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3431.0",
+   "Classificação portuguesa das profissões, 2010": "Fotógrafo"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3432",
+   "Classificação portuguesa das profissões, 2010": "Decorador"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3432.0",
+   "Classificação portuguesa das profissões, 2010": "Decorador"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3433",
+   "Classificação portuguesa das profissões, 2010": "Técnicos de galerias, bibliotecas, arquivos e museus"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3433.0",
+   "Classificação portuguesa das profissões, 2010": "Técnicos de galerias, bibliotecas, arquivos e museus"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3434",
+   "Classificação portuguesa das profissões, 2010": "Chefe de cozinha"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3434.0",
+   "Classificação portuguesa das profissões, 2010": "Chefe de cozinha"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3435",
+   "Classificação portuguesa das profissões, 2010": "Outros técnicos de nível intermédio das actividades culturais e artísticas"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3435.1",
+   "Classificação portuguesa das profissões, 2010": "Toureiro, cavaleiro tauromáquico e outros profissionais similares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3435.2",
+   "Classificação portuguesa das profissões, 2010": "Outros técnicos de nível intermédio das actividades culturais e artísticas, n.e."
+ },
+ {
+   "Versão:": "2",
+   "V02014": "35",
+   "Classificação portuguesa das profissões, 2010": "Técnicos das tecnologias de informação e comunicação "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "351",
+   "Classificação portuguesa das profissões, 2010": "Técnicos operadores das tecnologias de informação e comunicação e de apoio aos utilizadores "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3511",
+   "Classificação portuguesa das profissões, 2010": "Técnico operador das tecnologias de informação e comunicação (TIC) "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3511.0",
+   "Classificação portuguesa das profissões, 2010": "Técnico operador das tecnologias de informação e comunicação (TIC) "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3512",
+   "Classificação portuguesa das profissões, 2010": "Técnico de apoio aos utilizadores das tecnologias da informação e comunicação (TIC)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3512.0",
+   "Classificação portuguesa das profissões, 2010": "Técnico de apoio aos utilizadores das tecnologias da informação e comunicação (TIC)"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3513",
+   "Classificação portuguesa das profissões, 2010": "Técnico em redes e sistemas de computadores"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3513.0",
+   "Classificação portuguesa das profissões, 2010": "Técnico em redes e sistemas de computadores"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3514",
+   "Classificação portuguesa das profissões, 2010": "Técnico da Web"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3514.0",
+   "Classificação portuguesa das profissões, 2010": "Técnico da Web"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "352",
+   "Classificação portuguesa das profissões, 2010": "Técnicos das telecomunicações e da radiodifusão"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3521",
+   "Classificação portuguesa das profissões, 2010": "Técnicos de emissões de rádio e televisão e de gravação audiovisual e de sistemas de comunicações via rádio "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3521.1",
+   "Classificação portuguesa das profissões, 2010": "Técnico de emissões de rádio "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3521.2",
+   "Classificação portuguesa das profissões, 2010": "Técnico de emissões de televisão "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3521.3",
+   "Classificação portuguesa das profissões, 2010": "Técnico de gravação audiovisual "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3521.4",
+   "Classificação portuguesa das profissões, 2010": "Técnico de sistemas de comunicações via rádio "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "3522",
+   "Classificação portuguesa das profissões, 2010": "Técnico de telecomunicações"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "3522.0",
+   "Classificação portuguesa das profissões, 2010": "Técnico de telecomunicações"
+ },
+ {
+   "Versão:": "1",
+   "V02014": "4",
+   "Classificação portuguesa das profissões, 2010": "Pessoal administrativo"
+ },
+ {
+   "Versão:": "2",
+   "V02014": "41",
+   "Classificação portuguesa das profissões, 2010": "Empregados de escritório, secretários em geral e operadores de processamento de dados "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "411",
+   "Classificação portuguesa das profissões, 2010": "Empregado de escritório em geral"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "4110",
+   "Classificação portuguesa das profissões, 2010": "Empregado de escritório em geral"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "4110.0",
+   "Classificação portuguesa das profissões, 2010": "Empregado de escritório em geral"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "412",
+   "Classificação portuguesa das profissões, 2010": "Técnico de secretariado"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "4120",
+   "Classificação portuguesa das profissões, 2010": "Técnico de secretariado"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "4120.0",
+   "Classificação portuguesa das profissões, 2010": "Técnico de secretariado"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "413",
+   "Classificação portuguesa das profissões, 2010": "Operadores de processamento de texto e dados"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "4131",
+   "Classificação portuguesa das profissões, 2010": "Dactilógrafo e operador de processamento de texto"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "4131.0",
+   "Classificação portuguesa das profissões, 2010": "Dactilógrafo e operador de processamento de texto"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "4132",
+   "Classificação portuguesa das profissões, 2010": "Operador de registo de dados"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "4132.0",
+   "Classificação portuguesa das profissões, 2010": "Operador de registo de dados"
+ },
+ {
+   "Versão:": "2",
+   "V02014": "42",
+   "Classificação portuguesa das profissões, 2010": "Pessoal de apoio directo a clientes "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "421",
+   "Classificação portuguesa das profissões, 2010": "Caixas, penhoristas e similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "4211",
+   "Classificação portuguesa das profissões, 2010": "Caixa bancário e similar"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "4211.0",
+   "Classificação portuguesa das profissões, 2010": "Caixa bancário e similar"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "4212",
+   "Classificação portuguesa das profissões, 2010": "Empregado de banca nos casinos e outros empregados de apostas"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "4212.0",
+   "Classificação portuguesa das profissões, 2010": "Empregado de banca nos casinos e outros empregados de apostas"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "4213",
+   "Classificação portuguesa das profissões, 2010": "Penhorista e prestamista "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "4213.0",
+   "Classificação portuguesa das profissões, 2010": "Penhorista e prestamista "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "4214",
+   "Classificação portuguesa das profissões, 2010": "Cobrador de facturas e similares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "4214.0",
+   "Classificação portuguesa das profissões, 2010": "Cobrador de facturas e similares"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "422",
+   "Classificação portuguesa das profissões, 2010": "Pessoal de recepção e de informação a clientes"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "4221",
+   "Classificação portuguesa das profissões, 2010": "Empregado das agências de viagens "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "4221.0",
+   "Classificação portuguesa das profissões, 2010": "Empregado das agências de viagens"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "4222",
+   "Classificação portuguesa das profissões, 2010": "Empregado dos centros de chamadas"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "4222.0",
+   "Classificação portuguesa das profissões, 2010": "Empregado dos centros de chamadas"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "4223",
+   "Classificação portuguesa das profissões, 2010": "Operador de central telefónica"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "4223.0",
+   "Classificação portuguesa das profissões, 2010": "Operador de central telefónica"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "4224",
+   "Classificação portuguesa das profissões, 2010": "Recepcionista de hotel  "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "4224.0",
+   "Classificação portuguesa das profissões, 2010": "Recepcionista de hotel  "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "4225",
+   "Classificação portuguesa das profissões, 2010": "Pessoal de informação administrativa"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "4225.0",
+   "Classificação portuguesa das profissões, 2010": "Pessoal de informação administrativa"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "4226",
+   "Classificação portuguesa das profissões, 2010": "Recepcionista, excepto de hotel "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "4226.0",
+   "Classificação portuguesa das profissões, 2010": "Recepcionista, excepto de hotel "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "4227",
+   "Classificação portuguesa das profissões, 2010": "Entrevistador de inquéritos e de estudos de mercado"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "4227.0",
+   "Classificação portuguesa das profissões, 2010": "Entrevistador de inquéritos e de estudos de mercado"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "4229",
+   "Classificação portuguesa das profissões, 2010": "Outro pessoal de recepção e de informação a clientes "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "4229.0",
+   "Classificação portuguesa das profissões, 2010": "Outro pessoal de recepção e de informação a clientes "
+ },
+ {
+   "Versão:": "2",
+   "V02014": "43",
+   "Classificação portuguesa das profissões, 2010": "Operadores de dados, de contabilidade, estatística, de serviços financeiros e relacionados com o registo"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "431",
+   "Classificação portuguesa das profissões, 2010": "Operadores de dados, de contabilidade, estatística e serviços financeiros "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "4311",
+   "Classificação portuguesa das profissões, 2010": "Operador de contabilidade e escrituração comercial"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "4311.0",
+   "Classificação portuguesa das profissões, 2010": "Operador de contabilidade e escrituração comercial"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "4312",
+   "Classificação portuguesa das profissões, 2010": "Operador dos serviços de estatística, financeiros e seguros"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "4312.0",
+   "Classificação portuguesa das profissões, 2010": "Operador dos serviços de estatística, financeiros e seguros"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "4313",
+   "Classificação portuguesa das profissões, 2010": "Operador de dados de processamento de pagamentos "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "4313.0",
+   "Classificação portuguesa das profissões, 2010": "Operador de dados de processamento de pagamentos "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "432",
+   "Classificação portuguesa das profissões, 2010": "Empregados de aprovisionamento, armazém, de serviços de apoio à produção e transportes"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "4321",
+   "Classificação portuguesa das profissões, 2010": "Empregados de aprovisionamento e armazém "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "4321.1",
+   "Classificação portuguesa das profissões, 2010": "Empregado de aprovisionamento"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "4321.2",
+   "Classificação portuguesa das profissões, 2010": "Empregado de armazém "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "4322",
+   "Classificação portuguesa das profissões, 2010": "Empregado de serviços de apoio à produção"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "4322.0",
+   "Classificação portuguesa das profissões, 2010": "Empregado de serviços de apoio à produção"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "4323",
+   "Classificação portuguesa das profissões, 2010": "Empregado de controlo de registo dos serviços de transporte"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "4323.1",
+   "Classificação portuguesa das profissões, 2010": "Controlador de transportes terrestres de passageiros"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "4323.2",
+   "Classificação portuguesa das profissões, 2010": "Controlador de transportes terrestres de mercadorias"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "4323.3",
+   "Classificação portuguesa das profissões, 2010": "Empregado de controlo dos serviços de transportes aéreos e marítimos"
+ },
+ {
+   "Versão:": "2",
+   "V02014": "44",
+   "Classificação portuguesa das profissões, 2010": "Outro pessoal de apoio de tipo administrativo "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "441",
+   "Classificação portuguesa das profissões, 2010": "Outro pessoal de apoio de tipo administrativo "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "4411",
+   "Classificação portuguesa das profissões, 2010": "Empregado de biblioteca "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "4411.0",
+   "Classificação portuguesa das profissões, 2010": "Empregado de biblioteca "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "4412",
+   "Classificação portuguesa das profissões, 2010": "Carteiro e similares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "4412.0",
+   "Classificação portuguesa das profissões, 2010": "Carteiro e similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "4413",
+   "Classificação portuguesa das profissões, 2010": "Codificador, revisor de provas e similares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "4413.0",
+   "Classificação portuguesa das profissões, 2010": "Codificador, revisor de provas e similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "4414",
+   "Classificação portuguesa das profissões, 2010": "Escrivão e similares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "4414.0",
+   "Classificação portuguesa das profissões, 2010": "Escrivão e similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "4415",
+   "Classificação portuguesa das profissões, 2010": "Classificador arquivista "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "4415.0",
+   "Classificação portuguesa das profissões, 2010": "Classificador arquivista "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "4416",
+   "Classificação portuguesa das profissões, 2010": "Empregado de serviço de pessoal"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "4416.0",
+   "Classificação portuguesa das profissões, 2010": "Empregado de serviço de pessoal"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "4419",
+   "Classificação portuguesa das profissões, 2010": "Outro pessoal de apoio de tipo administrativo, n.e. "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "4419.0",
+   "Classificação portuguesa das profissões, 2010": "Outro pessoal de apoio de tipo administrativo, n.e. "
+ },
+ {
+   "Versão:": "1",
+   "V02014": "5",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores dos serviços pessoais, de protecção e segurança e vendedores"
+ },
+ {
+   "Versão:": "2",
+   "V02014": "51",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores dos serviços pessoais"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "511",
+   "Classificação portuguesa das profissões, 2010": "Assistentes de viagem, cobradores e guias intérpretes"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5111",
+   "Classificação portuguesa das profissões, 2010": "Assistentes de viagem e comissários "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5111.0",
+   "Classificação portuguesa das profissões, 2010": "Assistentes de viagem e comissários "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5112",
+   "Classificação portuguesa das profissões, 2010": "Fiscal e cobrador de transportes públicos"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5112.0",
+   "Classificação portuguesa das profissões, 2010": "Fiscal e cobrador de transportes públicos"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5113",
+   "Classificação portuguesa das profissões, 2010": "Guia intérprete  "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5113.0",
+   "Classificação portuguesa das profissões, 2010": "Guia intérprete  "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "512",
+   "Classificação portuguesa das profissões, 2010": "Cozinheiro "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5120",
+   "Classificação portuguesa das profissões, 2010": "Cozinheiro "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5120.0",
+   "Classificação portuguesa das profissões, 2010": "Cozinheiro "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "513",
+   "Classificação portuguesa das profissões, 2010": "Empregados de mesa e bar "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5131",
+   "Classificação portuguesa das profissões, 2010": "Empregado de mesa "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5131.0",
+   "Classificação portuguesa das profissões, 2010": "Empregado de mesa "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5132",
+   "Classificação portuguesa das profissões, 2010": "Empregado de bar"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5132.0",
+   "Classificação portuguesa das profissões, 2010": "Empregado de bar"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "514",
+   "Classificação portuguesa das profissões, 2010": "Cabeleireiros, esteticistas e similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5141",
+   "Classificação portuguesa das profissões, 2010": "Cabeleireiro e barbeiro"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5141.0",
+   "Classificação portuguesa das profissões, 2010": "Cabeleireiro e barbeiro"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5142",
+   "Classificação portuguesa das profissões, 2010": "Esteticistas e trabalhadores similares "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5142.1",
+   "Classificação portuguesa das profissões, 2010": "Esteticista "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5142.2",
+   "Classificação portuguesa das profissões, 2010": "Massagista de estética"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5142.3",
+   "Classificação portuguesa das profissões, 2010": "Manicura, pedicura e calista"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5142.4",
+   "Classificação portuguesa das profissões, 2010": "Outros trabalhadores similares aos esteticistas"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "515",
+   "Classificação portuguesa das profissões, 2010": "Governante doméstico e encarregados de limpeza e de trabalhos domésticos "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5151",
+   "Classificação portuguesa das profissões, 2010": "Encarregado de limpeza e de trabalhos domésticos em escritórios, hotéis e outros estabelecimentos"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5151.0",
+   "Classificação portuguesa das profissões, 2010": "Encarregado de limpeza e de trabalhos domésticos em escritórios, hotéis e outros estabelecimentos"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5152",
+   "Classificação portuguesa das profissões, 2010": "Governante doméstico"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5152.0",
+   "Classificação portuguesa das profissões, 2010": "Governante doméstico"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5153",
+   "Classificação portuguesa das profissões, 2010": "Porteiro de edifícios"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5153.0",
+   "Classificação portuguesa das profissões, 2010": "Porteiro de edifícios"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "516",
+   "Classificação portuguesa das profissões, 2010": "Outros trabalhadores dos serviços pessoais"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5161",
+   "Classificação portuguesa das profissões, 2010": "Astrólogos, adivinhadores e similares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5161.1",
+   "Classificação portuguesa das profissões, 2010": "Astrólogo"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5161.2",
+   "Classificação portuguesa das profissões, 2010": "Adivinhador e similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5162",
+   "Classificação portuguesa das profissões, 2010": "Pessoal de companhia e ajudantes de quarto"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5162.0",
+   "Classificação portuguesa das profissões, 2010": "Pessoal de companhia e ajudantes de quarto"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5163",
+   "Classificação portuguesa das profissões, 2010": "Agentes funerários e embalsamadores"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5163.1",
+   "Classificação portuguesa das profissões, 2010": "Agente funerário"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5163.2",
+   "Classificação portuguesa das profissões, 2010": "Embalsamador"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5164",
+   "Classificação portuguesa das profissões, 2010": "Prestador de cuidados a animais "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5164.0",
+   "Classificação portuguesa das profissões, 2010": "Prestador de cuidados a animais "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5165",
+   "Classificação portuguesa das profissões, 2010": "Instrutor de condução"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5165.0",
+   "Classificação portuguesa das profissões, 2010": "Instrutor de condução"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5169",
+   "Classificação portuguesa das profissões, 2010": "Outros trabalhadores dos serviços pessoais, n.e."
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5169.0",
+   "Classificação portuguesa das profissões, 2010": "Outros trabalhadores dos serviços pessoais, n.e."
+ },
+ {
+   "Versão:": "2",
+   "V02014": "52",
+   "Classificação portuguesa das profissões, 2010": "Vendedores"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "521",
+   "Classificação portuguesa das profissões, 2010": "Vendedores ambulantes e em mercados "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5211",
+   "Classificação portuguesa das profissões, 2010": "Vendedor em quiosque e em mercados  "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5211.0",
+   "Classificação portuguesa das profissões, 2010": "Vendedor em quiosque e em mercados  "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5212",
+   "Classificação portuguesa das profissões, 2010": "Vendedor ambulante de produtos alimentares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5212.0",
+   "Classificação portuguesa das profissões, 2010": "Vendedor ambulante de produtos alimentares"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "522",
+   "Classificação portuguesa das profissões, 2010": "Vendedores em lojas "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5221",
+   "Classificação portuguesa das profissões, 2010": "Comerciante de loja (estabelecimento)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5221.0",
+   "Classificação portuguesa das profissões, 2010": "Comerciante de loja (estabelecimento)"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5222",
+   "Classificação portuguesa das profissões, 2010": "Encarregado de loja (estabelecimento)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5222.0",
+   "Classificação portuguesa das profissões, 2010": "Encarregado de loja (estabelecimento)"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5223",
+   "Classificação portuguesa das profissões, 2010": "Vendedor em loja (estabelecimento)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5223.0",
+   "Classificação portuguesa das profissões, 2010": "Vendedor em loja (estabelecimento)"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "523",
+   "Classificação portuguesa das profissões, 2010": "Operadores de caixa e venda de bilhetes"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5230",
+   "Classificação portuguesa das profissões, 2010": "Operadores de caixa e venda de bilhetes"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5230.1",
+   "Classificação portuguesa das profissões, 2010": "Operador de caixa"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5230.2",
+   "Classificação portuguesa das profissões, 2010": "Bilheteiro "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "524",
+   "Classificação portuguesa das profissões, 2010": "Outros trabalhadores relacionados com vendas"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5241",
+   "Classificação portuguesa das profissões, 2010": "Manequim e outros modelos "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5241.0",
+   "Classificação portuguesa das profissões, 2010": "Manequim e outros modelos "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5242",
+   "Classificação portuguesa das profissões, 2010": "Demonstrador"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5242.0",
+   "Classificação portuguesa das profissões, 2010": "Demonstrador"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5243",
+   "Classificação portuguesa das profissões, 2010": "Vendedor ao domicílio "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5243.0",
+   "Classificação portuguesa das profissões, 2010": "Vendedor ao domicílio "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5244",
+   "Classificação portuguesa das profissões, 2010": "Vendedor de centros de contacto"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5244.0",
+   "Classificação portuguesa das profissões, 2010": "Vendedor de centros de contacto"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5245",
+   "Classificação portuguesa das profissões, 2010": "Assistente de estação de serviço ao condutor "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5245.0",
+   "Classificação portuguesa das profissões, 2010": "Assistente de estação de serviço ao condutor "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5246",
+   "Classificação portuguesa das profissões, 2010": "Assistente de venda de alimentos ao balcão"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5246.0",
+   "Classificação portuguesa das profissões, 2010": "Assistente de venda de alimentos ao balcão"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5249",
+   "Classificação portuguesa das profissões, 2010": "Outros trabalhadores relacionados com vendas, n.e. "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5249.0",
+   "Classificação portuguesa das profissões, 2010": "Outros trabalhadores relacionados com vendas, n.e. "
+ },
+ {
+   "Versão:": "2",
+   "V02014": "53",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores dos cuidados pessoais e similares"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "531",
+   "Classificação portuguesa das profissões, 2010": "Auxiliares de educadores de infância e de professores"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5311",
+   "Classificação portuguesa das profissões, 2010": "Auxiliar de cuidados de crianças"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5311.0",
+   "Classificação portuguesa das profissões, 2010": "Auxiliar de cuidados de crianças"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5312",
+   "Classificação portuguesa das profissões, 2010": "Auxiliar de professor"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5312.0",
+   "Classificação portuguesa das profissões, 2010": "Auxiliar de professor"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "532",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores de cuidados pessoais nos serviços de saúde"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5321",
+   "Classificação portuguesa das profissões, 2010": "Auxiliar de saúde"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5321.0",
+   "Classificação portuguesa das profissões, 2010": "Auxiliar de saúde"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5322",
+   "Classificação portuguesa das profissões, 2010": "Ajudante familiar"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5322.0",
+   "Classificação portuguesa das profissões, 2010": "Ajudante familiar"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5329",
+   "Classificação portuguesa das profissões, 2010": "Outros trabalhadores dos cuidados pessoais e similares nos serviços de saúde"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5329.0",
+   "Classificação portuguesa das profissões, 2010": "Outros trabalhadores dos cuidados pessoais e similares nos serviços de saúde"
+ },
+ {
+   "Versão:": "2",
+   "V02014": "54",
+   "Classificação portuguesa das profissões, 2010": "Pessoal dos serviços de protecção e segurança "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "541",
+   "Classificação portuguesa das profissões, 2010": "Pessoal dos serviços de protecção e segurança "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5411",
+   "Classificação portuguesa das profissões, 2010": "Bombeiro"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5411.0",
+   "Classificação portuguesa das profissões, 2010": "Bombeiro"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5412",
+   "Classificação portuguesa das profissões, 2010": "Agentes da PSP,  Polícia Marítima, Polícia Municipal, sargentos e guardas da GNR"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5412.1",
+   "Classificação portuguesa das profissões, 2010": "Sargentos da Guarda Nacional Republicana"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5412.2",
+   "Classificação portuguesa das profissões, 2010": "Guardas da Guarda Nacional Republicana"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5412.3",
+   "Classificação portuguesa das profissões, 2010": "Agente de Polícia de Segurança Pública"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5412.4",
+   "Classificação portuguesa das profissões, 2010": "Agente de Polícia Marítima "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5412.5",
+   "Classificação portuguesa das profissões, 2010": "Agente de Polícia Municipal"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5412.6",
+   "Classificação portuguesa das profissões, 2010": "Outros agentes de polícia"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5413",
+   "Classificação portuguesa das profissões, 2010": "Guarda dos serviços prisionais "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5413.0",
+   "Classificação portuguesa das profissões, 2010": "Guarda dos serviços prisionais "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5414",
+   "Classificação portuguesa das profissões, 2010": "Segurança (vigilante privado), porteiros e similares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5414.1",
+   "Classificação portuguesa das profissões, 2010": "Porteiro de hotelaria"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5414.2",
+   "Classificação portuguesa das profissões, 2010": "Segurança (vigilante privado), outros porteiros e similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "5419",
+   "Classificação portuguesa das profissões, 2010": "Outro pessoal dos serviços de protecção e segurança "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "5419.0",
+   "Classificação portuguesa das profissões, 2010": "Outro pessoal dos serviços de protecção e segurança "
+ },
+ {
+   "Versão:": "1",
+   "V02014": "6",
+   "Classificação portuguesa das profissões, 2010": "Agricultores e trabalhadores qualificados da agricultura, da pesca e da floresta"
+ },
+ {
+   "Versão:": "2",
+   "V02014": "61",
+   "Classificação portuguesa das profissões, 2010": "Agricultores e trabalhadores qualificados da agricultura e produção animal, orientados para o mercado"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "611",
+   "Classificação portuguesa das profissões, 2010": "Agricultores e trabalhadores qualificados de culturas agrícolas de mercado"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "6111",
+   "Classificação portuguesa das profissões, 2010": "Agricultor e trabalhador qualificado de cereais e outras culturas extensivas"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "6111.0",
+   "Classificação portuguesa das profissões, 2010": "Agricultor e trabalhador qualificado de cereais e outras culturas extensivas"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "6112",
+   "Classificação portuguesa das profissões, 2010": "Agricultor e trabalhador qualificado de culturas de árvores e arbustos "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "6112.0",
+   "Classificação portuguesa das profissões, 2010": "Agricultor e trabalhador qualificado de culturas de árvores e arbustos "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "6113",
+   "Classificação portuguesa das profissões, 2010": "Agricultor e trabalhador qualificado, da horticultura, floricultura, de viveiros e jardins "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "6113.1",
+   "Classificação portuguesa das profissões, 2010": "Agricultor e trabalhador qualificado da horticultura"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "6113.2",
+   "Classificação portuguesa das profissões, 2010": "Floricultor"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "6113.3",
+   "Classificação portuguesa das profissões, 2010": "Viveirista"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "6113.4",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador qualificado da jardinagem"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "6114",
+   "Classificação portuguesa das profissões, 2010": "Agricultor e trabalhador qualificado de culturas agrícolas mistas"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "6114.0",
+   "Classificação portuguesa das profissões, 2010": "Agricultor e trabalhador qualificado de culturas agrícolas mistas"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "612",
+   "Classificação portuguesa das profissões, 2010": "Produtores e trabalhadores qualificados na criação animal"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "6121",
+   "Classificação portuguesa das profissões, 2010": "Produtores e trabalhadores qualificados na produção animal de carne e de leite "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "6121.1",
+   "Classificação portuguesa das profissões, 2010": "Produtor e trabalhador qualificado na produção de bovinos"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "6121.2",
+   "Classificação portuguesa das profissões, 2010": "Produtor e trabalhador qualificado na produção de ovinos e caprinos"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "6121.3",
+   "Classificação portuguesa das profissões, 2010": "Produtor e trabalhador qualificado na produção de suinos"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "6121.4",
+   "Classificação portuguesa das profissões, 2010": "Produtor e trabalhador qualificado na produção de outros animais de carne"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "6122",
+   "Classificação portuguesa das profissões, 2010": "Avicultor e trabalhador qualificado da avicultura "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "6122.0",
+   "Classificação portuguesa das profissões, 2010": "Avicultor e trabalhador qualificado da avicultura "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "6123",
+   "Classificação portuguesa das profissões, 2010": "Apicultor e sericicultor"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "6123.1",
+   "Classificação portuguesa das profissões, 2010": "Apicultor e trabalhador qualificado da apicultura "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "6123.2",
+   "Classificação portuguesa das profissões, 2010": "Sericicultor e trabalhador qualificado da sericicultura"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "6129",
+   "Classificação portuguesa das profissões, 2010": "Outros produtores e trabalhadores qualificados da criação animal"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "6129.0",
+   "Classificação portuguesa das profissões, 2010": "Outros produtores e trabalhadores qualificados da criação animal"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "613",
+   "Classificação portuguesa das profissões, 2010": "Agricultor e trabalhador qualificado da agricultura e produção animal combinadas, orientados para o mercado "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "6130",
+   "Classificação portuguesa das profissões, 2010": "Agricultor e trabalhador qualificado da agricultura e produção animal combinadas, orientados para o mercado "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "6130.0",
+   "Classificação portuguesa das profissões, 2010": "Agricultor e trabalhador qualificado da agricultura e produção animal combinadas, orientados para o mercado "
+ },
+ {
+   "Versão:": "2",
+   "V02014": "62",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores qualificados da floresta, pesca e caça, orientados para o mercado"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "621",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores qualificados da floresta e similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "6210",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores qualificados da floresta e similares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "6210.1",
+   "Classificação portuguesa das profissões, 2010": "Motosserrista"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "6210.2",
+   "Classificação portuguesa das profissões, 2010": "Sapador florestal"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "6210.3",
+   "Classificação portuguesa das profissões, 2010": "Outros trabalhadores qualificados da floresta e similares "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "622",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores qualificados da aquicultura e das pescas; caçador (inclui com armadilha)"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "6221",
+   "Classificação portuguesa das profissões, 2010": "Aquicultores (aquacultores) e trabalhadores qualificados da aquicultura "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "6221.1",
+   "Classificação portuguesa das profissões, 2010": "Aquicultor (aquacultor) e trabalhador qualificado de aquicultura de águas interiores"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "6221.2",
+   "Classificação portuguesa das profissões, 2010": "Aquicultor (aquacultor) e trabalhador qualificado de aquicultura de águas marítimas"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "6222",
+   "Classificação portuguesa das profissões, 2010": "Pescadores e trabalhadores qualificados da pesca em águas costeiras e interiores"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "6222.1",
+   "Classificação portuguesa das profissões, 2010": "Pescador de águas interiores"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "6222.2",
+   "Classificação portuguesa das profissões, 2010": "Mestre, contramestre e arrais, de pesca marítima costeira"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "6222.3",
+   "Classificação portuguesa das profissões, 2010": "Pescador e marinheiro pescador, de pesca marítima costeira "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "6222.4",
+   "Classificação portuguesa das profissões, 2010": "Outros trabalhadores qualificados de pesca de águas interiores"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "6222.5",
+   "Classificação portuguesa das profissões, 2010": "Outros trabalhadores qualificados de pesca marítima costeira "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "6223",
+   "Classificação portuguesa das profissões, 2010": "Pescadores e trabalhadores qualificados da pesca do largo (alto mar)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "6223.1",
+   "Classificação portuguesa das profissões, 2010": "Mestre, contramestre e arrais, de pesca marítima do largo"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "6223.2",
+   "Classificação portuguesa das profissões, 2010": "Pescador e marinheiro pescador, de pesca marítima do largo"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "6223.3",
+   "Classificação portuguesa das profissões, 2010": "Outros trabalhadores qualificados da pesca marítima do largo "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "6224",
+   "Classificação portuguesa das profissões, 2010": "Caçador qualificado (inclui com armadilhas) orientado para o mercado"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "6224.0",
+   "Classificação portuguesa das profissões, 2010": "Caçador qualificado (inclui com armadilhas) orientado para o mercado"
+ },
+ {
+   "Versão:": "2",
+   "V02014": "63",
+   "Classificação portuguesa das profissões, 2010": "Agricultores, criadores de animais, pescadores, caçadores e colectores, de subsistência "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "631",
+   "Classificação portuguesa das profissões, 2010": "Agricultor de subsistência "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "6310",
+   "Classificação portuguesa das profissões, 2010": "Agricultor de subsistência "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "6310.0",
+   "Classificação portuguesa das profissões, 2010": "Agricultor de subsistência "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "632",
+   "Classificação portuguesa das profissões, 2010": "Criador de animais de subsistência"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "6320",
+   "Classificação portuguesa das profissões, 2010": "Criador de animais de subsistência"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "6320.0",
+   "Classificação portuguesa das profissões, 2010": "Criador de animais de subsistência"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "633",
+   "Classificação portuguesa das profissões, 2010": "Agricultor e criador de animais de produção combinada, de subsistência "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "6330",
+   "Classificação portuguesa das profissões, 2010": "Agricultor e criador de animais de produção combinada, de subsistência "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "6330.0",
+   "Classificação portuguesa das profissões, 2010": "Agricultor e criador de animais de produção combinada, de subsistência "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "634",
+   "Classificação portuguesa das profissões, 2010": "Pescador, caçador e colector, de subsistência"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "6340",
+   "Classificação portuguesa das profissões, 2010": "Pescador, caçador e colector, de subsistência"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "6340.0",
+   "Classificação portuguesa das profissões, 2010": "Pescador, caçador e colector, de subsistência"
+ },
+ {
+   "Versão:": "1",
+   "V02014": "7",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores qualificados da indústria, construção e artífices"
+ },
+ {
+   "Versão:": "2",
+   "V02014": "71",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores qualificados da construção e similares, excepto electricista "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "711",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores qualificados da construção das estruturas básicas e similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7111",
+   "Classificação portuguesa das profissões, 2010": "Construtor de casas rudimentares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7111.0",
+   "Classificação portuguesa das profissões, 2010": "Construtor de casas rudimentares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7112",
+   "Classificação portuguesa das profissões, 2010": "Pedreiro, calceteiro e assentador de refractários "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7112.1",
+   "Classificação portuguesa das profissões, 2010": "Pedreiro"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7112.2",
+   "Classificação portuguesa das profissões, 2010": "Calceteiro "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7112.3",
+   "Classificação portuguesa das profissões, 2010": "Assentador de refractários"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7113",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores da pedra, canteiros e similares "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7113.1",
+   "Classificação portuguesa das profissões, 2010": "Polidor de pedra"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7113.2",
+   "Classificação portuguesa das profissões, 2010": "Canteiro"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7113.3",
+   "Classificação portuguesa das profissões, 2010": "Outros trabalhadores qualificados da pedra e similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7114",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores de betão armado e similares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7114.1",
+   "Classificação portuguesa das profissões, 2010": "Cimenteiro"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7114.2",
+   "Classificação portuguesa das profissões, 2010": "Armador de ferro"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7114.3",
+   "Classificação portuguesa das profissões, 2010": "Montador de alvenarias e de pré-esforçados"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7114.4",
+   "Classificação portuguesa das profissões, 2010": "Outros trabalhadores qualificados em betão armado e similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7115",
+   "Classificação portuguesa das profissões, 2010": "Carpinteiros e similares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7115.1",
+   "Classificação portuguesa das profissões, 2010": "Carpinteiro de limpos e de tosco"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7115.2",
+   "Classificação portuguesa das profissões, 2010": "Carpinteiro naval"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7115.3",
+   "Classificação portuguesa das profissões, 2010": "Outros carpinteiros e similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7119",
+   "Classificação portuguesa das profissões, 2010": "Outros trabalhadores qualificados da construção das estruturas básicas e similares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7119.1",
+   "Classificação portuguesa das profissões, 2010": "Montador de andaimes"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7119.2",
+   "Classificação portuguesa das profissões, 2010": "Espalhador de betuminosos "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7119.3",
+   "Classificação portuguesa das profissões, 2010": "Outros trabalhadores qualificados da construção de estruturas básicas e similares, n.e."
+ },
+ {
+   "Versão:": "3",
+   "V02014": "712",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores qualificados em acabamentos da construção e similares "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7121",
+   "Classificação portuguesa das profissões, 2010": "Colocador de telhados e de coberturas "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7121.0",
+   "Classificação portuguesa das profissões, 2010": "Colocador de telhados e de coberturas "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7122",
+   "Classificação portuguesa das profissões, 2010": "Assentadores de revestimentos e ladrilhadores"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7122.1",
+   "Classificação portuguesa das profissões, 2010": "Assentador de tacos e afagador de madeira"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7122.2",
+   "Classificação portuguesa das profissões, 2010": "Ladrilhador"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7122.3",
+   "Classificação portuguesa das profissões, 2010": "Outros assentadores de revestimentos "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7123",
+   "Classificação portuguesa das profissões, 2010": "Estucador"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7123.0",
+   "Classificação portuguesa das profissões, 2010": "Estucador"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7124",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador qualificado em isolamentos acústicos e térmicos"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7124.0",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador qualificado em isolamentos acústicos e térmicos"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7125",
+   "Classificação portuguesa das profissões, 2010": "Vidraceiro "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7125.0",
+   "Classificação portuguesa das profissões, 2010": "Vidraceiro "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7126",
+   "Classificação portuguesa das profissões, 2010": "Canalizador e montador de tubagens"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7126.1",
+   "Classificação portuguesa das profissões, 2010": "Canalizador"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7126.2",
+   "Classificação portuguesa das profissões, 2010": "Montador de tubagens"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7127",
+   "Classificação portuguesa das profissões, 2010": "Instalador de ar condicionado e de sistemas de refrigeração"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7127.0",
+   "Classificação portuguesa das profissões, 2010": "Instalador de ar condicionado e de sistemas de refrigeração"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "713",
+   "Classificação portuguesa das profissões, 2010": "Pintores, limpadores de fachadas e similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7131",
+   "Classificação portuguesa das profissões, 2010": "Pintores de construções e trabalhadores similares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7131.1",
+   "Classificação portuguesa das profissões, 2010": "Pintor de construções"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7131.2",
+   "Classificação portuguesa das profissões, 2010": "Colocador de papel de parede, pintor decorador e similares "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7132",
+   "Classificação portuguesa das profissões, 2010": "Pintores à pistola e envernizadores"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7132.1",
+   "Classificação portuguesa das profissões, 2010": "Pintor à pistola de superfícies"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7132.2",
+   "Classificação portuguesa das profissões, 2010": "Envernizador"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7133",
+   "Classificação portuguesa das profissões, 2010": "Limpadores de fachadas e de outras estruturas de edifícios"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7133.1",
+   "Classificação portuguesa das profissões, 2010": "Limpador de fachadas "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7133.2",
+   "Classificação portuguesa das profissões, 2010": "Limpador de chaminés e de outras estruturas de edifícios "
+ },
+ {
+   "Versão:": "2",
+   "V02014": "72",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores qualificados da metalurgia, metalomecânica e similares"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "721",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores de chapas metálicas, preparadores e montadores de estruturas metálicas, moldadores de metal, soldadores e trabalhadores similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7211",
+   "Classificação portuguesa das profissões, 2010": "Operador de fundição"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7211.0",
+   "Classificação portuguesa das profissões, 2010": "Operador de fundição"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7212",
+   "Classificação portuguesa das profissões, 2010": "Soldadores e trabalhadores de corte a oxi-gás"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7212.1",
+   "Classificação portuguesa das profissões, 2010": "Soldador"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7212.2",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador de corte a oxi-gás"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7213",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores de chapas metálicas"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7213.1",
+   "Classificação portuguesa das profissões, 2010": "Bate-chapa de veículos automóveis"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7213.2",
+   "Classificação portuguesa das profissões, 2010": "Funileiro e caldeireiro "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7214",
+   "Classificação portuguesa das profissões, 2010": "Preparador e montador de estruturas metálicas"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7214.1",
+   "Classificação portuguesa das profissões, 2010": "Serralheiro civil"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7214.2",
+   "Classificação portuguesa das profissões, 2010": "Outro preparador e montador de estruturas metálicas"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7215",
+   "Classificação portuguesa das profissões, 2010": "Armador e montador de cabos metálicos"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7215.0",
+   "Classificação portuguesa das profissões, 2010": "Armador e montador de cabos metálicos"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "722",
+   "Classificação portuguesa das profissões, 2010": "Forjadores, serralheiros mecânicos e similares "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7221",
+   "Classificação portuguesa das profissões, 2010": "Forjadores, ferreiros, operadores de prensas de forjar, estampadores e similares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7221.1",
+   "Classificação portuguesa das profissões, 2010": "Forjador e ferreiro"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7221.2",
+   "Classificação portuguesa das profissões, 2010": "Operador de prensa de forjar, estampador e similares "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7222",
+   "Classificação portuguesa das profissões, 2010": "Serralheiro de moldes, cunhos, cortantes e similares "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7222.0",
+   "Classificação portuguesa das profissões, 2010": "Serralheiro de moldes, cunhos, cortantes e similares "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7223",
+   "Classificação portuguesa das profissões, 2010": "Reguladores e operadores de máquinas-ferramentas para trabalhar metais"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7223.1",
+   "Classificação portuguesa das profissões, 2010": "Regulador e operador de máquinas-ferramentas convencionais para trabalhar metais "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7223.2",
+   "Classificação portuguesa das profissões, 2010": "Regulador e operador de máquinas-ferramentas de comando numérico computorizado para trabalhar metais "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7224",
+   "Classificação portuguesa das profissões, 2010": "Rectificador de rodas, polidor e afiador de metais "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7224.0",
+   "Classificação portuguesa das profissões, 2010": "Rectificador de rodas, polidor e afiador de metais "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "723",
+   "Classificação portuguesa das profissões, 2010": "Mecânicos e reparadores, de máquinas e de veículos "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7231",
+   "Classificação portuguesa das profissões, 2010": "Mecânico e reparador de veículos automóveis"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7231.0",
+   "Classificação portuguesa das profissões, 2010": "Mecânico e reparador de veículos automóveis"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7232",
+   "Classificação portuguesa das profissões, 2010": "Técnico de manutenção e reparação de motores de avião "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7232.0",
+   "Classificação portuguesa das profissões, 2010": "Técnico de manutenção e reparação de motores de avião "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7233",
+   "Classificação portuguesa das profissões, 2010": "Mecânico e reparador, de máquinas agrícolas e industriais "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7233.0",
+   "Classificação portuguesa das profissões, 2010": "Mecânico e reparador, de máquinas agrícolas e industriais "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7234",
+   "Classificação portuguesa das profissões, 2010": "Reparador de bicicletas e similares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7234.0",
+   "Classificação portuguesa das profissões, 2010": "Reparador de bicicletas e similares"
+ },
+ {
+   "Versão:": "2",
+   "V02014": "73",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores qualificados da impressão, do fabrico de instrumentos de precisão, joalheiros, artesãos e similares"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "731",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores qualificados do fabrico de instrumentos de precisão, joalheiros, artesãos e similares "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7311",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador qualificado do fabrico e reparação de instrumentos de precisão"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7311.0",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador qualificado do fabrico e reparação de instrumentos de precisão"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7312",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador qualificado do fabrico e afinação de instrumentos musicais"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7312.0",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador qualificado do fabrico e afinação de instrumentos musicais"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7313",
+   "Classificação portuguesa das profissões, 2010": "Joalheiros, ourives e trabalhadores de diamantes industriais"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7313.1",
+   "Classificação portuguesa das profissões, 2010": "Joalheiro"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7313.2",
+   "Classificação portuguesa das profissões, 2010": "Filigranista"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7313.3",
+   "Classificação portuguesa das profissões, 2010": "Outros ourives e trabalhadores de diamantes industriais"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7314",
+   "Classificação portuguesa das profissões, 2010": "Oleiros e similares "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7314.1",
+   "Classificação portuguesa das profissões, 2010": "Oleiro "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7314.2",
+   "Classificação portuguesa das profissões, 2010": "Modelador e formista, de cerâmica "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7314.3",
+   "Classificação portuguesa das profissões, 2010": "Outros oleiros e similares "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7315",
+   "Classificação portuguesa das profissões, 2010": "Sopradores, cortadores, polidores e acabadores, de vidro "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7315.1",
+   "Classificação portuguesa das profissões, 2010": "Soprador de artigos de vidro"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7315.2",
+   "Classificação portuguesa das profissões, 2010": "Cortador de vidro"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7315.3",
+   "Classificação portuguesa das profissões, 2010": "Polidor e acabador de artigos de vidro"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7316",
+   "Classificação portuguesa das profissões, 2010": "Lapidadores, gravadores e pintores-decoradores, de vidro, cerâmica e outros materiais "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7316.1",
+   "Classificação portuguesa das profissões, 2010": "Lapidador e gravador, de vidro, cerâmica e outros materiais"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7316.2",
+   "Classificação portuguesa das profissões, 2010": "Pintor-decorador de vidro, cerâmica e outros materiais"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7317",
+   "Classificação portuguesa das profissões, 2010": "Artesãos de artigos em madeira, cestaria e materiais similares                                                                                                                                                                                                 "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7317.1",
+   "Classificação portuguesa das profissões, 2010": "Artesão de artigos em madeira"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7317.2",
+   "Classificação portuguesa das profissões, 2010": "Artesão de cestaria e artigos similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7318",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores manuais de artigos têxteis, couro e materiais similares "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7318.1",
+   "Classificação portuguesa das profissões, 2010": "Artesão de rendas, bordados e tapeçarias, manuais "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7318.2",
+   "Classificação portuguesa das profissões, 2010": "Artesão de artigos de couro"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7318.3",
+   "Classificação portuguesa das profissões, 2010": "Outros trabalhadores manuais de artigos têxteis, couro e materiais similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7319",
+   "Classificação portuguesa das profissões, 2010": "Outros trabalhadores qualificados do fabrico de instrumentos de precisão, artesãos e similares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7319.0",
+   "Classificação portuguesa das profissões, 2010": "Outros trabalhadores qualificados do fabrico de instrumentos de precisão, artesãos e similares"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "732",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores da impressão "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7321",
+   "Classificação portuguesa das profissões, 2010": "Operador de pré-impressão"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7321.0",
+   "Classificação portuguesa das profissões, 2010": "Operador de pré-impressão"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7322",
+   "Classificação portuguesa das profissões, 2010": "Serígrafo e outros operadores de impressão"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7322.1",
+   "Classificação portuguesa das profissões, 2010": "Serígrafo e similar"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7322.2",
+   "Classificação portuguesa das profissões, 2010": "Outros operadores de impressão"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7323",
+   "Classificação portuguesa das profissões, 2010": "Encadernadores e similares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7323.1",
+   "Classificação portuguesa das profissões, 2010": "Encadernador "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7323.2",
+   "Classificação portuguesa das profissões, 2010": "Outros trabalhadores relacionados com o acabamento da impressão"
+ },
+ {
+   "Versão:": "2",
+   "V02014": "74",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores qualificados em electricidade e em electrónica"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "741",
+   "Classificação portuguesa das profissões, 2010": "Instaladores e reparadores de equipamento eléctrico"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7411",
+   "Classificação portuguesa das profissões, 2010": "Electricista de construções e similares "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7411.0",
+   "Classificação portuguesa das profissões, 2010": "Electricista de construções e similares "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7412",
+   "Classificação portuguesa das profissões, 2010": "Electromecânico, electricista e instalador de máquinas e equipamentos eléctricos "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7412.1",
+   "Classificação portuguesa das profissões, 2010": "Instalador de sistemas solares térmicos "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7412.2",
+   "Classificação portuguesa das profissões, 2010": "Instalador de sistemas solares fotovoltaicos "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7412.3",
+   "Classificação portuguesa das profissões, 2010": "Instalador de sistemas de bioenergia"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7412.4",
+   "Classificação portuguesa das profissões, 2010": "Electromecânico, electricista e outros instaladores de máquinas e equipamentos eléctricos "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7413",
+   "Classificação portuguesa das profissões, 2010": "Instalador e reparador de linhas eléctricas"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7413.0",
+   "Classificação portuguesa das profissões, 2010": "Instalador e reparador de linhas eléctricas"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "742",
+   "Classificação portuguesa das profissões, 2010": "Instaladores e reparadores, de equipamentos electrónicos e de telecomunicações"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7421",
+   "Classificação portuguesa das profissões, 2010": "Mecânico e reparador de equipamentos electrónicos "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7421.0",
+   "Classificação portuguesa das profissões, 2010": "Mecânico e reparador de equipamentos electrónicos "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7422",
+   "Classificação portuguesa das profissões, 2010": "Instalador e reparador, de tecnologias de informação e comunicação  "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7422.0",
+   "Classificação portuguesa das profissões, 2010": "Instalador e reparador, de tecnologias de informação e comunicação  "
+ },
+ {
+   "Versão:": "2",
+   "V02014": "75",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores da transformação de alimentos, da madeira, do vestuário e outras indústrias e artesanato "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "751",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores qualificados da transformação de alimentos "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7511",
+   "Classificação portuguesa das profissões, 2010": "Preparadores de carne, peixe e similares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7511.1",
+   "Classificação portuguesa das profissões, 2010": "Matador de animais"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7511.2",
+   "Classificação portuguesa das profissões, 2010": "Cortador de carne"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7511.3",
+   "Classificação portuguesa das profissões, 2010": "Salsicheiro"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7511.4",
+   "Classificação portuguesa das profissões, 2010": "Preparador e conservador de peixe"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7511.5",
+   "Classificação portuguesa das profissões, 2010": "Outros preparadores de carne, peixe e similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7512",
+   "Classificação portuguesa das profissões, 2010": "Padeiros, pasteleiros e confeiteiros"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7512.1",
+   "Classificação portuguesa das profissões, 2010": "Padeiro"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7512.2",
+   "Classificação portuguesa das profissões, 2010": "Pasteleiro "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7512.3",
+   "Classificação portuguesa das profissões, 2010": "Confeiteiro "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7513",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador do fabrico de produtos lácteos "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7513.0",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador do fabrico de produtos lácteos "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7514",
+   "Classificação portuguesa das profissões, 2010": "Conserveiro de frutas, legumes e similares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7514.0",
+   "Classificação portuguesa das profissões, 2010": "Conserveiro de frutas, legumes e similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7515",
+   "Classificação portuguesa das profissões, 2010": "Provadores e classificadores, de alimentos e bebidas"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7515.0",
+   "Classificação portuguesa das profissões, 2010": "Provadores e classificadores, de alimentos e bebidas"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7516",
+   "Classificação portuguesa das profissões, 2010": "Preparador e transformador, de tabaco e seus produtos "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7516.0",
+   "Classificação portuguesa das profissões, 2010": "Preparador e transformador, de tabaco e seus produtos "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "752",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores do tratamento da madeira e cortiça, marceneiros e similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7521",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores do tratamento da madeira e cortiça"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7521.1",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador do tratamento da madeira "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7521.2",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador do tratamento da cortiça"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7522",
+   "Classificação portuguesa das profissões, 2010": "Marceneiros e similares "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7522.1",
+   "Classificação portuguesa das profissões, 2010": "Marceneiro"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7522.2",
+   "Classificação portuguesa das profissões, 2010": "Tanoeiro, embutidor e outros similares a marceneiro "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7523",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas e de equipamentos para trabalhar madeira e cortiça"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7523.1",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas e de equipamentos para trabalhar madeira"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7523.2",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas e de equipamentos para trabalhar  cortiça"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "753",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores da confecção de vestuário, curtidores de peles, sapateiros e similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7531",
+   "Classificação portuguesa das profissões, 2010": "Alfaiates, costureiros, peleiros e chapeleiros   "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7531.1",
+   "Classificação portuguesa das profissões, 2010": "Alfaiate e costureiro "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7531.2",
+   "Classificação portuguesa das profissões, 2010": "Peleiro"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7531.3",
+   "Classificação portuguesa das profissões, 2010": "Chapeleiro "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7532",
+   "Classificação portuguesa das profissões, 2010": "Riscador de moldes e cortadores, de tecido, couro e similares "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7532.1",
+   "Classificação portuguesa das profissões, 2010": "Riscador de moldes e cortador de tecidos"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7532.2",
+   "Classificação portuguesa das profissões, 2010": "Riscador de moldes e cortador, de couros e similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7533",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores de costura, bordados e similares "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7533.1",
+   "Classificação portuguesa das profissões, 2010": "Bordador"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7533.2",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador de costura e similares "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7534",
+   "Classificação portuguesa das profissões, 2010": "Estofadores e similares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7534.1",
+   "Classificação portuguesa das profissões, 2010": "Estofador"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7534.2",
+   "Classificação portuguesa das profissões, 2010": "Colchoeiro"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7534.3",
+   "Classificação portuguesa das profissões, 2010": "Outros trabalhadores similares a estofador"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7535",
+   "Classificação portuguesa das profissões, 2010": "Curtidores, preparadores e acabadores, de peles "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7535.1",
+   "Classificação portuguesa das profissões, 2010": "Curtidor de peles"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7535.2",
+   "Classificação portuguesa das profissões, 2010": "Preparador e acabador de peles"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7536",
+   "Classificação portuguesa das profissões, 2010": "Sapateiros e similares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7536.1",
+   "Classificação portuguesa das profissões, 2010": "Sapateiro"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7536.2",
+   "Classificação portuguesa das profissões, 2010": "Maleiro"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7536.3",
+   "Classificação portuguesa das profissões, 2010": "Correeiro"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7536.4",
+   "Classificação portuguesa das profissões, 2010": "Albardeiro e similares"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "754",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores de outros ofícios "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7541",
+   "Classificação portuguesa das profissões, 2010": "Mergulhador "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7541.0",
+   "Classificação portuguesa das profissões, 2010": "Mergulhador "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7542",
+   "Classificação portuguesa das profissões, 2010": "Carregador de fogo e dinamitador "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7542.0",
+   "Classificação portuguesa das profissões, 2010": "Carregador de fogo e dinamitador "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7543",
+   "Classificação portuguesa das profissões, 2010": "Calibrador e verificador de produtos (excepto alimentos e bebidas)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7543.0",
+   "Classificação portuguesa das profissões, 2010": "Calibrador e verificador de produtos (excepto alimentos e bebidas)"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7544",
+   "Classificação portuguesa das profissões, 2010": "Fumigador e outros controladores, de pragas e ervas daninhas"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7544.0",
+   "Classificação portuguesa das profissões, 2010": "Fumigador e outros controladores, de pragas e ervas daninhas"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "7549",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador de outros ofícios, n.e."
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7549.1",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador de vidro de óptica"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7549.2",
+   "Classificação portuguesa das profissões, 2010": "Salineiro "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7549.3",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador de fabrico de foguetes (fogueteiro)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "7549.4",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador de outros ofícios diversos, n.e."
+ },
+ {
+   "Versão:": "1",
+   "V02014": "8",
+   "Classificação portuguesa das profissões, 2010": "Operadores de instalações e máquinas e trabalhadores da montagem"
+ },
+ {
+   "Versão:": "2",
+   "V02014": "81",
+   "Classificação portuguesa das profissões, 2010": "Operadores de instalações fixas e máquinas"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "811",
+   "Classificação portuguesa das profissões, 2010": "Operadores de instalações, da extracção mineira e de processamento de minerais "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8111",
+   "Classificação portuguesa das profissões, 2010": "Mineiros e trabalhadores das pedreiras "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8111.1",
+   "Classificação portuguesa das profissões, 2010": "Mineiro"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8111.2",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador das pedreiras"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8112",
+   "Classificação portuguesa das profissões, 2010": "Operadores de instalações de processamento de minérios e rochas"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8112.1",
+   "Classificação portuguesa das profissões, 2010": "Operador de instalações de processamento de minérios"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8112.2",
+   "Classificação portuguesa das profissões, 2010": "Operador de instalações de processamento de rochas"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8113",
+   "Classificação portuguesa das profissões, 2010": "Perfurador de poços, sondador e similares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8113.0",
+   "Classificação portuguesa das profissões, 2010": "Perfurador de poços, sondador e similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8114",
+   "Classificação portuguesa das profissões, 2010": "Operadores de máquinas para trabalhar cimento, pedra e outros minerais"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8114.1",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas para trabalhar o cimento"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8114.2",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas para trabalhar a pedra"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8114.3",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas para trabalhar outros minerais"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "812",
+   "Classificação portuguesa das profissões, 2010": "Operadores de instalações de transformação e acabamento, de metais "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8121",
+   "Classificação portuguesa das profissões, 2010": "Operadores de instalações de transformação de metais "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8121.1",
+   "Classificação portuguesa das profissões, 2010": "Operador de instalações de fornos e de primeira transformação de metais "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8121.2",
+   "Classificação portuguesa das profissões, 2010": "Operador de instalações de fornos de segunda fusão, vazadores e laminadores, de metais "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8121.3",
+   "Classificação portuguesa das profissões, 2010": "Operador de instalações de tratamento térmico de metais "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8121.4",
+   "Classificação portuguesa das profissões, 2010": "Operador de instalações de trefilagem e estiragem"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8122",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas de revestimento, metalização e acabamento de metais"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8122.0",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas de revestimento, metalização e acabamento de metais"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "813",
+   "Classificação portuguesa das profissões, 2010": "Operadores de instalações e máquinas, do fabrico de produtos químicos e fotográficos"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8131",
+   "Classificação portuguesa das profissões, 2010": "Operadores de instalações e máquinas do fabrico de produtos químicos "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8131.1",
+   "Classificação portuguesa das profissões, 2010": "Operador de instalações e máquinas para moagem de substâncias químicas"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8131.2",
+   "Classificação portuguesa das profissões, 2010": "Operador de instalações e máquinas para tratamento térmico de produtos químicos"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8131.3",
+   "Classificação portuguesa das profissões, 2010": "Operador de instalações e máquinas, para filtragem e separação química"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8131.4",
+   "Classificação portuguesa das profissões, 2010": "Operador de instalações e máquinas, para reacção e verificação de produtos químicos "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8131.5",
+   "Classificação portuguesa das profissões, 2010": "Operador de instalações e máquinas, para petróleo e gás"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8131.6",
+   "Classificação portuguesa das profissões, 2010": "Operador de instalações e máquinas para outros tratamentos químicos "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8132",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas para o fabrico de produtos fotográficos "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8132.0",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas para o fabrico de produtos fotográficos "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "814",
+   "Classificação portuguesa das profissões, 2010": "Operadores de máquinas para o fabrico de produtos de borracha, plástico e papel "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8141",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas para o fabrico de produtos de borracha"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8141.0",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas para o fabrico de produtos de borracha"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8142",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas para o fabrico de produtos de matérias plásticas"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8142.0",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas para o fabrico de produtos de matérias plásticas"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8143",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas para o fabrico de produtos de papel"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8143.0",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas para o fabrico de produtos de papel"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "815",
+   "Classificação portuguesa das profissões, 2010": "Operadores de máquinas para o fabrico de produtos têxteis, de pele com pêlo e couro "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8151",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas para preparar, fiar e bobinar, fibras têxteis "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8151.0",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas para preparar, fiar e bobinar, fibras têxteis "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8152",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas de tecer e tricotar "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8152.0",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas de tecer e tricotar "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8153",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas de costura"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8153.0",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas de costura"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8154",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas de branquear, tingir e limpar, tecidos e outros têxteis"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8154.0",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas de branquear, tingir e limpar, tecidos e outros têxteis"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8155",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas para preparar peles com pêlo e couro"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8155.0",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas para preparar peles com pêlo e couro"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8156",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas de fabrico de calçado e similares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8156.0",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas de fabrico de calçado e similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8157",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas de lavandaria "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8157.0",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas de lavandaria "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8159",
+   "Classificação portuguesa das profissões, 2010": "Outros operadores de máquinas para o fabrico de produtos têxteis, de pele com pêlo e couro"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8159.0",
+   "Classificação portuguesa das profissões, 2010": "Outros operadores de máquinas para o fabrico de produtos têxteis, de pele com pêlo e couro"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "816",
+   "Classificação portuguesa das profissões, 2010": "Operadores de máquinas do fabrico de produtos alimentares e similares  "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8160",
+   "Classificação portuguesa das profissões, 2010": "Operadores de máquinas do fabrico de produtos alimentares e similares  "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8160.1",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas de preparação de carne e peixe"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8160.2",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas de fabrico de produtos lácteos"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8160.3",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas de moagem de cereais, de transformação de arroz e de fabricação de rações"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8160.4",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas de produtos de padaria, de pastelaria, de confeitaria e de massas alimentícias "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8160.5",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas de tratamento de frutos, legumes, fabrico de azeite, óleos alimentares e margarinas "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8160.6",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas de produção e refinação de açúcar "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8160.7",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas para preparação de chá, café e cacau"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8160.8",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas para preparação de vinhos e outras bebidas"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8160.9",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas para o fabrico do tabaco"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "817",
+   "Classificação portuguesa das profissões, 2010": "Operadores de instalações para o fabrico de papel, para o trabalho da madeira e cortiça"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8171",
+   "Classificação portuguesa das profissões, 2010": "Operador de instalações para o fabrico de pasta de papel e de papel "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8171.0",
+   "Classificação portuguesa das profissões, 2010": "Operador de instalações para o fabrico de pasta de papel e de papel "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8172",
+   "Classificação portuguesa das profissões, 2010": "Operador de instalações para o trabalho da madeira e cortiça"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8172.0",
+   "Classificação portuguesa das profissões, 2010": "Operador de instalações para o trabalho da madeira e cortiça"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "818",
+   "Classificação portuguesa das profissões, 2010": "Outros operadores de instalações fixas e máquinas "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8181",
+   "Classificação portuguesa das profissões, 2010": "Operadores de instalações do fabrico de vidro e produtos cerâmicos "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8181.1",
+   "Classificação portuguesa das profissões, 2010": "Operador de instalações para o fabrico de vidro"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8181.2",
+   "Classificação portuguesa das profissões, 2010": "Operador de instalações para o fabrico de produtos cerâmicos "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8182",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas a vapor e caldeiras"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8182.0",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas a vapor e caldeiras"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8183",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas de embalar, encher e rotular"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8183.0",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas de embalar, encher e rotular"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8189",
+   "Classificação portuguesa das profissões, 2010": "Outros operadores de instalações fixas e de máquinas, n.e."
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8189.1",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas para corte, soldadura, isolamento, fabrico e enrolamento de cablagens"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8189.2",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas para fabrico de molas para estofos, colchões, veículos automóveis ou outros fins"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8189.3",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas para fabrico de produtos de arame"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8189.4",
+   "Classificação portuguesa das profissões, 2010": "Outros operadores de instalações fixas e de máquinas, diversas, n.e"
+ },
+ {
+   "Versão:": "2",
+   "V02014": "82",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores da montagem"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "821",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores da montagem"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8211",
+   "Classificação portuguesa das profissões, 2010": "Montador de maquinaria mecânica"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8211.0",
+   "Classificação portuguesa das profissões, 2010": "Montador de maquinaria mecânica"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8212",
+   "Classificação portuguesa das profissões, 2010": "Montador de equipamentos eléctricos e electrónicos"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8212.0",
+   "Classificação portuguesa das profissões, 2010": "Montador de equipamentos eléctricos e electrónicos"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8219",
+   "Classificação portuguesa das profissões, 2010": "Outros trabalhadores da montagem "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8219.0",
+   "Classificação portuguesa das profissões, 2010": "Outros trabalhadores da montagem "
+ },
+ {
+   "Versão:": "2",
+   "V02014": "83",
+   "Classificação portuguesa das profissões, 2010": "Condutores de veículos e operadores de equipamentos móveis "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "831",
+   "Classificação portuguesa das profissões, 2010": "Maquinistas de locomotivas e similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8311",
+   "Classificação portuguesa das profissões, 2010": "Maquinista de locomotivas"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8311.0",
+   "Classificação portuguesa das profissões, 2010": "Maquinista de locomotivas"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8312",
+   "Classificação portuguesa das profissões, 2010": "Guarda-freios, agulheiro e agente de manobras de caminhos-de-ferro"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8312.0",
+   "Classificação portuguesa das profissões, 2010": "Guarda-freios, agulheiro e agente de manobras de caminhos-de-ferro"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "832",
+   "Classificação portuguesa das profissões, 2010": "Motoristas de automóveis ligeiros, de carrinhas e condutores de motociclos"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8321",
+   "Classificação portuguesa das profissões, 2010": "Condutor de motociclos"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8321.0",
+   "Classificação portuguesa das profissões, 2010": "Condutor de motociclos"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8322",
+   "Classificação portuguesa das profissões, 2010": "Motoristas de automóveis ligeiros, táxis e carrinhas "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8322.1",
+   "Classificação portuguesa das profissões, 2010": "Motorista de táxis"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8322.2",
+   "Classificação portuguesa das profissões, 2010": "Motorista de automóveis ligeiros e carrinhas"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "833",
+   "Classificação portuguesa das profissões, 2010": "Motoristas de veículos pesados e de autocarros "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8331",
+   "Classificação portuguesa das profissões, 2010": "Motoristas de autocarros e guarda-freios de eléctricos "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8331.1",
+   "Classificação portuguesa das profissões, 2010": "Motorista de autocarros"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8331.2",
+   "Classificação portuguesa das profissões, 2010": "Guarda-freio de eléctrico"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8332",
+   "Classificação portuguesa das profissões, 2010": "Motorista de veículos pesados de mercadorias"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8332.0",
+   "Classificação portuguesa das profissões, 2010": "Motorista de veículos pesados de mercadorias"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "834",
+   "Classificação portuguesa das profissões, 2010": "Operadores de equipamentos móveis "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8341",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas agrícolas e florestais, móveis"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8341.0",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas agrícolas e florestais, móveis"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8342",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas de escavação, terraplenagem e similares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8342.0",
+   "Classificação portuguesa das profissões, 2010": "Operador de máquinas de escavação, terraplenagem e similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8343",
+   "Classificação portuguesa das profissões, 2010": "Operador de gruas, guindastes e similares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8343.0",
+   "Classificação portuguesa das profissões, 2010": "Operador de gruas, guindastes e similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8344",
+   "Classificação portuguesa das profissões, 2010": "Operador de empilhadores "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8344.0",
+   "Classificação portuguesa das profissões, 2010": "Operador de empilhadores "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "835",
+   "Classificação portuguesa das profissões, 2010": "Tripulação de convés de navios e similares "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "8350",
+   "Classificação portuguesa das profissões, 2010": "Tripulação de convés de navios e similares "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "8350.0",
+   "Classificação portuguesa das profissões, 2010": "Tripulação de convés de navios e similares "
+ },
+ {
+   "Versão:": "1",
+   "V02014": "9",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores não qualificados "
+ },
+ {
+   "Versão:": "2",
+   "V02014": "91",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores de limpeza"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "911",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores de limpeza em casas particulares, hotéis e escritórios "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "9111",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador de limpeza em casas particulares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9111.0",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador de limpeza em casas particulares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "9112",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador de limpeza em escritórios, hotéis e outros estabelecimentos "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9112.0",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador de limpeza em escritórios, hotéis e outros estabelecimentos "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "912",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores de limpeza de veículos, janelas, roupa e de outra limpeza manual "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "9121",
+   "Classificação portuguesa das profissões, 2010": "Lavadeiro e engomador de roupa "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9121.0",
+   "Classificação portuguesa das profissões, 2010": "Lavadeiro e engomador de roupa "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "9122",
+   "Classificação portuguesa das profissões, 2010": "Lavador de veículos "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9122.0",
+   "Classificação portuguesa das profissões, 2010": "Lavador de veículos "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "9123",
+   "Classificação portuguesa das profissões, 2010": "Lavador de janelas "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9123.0",
+   "Classificação portuguesa das profissões, 2010": "Lavador de janelas "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "9129",
+   "Classificação portuguesa das profissões, 2010": "Outro trabalhador de limpeza manual "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9129.0",
+   "Classificação portuguesa das profissões, 2010": "Outro trabalhador de limpeza manual "
+ },
+ {
+   "Versão:": "2",
+   "V02014": "92",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores não qualificados da agricultura, produção animal, pesca e floresta "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "921",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores não qualificados da agricultura, produção animal, pesca e floresta "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "9211",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador não qualificado da agricultura (exclui horticultura e floricultura)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9211.0",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador não qualificado da agricultura (exclui horticultura e floricultura)"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "9212",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador não qualificado da produção animal"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9212.0",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador não qualificado da produção animal"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "9213",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador não qualificado da agricultura e produção animal combinadas "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9213.0",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador não qualificado da agricultura e produção animal combinadas "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "9214",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador não qualificado da floricultura e horticultura"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9214.0",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador não qualificado da floricultura e horticultura"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "9215",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador não qualificado da floresta "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9215.0",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador não qualificado da floresta "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "9216",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores não qualificados, da pesca e aquicultura"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9216.1",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador não qualificado da pesca"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9216.2",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador não qualificado da aquicultura"
+ },
+ {
+   "Versão:": "2",
+   "V02014": "93",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores não qualificados da indústria extractiva, construção, indústria transformadora e transportes"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "931",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores não qualificados da indústria extractiva e construção"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "9311",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores não qualificados das minas e pedreiras "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9311.1",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador não qualificado das minas"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9311.2",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador não qualificado das pedreiras"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "9312",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador não qualificado de engenharia civil "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9312.0",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador não qualificado de engenharia civil "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "9313",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador não qualificado da construção de edifícios "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9313.0",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador não qualificado da construção de edifícios "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "932",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores não qualificados da indústria transformadora "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "9321",
+   "Classificação portuguesa das profissões, 2010": "Embalador manual da indústria transformadora"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9321.0",
+   "Classificação portuguesa das profissões, 2010": "Embalador manual da indústria transformadora"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "9329",
+   "Classificação portuguesa das profissões, 2010": "Outros trabalhadores não qualificados da indústria transformador"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9329.0",
+   "Classificação portuguesa das profissões, 2010": "Outros trabalhadores não qualificados da indústria transformadora"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "933",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores não qualificados de apoio, aos transportes e armazenagem"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "9331",
+   "Classificação portuguesa das profissões, 2010": "Condutor de veículos accionados à mão ou ao pé"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9331.0",
+   "Classificação portuguesa das profissões, 2010": "Condutor de veículos accionados à mão ou ao pé"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "9332",
+   "Classificação portuguesa das profissões, 2010": "Condutor de veículos de tracção animal"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9332.0",
+   "Classificação portuguesa das profissões, 2010": "Condutor de veículos de tracção animal"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "9333",
+   "Classificação portuguesa das profissões, 2010": "Carregadores e descarregadores não qualificados de mercadorias"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9333.0",
+   "Classificação portuguesa das profissões, 2010": "Carregadores e descarregadores não qualificados de mercadorias"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "9334",
+   "Classificação portuguesa das profissões, 2010": "Repositor de produtos em prateleiras"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9334.0",
+   "Classificação portuguesa das profissões, 2010": "Repositor de produtos em prateleiras"
+ },
+ {
+   "Versão:": "2",
+   "V02014": "94",
+   "Classificação portuguesa das profissões, 2010": "Assistentes na preparação de refeições"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "941",
+   "Classificação portuguesa das profissões, 2010": "Assistentes na preparação de refeições"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "9411",
+   "Classificação portuguesa das profissões, 2010": "Preparador de refeições rápidas"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9411.0",
+   "Classificação portuguesa das profissões, 2010": "Preparador de refeições rápidas"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "9412",
+   "Classificação portuguesa das profissões, 2010": "Ajudante de cozinha"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9412.0",
+   "Classificação portuguesa das profissões, 2010": "Ajudante de cozinha"
+ },
+ {
+   "Versão:": "2",
+   "V02014": "95",
+   "Classificação portuguesa das profissões, 2010": "Vendedores ambulantes (excepto de alimentos) e prestadores de serviços na rua"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "951",
+   "Classificação portuguesa das profissões, 2010": "Prestador de serviços na rua"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "9510",
+   "Classificação portuguesa das profissões, 2010": "Prestador de serviços na rua"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9510.0",
+   "Classificação portuguesa das profissões, 2010": "Prestador de serviços na rua"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "952",
+   "Classificação portuguesa das profissões, 2010": "Vendedor ambulante (excepto de alimentos) "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "9520",
+   "Classificação portuguesa das profissões, 2010": "Vendedor ambulante (excepto de alimentos) "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9520.0",
+   "Classificação portuguesa das profissões, 2010": "Vendedor ambulante (excepto de alimentos) "
+ },
+ {
+   "Versão:": "2",
+   "V02014": "96",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores dos resíduos e de outros serviços elementares "
+ },
+ {
+   "Versão:": "3",
+   "V02014": "961",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores da recuperação de resíduos "
+ },
+ {
+   "Versão:": "4",
+   "V02014": "9611",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador da recolha de resíduos"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9611.0",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador da recolha de resíduos"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "9612",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador da triagem de resíduos"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9612.0",
+   "Classificação portuguesa das profissões, 2010": "Trabalhador da triagem de resíduos"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "9613",
+   "Classificação portuguesa das profissões, 2010": "Cantoneiros de limpeza, empregados de lavabos e similares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9613.1",
+   "Classificação portuguesa das profissões, 2010": "Cantoneiro de limpeza"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9613.2",
+   "Classificação portuguesa das profissões, 2010": "Empregado de lavabos e similares"
+ },
+ {
+   "Versão:": "3",
+   "V02014": "962",
+   "Classificação portuguesa das profissões, 2010": "Outras profissões elementares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "9621",
+   "Classificação portuguesa das profissões, 2010": "Estafetas, bagageiros e distribuidores "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9621.1",
+   "Classificação portuguesa das profissões, 2010": "Estafeta"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9621.2",
+   "Classificação portuguesa das profissões, 2010": "Bagageiro "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9621.3",
+   "Classificação portuguesa das profissões, 2010": "Auxiliar de apoio administrativo (contínuo)"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9621.4",
+   "Classificação portuguesa das profissões, 2010": "Distribuidor de mercadorias e similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "9622",
+   "Classificação portuguesa das profissões, 2010": "Trabalhadores polivalentes"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9622.1",
+   "Classificação portuguesa das profissões, 2010": "Colocador de anúncios (montador de anúncios) "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9622.2",
+   "Classificação portuguesa das profissões, 2010": "Outros trabalhadores polivalentes"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "9623",
+   "Classificação portuguesa das profissões, 2010": "Leitores de contadores e colectores de dinheiro, em máquinas de venda automática, parquímetros e similares"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9623.1",
+   "Classificação portuguesa das profissões, 2010": "Leitor de contadores"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9623.2",
+   "Classificação portuguesa das profissões, 2010": "Colector de dinheiro em máquinas de venda automática, parquímetros e similares"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "9624",
+   "Classificação portuguesa das profissões, 2010": "Carregador de água e apanhador de lenha"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9624.0",
+   "Classificação portuguesa das profissões, 2010": "Carregador de água e apanhador de lenha"
+ },
+ {
+   "Versão:": "4",
+   "V02014": "9629",
+   "Classificação portuguesa das profissões, 2010": "Outras profissões elementares, n.e. "
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9629.1",
+   "Classificação portuguesa das profissões, 2010": "Coveiro"
+ },
+ {
+   "Versão:": "5",
+   "V02014": "9629.2",
+   "Classificação portuguesa das profissões, 2010": "Outras profissões elementares diversas, n.e."
+ }
+]

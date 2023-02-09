@@ -1484,25 +1484,17 @@ export default () => {
                <View  style={styles.CaixaNome}>
                <Image source={require('../assets/perfil2.jpg')}  style={{width:50, height:50, borderRadius:25,  borderWidth:2, borderColor:"#fff", }} />
                 </View> 
+               
                 <View  style={styles.CaixaNome}>
                 
                   <Text style={{color:"#FFF", fontSize:17, fontWeight:"bold"}}>{item.Nome}</Text>
-                  <Text style={{color:"#FFF", fontSize:14,}}>Funcionario</Text>
-                
+                  <Text style={{color:"#FFF", fontSize:14,}}>200000 Credências</Text>
+                  <Text style={{color:"#FFF", fontSize:14,}}>75 Salvamentos</Text>
                 </View> 
-    
-                {/* <View  style={styles.TempDat}>
-                <TouchableHighlight onPress={()=>AbrirEnviar(item)} style={{backgroundColor:"#DDBE0D", display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column", height:25, marginBottom:5, borderRadius:5, marginRight:10, paddingLeft:5, paddingRight:5,}} >
-                <>
-              <Text  style={{fontSize:15, color:"#fff", margin:5}}>Enviar Nota</Text>
-              </>            
-              </TouchableHighlight>
-              <TouchableHighlight onPress={()=>AbrirModal(item)} style={{backgroundColor:"#009DFF", display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column", height:25, borderRadius:5, marginRight:10, paddingLeft:5, paddingRight:5,}} >
-                <>
-              <Text  style={{fontSize:15, color:"#fff", margin:5}}>Vizualizar</Text>
-              </>            
-              </TouchableHighlight>
-                </View> */}
+                <View  style={styles.CaixaNome}>
+                <Image source={require('../assets/ouro.png')}  style={{width:40, height:60}} />
+                </View> 
+              
 
 
               </>

@@ -22,6 +22,7 @@ import ListIndiq from '../screens/ListIndiq';
 import Graficos from '../screens/Graficos';
 import CartaoVisita from '../screens/CartaoVisita';
 import ListCart from '../screens/ListCart';
+import InfInsta from '../screens/InfInsta';
  //import cadastroSim from '../screens/cadastroSim';
 
 const Stack = createNativeStackNavigator();
@@ -35,6 +36,12 @@ export default function Ret() {
       initialRouteName={"Preload"}
 
       >
+         <Stack.Screen
+     options={{
+        title: 'Intruções Instagram',
+        headerShown: false
+    }}   
+     name="InfInsta" component={InfInsta} />
          <Stack.Screen
      options={{
         title: 'Lista de Cartão',

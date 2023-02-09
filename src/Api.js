@@ -1193,7 +1193,6 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
             .doc(IdCart)
             .update({
               IdDono:doc.id,
-              Nome:Nome,
               DataIniUso:new Date().getTime(),
               DataVenc:new Date().getTime()+31536000000,
               Ativo:true,
@@ -1251,6 +1250,219 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
        
     },
 
+    EntContCart: async (IdCart, code, Tel, Nome, Tentativa, setTentativa, setIrEnt, setLoading, setTelMsg5, setUso, setAtivo, setIrConta, setSalVer    ) => {
+      var tel = await AsyncStorage.getItem('Tel');
+      var codig = await parseInt(code); 
+      console.log(codig)
+   await firestore.collection("users")
+   .where("Telefone", "==", tel)
+   .where("CodigEnt", "==", codig)
+   .get().then((querySnapshot) => {
+     if(querySnapshot.size !== 0){
+      querySnapshot.forEach(async (doc) => {
+       
+            await AsyncStorage.setItem('Id', doc.id);
+           
+         
+
+            let time = new Date().getTime();
+            await firestore.collection("users")
+            .doc(doc.id)
+            .update({
+              DataEntCel: time,
+          })
+          .then( async() => {
+           
+            let temp = await time.toString();
+            
+            await AsyncStorage.setItem('@entrada', temp);
+            await AsyncStorage.setItem('@Id', doc.id);
+           
+            setIrConta(true)
+            setLoading(false);
+            setSalVer(false)
+          })
+          .catch((error) => {
+          
+            
+          });
+
+       
+
+
+         
+    
+       
+      
+    
+      
+    });
+  
+     } else {
+      setTelMsg5(true)
+      setLoading(false);
+      setTentativa(Tentativa+1)
+      
+     }
+   
+  })
+  .catch((error) => {
+   
+  });
+  
+  
+  
+       
+    },
+
+    EntSalvando: async (IdCart, code, Tel, Nome, Tentativa, setTentativa, setIrEnt, setLoading, setTelMsg5, setUso, setAtivo, setSalVer, setAlert, setAlertTipo, setModalCalend, setVerNotajogo  ) => {
+      var tel = await AsyncStorage.getItem('Tel');
+      var codig = await parseInt(code); 
+      console.log(codig)
+   await firestore.collection("users")
+   .where("Telefone", "==", tel)
+   .where("CodigEnt", "==", codig)
+   .get().then((querySnapshot) => {
+     if(querySnapshot.size !== 0){
+      querySnapshot.forEach(async (doc) => {
+       
+            await AsyncStorage.setItem('Id', doc.id);
+           
+           await firestore.collection("Cartoes")
+            .doc(IdCart)
+            .update({
+            SalvouNum:firebase.firestore.FieldValue.arrayUnion(doc.id),
+          })
+          .then( async() => {
+
+            let time = new Date().getTime();
+            await firestore.collection("users")
+            .doc(doc.id)
+            .update({
+              DataEntCel: time,
+          })
+          .then( async() => {
+           
+            let temp = await time.toString();
+            
+            await AsyncStorage.setItem('@entrada', temp);
+            await AsyncStorage.setItem('@Id', doc.id);
+            await setIrEnt(true);
+            setLoading(false);
+            setSalVer(false);
+            setAlert("O Cartão Foi Salvo Na sua Conta!");
+            setAlertTipo("Salve");
+            setModalCalend(true);
+            setVerNotajogo(false);
+
+          })
+          .catch((error) => {
+          
+            
+          });
+
+          });
+
+
+         
+    
+       
+      
+    
+      
+    });
+  
+     } else {
+      setTelMsg5(true)
+      setLoading(false);
+      setTentativa(Tentativa+1)
+      
+     }
+   
+  })
+  .catch((error) => {
+   
+  });
+  
+  
+  
+       
+    },
+
+    EntCredenci: async (IdCart, code, Tel, Nome, Tentativa, setTentativa, setIrEnt, setLoading, setTelMsg5, setUso, setAtivo, setSalVer, setAlert, setAlertTipo, setModalCalend, setVerNotajogo, setCreden   ) => {
+      var tel = await AsyncStorage.getItem('Tel');
+      var codig = await parseInt(code); 
+      console.log(codig)
+   await firestore.collection("users")
+   .where("Telefone", "==", tel)
+   .where("CodigEnt", "==", codig)
+   .get().then((querySnapshot) => {
+     if(querySnapshot.size !== 0){
+      querySnapshot.forEach(async (doc) => {
+       
+            await AsyncStorage.setItem('Id', doc.id);
+           
+           await firestore.collection("Cartoes")
+            .doc(IdCart)
+            .update({
+              ListCredenciais:firebase.firestore.FieldValue.arrayUnion(doc.id),
+          })
+          .then( async() => {
+
+            let time = new Date().getTime();
+            await firestore.collection("users")
+            .doc(doc.id)
+            .update({
+              DataEntCel: time,
+          })
+          .then( async() => {
+           
+            let temp = await time.toString();
+            
+            await AsyncStorage.setItem('@entrada', temp);
+            await AsyncStorage.setItem('@Id', doc.id);
+            await setIrEnt(true);
+            setLoading(false);
+            setSalVer(false);
+            setAlert("O Cartão Credenciado com Sucesso!");
+            setAlertTipo("Salve");
+            setModalCalend(true);
+            setVerNotajogo(false);
+            setCreden(true);
+
+          })
+          .catch((error) => {
+          
+            
+          });
+
+          });
+
+
+         
+    
+       
+      
+    
+      
+    });
+  
+     } else {
+      setTelMsg5(true)
+      setLoading(false);
+      setTentativa(Tentativa+1)
+      
+     }
+   
+  })
+  .catch((error) => {
+   
+  });
+  
+  
+  
+       
+    },
     
     ListJogos: async(Page, setListOc, setCarreg,  Dat, Dat2,)=> {
       let time = new Date().getTime();
@@ -1599,7 +1811,7 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
                   DataVenFor:currentDate3,
                   CartaoConfig:doc.data().CartaoConfig,
                   CodVeri:doc.data().CodVeri?doc.data().CodVeri:{Ativo:false, Cod:""},
-                    
+                  QrCode:doc.data().FotoQRCODE, 
                    });    
                  
                  
@@ -1733,18 +1945,35 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
        
      },
      
-     PegaCartao: async(IdCart, setCarreg, setInfCart, setIdUser )=> {
+     PegaCartao: async(IdCart, setLogado, setCarreg, setInfCart, setIdUser )=> {
    
      
-      var IdUser = ""
+      var IdUse = ""
       var Nome = ""
       var tel = await AsyncStorage.getItem('Tel');
       var time = await AsyncStorage.getItem('@entrada');
-      var IdUser = await AsyncStorage.getItem('@Id');
-       setIdUser(IdUser)
+      var temp = parseInt(time)
+      console.log(tel)
+      console.log(time) 
+      await firestore.collection("users")
+      .where("Telefone", "==", tel)
+      .where("DataEntCel", "==", temp)
+      .get().then( async(querySnapshot) => {
+        console.log(querySnapshot.size)
+        if(querySnapshot.size !== 0){
+          querySnapshot.forEach( async (doc1) => {
+            IdUse = doc1.id
+       
+            });
+            setLogado(true);
+            setIdUser(IdUse)
+          } else {
+            setLogado(false);
+          }
+        });
+      
     
        
-       console.log(IdUser)
              await firestore.collection("Cartoes")
             .doc(IdCart).get().then((doc) => {
 
@@ -1963,12 +2192,29 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
    
   },
 
-  ConfigCart: async(DadCart, CodVeri, setAlert, setAlertTipo, setCarre, setCodVeri, setDadCart)=> {
-    
+  ConfigCart: async(Img, IrImg,  DadCart, CodVeri, setAlert, setAlertTipo, setCarre, setCodVeri, setDadCart)=> {
+    var Url1 = "";
+    if(IrImg === true){
+      var Imagem = Img.split(',');
+
+          
+      const fileName = await Date.now() + Math.random()*100;
+      const storageRef = await storage.ref();
+      const fileRef = await storageRef.child(`arquivo/${fileName}`);
+      await await fileRef.putString(Imagem[1], 'base64').then((doc)=> {
+        
+      });
+      Url1 =  await fileRef.getDownloadURL();
+
+     } else {
+      Url1 = Img;
+     }
+
+
     if(CodVeri === ""){
       await firestore.collection("Cartoes").doc(DadCart.id)
       .update({
-          
+        FotoQRCODE:Url1,  
         CartaoConfig:true,
         CodVeri:{Ativo:false, Cod:""}
     
@@ -1999,46 +2245,194 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
     
   },
 
+  SalvCart: async(IdCart, NomePix, IrImg, Ativo, AtiPrivi, Pessoal, Profissao, Empresa, Cidade, Estado, Sexo, CorCart, NomeCart, ImgCart, AtiImg, FundoImg, FunCart, AtiFun, TelCart, AtiTel, WhatCart, AtiWhat, InstCard, AtiInst, FaceCard, AtiFace, SiteCard, AtiSite, TwCard, AtiTw, TikCard, AtiTik, LocCard, AtiLoc, PixCard, TipPix, AtiPix, AtiSal, AtiCom, AtiYou, YouCard, TeleCard, AtiTele, EmailCard, AtiEmail, setAlert, setAlertTipo, setLoad,)=> {
+    var Url1 = "";
+    if(IrImg === true){
+      var Imagem = ImgCart.split(',');
+
+          
+      const fileName = await Date.now() + Math.random()*100;
+      const storageRef = await storage.ref();
+      const fileRef = await storageRef.child(`arquivo/${fileName}`);
+      await await fileRef.putString(Imagem[1], 'base64').then((doc)=> {
+        
+      });
+      Url1 =  await fileRef.getDownloadURL();
+
+     } else {
+      Url1 = ImgCart;
+     }
+
+
+    await firestore.collection("Cartoes").doc(IdCart)
+    .update({
+        
+   
+      Nome:NomeCart,
+      Config:{
+        Fundo:FundoImg,
+        Foto:{Ativar:AtiImg, Link:Url1},
+        Funcao:{Ativar:AtiFun, Texto:FunCart},
+        Tel:{Ativar:AtiTel, Texto:TelCart},
+        Whats:{Ativar:AtiWhat, Texto:WhatCart},
+        Intagram:{Ativar:AtiInst, Link:InstCard},
+        Facebook:{Ativar:AtiFace, Link:FaceCard},
+        Site:{Ativar:AtiSite, Link:SiteCard},
+        Twitter:{Ativar:AtiTw, Link:TwCard},
+        Tiktok:{Ativar:AtiTik, Link:TikCard},
+        Localizacao:{Ativar:AtiLoc, Link:LocCard},
+        Pix:{Ativar:AtiPix, Tipo:TipPix, Pix:PixCard, Nome:NomePix},
+        Salvar:{Ativar:AtiSal, Link:""},
+        Compartilhar:{Ativar:AtiCom, Link:""},
+        youtube:{Ativar:AtiYou, Link:YouCard},
+        Telegram:{Ativar:AtiTele, Link:TeleCard},
+        Email:{Ativar:AtiEmail, Link:EmailCard},
+      },
+      ListCidade:AtiPrivi,
+      Pessoal:Pessoal,
+      Profissao:Profissao,
+      Empresa:Empresa,
+      Cidade:Cidade,
+      Estado:Estado,
+      Sexo:Sexo,
+      CorNalist:CorCart,
+      Ativo:Ativo,
+  
+
+  
+    });
+    setAlert("Cartão Salvo")
+    setAlertTipo("success")
+    setLoad(false)
+    
+    
+  },
+
+  SalvandoNum: async(IdCart, IDSAO, setAlert, setAlertTipo, setCarre, setModalCalend, setVerNotajogo,  setIrConta)=> {
+    
+    await firestore.collection("Cartoes").doc(IdCart)
+    .update({
+        
+    
+      SalvouNum:firebase.firestore.FieldValue.arrayUnion (IDSAO),
+    
+  
+
+  
+    });
+    setAlert("O Cartão Foi Salvo Na sua Conta!");
+    setAlertTipo("Salve");
+    setModalCalend(true);
+    setVerNotajogo(false);
+    setCarre(false);
+    //setIrConta(true)
+    
+  },
+
+  CredenciandoNum: async(IdCart, IDSAO, setAlert, setAlertTipo, setCarre, setModalCalend, setVerNotajogo,  setIrConta, setCreden)=> {
+    
+    await firestore.collection("Cartoes").doc(IdCart)
+    .update({
+        
+    
+      ListCredenciais:firebase.firestore.FieldValue.arrayUnion (IDSAO),
+    
+  
+
+  
+    });
+    setAlert("O Cartão Credenciado com Sucesso!");
+    setAlertTipo("Salve");
+    setModalCalend(true);
+    setVerNotajogo(false);
+    setCarre(false);
+    setCreden(true)
+    //setIrConta(true)
+    
+  },
+
+  DesCredenciandoNum: async(IdCart, IDSAO, setAlert, setAlertTipo, setCarre, setModalCalend, setVerNotajogo,  setIrConta, setCreden,  setLisCre)=> {
+    var List = []
+    await firestore.collection("Cartoes").doc(IdCart)
+    .get().then( async(doc) => {
+       List = doc.data().ListCredenciais
+        
+       
+       setLisCre(List.filter(word => word !== IDSAO))
+       await firestore.collection("Cartoes").doc(IdCart)
+       .update({
+           
+       
+         ListCredenciais:List.filter(word => word !== IDSAO)
+       
+     
+   
+     
+       });
+       setAlert("O Cartão Descredenciado com Sucesso!");
+       setAlertTipo("Salve");
+       setModalCalend(true);
+       setVerNotajogo(false);
+       setCarre(false);
+       setCreden(false)
+    
+    
+      })
+
+
+
+
+ 
+    //setIrConta(true)
+    
+  },
+
+
   LimpCart: async(DadCart, setAlert, setAlertTipo, setCarre, setLimCar)=> {
     
     await firestore.collection("Cartoes").doc(DadCart.id)
     .update({
         
-            IdDono:"",
-            SalvouNum:[],
-            Nome:"",
-            Config:{
-              Fundo:"",
-              Foto:{Ativar:false, Link:""},
-              Funcao:{Ativar:false, Texto:""},
-              Tel:{Ativar:false, Texto:""},
-              Whats:{Ativar:false, Texto:""},
-              Intagram:{Ativar:false, Link:""},
-              Facebook:{Ativar:false, Link:""},
-              Site:{Ativar:false, Link:""},
-              Twitter:{Ativar:false, Link:""},
-              Tiktok:{Ativar:false, Link:""},
-              Localizacao:{Ativar:false, Link:""},
-              Pix:{Ativar:false, Link:""},
-              Salvar:{Ativar:false, Link:""},
-              Compartilhar:{Ativar:false, Link:""},
-
-            },
-            ListCidade:false,
-            Pessoal:true,
-            Profissao:[],
-            Empresa:[],
-            Cidade:"",
-            Estado:"",
-            Sexo:"",
-            FotoQRCODE:"",
-            EmUso:false,
-            DataIniUso:0,
-            DataCri:new Date().getTime(),
-            CartaoConfig:false,
-            DataVenc:0,
-            Pago:false,
-            CodVeri:{Ativo:false, Cod:""}
+      IdDono:"",
+      SalvouNum:[],
+      NumExtrCredem:0,
+      ListCredenciais:[],
+      Nome:"CARLA CWO",
+      descricao:"",
+      Config:{
+        Fundo:"https://firebasestorage.googleapis.com/v0/b/cwoapp-bd594.appspot.com/o/arquivo%2Ffundo1.png?alt=media&token=b152a38c-3771-461d-9416-0b5cd16fa574",
+        Foto:{Ativar:true, Link:"https://firebasestorage.googleapis.com/v0/b/cwoapp-bd594.appspot.com/o/arquivo%2FperfilCWO.png?alt=media&token=454c9582-4fc3-45ef-8429-6dbf2fc85120"},
+        Funcao:{Ativar:true, Texto:"Marketing"},
+        Tel:{Ativar:true, Texto:""},
+        Whats:{Ativar:true, Texto:""},
+        Intagram:{Ativar:true, Link:""},
+        Facebook:{Ativar:true, Link:""},
+        Site:{Ativar:true, Link:""},
+        Twitter:{Ativar:true, Link:""},
+        Tiktok:{Ativar:true, Link:""},
+        Localizacao:{Ativar:true, Link:""},
+        Pix:{Ativar:true, Tipo:"", Pix:""},
+        Salvar:{Ativar:true, Link:""},
+        Compartilhar:{Ativar:true, Link:""},
+        youtube:{Ativar:true, Link:""},
+        Telegram:{Ativar:true, Link:""},
+        Email:{Ativar:true, Link:""},
+      },
+      ListCidade:false,
+      Pessoal:true,
+      Profissao:["",""],
+      Empresa:["",""],
+      Cidade:"",
+      Estado:"",
+      Sexo:"",
+      EmUso:false,
+      DataIniUso:0,
+      DataCri:new Date().getTime(),
+      CartaoConfig:false,
+      DataVenc:0,
+      Pago:false,
+      CodVeri:{Ativo:false, Cod:""},
+      Ativo:false,
   
 
   
@@ -2108,6 +2502,8 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
             .add({
             IdDono:"",
             SalvouNum:[],
+            NumExtrCredem:0,
+            ListCredenciais:[],
             Nome:"CARLA CWO",
             descricao:"",
             Config:{
@@ -2122,15 +2518,17 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
               Twitter:{Ativar:true, Link:""},
               Tiktok:{Ativar:true, Link:""},
               Localizacao:{Ativar:true, Link:""},
-              Pix:{Ativar:true, Link:""},
+              Pix:{Ativar:true, Tipo:"", Pix:"",  Nome:""},
               Salvar:{Ativar:true, Link:""},
               Compartilhar:{Ativar:true, Link:""},
-
+              youtube:{Ativar:true, Link:""},
+              Telegram:{Ativar:true, Link:""},
+              Email:{Ativar:true, Link:""},
             },
             ListCidade:false,
             Pessoal:true,
-            Profissao:[],
-            Empresa:[],
+            Profissao:["",""],
+            Empresa:["",""],
             Cidade:"",
             Estado:"",
             Sexo:"",

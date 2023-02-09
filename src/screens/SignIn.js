@@ -283,6 +283,19 @@ export default () => {
 
 
 const styles = StyleSheet.create({
+
+  contentContainer: {
+   
+   
+  },
+  imageBack: {
+    width:  400,
+    height: 1500,
+      flex: 1 ,
+      alignItems:"center",
+      justifyContent: "center",
+    
+  },
   centeredView4: {
     backgroundColor:'rgba(0,0,0,0.7)',
     flex: 1,
@@ -422,14 +435,7 @@ imageLoad: {
     
 },
 
-imageBack: {
-    width:  "100%",
-    height: 1500,
-      flex: 1 ,
-      alignItems:"center",
-      justifyContent: "center",
-    
-  },
+
 
   Scrow: {
    
@@ -447,7 +453,7 @@ ImageVer2:{
 },
 
 TopoApp:{
-  width:420,
+  width:"100%",
   height:600,
 
  
