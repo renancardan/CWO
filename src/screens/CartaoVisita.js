@@ -22,6 +22,7 @@ import ProfList from '../services/Profissoes.json'
 import EstCid from '../services/cidadejson.json'
 import Empre from '../services/Empresas.json'
 import MultiSelect from 'react-native-multiple-select';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 //import Datand from '../components/datando';
 
 
@@ -196,7 +197,7 @@ export default ({route}) => {
   const [ListEmp, setListEmp] = useState([])
   const [selectedItems, setselectedItems] = useState([])
   const [VerCidade, setVerCidade] = useState([]);
-  const [ListSexo, set] = useState([
+  const [ListSexo, setListSexo] = useState([
     {
       id:"Masculino", nome:"Masculino"
     },
@@ -763,7 +764,7 @@ console.log(Robo)
   setAtiWhat(!AtiWhat)
  }
  const VendoWhat = ()=>{
-  let ver = WhatCart.replace("(", "+");
+  let ver = WhatCart.replace("(", "+55");
   let par1 = ver.replace(")", "");
   let par3 = par1.replace("-", "");
 
@@ -1819,11 +1820,11 @@ console.log(Robo)
                       </View>
                       </>
                      </TouchableHighlight>
-                     <Text  style={{ marginLeft:10, fontSize:17, color:"#000", fontWeight:"bold", }}>Nome do Seu Perfil do Instagram</Text> 
+                     <Text  style={{ marginLeft:10, fontSize:17, color:"#000", fontWeight:"bold", }}>Link do Seu Instagram</Text> 
                    <View  style = {styles.InputAra15}>
                   <FontAwesome name="instagram" size={40} color="black" />
                   <SignInput
-                    placeholder="Digite o Nome do Perfil" 
+                    placeholder="Digite Ou Cole o Link" 
                     value={InstCard}
                     onChangeText={t=>setInstCard(t)}
                     autoCapitalize="none"
@@ -1885,7 +1886,7 @@ console.log(Robo)
                    <View  style = {styles.InputAra15}>
                   <FontAwesome name="facebook-square" size={40} color="black" />
                   <SignInput
-                    placeholder="Cole o Link do Facebook" 
+                    placeholder="Digite Ou Cole o Link" 
                     value={FaceCard}
                     onChangeText={t=>setFaceCard(t)}
                     autoCapitalize="none"
@@ -1947,7 +1948,7 @@ console.log(Robo)
                    <View  style = {styles.InputAra15}>
                   <FontAwesome name="eercast" size={40} color="black" />
                   <SignInput
-                    placeholder="Cole o Link do Site" 
+                    placeholder="Digite Ou Cole o Link" 
                     value={SiteCard}
                     onChangeText={t=>setSiteCard(t)}
                     autoCapitalize="none"
@@ -2005,11 +2006,11 @@ console.log(Robo)
                       </View>
                       </>
                      </TouchableHighlight>
-                     <Text  style={{ marginLeft:10, fontSize:17, color:"#000", fontWeight:"bold", }}>Nome do Seu Perfil do Twitter</Text> 
+                     <Text  style={{ marginLeft:10, fontSize:17, color:"#000", fontWeight:"bold", }}>Link do Seu Twitter</Text> 
                    <View  style = {styles.InputAra15}>
                   <FontAwesome name="twitter-square" size={40} color="black" />
                   <SignInput
-                    placeholder="Digite o Nome do Perfil" 
+                    placeholder="Digite Ou Cole o Link" 
                     value={TwCard}
                     onChangeText={t=>setTwCard(t)}
                     autoCapitalize="none"
@@ -2067,11 +2068,11 @@ console.log(Robo)
                       </View>
                       </>
                      </TouchableHighlight>
-                     <Text  style={{ marginLeft:10, fontSize:17, color:"#000", fontWeight:"bold", }}>Nome do Seu Perfil do TikTok</Text> 
+                     <Text  style={{ marginLeft:10, fontSize:17, color:"#000", fontWeight:"bold", }}>Link do Seu TikTok</Text> 
                    <View  style = {styles.InputAra15}>
                   <FontAwesome name="tumblr-square" size={40} color="black" />
                   <SignInput
-                    placeholder="Digite o Nome do Perfil" 
+                    placeholder="Digite Ou Cole o Link" 
                     value={TikCard}
                     onChangeText={t=>setTikCard(t)}
                     autoCapitalize="none"
@@ -2133,7 +2134,7 @@ console.log(Robo)
                    <View  style = {styles.InputAra15}>
                   <FontAwesome name="youtube-square" size={40} color="black" />
                   <SignInput
-                    placeholder="Digite o Link YouTube " 
+                    placeholder="Digite Ou Cole o Link" 
                     value={YouCard}
                     onChangeText={t=>setYouCard(t)}
                     autoCapitalize="none"
@@ -2344,7 +2345,7 @@ console.log(Robo)
                    <View  style = {styles.InputAra15}>
                   <FontAwesome name="telegram" size={40} color="black" />
                   <SignInput
-                    placeholder="Digite o Link Telegram " 
+                    placeholder="Digite Ou Cole o Link"
                     value={TeleCard}
                     onChangeText={t=>setTeleCard(t)}
                     autoCapitalize="none"
@@ -2818,7 +2819,7 @@ console.log(Robo)
                          <View style={styles.QuadNota} >
                         <ScrollView >
                         <View  style={styles.CaixadeapostaTitulo}  >
-                    <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Liberar Cartão</Text><TouchableHighlight style={styles.fechaModal} onPress={() =>Siarnota()}><Text>X</Text></TouchableHighlight>
+                    <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Especificar Cartão</Text><TouchableHighlight style={styles.fechaModal} onPress={() =>Siarnota()}><Text>X</Text></TouchableHighlight>
                       </View> 
                       <TouchableHighlight onPress={SalvandoCartao} style={{width:150, height:50, backgroundColor:"#1ED31A", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} >
                       <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Salvar</Text>
@@ -2853,7 +2854,9 @@ console.log(Robo)
                       </View>
                       </>
                      </TouchableHighlight>
-                     <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:17, fontWeight:"bold"  }}>Especifique as Configurações Abaixo para Você Ser encontrado na Lista da Sua Cidade Mais Rápido.</Text> 
+                     </>
+                      }
+                     <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:17, fontWeight:"bold"  }}>Especifique as configurações abaixo para você ser encontrado nas Listas de Contatos salvos dos seus amigos e clientes, ou caso você ative para aparecer na Lista da Sua Cidade, você será encontrado mais rápido, por meio dessas especificações.</Text> 
                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15 , marginBottom:20 }}>Estado: {Estado}</Text> 
                      <MultiSelect
                         hideTags
@@ -3103,8 +3106,7 @@ console.log(Robo)
                       </>
                       }
                   
-                     </>
-                      }
+                     
                       </ScrollView>
                       </View>
                           
@@ -3367,7 +3369,7 @@ console.log(Robo)
                         <Text style={styles.BtnText}>Estilizar</Text>
             </TouchableHighlight>
             <TouchableHighlight  style={styles.BtnEdi} onPress={AbrirLiberar} >
-                        <Text style={styles.BtnText}>Liberar</Text>
+                        <Text style={styles.BtnText}>Especificar</Text>
             </TouchableHighlight>
           
           </>
@@ -3462,7 +3464,7 @@ console.log(Robo)
           <ScrollView>
             {Carre === false ?
            
-         <View style={{width:"100%", height:"100%", flex:1, flexDirection: "column", justifyContent:"center", marginTop:20, alignItems:"center"}}>
+         <View style={{width:wp('100%') , height:hp('100%') , flex:1, flexDirection: "column", justifyContent:"center", marginTop:20, alignItems:"center"}}>
          {AtiImg === true &&
           <Image source={{uri:ImgCart}}  style={{width:150, height:150, borderRadius:75,  borderWidth:2, borderColor:"#fff", }} />
          }
@@ -4441,7 +4443,7 @@ marginBottom:10
 },
 
 BtnEdi: {
- width:90,
+ 
  marginTop:10,
  height:30,
  backgroundColor: "#00A859",
@@ -4450,8 +4452,9 @@ BtnEdi: {
  alignItems: "center",
 borderColor:"#FFF212",
 borderWidth:2,
-marginRight:5
- 
+marginRight:5,
+paddingRight:10,
+paddingLeft:10
 },
 BtnEdi2: {
   width:150,
@@ -4464,8 +4467,9 @@ BtnEdi2: {
  borderColor:"#FFF212",
  borderWidth:2,
  marginBottom:10,
- marginRight:5
-  
+ marginRight:5,
+ 
+
  },
  BtnEdi3: {
   width:180,
@@ -4628,8 +4632,8 @@ BtnEdi2: {
           }, 
 
           imageBack: {
-            width:  "100%",
-            height: "100%",
+            width: wp('100%') ,
+            
               flex: 1 ,
               alignItems:"center",     
           },

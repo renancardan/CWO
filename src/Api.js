@@ -2477,6 +2477,551 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
       });
       
     },
+    PegandoCartao: async(Page, TipoCart, Estado, Cidade, Sexo, NumProf, NumEmp, setLista, setCarreg )=>{
+      console.log(Estado)
+      let fur = Page*20;
+      var IdUser = ""
+       var Nome = ""
+       var tel = await AsyncStorage.getItem('Tel');
+       var time = await AsyncStorage.getItem('@entrada');
+       var temp = parseInt(time)
+       await firestore.collection("users")
+       .where("Telefone", "==", tel)
+       .where("DataEntCel", "==", temp)
+       .get().then( async(querySnapshot) => {
+         if(querySnapshot.size !== 0){
+          
+           querySnapshot.forEach( async (doc) => {
+             IdUser = doc.id,
+             Nome = doc.data().Nome
+            });
+            
+            if(Estado === "" && Cidade === "" && TipoCart === null){
+              
+              var res = [];
+              await firestore.collection("Cartoes")
+               .where("Ativo", "==", true)
+               .where("ListCidade", "==", true)
+               .limit(fur)
+               .get()
+               .then((querySnapshot1) => {
+                console.log(querySnapshot1.size)
+                   querySnapshot1.forEach((doc1) => {
+                     res.push({
+                       id: doc1.id,
+                       Nome: doc1.data().Nome,
+                       Foto: doc1.data().Config.Foto,
+                       SalvouNum:doc1.data().SalvouNum,
+                       ListCredenciais:doc1.data().ListCredenciais,
+                       CorNalist:doc1.data().CorNalist,
+
+                     })
+                   });
+                
+                   setLista(res)
+                   setCarreg(false)
+               })
+               .catch((error) => {
+                 
+               });
+            } else if(Estado !== "" && Cidade === "" && TipoCart === null){
+              
+              var res = [];
+              await firestore.collection("Cartoes")
+               .where("Estado", "==", Estado)
+               .where("Ativo", "==", true)
+               .where("ListCidade", "==", true)
+               .limit(fur)
+               .get()
+               .then((querySnapshot) => {
+                   querySnapshot.forEach((doc) => {
+                     res.push({
+                       id: doc.id,
+                       Nome: doc.data().Nome,
+                       Foto: doc.data().Config.Foto,
+                       SalvouNum:doc.data().SalvouNum,
+                       ListCredenciais:doc.data().ListCredenciais,
+                       CorNalist:doc.data().CorNalist,
+
+                     })
+                   });
+                   setLista(res)
+                   setCarreg(false)
+               })
+               .catch((error) => {
+                 
+               });
+            } else if(Estado !== "" && Cidade !== "" && TipoCart === null){
+              
+              var res = [];
+              await firestore.collection("Cartoes")
+               .where("Estado", "==", Estado)
+               .where("Cidade", "==", Cidade)
+               .where("Ativo", "==", true)
+               .where("ListCidade", "==", true)
+               .limit(fur)
+               .get()
+               .then((querySnapshot) => {
+                   querySnapshot.forEach((doc) => {
+                     res.push({
+                       id: doc.id,
+                       Nome: doc.data().Nome,
+                       Foto: doc.data().Config.Foto,
+                       SalvouNum:doc.data().SalvouNum,
+                       ListCredenciais:doc.data().ListCredenciais,
+                       CorNalist:doc.data().CorNalist,
+
+                     })
+                   });
+                   setLista(res)
+                   setCarreg(false)
+               })
+               .catch((error) => {
+                 
+               });
+            }  else if(Estado !== "" && Cidade === "" && TipoCart !== null && Sexo === "" && NumProf === "" && NumEmp === "" ){
+              
+              var res = [];
+              await firestore.collection("Cartoes")
+               .where("Estado", "==", Estado)
+               .where("Pessoal", "==", TipoCart)
+               .where("Ativo", "==", true)
+               .where("ListCidade", "==", true)
+               .limit(fur)
+               .get()
+               .then((querySnapshot) => {
+                   querySnapshot.forEach((doc) => {
+                     res.push({
+                       id: doc.id,
+                       Nome: doc.data().Nome,
+                       Foto: doc.data().Config.Foto,
+                       SalvouNum:doc.data().SalvouNum,
+                       ListCredenciais:doc.data().ListCredenciais,
+                       CorNalist:doc.data().CorNalist,
+
+                     })
+                   });
+                   setLista(res)
+                   setCarreg(false)
+               })
+               .catch((error) => {
+                 
+               });
+            }  else if(Estado === "" && Cidade === "" && TipoCart !== null && Sexo === "" && NumProf === "" && NumEmp === "" ){
+              
+              var res = [];
+              await firestore.collection("Cartoes")
+               .where("Pessoal", "==", TipoCart)
+               .where("Ativo", "==", true)
+               .where("ListCidade", "==", true)
+               .limit(fur)
+               .get()
+               .then((querySnapshot) => {
+                   querySnapshot.forEach((doc) => {
+                     res.push({
+                       id: doc.id,
+                       Nome: doc.data().Nome,
+                       Foto: doc.data().Config.Foto,
+                       SalvouNum:doc.data().SalvouNum,
+                       ListCredenciais:doc.data().ListCredenciais,
+                       CorNalist:doc.data().CorNalist,
+
+                     })
+                   });
+                   setLista(res)
+                   setCarreg(false)
+               })
+               .catch((error) => {
+                 
+               });
+            }   else if(Estado !== "" && Cidade !== "" && TipoCart !== null  && Sexo === "" && NumProf === "" && NumEmp === "" ){
+              
+              var res = [];
+              await firestore.collection("Cartoes")
+              .where("Estado", "==", Estado)
+              .where("Cidade", "==", Cidade)
+               .where("Pessoal", "==", TipoCart)
+               .where("Ativo", "==", true)
+               .where("ListCidade", "==", true)
+               .limit(fur)
+               .get()
+               .then((querySnapshot) => {
+                   querySnapshot.forEach((doc) => {
+                     res.push({
+                       id: doc.id,
+                       Nome: doc.data().Nome,
+                       Foto: doc.data().Config.Foto,
+                       SalvouNum:doc.data().SalvouNum,
+                       ListCredenciais:doc.data().ListCredenciais,
+                       CorNalist:doc.data().CorNalist,
+
+                     })
+                   });
+                   setLista(res)
+                   setCarreg(false)
+               })
+               .catch((error) => {
+                 
+               });
+            }  else if(Estado !== "" && Cidade === "" && TipoCart === true && Sexo !== "" && NumProf === "" && NumEmp === "" ){
+              
+              var res = [];
+              await firestore.collection("Cartoes")
+                .where("Sexo", "==", Sexo)
+               .where("Estado", "==", Estado)
+               .where("Pessoal", "==", TipoCart)
+               .where("Ativo", "==", true)
+               .where("ListCidade", "==", true)
+               .limit(fur)
+               .get()
+               .then((querySnapshot) => {
+                   querySnapshot.forEach((doc) => {
+                     res.push({
+                       id: doc.id,
+                       Nome: doc.data().Nome,
+                       Foto: doc.data().Config.Foto,
+                       SalvouNum:doc.data().SalvouNum,
+                       ListCredenciais:doc.data().ListCredenciais,
+                       CorNalist:doc.data().CorNalist,
+
+                     })
+                   });
+                   setLista(res)
+                   setCarreg(false)
+               })
+               .catch((error) => {
+                 
+               });
+                } else if(Estado === "" && Cidade === "" && TipoCart === true && Sexo !== "" && NumProf === "" && NumEmp === ""){
+              console.log("entrado Aqi")
+              var res = [];
+              await firestore.collection("Cartoes")
+                .where("Sexo", "==", Sexo)
+               .where("Pessoal", "==", TipoCart)
+               .where("Ativo", "==", true)
+               .where("ListCidade", "==", true)
+               .limit(fur)
+               .get()
+               .then((querySnapshot) => {
+                   querySnapshot.forEach((doc) => {
+                     res.push({
+                       id: doc.id,
+                       Nome: doc.data().Nome,
+                       Foto: doc.data().Config.Foto,
+                       SalvouNum:doc.data().SalvouNum,
+                       ListCredenciais:doc.data().ListCredenciais,
+                       CorNalist:doc.data().CorNalist,
+
+                     })
+                   });
+                   setLista(res)
+                   setCarreg(false)
+               })
+               .catch((error) => {
+                 
+               });
+            }   else if(Estado !== "" && Cidade !== "" && TipoCart === true && Sexo !== "" && NumProf === "" && NumEmp === ""){
+              
+              var res = [];
+              await firestore.collection("Cartoes")
+              .where("Sexo", "==", Sexo)
+              .where("Estado", "==", Estado)
+              .where("Cidade", "==", Cidade)
+               .where("Pessoal", "==", TipoCart)
+               .where("Ativo", "==", true)
+               .where("ListCidade", "==", true)
+               .limit(fur)
+               .get()
+               .then((querySnapshot) => {
+                   querySnapshot.forEach((doc) => {
+                     res.push({
+                       id: doc.id,
+                       Nome: doc.data().Nome,
+                       Foto: doc.data().Config.Foto,
+                       SalvouNum:doc.data().SalvouNum,
+                       ListCredenciais:doc.data().ListCredenciais,
+                       CorNalist:doc.data().CorNalist,
+
+                     })
+                   });
+                   setLista(res)
+                   setCarreg(false)
+               })
+               .catch((error) => {
+                 
+               });
+            } else if(Estado !== "" && Cidade === "" && TipoCart === true && Sexo === "" && NumProf !== "" && NumEmp === "" ){
+              
+              var res = [];
+              await firestore.collection("Cartoes")
+               .where("Estado", "==", Estado)
+               .where("Pessoal", "==", TipoCart)
+               .where("Ativo", "==", true)
+               .where("Profissao", "array-contains", NumProf)
+               .where("ListCidade", "==", true)
+               .limit(fur)
+               .get()
+               .then((querySnapshot) => {
+                   querySnapshot.forEach((doc) => {
+                     res.push({
+                       id: doc.id,
+                       Nome: doc.data().Nome,
+                       Foto: doc.data().Config.Foto,
+                       SalvouNum:doc.data().SalvouNum,
+                       ListCredenciais:doc.data().ListCredenciais,
+                       CorNalist:doc.data().CorNalist,
+
+                     })
+                   });
+                   setLista(res)
+                   setCarreg(false)
+               })
+               .catch((error) => {
+                 
+               });
+                } else if(Estado === "" && Cidade === "" && TipoCart === true && Sexo === "" && NumProf !== "" && NumEmp === ""){
+              console.log("entrado Aqi")
+              var res = [];
+              await firestore.collection("Cartoes")
+              .where("Profissao", "array-contains", NumProf)
+               .where("Pessoal", "==", TipoCart)
+               .where("Ativo", "==", true)
+               .where("ListCidade", "==", true)
+               .limit(fur)
+               .get()
+               .then((querySnapshot) => {
+                   querySnapshot.forEach((doc) => {
+                     res.push({
+                       id: doc.id,
+                       Nome: doc.data().Nome,
+                       Foto: doc.data().Config.Foto,
+                       SalvouNum:doc.data().SalvouNum,
+                       ListCredenciais:doc.data().ListCredenciais,
+                       CorNalist:doc.data().CorNalist,
+
+                     })
+                   });
+                   setLista(res)
+                   setCarreg(false)
+               })
+               .catch((error) => {
+                 
+               });
+            }   else if(Estado !== "" && Cidade !== "" && TipoCart === true && Sexo === "" && NumProf !== "" && NumEmp === ""){
+              
+              var res = [];
+              await firestore.collection("Cartoes")
+              .where("Profissao", "array-contains", NumProf)
+              .where("Estado", "==", Estado)
+              .where("Cidade", "==", Cidade)
+               .where("Pessoal", "==", TipoCart)
+               .where("Ativo", "==", true)
+               .where("ListCidade", "==", true)
+               .limit(fur)
+               .get()
+               .then((querySnapshot) => {
+                   querySnapshot.forEach((doc) => {
+                     res.push({
+                       id: doc.id,
+                       Nome: doc.data().Nome,
+                       Foto: doc.data().Config.Foto,
+                       SalvouNum:doc.data().SalvouNum,
+                       ListCredenciais:doc.data().ListCredenciais,
+                       CorNalist:doc.data().CorNalist,
+
+                     })
+                   });
+                   setLista(res)
+                   setCarreg(false)
+               })
+               .catch((error) => {
+                 
+               });
+            } else if(Estado !== "" && Cidade === "" && TipoCart === true && Sexo !== "" && NumProf !== "" && NumEmp === "" ){
+              
+              var res = [];
+              await firestore.collection("Cartoes")
+              .where("Sexo", "==", Sexo)
+               .where("Estado", "==", Estado)
+               .where("Pessoal", "==", TipoCart)
+               .where("Ativo", "==", true)
+               .where("Profissao", "array-contains", NumProf)
+               .where("ListCidade", "==", true)
+               .limit(fur)
+               .get()
+               .then((querySnapshot) => {
+                   querySnapshot.forEach((doc) => {
+                     res.push({
+                       id: doc.id,
+                       Nome: doc.data().Nome,
+                       Foto: doc.data().Config.Foto,
+                       SalvouNum:doc.data().SalvouNum,
+                       ListCredenciais:doc.data().ListCredenciais,
+                       CorNalist:doc.data().CorNalist,
+
+                     })
+                   });
+                   setLista(res)
+                   setCarreg(false)
+               })
+               .catch((error) => {
+                 
+               });
+                } else if(Estado === "" && Cidade === "" && TipoCart === true && Sexo !== "" && NumProf !== "" && NumEmp === ""){
+              console.log("entrado Aqi")
+              var res = [];
+              await firestore.collection("Cartoes")
+              .where("Sexo", "==", Sexo)
+              .where("Profissao", "array-contains", NumProf)
+               .where("Pessoal", "==", TipoCart)
+               .where("Ativo", "==", true)
+               .where("ListCidade", "==", true)
+               .limit(fur)
+               .get()
+               .then((querySnapshot) => {
+                   querySnapshot.forEach((doc) => {
+                     res.push({
+                       id: doc.id,
+                       Nome: doc.data().Nome,
+                       Foto: doc.data().Config.Foto,
+                       SalvouNum:doc.data().SalvouNum,
+                       ListCredenciais:doc.data().ListCredenciais,
+                       CorNalist:doc.data().CorNalist,
+
+                     })
+                   });
+                   setLista(res)
+                   setCarreg(false)
+               })
+               .catch((error) => {
+                 
+               });
+            }   else if(Estado !== "" && Cidade !== "" && TipoCart === true && Sexo !== "" && NumProf !== "" && NumEmp === ""){
+              
+              var res = [];
+              await firestore.collection("Cartoes")
+              .where("Sexo", "==", Sexo)
+              .where("Profissao", "array-contains", NumProf)
+              .where("Estado", "==", Estado)
+              .where("Cidade", "==", Cidade)
+               .where("Pessoal", "==", TipoCart)
+               .where("Ativo", "==", true)
+               .where("ListCidade", "==", true)
+               .limit(fur)
+               .get()
+               .then((querySnapshot) => {
+                   querySnapshot.forEach((doc) => {
+                     res.push({
+                       id: doc.id,
+                       Nome: doc.data().Nome,
+                       Foto: doc.data().Config.Foto,
+                       SalvouNum:doc.data().SalvouNum,
+                       ListCredenciais:doc.data().ListCredenciais,
+                       CorNalist:doc.data().CorNalist,
+
+                     })
+                   });
+                   setLista(res)
+                   setCarreg(false)
+               })
+               .catch((error) => {
+                 
+               });
+            } else if(Estado !== "" && Cidade === "" && TipoCart === false && Sexo === "" && NumProf === "" && NumEmp !== "" ){
+              
+              var res = [];
+              await firestore.collection("Cartoes")
+               .where("Estado", "==", Estado)
+               .where("Pessoal", "==", TipoCart)
+               .where("Ativo", "==", true)
+               .where("Empresa", "array-contains", NumEmp)
+               .where("ListCidade", "==", true)
+               .limit(fur)
+               .get()
+               .then((querySnapshot) => {
+                   querySnapshot.forEach((doc) => {
+                     res.push({
+                       id: doc.id,
+                       Nome: doc.data().Nome,
+                       Foto: doc.data().Config.Foto,
+                       SalvouNum:doc.data().SalvouNum,
+                       ListCredenciais:doc.data().ListCredenciais,
+                       CorNalist:doc.data().CorNalist,
+
+                     })
+                   });
+                   setLista(res)
+                   setCarreg(false)
+               })
+               .catch((error) => {
+                 
+               });
+                } else if(Estado === "" && Cidade === "" && TipoCart === false && Sexo === "" && NumProf === "" && NumEmp !== ""){
+              console.log("entrado Aqi")
+              var res = [];
+              await firestore.collection("Cartoes")
+              .where("Empresa", "array-contains", NumEmp)
+               .where("Pessoal", "==", TipoCart)
+               .where("Ativo", "==", true)
+               .where("ListCidade", "==", true)
+               .limit(fur)
+               .get()
+               .then((querySnapshot) => {
+                   querySnapshot.forEach((doc) => {
+                     res.push({
+                       id: doc.id,
+                       Nome: doc.data().Nome,
+                       Foto: doc.data().Config.Foto,
+                       SalvouNum:doc.data().SalvouNum,
+                       ListCredenciais:doc.data().ListCredenciais,
+                       CorNalist:doc.data().CorNalist,
+
+                     })
+                   });
+                   setLista(res)
+                   setCarreg(false)
+               })
+               .catch((error) => {
+                 
+               });
+            }   else if(Estado !== "" && Cidade !== "" && TipoCart === false && Sexo === "" && NumProf === "" && NumEmp !== ""){
+              
+              var res = [];
+              await firestore.collection("Cartoes")
+              .where("Empresa", "array-contains", NumEmp)
+              .where("Estado", "==", Estado)
+              .where("Cidade", "==", Cidade)
+               .where("Pessoal", "==", TipoCart)
+               .where("Ativo", "==", true)
+               .where("ListCidade", "==", true)
+               .limit(fur)
+               .get()
+               .then((querySnapshot) => {
+                   querySnapshot.forEach((doc) => {
+                     res.push({
+                       id: doc.id,
+                       Nome: doc.data().Nome,
+                       Foto: doc.data().Config.Foto,
+                       SalvouNum:doc.data().SalvouNum,
+                       ListCredenciais:doc.data().ListCredenciais,
+                       CorNalist:doc.data().CorNalist,
+
+                     })
+                   });
+                   setLista(res)
+                   setCarreg(false)
+               })
+               .catch((error) => {
+                 
+               });
+            } 
+ 
+           
+           }
+ 
+       });
+     },
+ 
 
     CriandoCartao: async(ModalVer, setAlert, setAlertTipo, setCarre, setModalVer)=>{
      var num = Math.floor(Math.random() * (7 - 0 + 1)) + 0

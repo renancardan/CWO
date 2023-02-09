@@ -1,6 +1,6 @@
 
 import React, { Component, useState,  useContext, useEffect, useRef } from 'react'
-import {Modal, Text,FlatList, View, StyleSheet, ImageBackground, Image, Button, TouchableHighlight, KeyboardAvoidingView, ScrollView } from 'react-native'
+import {Modal, Text, FlatList, View, StyleSheet, ImageBackground, Image, Button, TouchableHighlight, KeyboardAvoidingView, ScrollView } from 'react-native'
 import {FontAwesome} from "@expo/vector-icons";
 import { ModalDatePicker } from "react-native-material-date-picker";
 import Hora from '../components/Hora';
@@ -16,6 +16,11 @@ import { useNavigation } from '@react-navigation/native';
 import ReCAPTCHA from "react-google-recaptcha";
 import { UserContext } from '../contexts/UserContext';
 import moment from 'moment';
+import MultiSelect from 'react-native-multiple-select';
+import ProfList from '../services/Profissoes.json'
+import EstCid from '../services/cidadejson.json'
+import Empre from '../services/Empresas.json'
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 //import Datand from '../components/datando';
 
 export default () => {
@@ -44,16 +49,7 @@ export default () => {
   const [ListLig, setListLig] = useState([]);
   const [VerLiga, setVerLiga] = useState("");
   const [VerLigPais, setVerLigPais] = useState("");
-  const [Lista, setLista] = useState([
-    {id:1, Nome:"Renan Cardan", Foto:'../assets/perfil1.jpg', Cor:"#168500"},
-    {id:2, Nome:"Daniel Cardan", Foto: '../assets/perfil2.jpg', Cor:"#0DBDE9"},
-    {id:1, Nome:"Zilda Cardan", Foto:'../assets/perfil1.jpg', Cor:"#091A61"},
-    {id:2, Nome:"Luis Cardan", Foto: '../assets/perfil2.jpg', Cor:"#B59C0C"},
-    {id:1, Nome:"Nanci Cardan", Foto:'../assets/perfil1.jpg', Cor:"#430459"},
-    {id:2, Nome:"Davi Cardan", Foto: '../assets/perfil2.jpg', Cor:"#0DBDE9"},
-    {id:1, Nome:"Bruno Cardan", Foto:'../assets/perfil1.jpg', Cor:"#B16909"},
-    {id:2, Nome:"Marli Cardan", Foto: '../assets/perfil2.jpg', Cor:"#9F1F54"},
-  ]);
+  const [Lista, setLista] = useState([]);
   const [Vencido, setVencido] = useState(false);
   const [DtEsc, setDtEsc] = useState(0)
   const [SimAp, setSimAp] = useState([]);
@@ -104,14 +100,44 @@ export default () => {
   const [StatusAp, setStatusAp] = useState([]);
   const [AnliAp, setAnliAp] = useState(false);
   const [open, setOpen] = useState(false);
+  const [Cidade, setCidade] = useState("");
+  const [Estado, setEstado] = useState("");
+  const [ListSexo, setListSexo] = useState([
+    {
+      id:"Masculino", nome:"Masculino"
+    },
+    {
+      id:"Feminino", nome:"Feminino",
+    }
+  ]);
+  const [VerCidade, setVerCidade] = useState([]);
+  const [selectedItems, setselectedItems] = useState([])
+  const [ListTipo, setListTipo] = useState([
+    {
+      id:true, nome:"Pessoal"
+    },
+    {
+      id:false, nome:"Empresarial",
+    }
+  ]);
+  const [TipoCart, setTipoCart] = useState(null);
+  const [Empresa, setEmpresa] = useState("");
+  const [NumEmp, setNumEmp] = useState("");
+  const [Profissao, setProfissao] = useState("");
+  const [NumProf, setNumProf] = useState("");
+  const [Sexo, setSexo] = useState("");
+  const [EsCart, setEsCart] = useState("")
   
- console.log()
-  // useEffect(() => {
-  //   if(dataNasc !== null){
-  //     ListandoOc();
-  //   }
-    
-  // }, [dataNasc, hr]);
+
+  useEffect(() => { 
+      ListandoOc();
+      console.log("Estado"+Estado)
+      console.log("Cidade"+Cidade)
+      console.log("TipoCart"+TipoCart)
+      console.log("Sexo"+Sexo)
+      console.log("NumProf"+NumProf)
+      console.log("NumEmp"+NumEmp)
+  }, [TipoCart, Estado, Cidade, Sexo, NumProf, NumEmp]);
 
   useEffect(() => {
     tempo();
@@ -162,6 +188,57 @@ export default () => {
   //     ListandoOc();  
   //   }            
   //  }, [Page]);
+  const EscoEstado = (item)=>{
+   
+   
+    for(let i in EstCid){
+      if(EstCid[i].sigla === item[0]){
+        setCidade("")
+        setEstado(EstCid[i].nome)
+        console.log(EstCid[i].nome)
+        var listacid = []
+        for(let j in EstCid[i].cidades){
+           listacid.push({
+            id:EstCid[i].cidades[j],
+            nome:EstCid[i].cidades[j],
+           })
+        }
+        setVerCidade(listacid)
+      }
+    }
+  }
+  const EscoCidade = (item)=>{
+    setCidade(item[0])
+  }
+
+  const EscoTipoCart = (item)=>{
+    setTipoCart(item[0])
+    if(item[0]){
+      setEsCart("Pessoal")
+      setNumEmp("")
+      setEmpresa("")
+    } else {
+      setEsCart("Empresarial")
+      setSexo("")
+      setNumProf("")
+      setProfissao("")
+    }
+  }
+  const SeleciSexo = (item)=>{
+    setSexo(item[0])
+  
+   
+  }
+
+  const SeleciProf1 = (item)=>{
+    setNumProf(item[0])
+   for(let i in ProfList){
+    if(ProfList[i].id === item[0]){
+      setProfissao(ProfList[i].profissao)
+    }
+   }
+   
+  }
 
   const ConcluidoAposta = ()=>{
     Api.TiraConcluidoApos(IdApos, Concluir)
@@ -212,28 +289,10 @@ export default () => {
   }
 
    const ListandoOc = ()=>{
-    setLista([])
-    setVerLigPais("");
-    setVerLiga("");
-    let currentDate1 = '';
-    let meg = dataNasc.split("/");
-    console.log(meg);
-    let Dia1 = meg[0];
-    let Mes1 =  meg[1];
-    let Ano1 = meg[2];
-    Dia1 = Dia1 < 10 ? '0'+Dia1 : Dia1;
-    Mes1 = Mes1 < 10 ? '0'+Mes1 : Mes1;
-    currentDate1 = Ano1+'-'+Mes1+'-'+Dia1;
- 
-    let CompDat = moment(currentDate1+" "+hr+":00").unix();
-
-    let Dat = CompDat * 1000;
-    let Dat2 =moment().unix()*1000;
-    if(Dat < Dat2){
-    setCarreg(true)
-    Api.MeusJogos( Page, setListOc, setCarreg,  Dat, Dat2, );
-  } 
     
+    setCarreg(true)
+    Api.PegandoCartao(Page, TipoCart, Estado, Cidade, Sexo, NumProf, NumEmp, setLista, setCarreg  );
+ 
   }
 
   const TirarEsse = (position) =>{
@@ -417,9 +476,9 @@ export default () => {
           navigation.navigate("Config") 
        }
 
-       const IrCartao= ()=>{
+       const IrCartao= (item)=>{
         navigation.navigate("CartaoVisita", {
-          id:"00",
+          id:item,
           Status:"Conta",
         });
      }
@@ -666,6 +725,22 @@ export default () => {
          
          }
 
+         const SeleciEmp1 = (item)=>{
+          setNumEmp(item[0])
+         for(let i in Empre){
+          if(Empre[i].id === item[0]){
+            setEmpresa(Empre[i].Emp)
+          }
+         }
+         
+        }
+        const loadPage = (pageNumber = Page)=>{
+          
+           setPage(pageNumber + 1)
+          
+           
+       }
+
          const GerarCod =  async ()=> {
           
           if(Robo === false){
@@ -772,11 +847,17 @@ export default () => {
           }
 
           const Atualizar = ()=>{
-            tempo();
-            ListandoOc();
-        //     navigation.reset({
-        //      routes:[{name:"Preload"}]
-        //  });
+          setNumEmp("")
+          setEmpresa("")
+          setTipoCart(null)
+          setEsCart("")
+          setNumProf("")
+          setProfissao("")
+          setEstado("")
+          setVerCidade([]);
+          setCidade("");
+          setSexo("")
+        
          }
 
           const AbrinoMoney = ()=>{
@@ -1472,39 +1553,263 @@ export default () => {
        
         </View> */}
       
+      <ScrollView>
+      <View style={{width: wp('90%') }}>
+        <Text  style={{ marginLeft:10, fontSize:20, color:"#FFF", marginTop:5 , marginBottom:10 }}>Estado:  {Estado}</Text> 
+                     <MultiSelect
+                        hideTags
+                        items={EstCid}
+                        uniqueKey="sigla"
+                        onSelectedItemsChange={(item)=>EscoEstado(item)}
+                        selectedItems={selectedItems}
+                        selectText="Escolha o Estado"
+                        searchInputPlaceholderText="Pesquise o Estado Aqui..."
+                        onChangeInput={ (text)=> console.log(text)}
+                        altFontFamily="ProximaNova-Light"
+                        tagRemoveIconColor="#CCC"
+                        tagBorderColor="#CCC"
+                        tagTextColor="#CCC"
+                        selectedItemTextColor="#CCC"
+                        selectedItemIconColor="#CCC"
+                        itemTextColor="#000"
+                        displayKey="nome"
+                        searchInputStyle={{ color: '#CCC' }}
+                        submitButtonColor="#CCC"
+                        submitButtonText="Fechar Lista"
+                        hideDropdown={false}
+                        hideSubmitButton={false}
+                        single={true}
+                      />
 
-        <ScrollView>
-          {Carre === false ?
+                      {Estado !== ""  &&
+                      <>
+                         <Text  style={{ marginLeft:10, fontSize:20, color:"#FFF", marginTop:5 , marginBottom:10}}>Cidade: {Cidade}</Text> 
+                         <MultiSelect
+                            hideTags
+                            items={VerCidade}
+                            uniqueKey="id"
+                            onSelectedItemsChange={(item)=>EscoCidade(item)}
+                            selectedItems={selectedItems}
+                            selectText="Escolha a Cidade"
+                            searchInputPlaceholderText="Pesquise a Cidade Aqui..."
+                            onChangeInput={ (text)=> console.log(text)}
+                            altFontFamily="ProximaNova-Light"
+                            tagRemoveIconColor="#CCC"
+                            tagBorderColor="#CCC"
+                            tagTextColor="#CCC"
+                            selectedItemTextColor="#CCC"
+                            selectedItemIconColor="#CCC"
+                            itemTextColor="#000"
+                            displayKey="nome"
+                            searchInputStyle={{ color: '#CCC' }}
+                            submitButtonColor="#CCC"
+                            submitButtonText="Fechar Lista"
+                            hideDropdown={false}
+                            hideSubmitButton={false}
+                            single={true}
+                          />
+                          </>}
+                          <Text  style={{ marginLeft:10, fontSize:20, color:"#FFF", marginTop:5 , marginBottom:10}}>Tipo do Cartão: {EsCart}</Text> 
+                         <MultiSelect
+                            hideTags
+                            items={ListTipo}
+                            uniqueKey="id"
+                            onSelectedItemsChange={(item)=>EscoTipoCart(item)}
+                            selectedItems={selectedItems}
+                            selectText="Escolha o Tipo do Cartão"
+                            searchInputPlaceholderText="Pesquise o Tipo do Cartão"
+                            onChangeInput={ (text)=> console.log(text)}
+                            altFontFamily="ProximaNova-Light"
+                            tagRemoveIconColor="#CCC"
+                            tagBorderColor="#CCC"
+                            tagTextColor="#CCC"
+                            selectedItemTextColor="#CCC"
+                            selectedItemIconColor="#CCC"
+                            itemTextColor="#000"
+                            displayKey="nome"
+                            searchInputStyle={{ color: '#CCC' }}
+                            submitButtonColor="#CCC"
+                            submitButtonText="Fechar Lista"
+                            hideDropdown={false}
+                            hideSubmitButton={false}
+                            single={true}
+                          />
+                          {TipoCart !== null &&
+                          <>
+                          {TipoCart?
+                          <>
+                            <Text  style={{marginLeft:10, fontSize:20, color:"#FFF", marginTop:5 , marginBottom:10 }}>Sexo: {Sexo}</Text> 
+                     <MultiSelect
+                        hideTags
+                        items={ListSexo}
+                        uniqueKey="id"
+                        onSelectedItemsChange={(item)=>SeleciSexo(item)}
+                        selectedItems={selectedItems}
+                        selectText="Escolha Seu Sexo"
+                        searchInputPlaceholderText="Pesquise o Sexo Aqui..."
+                        onChangeInput={ (text)=> console.log(text)}
+                        altFontFamily="ProximaNova-Light"
+                        tagRemoveIconColor="#CCC"
+                        tagBorderColor="#CCC"
+                        tagTextColor="#CCC"
+                        selectedItemTextColor="#CCC"
+                        selectedItemIconColor="#CCC"
+                        itemTextColor="#000"
+                        displayKey="nome"
+                        searchInputStyle={{ color: '#CCC' }}
+                        submitButtonColor="#CCC"
+                        submitButtonText="Fechar Lista"
+                        hideDropdown={false}
+                        hideSubmitButton={false}
+                        single={true}
+                      />
+                       <Text  style={{ marginLeft:10, fontSize:20, color:"#FFF", marginTop:5 , marginBottom:10 }}>Profissão da Pessoa: {Profissao}</Text> 
+                     <MultiSelect
+                        hideTags
+                        items={ProfList}
+                        uniqueKey="id"
+                        onSelectedItemsChange={(item)=>SeleciProf1(item)}
+                        onAddItem={(car)=>EntrandoItem(car)}
+                        selectedItems={selectedItems}
+                        selectText="Escolha Sua Profissão "
+                        searchInputPlaceholderText="Pesquise a Sua Profissão Aqui..."
+                        onChangeInput={ (text)=> console.log(text)}
+                        altFontFamily="ProximaNova-Light"
+                        tagRemoveIconColor="#CCC"
+                        tagBorderColor="#CCC"
+                        tagTextColor="#CCC"
+                        selectedItemTextColor="#CCC"
+                        selectedItemIconColor="#CCC"
+                        itemTextColor="#000"
+                        displayKey="profissao"
+                        searchInputStyle={{ color: '#CCC' }}
+                        submitButtonColor="#CCC"
+                        submitButtonText="Fechar Lista"
+                        hideDropdown={false}
+                        hideSubmitButton={false}
+                        single={true}
+                      />
+                          
+                          </>
+
+                            :
+                          <>
+                            <Text  style={{ marginLeft:10, fontSize:20, color:"#FFF", marginTop:5 , marginBottom:10 }}>Tipo da Empresa: {Empresa}</Text> 
+                    <MultiSelect
+                        hideTags
+                        items={Empre}
+                        uniqueKey="id"
+                        onSelectedItemsChange={(item)=>SeleciEmp1(item)}
+                        selectedItems={selectedItems}
+                        selectText="Escolha o Tipo da Empresa"
+                        searchInputPlaceholderText="Pesquise o Tipo da Empresa Aqui..."
+                        onChangeInput={ (text)=> console.log(text)}
+                        altFontFamily="ProximaNova-Light"
+                        tagRemoveIconColor="#CCC"
+                        tagBorderColor="#CCC"
+                        tagTextColor="#CCC"
+                        selectedItemTextColor="#CCC"
+                        selectedItemIconColor="#CCC"
+                        itemTextColor="#000"
+                        displayKey="Emp"
+                        searchInputStyle={{ color: '#CCC' }}
+                        submitButtonColor="#CCC"
+                        submitButtonText="Fechar Lista"
+                        single={true}
+                      />
+                          
+                          </>
+
+                          }
+                          
+                          </>
+
+                          }
+                          </View>
+                          {Carreg == true ?
+                          <>
+                          <View style={{width: wp('90%'), display:"flex", justifyContent:"center", alignItems:"center" }}>
+                            <Image source={require('../assets/carreg.gif')}  style={styles.ImageVer3 } />
+                            </View>
+                          </>
+                          :
+                          <>
+                           <FlatList 
+
+                            data={Lista}
+                            //essa função é pra carregar mais listas quando chegar no final da lista faltando 10%
+                              onEndReached={()=>loadPage()}
+                              //essa função é para dizer quantos porcento final da lista tem que tá para carregar a função de carregar mais lista
+                              onEndReachedThreshold={0.3}
+                              keyExtractor={post=> String(post.id)}
+                            // colocar o loading no final da lista para carregar mais conteudo 
+                            // ListFooterComponent={ Loading &&  <Loadin /> }
+                            //realizar uma função quando puxar pra cima 
+                            //onRefresh={refreshList}
+                            //boleano quando a função de refresh acabou 
+                            // refreshing={Refreshin}
+                            //dipara uma função quando os intens que estiver vizivel mudarem
+                              //onViewableItemsChanged={handleView}
+                            // quando o item chegar a 50 porcento carrega a outra imagem
+                            viewabilityConfig={{ minimumViewTime:2000, viewAreaCoveragePercentThreshold:75 }}
+
+                            renderItem={({ item }) => (
+                            <View  style={styles.Post}>
+                            <TouchableHighlight onPress={()=>IrCartao(item.id)} style={{ padding:5, flexDirection:"row",  alignItems:"center", justifyContent:"space-around", height:70, width:wp('100%'), borderBottomWidth:1, marginBottom:5, borderColor:"#ccc", backgroundColor:item.CorNalist,}}>
+                            <>
+                            <View  style={styles.CaixaNome}>
+                            {item.Foto.Ativar === true &&
+                            <Image source={{uri:item.Foto.Link}} style={{width:50, height:50, borderRadius:25,  borderWidth:2, borderColor:"#fff", }} />
+                            }
+
+                            </View> 
+
+                            <View  style={styles.CaixaNome}>
+
+                              <Text style={{color:"#FFF", fontSize:17, fontWeight:"bold"}}>{item.Nome}</Text>
+                              <Text style={{color:"#FFF", fontSize:14,}}>{item.ListCredenciais.length} Credências</Text>
+                              <Text style={{color:"#FFF", fontSize:14,}}>{item.SalvouNum.length} Salvamentos</Text>
+                            </View> 
+                            <View  style={styles.CaixaNome}>
+                            {item.ListCredenciais.length >= 10 &&  item.ListCredenciais.length < 100 &&
+                            <Image source={require('../assets/bronze.png')}  style={{width:40, height:60}}  />
+                            }
+                            {item.ListCredenciais.length >= 0 &&  item.ListCredenciais.length < 10 &&
+                            <Image source={require('../assets/Zerado.png')}  style={{width:40, height:60}}  />
+                            }
+                            {item.ListCredenciais.length >= 100 &&  item.ListCredenciais.length < 1000 &&
+                            <Image source={require('../assets/prata.png')}  style={{width:40, height:60}}  />
+                            }
+                            {item.ListCredenciais.length >= 1000 &&  
+                            <Image source={require('../assets/ouro.png')}  style={{width:40, height:60}}  />
+                            }
+
+                            </View> 
+
+
+
+                            </>
+                            </TouchableHighlight>
+
+
+
+
+
+                            </View>
+
+                            )}
+                            />
+                          
+                          </>
+
+                          }
+                           
+       </ScrollView>
+          {/* {Carre === false ?
           <>
           {Lista.map((item, key)=>(
            <>
-            <View  style={styles.Post}>
-              <TouchableHighlight onPress={()=>IrCartao()} style={{ padding:5, flexDirection:"row",  alignItems:"center", justifyContent:"space-around", height:70, width:400, borderBottomWidth:1, marginBottom:5, borderColor:"#ccc", backgroundColor:item.Cor,}}>
-              <>
-               <View  style={styles.CaixaNome}>
-               <Image source={require('../assets/perfil2.jpg')}  style={{width:50, height:50, borderRadius:25,  borderWidth:2, borderColor:"#fff", }} />
-                </View> 
-               
-                <View  style={styles.CaixaNome}>
-                
-                  <Text style={{color:"#FFF", fontSize:17, fontWeight:"bold"}}>{item.Nome}</Text>
-                  <Text style={{color:"#FFF", fontSize:14,}}>200000 Credências</Text>
-                  <Text style={{color:"#FFF", fontSize:14,}}>75 Salvamentos</Text>
-                </View> 
-                <View  style={styles.CaixaNome}>
-                <Image source={require('../assets/ouro.png')}  style={{width:40, height:60}} />
-                </View> 
-              
-
-
-              </>
-              </TouchableHighlight>
-       
-             
            
-
-
-            </View>
            
               </>
 
@@ -1517,8 +1822,8 @@ export default () => {
               
 
               </>
-              }
-              </ScrollView>
+              } */}
+              
           
             {/* <DatePickerModal
         mode="single"
@@ -2126,7 +2431,7 @@ const styles = StyleSheet.create({
 
   Post: {
    backgroundColor:"#000",
-   width:"100%",
+   width: wp('90%') 
     },
 
     Header: {
