@@ -588,7 +588,7 @@ const LimpandoCar = ()=>{
                    
                     <SignInput
                        placeholder="Link Recortado" 
-                       value={LinkDeIn}
+                       value={`https://cartaoweb.online/perfil/${DadCart.id}`}
                        onChangeText={t=>setLinkDeIn(t)}
                        autoCapitalize="none"
                        keyboardType={"numeric"}

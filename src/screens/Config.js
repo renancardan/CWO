@@ -898,7 +898,7 @@ export default () => {
             <Text  style={{  fontWeight:"bold",  fontSize:20, color:"#FFF",}}>Nome: {userState.nomeCompleto}</Text>
             <Text  style={{  fontWeight:"bold",  fontSize:20, color:"#FFF",}}>Telefone: {userState.telefone}</Text>
             </View>
-            {DadoTitu.ADM === true &&
+            {DadoTitu.ADMCWO === true &&
             <>
              <View  style={styles.AreaBtnCima}>
               

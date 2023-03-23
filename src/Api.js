@@ -2245,7 +2245,7 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
     
   },
 
-  SalvCart: async(IdCart, NomePix, IrImg, Ativo, AtiPrivi, Pessoal, Profissao, Empresa, Cidade, Estado, Sexo, CorCart, NomeCart, ImgCart, AtiImg, FundoImg, FunCart, AtiFun, TelCart, AtiTel, WhatCart, AtiWhat, InstCard, AtiInst, FaceCard, AtiFace, SiteCard, AtiSite, TwCard, AtiTw, TikCard, AtiTik, LocCard, AtiLoc, PixCard, TipPix, AtiPix, AtiSal, AtiCom, AtiYou, YouCard, TeleCard, AtiTele, EmailCard, AtiEmail, setAlert, setAlertTipo, setLoad,)=> {
+  SalvCart: async(IdCart, DireSite, NomePix, IrImg, Ativo, AtiPrivi, Pessoal, Profissao, Empresa, Cidade, Estado, Sexo, CorCart, NomeCart, ImgCart, AtiImg, FundoImg, FunCart, AtiFun, TelCart, AtiTel, WhatCart, AtiWhat, InstCard, AtiInst, FaceCard, AtiFace, SiteCard, AtiSite, TwCard, AtiTw, TikCard, AtiTik, LocCard, AtiLoc, PixCard, TipPix, AtiPix, AtiSal, AtiCom, AtiYou, YouCard, TeleCard, AtiTele, EmailCard, AtiEmail, setAlert, setAlertTipo, setLoad,)=> {
     var Url1 = "";
     if(IrImg === true){
       var Imagem = ImgCart.split(',');
@@ -2269,6 +2269,7 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
         
    
       Nome:NomeCart,
+      direcionamento:DireSite,
       Config:{
         Fundo:FundoImg,
         Foto:{Ativar:AtiImg, Link:Url1},
@@ -2398,7 +2399,7 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
       NumExtrCredem:0,
       ListCredenciais:[],
       Nome:"CARLA CWO",
-      descricao:"",
+      direcionamento:false,
       Config:{
         Fundo:"https://firebasestorage.googleapis.com/v0/b/cwoapp-bd594.appspot.com/o/arquivo%2Ffundo1.png?alt=media&token=b152a38c-3771-461d-9416-0b5cd16fa574",
         Foto:{Ativar:true, Link:"https://firebasestorage.googleapis.com/v0/b/cwoapp-bd594.appspot.com/o/arquivo%2FperfilCWO.png?alt=media&token=454c9582-4fc3-45ef-8429-6dbf2fc85120"},
@@ -3021,6 +3022,123 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
  
        });
      },
+
+     PegandoContato: async(Page, setListOc, setCarreg )=>{
+      let fur = Page*20;
+      var IdUser = ""
+       var Nome = ""
+       var tel = await AsyncStorage.getItem('Tel');
+       var time = await AsyncStorage.getItem('@entrada');
+       var temp = parseInt(time)
+       await firestore.collection("users")
+       .where("Telefone", "==", tel)
+       .where("DataEntCel", "==", temp)
+       .get().then( async(querySnapshot) => {
+         if(querySnapshot.size !== 0){
+          
+           querySnapshot.forEach( async (doc) => {
+             IdUser = doc.id,
+             Nome = doc.data().Nome
+            });
+            
+          
+              
+              var res = [];
+              await firestore.collection("Cartoes")
+               .where("Ativo", "==", true)
+               .where("SalvouNum", "array-contains", IdUser)
+               .get()
+               .then((querySnapshot1) => {
+                console.log(querySnapshot1.size)
+                   querySnapshot1.forEach((doc1) => {
+                     res.push({
+                       id: doc1.id,
+                       Nome: doc1.data().Nome,
+                       Foto: doc1.data().Config.Foto,
+                       SalvouNum:doc1.data().SalvouNum,
+                       ListCredenciais:doc1.data().ListCredenciais,
+                       CorNalist:doc1.data().CorNalist,
+                       Pessoal:doc1.data().Pessoal,
+                       Profissao:doc1.data().Profissao,
+                       Empresa:doc1.data().Empresa,
+                       Cidade:doc1.data().Cidade,
+                       Estado:doc1.data().Estado,
+                       Sexo:doc1.data().Sexo,
+
+                     })
+                   });
+                
+                   setListOc(res)
+                   setCarreg(false)
+               })
+               .catch((error) => {
+                 
+               });
+            
+ 
+           
+           }
+ 
+       });
+     },
+
+     PegandoMeuscartoes: async(Page, setListOc, setCarreg )=>{
+      var IdUser = ""
+       var Nome = ""
+       var tel = await AsyncStorage.getItem('Tel');
+       var time = await AsyncStorage.getItem('@entrada');
+       var temp = parseInt(time)
+       await firestore.collection("users")
+       .where("Telefone", "==", tel)
+       .where("DataEntCel", "==", temp)
+       .get().then( async(querySnapshot) => {
+         if(querySnapshot.size !== 0){
+          
+           querySnapshot.forEach( async (doc) => {
+             IdUser = doc.id,
+             Nome = doc.data().Nome
+            });
+            
+          
+              
+              var res = [];
+              await firestore.collection("Cartoes")
+               .where("Ativo", "==", true)
+               .where("IdDono", "==", IdUser)
+               .get()
+               .then((querySnapshot1) => {
+                console.log(querySnapshot1.size)
+                   querySnapshot1.forEach((doc1) => {
+                     res.push({
+                       id: doc1.id,
+                       Nome: doc1.data().Nome,
+                       Foto: doc1.data().Config.Foto,
+                       SalvouNum:doc1.data().SalvouNum,
+                       ListCredenciais:doc1.data().ListCredenciais,
+                       CorNalist:doc1.data().CorNalist,
+                       Pessoal:doc1.data().Pessoal,
+                       Profissao:doc1.data().Profissao,
+                       Empresa:doc1.data().Empresa,
+                       Cidade:doc1.data().Cidade,
+                       Estado:doc1.data().Estado,
+                       Sexo:doc1.data().Sexo,
+                       
+                     })
+                   });
+                
+                   setListOc(res)
+                   setCarreg(false)
+               })
+               .catch((error) => {
+                 
+               });
+            
+ 
+           
+           }
+ 
+       });
+     },
  
 
     CriandoCartao: async(ModalVer, setAlert, setAlertTipo, setCarre, setModalVer)=>{
@@ -3050,7 +3168,7 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
             NumExtrCredem:0,
             ListCredenciais:[],
             Nome:"CARLA CWO",
-            descricao:"",
+            direcionamento:false,
             Config:{
               Fundo:"https://firebasestorage.googleapis.com/v0/b/cwoapp-bd594.appspot.com/o/arquivo%2Ffundo1.png?alt=media&token=b152a38c-3771-461d-9416-0b5cd16fa574",
               Foto:{Ativar:true, Link:"https://firebasestorage.googleapis.com/v0/b/cwoapp-bd594.appspot.com/o/arquivo%2FperfilCWO.png?alt=media&token=454c9582-4fc3-45ef-8429-6dbf2fc85120"},

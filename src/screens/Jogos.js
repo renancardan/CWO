@@ -127,17 +127,20 @@ export default () => {
   const [NumProf, setNumProf] = useState("");
   const [Sexo, setSexo] = useState("");
   const [EsCart, setEsCart] = useState("")
-  
-
+ 
   useEffect(() => { 
       ListandoOc();
-      console.log("Estado"+Estado)
-      console.log("Cidade"+Cidade)
-      console.log("TipoCart"+TipoCart)
-      console.log("Sexo"+Sexo)
-      console.log("NumProf"+NumProf)
-      console.log("NumEmp"+NumEmp)
-  }, [TipoCart, Estado, Cidade, Sexo, NumProf, NumEmp]);
+  }, []);
+
+  // useEffect(() => { 
+  //     ListandoOc();
+  //     console.log("Estado"+Estado)
+  //     console.log("Cidade"+Cidade)
+  //     console.log("TipoCart"+TipoCart)
+  //     console.log("Sexo"+Sexo)
+  //     console.log("NumProf"+NumProf)
+  //     console.log("NumEmp"+NumEmp)
+  // }, [TipoCart, Estado, Cidade, Sexo, NumProf, NumEmp]);
 
   useEffect(() => {
     tempo();
@@ -147,7 +150,7 @@ export default () => {
       PegandoLig()
     }
 
-   }, [ListOc])
+   }, [ListOc, TipoCart, Estado, Cidade, Sexo, NumProf, NumEmp])
 
    useEffect(() => {
     if(IdApos !== ""){
@@ -262,8 +265,141 @@ export default () => {
     var resRev = [];
     for(let i in ListOc){
 
-    resRev.push(ListOc[i])
-       
+  
+    
+            
+            if(Estado === "" && Cidade === "" && TipoCart === null){
+              
+              resRev.push(ListOc[i])
+              
+            } else if(Estado !== "" && Cidade === "" && TipoCart === null){
+              
+              if(ListOc[i].Estado === Estado){
+                resRev.push(ListOc[i])
+              }
+             
+             
+           
+            } else if(Estado !== "" && Cidade !== "" && TipoCart === null){
+              
+              if(ListOc[i].Estado === Estado && ListOc[i].Cidade === Cidade){
+                resRev.push(ListOc[i])
+              }
+            
+           
+            }  else if(Estado !== "" && Cidade === "" && TipoCart !== null && Sexo === "" && NumProf === "" && NumEmp === "" ){
+              
+              if(ListOc[i].Estado === Estado && ListOc[i].Pessoal === TipoCart){
+                resRev.push(ListOc[i])
+              }
+             
+         
+            }  else if(Estado === "" && Cidade === "" && TipoCart !== null && Sexo === "" && NumProf === "" && NumEmp === "" ){
+              
+              if( ListOc[i].Pessoal === TipoCart){
+                resRev.push(ListOc[i])
+              }
+              
+             
+            }   else if(Estado !== "" && Cidade !== "" && TipoCart !== null  && Sexo === "" && NumProf === "" && NumEmp === "" ){
+              
+             
+              if(ListOc[i].Estado === Estado && ListOc[i].Pessoal === TipoCart && ListOc[i].Cidade === Cidade){
+                resRev.push(ListOc[i])
+              }
+            
+               
+            }  else if(Estado !== "" && Cidade === "" && TipoCart === true && Sexo !== "" && NumProf === "" && NumEmp === "" ){
+              
+              
+              if(ListOc[i].Estado === Estado && ListOc[i].Pessoal === TipoCart && ListOc[i].Sexo === Sexo ){
+                resRev.push(ListOc[i])
+              }
+
+          
+                } else if(Estado === "" && Cidade === "" && TipoCart === true && Sexo !== "" && NumProf === "" && NumEmp === ""){
+                  if( ListOc[i].Pessoal === TipoCart && ListOc[i].Sexo === Sexo ){
+                    resRev.push(ListOc[i])
+                  }
+           
+             
+            }   else if(Estado !== "" && Cidade !== "" && TipoCart === true && Sexo !== "" && NumProf === "" && NumEmp === ""){
+              
+              if(ListOc[i].Estado === Estado && ListOc[i].Pessoal === TipoCart && ListOc[i].Sexo === Sexo && ListOc[i].Cidade === Cidade){
+                resRev.push(ListOc[i])
+              }
+            
+            
+            } else if(Estado !== "" && Cidade === "" && TipoCart === true && Sexo === "" && NumProf !== "" && NumEmp === "" ){
+              
+              if(ListOc[i].Estado === Estado && ListOc[i].Pessoal === TipoCart && ListOc[i].Profissao.includes(NumProf) ){
+                resRev.push(ListOc[i])
+              }
+             
+                } else if(Estado === "" && Cidade === "" && TipoCart === true && Sexo === "" && NumProf !== "" && NumEmp === ""){
+                  
+                  if( ListOc[i].Pessoal === TipoCart && ListOc[i].Profissao.includes(NumProf) ){
+                    resRev.push(ListOc[i])
+                  }
+             
+              
+            }   else if(Estado !== "" && Cidade !== "" && TipoCart === true && Sexo === "" && NumProf !== "" && NumEmp === ""){
+              
+              if(ListOc[i].Estado === Estado &&  ListOc[i].Pessoal === TipoCart && ListOc[i].Profissao.includes(NumProf) && ListOc[i].Cidade === Cidade ){
+                resRev.push(ListOc[i])
+              }
+              
+              
+            } else if(Estado !== "" && Cidade === "" && TipoCart === true && Sexo !== "" && NumProf !== "" && NumEmp === "" ){
+              if(ListOc[i].Estado === Estado &&  ListOc[i].Pessoal === TipoCart && ListOc[i].Profissao.includes(NumProf) && ListOc[i].Sexo === Sexo ){
+                resRev.push(ListOc[i])
+              }
+            
+             
+           
+                } else if(Estado === "" && Cidade === "" && TipoCart === true && Sexo !== "" && NumProf !== "" && NumEmp === ""){
+                  if( ListOc[i].Pessoal === TipoCart && ListOc[i].Profissao.includes(NumProf) && ListOc[i].Sexo === Sexo ){
+                    resRev.push(ListOc[i])
+                  }
+              
+               
+            }   else if(Estado !== "" && Cidade !== "" && TipoCart === true && Sexo !== "" && NumProf !== "" && NumEmp === ""){
+              if(ListOc[i].Estado === Estado &&  ListOc[i].Pessoal === TipoCart && ListOc[i].Profissao.includes(NumProf) && ListOc[i].Sexo === Sexo && ListOc[i].Cidade === Cidade){
+                resRev.push(ListOc[i])
+              }
+            
+           
+              
+            } else if(Estado !== "" && Cidade === "" && TipoCart === false && Sexo === "" && NumProf === "" && NumEmp !== "" ){
+              if(ListOc[i].Estado === Estado &&  ListOc[i].Pessoal === TipoCart && ListOc[i].Empresa.includes(NumEmp) ){
+                resRev.push(ListOc[i])
+              }
+           
+            
+              
+                } else if(Estado === "" && Cidade === "" && TipoCart === false && Sexo === "" && NumProf === "" && NumEmp !== ""){
+             
+                  if(  ListOc[i].Pessoal === TipoCart && ListOc[i].Empresa.includes(NumEmp)){
+                    resRev.push(ListOc[i])
+                  }
+              
+            
+             
+            }   else if(Estado !== "" && Cidade !== "" && TipoCart === false && Sexo === "" && NumProf === "" && NumEmp !== ""){
+              
+              if(ListOc[i].Estado === Estado &&  ListOc[i].Pessoal === TipoCart && ListOc[i].Empresa.includes(NumEmp)  && ListOc[i].Cidade === Cidade){
+                resRev.push(ListOc[i])
+              }
+             
+            
+            
+            } 
+ 
+           
+           
+ 
+      
+   
      
         resli.push({
           
@@ -273,11 +409,9 @@ export default () => {
 
     }
 
-    resli = resli.filter(function (a) {
-      return !this[JSON.stringify(a)] && (this[JSON.stringify(a)] = true);
-    }, Object.create(null))
+
     
-    setListLig(resli)
+    
     setLista(resRev)
    }
 
@@ -291,7 +425,7 @@ export default () => {
    const ListandoOc = ()=>{
     
     setCarreg(true)
-    Api.PegandoCartao(Page, TipoCart, Estado, Cidade, Sexo, NumProf, NumEmp, setLista, setCarreg  );
+    Api.PegandoContato(Page, setListOc, setCarreg  );
  
   }
 
@@ -1734,26 +1868,8 @@ export default () => {
                           </>
                           :
                           <>
-                           <FlatList 
-
-                            data={Lista}
-                            //essa função é pra carregar mais listas quando chegar no final da lista faltando 10%
-                              onEndReached={()=>loadPage()}
-                              //essa função é para dizer quantos porcento final da lista tem que tá para carregar a função de carregar mais lista
-                              onEndReachedThreshold={0.3}
-                              keyExtractor={post=> String(post.id)}
-                            // colocar o loading no final da lista para carregar mais conteudo 
-                            // ListFooterComponent={ Loading &&  <Loadin /> }
-                            //realizar uma função quando puxar pra cima 
-                            //onRefresh={refreshList}
-                            //boleano quando a função de refresh acabou 
-                            // refreshing={Refreshin}
-                            //dipara uma função quando os intens que estiver vizivel mudarem
-                              //onViewableItemsChanged={handleView}
-                            // quando o item chegar a 50 porcento carrega a outra imagem
-                            viewabilityConfig={{ minimumViewTime:2000, viewAreaCoveragePercentThreshold:75 }}
-
-                            renderItem={({ item }) => (
+                            {Lista.map((item, key)=>(
+                               <>
                             <View  style={styles.Post}>
                             <TouchableHighlight onPress={()=>IrCartao(item.id)} style={{ padding:5, flexDirection:"row",  alignItems:"center", justifyContent:"space-around", height:70, width:wp('100%'), borderBottomWidth:1, marginBottom:5, borderColor:"#ccc", backgroundColor:item.CorNalist,}}>
                             <>
@@ -1797,8 +1913,10 @@ export default () => {
 
                             </View>
 
-                            )}
-                            />
+                            </>
+
+                            ))}
+
                           
                           </>
 

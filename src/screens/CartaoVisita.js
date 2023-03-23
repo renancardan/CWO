@@ -178,7 +178,14 @@ export default ({route}) => {
     {id:"6", Fundo:"https://firebasestorage.googleapis.com/v0/b/cwoapp-bd594.appspot.com/o/arquivo%2F6.png?alt=media&token=a66e3cc0-8a2c-4c3b-8b84-eb67ab87e192"},
     {id:"7", Fundo:"https://firebasestorage.googleapis.com/v0/b/cwoapp-bd594.appspot.com/o/arquivo%2F7.png?alt=media&token=435eefc3-54b5-4d7c-b0f6-155d19000d6d"},
     {id:"8", Fundo:"https://firebasestorage.googleapis.com/v0/b/cwoapp-bd594.appspot.com/o/arquivo%2F8.png?alt=media&token=32b336da-057c-4e29-b6a7-630a38321646"},
-    {id:"8", Fundo:"https://firebasestorage.googleapis.com/v0/b/cwoapp-bd594.appspot.com/o/arquivo%2F9.png?alt=media&token=95110e86-1033-468c-bce3-cea0b13d2b5a"},
+    {id:"9", Fundo:"https://firebasestorage.googleapis.com/v0/b/cwoapp-bd594.appspot.com/o/arquivo%2F9.png?alt=media&token=95110e86-1033-468c-bce3-cea0b13d2b5a"},
+    {id:"13", Fundo:"https://firebasestorage.googleapis.com/v0/b/cwoapp-bd594.appspot.com/o/arquivo%2F13.png?alt=media&token=d8dd4506-aaef-4a38-a7c1-ea42fead88a6"},
+    {id:"14", Fundo:"https://firebasestorage.googleapis.com/v0/b/cwoapp-bd594.appspot.com/o/arquivo%2F14.png?alt=media&token=738bc039-d6d8-4631-a8a3-71bc3d3574bd"},
+    {id:"15", Fundo:"https://firebasestorage.googleapis.com/v0/b/cwoapp-bd594.appspot.com/o/arquivo%2F15.png?alt=media&token=38c288d5-f712-4df2-b31b-de94bfda11f3"},
+    {id:"16", Fundo:"https://firebasestorage.googleapis.com/v0/b/cwoapp-bd594.appspot.com/o/arquivo%2F16.png?alt=media&token=d7c7dde7-69f7-45fc-b94e-84dda2b6b268"},
+    {id:"17", Fundo:"https://firebasestorage.googleapis.com/v0/b/cwoapp-bd594.appspot.com/o/arquivo%2F17.png?alt=media&token=d14456c5-9dda-4c94-8a1e-db6199d95009"},
+    {id:"18", Fundo:"https://firebasestorage.googleapis.com/v0/b/cwoapp-bd594.appspot.com/o/arquivo%2F18.png?alt=media&token=d50a8f82-30b4-43df-804a-80e68467c29a"},
+    {id:"20", Fundo:"https://firebasestorage.googleapis.com/v0/b/cwoapp-bd594.appspot.com/o/arquivo%2F20.png?alt=media&token=c0e3553e-0e76-42c3-a16b-ea8cec0e9e1a"},
   ])
   const [AtivFund, setAtivFund] = useState(false);
   const [AtiPrivi, setAtiPrivi] = useState(false)
@@ -216,6 +223,7 @@ export default ({route}) => {
   const [Creden, setCreden] = useState(false);
   const [LisCre, setLisCre] = useState([])
   const [QrCode, setQrCode] = useState("")
+  const [DireSite, setDireSite] = useState(false)
  
  
   useEffect(() => {
@@ -277,9 +285,21 @@ console.log(Robo)
   //  }, [SimAp])
 
    useEffect(() => {
-    console.log(CorCart)
  
-  }, [CorCart])
+    if(DireSite === true){
+      if(SiteCard !== ""){
+        if(IdUser !== InfCart.IdDono){
+          console.log(DireSite)
+          console.log(IdUser+" "+InfCart.IdDono)
+          console.log(SiteCard)
+          window.location.replace(SiteCard);
+        }
+      }
+     
+    }
+    
+ 
+  }, [DireSite, SiteCard, IdUser])
 
   // useEffect(() => {
   //   ValorPermio();
@@ -337,6 +357,7 @@ console.log(Robo)
     setEmpresa(InfCart.Empresa?InfCart.Empresa:["",""])
     setLisCre(InfCart.ListCredenciais?InfCart.ListCredenciais:[])
     setQrCode(InfCart.FotoQRCODE?InfCart.FotoQRCODE:"")
+    setDireSite(InfCart.direcionamento?InfCart.direcionamento:false)
      if(InfCart.Estado !== ""){
       for(let i in EstCid){
         if(EstCid[i].nome === InfCart.Estado){
@@ -464,7 +485,7 @@ console.log(Robo)
 
   const SalvandoCartao = ()=>{
     setLoad(true)
-      Api.SalvCart(IdCart, NomePix, IrImg, Ativo, AtiPrivi, Pessoal, Profissao, Empresa, Cidade, Estado, Sexo, CorCart, NomeCart, ImgCart, AtiImg, FundoImg, FunCart, AtiFun, TelCart, AtiTel, WhatCart, AtiWhat, InstCard, AtiInst, FaceCard, AtiFace, SiteCard, AtiSite, TwCard, AtiTw, TikCard, AtiTik, LocCard, AtiLoc, PixCard, TipPix, AtiPix, AtiSal, AtiCom, AtiYou, YouCard, TeleCard, AtiTele, EmailCard, AtiEmail, setAlert, setAlertTipo, setLoad, )
+      Api.SalvCart(IdCart, DireSite, NomePix, IrImg, Ativo, AtiPrivi, Pessoal, Profissao, Empresa, Cidade, Estado, Sexo, CorCart, NomeCart, ImgCart, AtiImg, FundoImg, FunCart, AtiFun, TelCart, AtiTel, WhatCart, AtiWhat, InstCard, AtiInst, FaceCard, AtiFace, SiteCard, AtiSite, TwCard, AtiTw, TikCard, AtiTik, LocCard, AtiLoc, PixCard, TipPix, AtiPix, AtiSal, AtiCom, AtiYou, YouCard, TeleCard, AtiTele, EmailCard, AtiEmail, setAlert, setAlertTipo, setLoad, )
   }
 
   const compartir = async () => {
@@ -582,6 +603,10 @@ console.log(Robo)
     
     setCorCart(item)
     }
+
+    const AtivandoDireci = ()=>{
+      setDireSite(!DireSite)
+     }
 
     const AtivandoCartAtivo = ()=>{
       setCartAtivod(!CartAtivod)
@@ -712,10 +737,14 @@ console.log(Robo)
     setInstruSite(!InstruSite)
    }
    const VendoSite = ()=>{
+
     
+    console.log(SiteCard)
   
-     window.open(`${SiteCard}`, '_blank');
+     window.open(`${SiteCard}`);
    }
+
+
 
  const AtivandoInst = ()=>{
   setAtiInst(!AtiInst)
@@ -1845,8 +1874,8 @@ console.log(Robo)
                    <TouchableHighlight onPress={InstrucaoInst} style={{width:70, height:50, backgroundColor:"#7F1E2B", borderRadius:5,  flex:1, justifyContent:"center", alignItems:"center" }} >
                      <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Fechar</Text>
                   </TouchableHighlight>
-                  <View style={{width:270, height:200, backgroundColor:"#000", justifyContent:"center", alignItems:"center" }}>
-
+                  <View style={{width:270, height:200, backgroundColor:"#fff", justifyContent:"center", alignItems:"center" }}>
+                  <Image source={require('../assets/instagram.gif')}  style={{width:300, height:200}} />
                   </View>
                    </>
 
@@ -1907,8 +1936,8 @@ console.log(Robo)
                    <TouchableHighlight onPress={InstrucaoFace} style={{width:70, height:50, backgroundColor:"#7F1E2B", borderRadius:5,  flex:1, justifyContent:"center", alignItems:"center" }} >
                      <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Fechar</Text>
                   </TouchableHighlight>
-                  <View style={{width:270, height:200, backgroundColor:"#000", justifyContent:"center", alignItems:"center" }}>
-
+                  <View style={{width:270, height:200, backgroundColor:"#fff", justifyContent:"center", alignItems:"center" }}>
+                  <Image source={require('../assets/facebook.gif')}  style={{width:300, height:200}} />
                   </View>
                    </>
 
@@ -1944,6 +1973,37 @@ console.log(Robo)
                       </View>
                       </>
                      </TouchableHighlight>
+                     {DireSite === false ?
+                      <>
+                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Direcionamento Desativado</Text> 
+                       <TouchableHighlight style={{width:60, height:35, backgroundColor:"red", borderRadius:20, margin:10, borderColor:"#ccc", borderWidth:3,   }} onPress={()=>AtivandoDireci()}>
+                       <>
+                       <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginRight:1}}>
+  
+                       </View>
+                       </>
+                      </TouchableHighlight>
+                      </>
+                    
+
+                      :
+                      <>
+                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Direcionamento Ativado</Text> 
+                      <TouchableHighlight style={{width:60, height:35, backgroundColor:"green", borderRadius:20, margin:10, flexDirection:"row",  borderColor:"#ccc", borderWidth:3,  }} onPress={()=>AtivandoDireci()}>
+                      <>
+                      <View style={{width:20, height:30 , borderRadius:20, marginLeft:1}}>
+ 
+                       </View>
+                      <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginLeft:1}}>
+ 
+                      </View>
+                      </>
+                     </TouchableHighlight>
+                    
+                  
+                  
+                     </>
+                      }
                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", fontWeight:"bold", }}>Link do Seu Site</Text> 
                    <View  style = {styles.InputAra15}>
                   <FontAwesome name="eercast" size={40} color="black" />
@@ -1969,8 +2029,8 @@ console.log(Robo)
                    <TouchableHighlight onPress={InstrucaoSite} style={{width:70, height:50, backgroundColor:"#7F1E2B", borderRadius:5,  flex:1, justifyContent:"center", alignItems:"center" }} >
                      <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Fechar</Text>
                   </TouchableHighlight>
-                  <View style={{width:270, height:200, backgroundColor:"#000", justifyContent:"center", alignItems:"center" }}>
-
+                  <View style={{width:270, height:200, backgroundColor:"#fff", justifyContent:"center", alignItems:"center" }}>
+                  <Image source={require('../assets/site.gif')}  style={{width:300, height:200}} />
                   </View>
                    </>
 
@@ -2031,8 +2091,8 @@ console.log(Robo)
                    <TouchableHighlight onPress={InstrucaoTw} style={{width:70, height:50, backgroundColor:"#7F1E2B", borderRadius:5,  flex:1, justifyContent:"center", alignItems:"center" }} >
                      <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Fechar</Text>
                   </TouchableHighlight>
-                  <View style={{width:270, height:200, backgroundColor:"#000", justifyContent:"center", alignItems:"center" }}>
-
+                  <View style={{width:270, height:200, backgroundColor:"#fff", justifyContent:"center", alignItems:"center" }}>
+                  <Image source={require('../assets/twitter.gif')}  style={{width:300, height:200}} />
                   </View>
                    </>
 
@@ -2093,8 +2153,8 @@ console.log(Robo)
                    <TouchableHighlight onPress={InstrucaoTik} style={{width:70, height:50, backgroundColor:"#7F1E2B", borderRadius:5,  flex:1, justifyContent:"center", alignItems:"center" }} >
                      <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Fechar</Text>
                   </TouchableHighlight>
-                  <View style={{width:270, height:200, backgroundColor:"#000", justifyContent:"center", alignItems:"center" }}>
-
+                  <View style={{width:270, height:200, backgroundColor:"#fff", justifyContent:"center", alignItems:"center" }}>
+                  <Image source={require('../assets/tiktok.gif')}  style={{width:300, height:200}} />
                   </View>
                    </>
 
@@ -2155,8 +2215,8 @@ console.log(Robo)
                    <TouchableHighlight onPress={InstrucaoYou} style={{width:70, height:50, backgroundColor:"#7F1E2B", borderRadius:5,  flex:1, justifyContent:"center", alignItems:"center" }} >
                      <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Fechar</Text>
                   </TouchableHighlight>
-                  <View style={{width:270, height:200, backgroundColor:"#000", justifyContent:"center", alignItems:"center" }}>
-
+                  <View style={{width:270, height:200, backgroundColor:"#fff", justifyContent:"center", alignItems:"center" }}>
+                  <Image source={require('../assets/youtube.gif')}  style={{width:300, height:200}} />
                   </View>
                    </>
 
@@ -2206,23 +2266,7 @@ console.log(Robo)
 
                   </View>
                   
-                   {InstruEmail === false ?
-                    <>
-                    <TouchableHighlight onPress={InstrucaoEmail} style={{width:200, height:50, backgroundColor:"#007895", borderRadius:5,  flex:1, justifyContent:"center", alignItems:"center" }} >
-                      <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Instrução Email  </Text>
-                   </TouchableHighlight>
-                    </>
-                   :
-                   <>
-                   <TouchableHighlight onPress={InstrucaoEmail} style={{width:70, height:50, backgroundColor:"#7F1E2B", borderRadius:5,  flex:1, justifyContent:"center", alignItems:"center" }} >
-                     <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Fechar</Text>
-                  </TouchableHighlight>
-                  <View style={{width:270, height:200, backgroundColor:"#000", justifyContent:"center", alignItems:"center" }}>
-
-                  </View>
-                   </>
-
-                   }
+                  
                      </>
                       }
    <View style={{width:300, height:3, backgroundColor:"#ccc", marginTop:10}}>
@@ -2366,8 +2410,8 @@ console.log(Robo)
                    <TouchableHighlight onPress={InstrucaoTele} style={{width:70, height:50, backgroundColor:"#7F1E2B", borderRadius:5,  flex:1, justifyContent:"center", alignItems:"center" }} >
                      <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Fechar</Text>
                   </TouchableHighlight>
-                  <View style={{width:270, height:200, backgroundColor:"#000", justifyContent:"center", alignItems:"center" }}>
-
+                  <View style={{width:270, height:200, backgroundColor:"#fff", justifyContent:"center", alignItems:"center" }}>
+                  <Image source={require('../assets/telegram.gif')}  style={{width:300, height:200}} />
                   </View>
                    </>
 
@@ -2429,8 +2473,8 @@ console.log(Robo)
                    <TouchableHighlight onPress={InstrucaoLoc} style={{width:70, height:50, backgroundColor:"#7F1E2B", borderRadius:5,  flex:1, justifyContent:"center", alignItems:"center" }} >
                      <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Fechar</Text>
                   </TouchableHighlight>
-                  <View style={{width:270, height:200, backgroundColor:"#000", justifyContent:"center", alignItems:"center" }}>
-
+                  <View style={{width:270, height:200, backgroundColor:"#fff", justifyContent:"center", alignItems:"center" }}>
+                  <Image source={require('../assets/locali.gif')}  style={{width:300, height:200}} />
                   </View>
                    </>
 
@@ -3163,7 +3207,7 @@ console.log(Robo)
          <>
     
       
-      <Text style={styles.TexTitu} >Digite o Código do Vendedor</Text>
+      <Text style={styles.TexTitu} >Digite o Código do Certificado</Text>
                 
                    <View  style = {styles.InputAra}>
                    <FontAwesome name="expeditedssl" size={40} color="black" />
