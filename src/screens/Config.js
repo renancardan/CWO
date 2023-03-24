@@ -272,6 +272,11 @@ export default () => {
     Api.CriandoCartao(ModalVer, setAlert, setAlertTipo, setCarre, setModalVer)
    }
 
+   const CriarEmpresa = ()=>{
+    setCarre(true)
+    Api.CriandoEmpresa(ModalVer, setAlert, setAlertTipo, setCarre, setModalVer)
+   }
+
 
 
    const FecharModal = ()=>{
@@ -915,6 +920,13 @@ export default () => {
                       <Text  style={{  fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Lista de</Text>
                       <Text  style={{  fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Cartão</Text>
                       </>
+                 </TouchableHighlight>
+                 <TouchableHighlight style={{width:70, height:100, backgroundColor:"red", borderRadius:10, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>CriarEmpresa()}>
+                    <>
+                    <FontAwesome name="book"  size={40} color="#fff" />
+                      <Text  style={{ fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Criar</Text>
+                      <Text  style={{ fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Empresa</Text>
+                      </> 
                  </TouchableHighlight>
               </View>
             

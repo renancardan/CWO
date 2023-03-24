@@ -3139,6 +3139,51 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
  
        });
      },
+
+     CriandoEmpresa: async(ModalVer, setAlert, setAlertTipo, setCarre, setModalVer)=>{
+      var num = Math.floor(Math.random() * (7 - 0 + 1)) + 0
+       var Cores = ["#168500", "#0DBDE9", "#091A61", "#B59C0C", "#430459", "#0DBDE9", "#B16909", "#9F1F54" ]
+       var Msg = ""
+       var IdUser = ""
+       var Nome = ""
+       var tel = await AsyncStorage.getItem('Tel');
+       var time = await AsyncStorage.getItem('@entrada');
+       var temp = parseInt(time)
+       await firestore.collection("users")
+       .where("Telefone", "==", tel)
+       .where("DataEntCel", "==", temp)
+       .get().then( async(querySnapshot) => {
+         if(querySnapshot.size !== 0){
+           querySnapshot.forEach( async (doc) => {
+             IdUser = doc.id,
+             Nome = doc.data().Nome
+ 
+             });
+ 
+             await firestore.collection("EmrpesaSite")
+             .add({
+             Nome:"",
+             Contas:[],
+             Funcionamento:[],
+             Marketing:[],
+             Mesas:[],
+             MsgAuto:{},
+             Redes:{},
+             Visitantes:0,
+             numero:0,
+             TempoChat:3,
+      
+          
+             }).then(async (def) => {
+               setCarre(false);
+               setModalVer(true)
+               setAlert("Criado com Sucesso!");
+               setAlertTipo("success");
+             })
+           }
+ 
+       });
+     },
  
 
     CriandoCartao: async(ModalVer, setAlert, setAlertTipo, setCarre, setModalVer)=>{
