@@ -3141,89 +3141,37 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
      },
 
      CriandoEmpresa: async(ModalVer, setAlert, setAlertTipo, setCarre, setModalVer)=>{
-     
     
-     
-
-
-      var num = Math.floor(Math.random() * (7 - 0 + 1)) + 0
-       var Cores = ["#168500", "#0DBDE9", "#091A61", "#B59C0C", "#430459", "#0DBDE9", "#B16909", "#9F1F54" ]
-       var Msg = ""
-       var IdUser = ""
-       var Nome = ""
-       var tel = await AsyncStorage.getItem('Tel');
-       var time = await AsyncStorage.getItem('@entrada');
-       var temp = parseInt(time)
-       await firestore.collection("users")
-       .where("Telefone", "==", tel)
-       .where("DataEntCel", "==", temp)
-       .get().then( async(querySnapshot) => {
-         if(querySnapshot.size !== 0){
-           querySnapshot.forEach( async (doc) => {
-             IdUser = doc.id,
-             Nome = doc.data().Nome
- 
-             });
- 
-             await firestore.collection("EmrpesaSite")
-             .add({
-             Nome:"",
-             Contas:[
-              {
-                Telefone: "(86)99543-7113",
-                Conta:"Geral"
-              },
-             ],
-             Funcionamento:[
-              {Id:0, Dia:"Segunda", Abertura:"00:00", Fechamento:"00:00", Ativo:false},
-              {Id:1, Dia:"Terça-Feira", Abertura:"00:00", Fechamento:"00:00", Ativo:false},
-              {Id:2, Dia:"Quarta-Feira", Abertura:"00:00", Fechamento:"00:00", Ativo:false},
-              {Id:3, Dia:"Quinta-Feira", Abertura:"00:00", Fechamento:"00:00", Ativo:false},
-              {Id:4, Dia:"Sexta-Feira", Abertura:"00:00", Fechamento:"00:00", Ativo:false},
-              {Id:5, Dia:"Sábado", Abertura:"00:00", Fechamento:"00:00", Ativo:false},
-              {Id:6, Dia:"Domingo", Abertura:"00:00", Fechamento:"00:00", Ativo:false},
-             ],
-             Marketing:[],
-             Mesas:[
-              "M1",
-              "M2",
-              "M3",
-              "M4",
-              "M5",
-              "M6",
-              "M7",
-              "M8",
-              "M9",
-              "M10",
-              "Externo"
-             ],
-             MsgAuto:{
+      await firestore.collection("EmrpesaSite")
+      .doc("HWn46DQtiBBDVKf3c5Md")
+      .update({
+       "MsgAuto":{
               Msg1A:{
                 Descricao:"Mensagem de Apresentação",
-                Msg:["Olá, Sou o atendente Ronaldo, Do restaurante Pizzaria e C&A"],
+                Msg:["👋  Olá, Sou o atendente Ronaldo, Do restaurante Pizzaria e C&A"],
                 TempoSeg:1000,
                 Ativo:true,
                 Type:"text"
               },
               Msg1B:{
                 Descricao:"Mensagem de Apresentação",
-                Msg:["Nos Informe seu Nome por Gentileza?"],
-                TempoSeg:3000,
+                Msg:["👨‍💻  Nos Informe seu Nome por Gentileza?"],
+                TempoSeg:0,
                 Ativo:true,
                 Type:"text"
               },
                Msg2A:{
                 Descricao:"Mensagem de Informação Incial",
-                Msg:[", Obrigado por nós escolher, agora vamos iniciar o processo de pedido. Para facilitar o processo, não é preciso você digitar nada. Só clique nos botões conforme sua escolha. Vamos lá!"],
+                Msg:[", Obrigado   por nós escolher, agora vamos iniciar o atendimento. 👨‍💻 👏👏 👏👏 "],
                 TempoSeg:2000,
                 Ativo:true,
                 Type:"text"
               },
               Msg3A:{
                 Descricao:"Mensagem de Escolha, Fazer pedido, Reclamações",
-                Msg:[", O que você gostaria de Realizar agora!"],
+                Msg:[",  O que você gostaria de Realizar agora! ⁉️ ☑️"],
                 TempoSeg:2000,
-                Botao:[{id:"1", body:"Fazer Pedido"}, {id:"1", body:"Fazer Reclamação"}, {id:"1", body:"Localização do Restaurante"}, ],
+                Botao:[{id:"0", body:"Voltar"}, {id:"1", body:"Fazer Pedido"}, {id:"2", body:"Fazer Reclamação"}, {id:"3", body:"Localização do Restaurante"}, {id:"4", body:"Horários de Funcionamentos"}, ],
                 Ativo:true,
                 Type:"Botao"
               },
@@ -3466,40 +3414,382 @@ AnaliseTelMudar: async (Tel, setMsgErro,  setBtn1, setCarre) => {
                 Ativo:true,
                 Type:"RestLoc"
               },
-
-            
-
-             
-             },
-             NomeWhats:"CWO",
-             Redes:{
-              Facebook:{
-               Link:"",
-               Ativo:false,
+               Msg16A:{
+                Descricao:"Mensagem de Texto, De Erro Digitado",
+                Msg:[" ⚠️⛔😔😢😭 Você Não Digitou Os Numeros Das Opções Acima, digite Um Dos Numeros, para podermos Anotar o Pedido, Por Favor!🙏🙏 🙏 ⚠️"],
+                TempoSeg:2000,
+                Ativo:true,
+                Type:"text"
               },
-              Instagram:{
-                Link:"",
-                Ativo:false,
-               },
-               Localizacao:{
-                Link:"",
-                Ativo:false,
-               },
+                Msg16B:{
+                Descricao:"Mensagem de Texto, De Agradecimento Por Ter Digitado Certo",
+                Msg:["✔️🤭😁👏👏 ÉÉÉÉÉ, Agora sim Você Acertou, Você é top, Muitissimo Obrigado!🤝🤝🤝 Agora Vamos Da continuidade Ao Pedido!👊🤜🤛✔️"],
+                TempoSeg:2000,
+                Ativo:true,
+                Type:"text"
+              },
+
+
              },
-             Visitantes:0,
-             numero:0,
-             TempoChat:3,
+      }).then(async (def) => {
+                 setCarre(false);
+                 setModalVer(true)
+                 setAlert("Criado com Sucesso!");
+                 setAlertTipo("success");
+               })
+
+ 
+
+
+      
+ 
+      //        await firestore.collection("EmrpesaSite")
+      //        .add({
+      //        Nome:"",
+      //        Contas:[
+      //         {
+      //           Telefone: "(86)99543-7113",
+      //           Conta:"Geral"
+      //         },
+      //        ],
+      //        Funcionamento:[
+      //         {Id:0, Dia:"Segunda", Abertura:"00:00", Fechamento:"00:00", Ativo:false},
+      //         {Id:1, Dia:"Terça-Feira", Abertura:"00:00", Fechamento:"00:00", Ativo:false},
+      //         {Id:2, Dia:"Quarta-Feira", Abertura:"00:00", Fechamento:"00:00", Ativo:false},
+      //         {Id:3, Dia:"Quinta-Feira", Abertura:"00:00", Fechamento:"00:00", Ativo:false},
+      //         {Id:4, Dia:"Sexta-Feira", Abertura:"00:00", Fechamento:"00:00", Ativo:false},
+      //         {Id:5, Dia:"Sábado", Abertura:"00:00", Fechamento:"00:00", Ativo:false},
+      //         {Id:6, Dia:"Domingo", Abertura:"00:00", Fechamento:"00:00", Ativo:false},
+      //        ],
+      //        Marketing:[],
+      //        Mesas:[
+      //         "M1",
+      //         "M2",
+      //         "M3",
+      //         "M4",
+      //         "M5",
+      //         "M6",
+      //         "M7",
+      //         "M8",
+      //         "M9",
+      //         "M10",
+      //         "Externo"
+      //        ],
+      //        MsgAuto:{
+      //         Msg1A:{
+      //           Descricao:"Mensagem de Apresentação",
+      //           Msg:["👋  Olá, Sou o atendente Ronaldo, Do restaurante Pizzaria e C&A"],
+      //           TempoSeg:1000,
+      //           Ativo:true,
+      //           Type:"text"
+      //         },
+      //         Msg1B:{
+      //           Descricao:"Mensagem de Apresentação",
+      //           Msg:["👨‍💻  Nos Informe seu Nome por Gentileza?"],
+      //           TempoSeg:0,
+      //           Ativo:true,
+      //           Type:"text"
+      //         },
+      //          Msg2A:{
+      //           Descricao:"Mensagem de Informação Incial",
+      //           Msg:[", Obrigado   por nós escolher, agora vamos iniciar o atendimento. 👨‍💻 👏👏 👏👏 "],
+      //           TempoSeg:2000,
+      //           Ativo:true,
+      //           Type:"text"
+      //         },
+      //         Msg3A:{
+      //           Descricao:"Mensagem de Escolha, Fazer pedido, Reclamações",
+      //           Msg:[",  O que você gostaria de Realizar agora! ⁉️ ☑️"],
+      //           TempoSeg:2000,
+      //           Botao:[{id:"0", body:"Voltar"}, {id:"1", body:"Fazer Pedido"}, {id:"2", body:"Fazer Reclamação"}, {id:"3", body:"Localização do Restaurante"}, {id:"4", body:"Horários de Funcionamentos"}, ],
+      //           Ativo:true,
+      //           Type:"Botao"
+      //         },
+      //         Msg4A:{
+      //           Descricao:"Mensagem de Escolha, sessões",
+      //           Msg:[", Ecolha a Sessão que quer pedir"],
+      //           TempoSeg:2000,
+      //           Botao:[],
+      //           Ativo:true,
+      //           Type:"Botao"
+      //         },
+      //         Msg4B:{
+      //           Descricao:"Mensagem de Escolha, de Item",
+      //           Msg:[", Ecolha agora o Item que você quer pedir"],
+      //           TempoSeg:2000,
+      //           List:[],
+      //           Ativo:true,
+      //           Type:"list"
+      //         },
+      //         Msg4C:{
+      //           Descricao:"Mensagem de Escolha, de Variações do Item",
+      //           Msg:[", Ecolha o Modelo do Item que quer pedir"],
+      //           TempoSeg:2000,
+      //           Botao:[],
+      //           Ativo:true,
+      //           Type:"Botao"
+      //         },
+      //         Msg4D:{
+      //           Descricao:"Mensagem de Escolha, de Quantidade do Item",
+      //           Msg:[", Ecolha a Quantidade"],
+      //           TempoSeg:2000,
+      //           Botao:[],
+      //           Ativo:true,
+      //           Type:"Botao"
+      //         },
+      //         Msg4E:{
+      //           Descricao:"Mensagem de Escolha, se Deseja Retirar Algo",
+      //           Msg:[", Deseja retirar algum ingrediente, desse item?"],
+      //           TempoSeg:2000,
+      //           Botao:[{id:"1", body:"Sim"}, {id:"2", body:"Não"} ],
+      //           Ativo:true,
+      //           Type:"Botao"
+      //         },
+      //         Msg4F:{
+      //           Descricao:"Mensagem de Texto, Digita o que Quer Retirar",
+      //           Msg:["Digite o que você quer retirar"],
+      //           TempoSeg:2000,
+      //           Ativo:true,
+      //           Type:"text"
+      //         },
+      //         Msg4G:{
+      //           Descricao:"Mensagem de Texto, Nota do Pedido",
+      //           Msg:["Seu Pedido Foi Anotado!"],
+      //           TempoSeg:2000,
+      //           Ativo:true,
+      //           Type:"text"
+      //         },
+      //         Msg5A:{
+      //           Descricao:"Mensagem de Escolha, Qual Item deseja Retirar",
+      //           Msg:[", Qual item deseja retirar?"],
+      //           TempoSeg:2000,
+      //           Botao:[],
+      //           Ativo:true,
+      //           Type:"Botao"
+      //         },
+      //         Msg5B:{
+      //           Descricao:"Mensagem de Texto, Nota do Pedido Retirada",
+      //           Msg:["O Item Foi Retirado, Esta Ai Sua nota de Pedido!"],
+      //           TempoSeg:2000,
+      //           Ativo:true,
+      //           Type:"text"
+      //         },
+      //         Msg6A:{
+      //           Descricao:"Mensagem de Escolha, Qual Ação vai fazer Depois da Escolha",
+      //           Msg:[", O que deseja fazer agora?"],
+      //           TempoSeg:2000,
+      //           Botao:[{id:"1", body:"Colocar mais itens na nota"}, {id:"2", body:"Tirar um Item da Nota"}, {id:"2", body:"Tirar um Item da Nota"},  {id:"3", body:"Confirma o Pedido"},  ],
+      //           Ativo:true,
+      //           Type:"Botao"
+      //         },
+      //         Msg7A:{
+      //           Descricao:"Mensagem de Texto, Informando Que Quer o Endereço Bairro ",
+      //           Msg:[", falta pouco para concluir o pedido, precisamos do seu endereço, Primeiramente digite o Bairro!"],
+      //           Botao:[{}],                
+      //           TempoSeg:2000,
+      //           Ativo:true,
+      //           Type:"Botao"
+      //         },
+      //         Msg7B:{
+      //           Descricao:"Mensagem de Texto, Informando Que Quer o Endereço Rua ",
+      //           Msg:["Agora Digite a Rua"],
+      //           TempoSeg:2000,
+      //           Ativo:true,
+      //           Type:"text"
+      //         },
+      //         Msg7C:{
+      //           Descricao:"Mensagem de Texto, Informando Que Quer o Endereço Numero ",
+      //           Msg:["Agora Digite o Numero da Casa"],
+      //           TempoSeg:2000,
+      //           Ativo:true,
+      //           Type:"text"
+      //         },
+      //         Msg7D:{
+      //           Descricao:"Mensagem de Escolha, Esta No Endereço da Entrega",
+      //           Msg:[", Você está no endereço da Entrega?"],
+      //           TempoSeg:2000,
+      //           Botao:[{id:"1", body:"Sim"}, {id:"2", body:"Não"} ],
+      //           Ativo:true,
+      //           Type:"Botao"
+      //         },          
+      //         Msg8A:{
+      //           Descricao:"Mensagem de Texto, Informando a Localização",
+      //           Msg:[", Para Aumentar a rapidez na entrega, e ajudar nossos entregadores, nos envie a sua localização, é muito simples, siga as instruções."],
+      //           TempoSeg:2000,
+      //           Ativo:true,
+      //           Type:"Localiza"
+      //         },
+      //         Msg9A:{
+      //           Descricao:"Mensagem de Texto, Informando O Endereço Da entrega ",
+      //           Msg:["Endereço para Entrega Entrega"],
+      //           TempoSeg:2000,
+      //           Ativo:true,
+      //           Type:"End"
+      //         },
+      //         Msg9B:{
+      //           Descricao:"Mensagem de Escolha, Esse é o Endereço da Entrega",
+      //           Msg:["Esse é o endereço Para entrega?"],
+      //           TempoSeg:2000,
+      //           Botao:[{id:"1", body:"Sim"}, {id:"2", body:"Não"} ],
+      //           Ativo:true,
+      //           Type:"Botao"
+      //         },
+      //         Msg10A:{
+      //           Descricao:"Mensagem de Texto, Valor da Entrega",
+      //           Msg:["Esse è O Valor da Entrega"],
+      //           TempoSeg:2000,
+      //           Ativo:true,
+      //           Type:"text"
+      //         },
+      //         Msg10B:{
+      //           Descricao:"Mensagem de Escolha,Forma de Pagamento",
+      //           Msg:["Qual vai ser a forma de Pagamento?"],
+      //           TempoSeg:2000,
+      //           Botao:[{id:"1", body:"Pix"}, {id:"2", body:"Cartão"}, {id:"2", body:"Dinheiro"},  ],
+      //           Ativo:true,
+      //           Type:"Botao"
+      //         },
+      //         Msg11A:{
+      //           Descricao:"Mensagem de Texto, Pix",
+      //           Msg:["Esse é Nosso Pix"],
+      //           Inf:[{id:"Nome", Inf:""}, {id:"Tipo", Inf:""}, {id:"Numero", Inf:""},],
+      //           TempoSeg:2000,
+      //           Ativo:true,
+      //           Type:"textInf"
+      //         },
+      //         Msg11B:{
+      //           Descricao:"Mensagem de Texto, Pix Avisos",
+      //           Msg:["Esperamos a Imagem do Comprovante para da Inicio ao Pedido"],
+      //           TempoSeg:2000,
+      //           Ativo:true,
+      //           Type:"text"
+      //         },
+      //         Msg12A:{
+      //           Descricao:"Mensagem de Escolha, Dinheiro para Troco",
+      //           Msg:["Prescisa de troco? Valor do Pedido:"],
+      //           TempoSeg:2000,
+      //           Botao:[{id:"1", body:"Sim"}, {id:"2", body:"Não"} ],
+      //           Ativo:true,
+      //           Type:"Botao"
+      //         },
+      //         Msg12B:{
+      //           Descricao:"Mensagem de Texto, Troco para Quanto",
+      //           Msg:["Você que troco para quanto?"],
+      //           TempoSeg:2000,
+      //           Ativo:true,
+      //           Type:"text"
+      //         },
+      //         Msg13A:{
+      //           Descricao:"Mensagem de Texto, Pagamento Com Cartão",
+      //           Msg:["O entregador levará a maquina para passar o cartão."],
+      //           TempoSeg:2000,
+      //           Ativo:true,
+      //           Type:"text"
+      //         },
+      //         Msg13B:{
+      //           Descricao:"Mensagem de Texto, Pedido Pronto",
+      //           Msg:["Nota Completa do Pedido"],
+      //           Inf:[],
+      //           TempoSeg:2000,
+      //           Ativo:true,
+      //           Type:"textInf"
+      //         },
+      //         Msg13C:{
+      //           Descricao:"Mensagem de Escolha, Ultima Pergunta",
+      //           Msg:["Posso mandar Fazer o pedido?"],
+      //           TempoSeg:2000,
+      //           Botao:[{id:"1", body:"Sim"}, {id:"2", body:"Não"} ],
+      //           Ativo:true,
+      //           Type:"Botao"
+      //         },
+      //         Msg13D:{
+      //           Descricao:"Mensagem de Texto, Pedido sendo Feito",
+      //           Msg:["Pronto enviamos seu pedido para produção."],
+      //           TempoSeg:2000,
+      //           Ativo:true,
+      //           Type:"text"
+      //         },
+      //         Msg13E:{
+      //           Descricao:"Mensagem de Texto, Pedido Negado",
+      //           Msg:["Você não Quis mais o pedido, poderar nos relatar por que?"],
+      //           TempoSeg:2000,
+      //           Ativo:true,
+      //           Type:"text"
+      //         },
+      //         Msg13F:{
+      //           Descricao:"Mensagem de Texto, Desculpas",
+      //           Msg:["Nos desculpe por qualquer transtorno, nosso objetivo é sempre melhorar o Nosso atendimento! Até a próxima"],
+      //           TempoSeg:2000,
+      //           Ativo:true,
+      //           Type:"text"
+      //         },
+      //         Msg14A:{
+      //           Descricao:"Mensagem de Texto, Reclamações",
+      //           Msg:["Pode Digitar Sua Reclamações"],
+      //           TempoSeg:2000,
+      //           Ativo:true,
+      //           Type:"text"
+      //         },
+      //         Msg14B:{
+      //           Descricao:"Mensagem de Texto, Resposta da Reclamação",
+      //           Msg:["Nos desculpe por qualquer transtorno, nosso objetivo é sempre melhorar o Nosso atendimento! Até a próxima"],
+      //           TempoSeg:2000,
+      //           Ativo:true,
+      //           Type:"text"
+      //         },
+      //         Msg15B:{
+      //           Descricao:"Mensagem de Texto, Localização",
+      //           Msg:["Essa é a Localização do Nosso Restaurante, esperamos você, para melhor lhe atender."],
+      //           TempoSeg:2000,
+      //           Ativo:true,
+      //           Type:"RestLoc"
+      //         },
+       //         Msg16A:{
+      //           Descricao:"Mensagem de Texto, De Erro Digitado",
+      //           Msg:[" ⚠️⛔😔😢😭 Você Não Digitou Os Numeros Das Opções Acima, digite Um Dos Numeros, para podermos Anotar o Pedido, Por Favor!🙏🙏 🙏 ⚠️"],
+      //           TempoSeg:2000,
+      //           Ativo:true,
+      //           Type:"text"
+      //         },
+        //         Msg16B:{
+      //           Descricao:"Mensagem de Texto, De Agradecimento Por Ter Digitado Certo",
+      //           Msg:["✔️🤭😁👏👏 ÉÉÉÉÉ, Agora sim Você Acertou, Você é top, Muitissimo Obrigado!🤝🤝🤝 Agora Vamos Da continuidade Ao Pedido!👊🤜🤛✔️"],
+      //           TempoSeg:2000,
+      //           Ativo:true,
+      //           Type:"text"
+      //         },
+
+
+      //        },
+      //        NomeWhats:"CWO",
+      //        Redes:{
+      //         Facebook:{
+      //          Link:"",
+      //          Ativo:false,
+      //         },
+      //         Instagram:{
+      //           Link:"",
+      //           Ativo:false,
+      //          },
+      //          Localizacao:{
+      //           Link:"",
+      //           Ativo:false,
+      //          },
+      //        },
+      //        Visitantes:0,
+      //        numero:0,
+      //        TempoChat:3,
       
           
-             }).then(async (def) => {
-               setCarre(false);
-               setModalVer(true)
-               setAlert("Criado com Sucesso!");
-               setAlertTipo("success");
-             })
-           }
+      //        }).then(async (def) => {
+      //          setCarre(false);
+      //          setModalVer(true)
+      //          setAlert("Criado com Sucesso!");
+      //          setAlertTipo("success");
+      //        })
+      //      }
  
-       });
+      //  });
      },
  
 
