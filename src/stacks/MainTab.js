@@ -231,7 +231,7 @@ export default function Routes() {
               )
             }}
           /> */}
-          <Tab.Screen name="Meus Contatos" component={Jogo} 
+          <Tab.Screen name="Notícias" component={Jogo} 
           options={{
             tabBarIcon: ({size, color}) => (
               <FontAwesome name="list-alt" size={size} color={color}/>
@@ -255,10 +255,10 @@ export default function Routes() {
             )
           }}
           />
-          <Tab.Screen name="Meus Cartões" component={Cambista} 
+          <Tab.Screen name="Minha Conta" component={Cambista} 
              options={{
               tabBarIcon: ({size, color}) => (
-                <FontAwesome name="th-list"  size={size} color={color}/>
+                <FontAwesome name="user"  size={size} color={color}/>
   
               )
             }}

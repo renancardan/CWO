@@ -1,6 +1,6 @@
 
 import React, { Component, useState,  useContext, useEffect, useRef } from 'react'
-import {Modal, Text, FlatList, View, StyleSheet, ImageBackground, Image, Button, TouchableHighlight, KeyboardAvoidingView, ScrollView } from 'react-native'
+import {Modal, Text, FlatList, View, StyleSheet, ImageBackground, Image, Button, TouchableHighlight, KeyboardAvoidingView, ScrollView, Linking, } from 'react-native'
 import {FontAwesome} from "@expo/vector-icons";
 import { ModalDatePicker } from "react-native-material-date-picker";
 import Hora from '../components/Hora';
@@ -20,6 +20,7 @@ import MultiSelect from 'react-native-multiple-select';
 import ProfList from '../services/Profissoes.json'
 import EstCid from '../services/cidadejson.json'
 import Empre from '../services/Empresas.json'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 //import Datand from '../components/datando';
 
@@ -126,7 +127,9 @@ export default () => {
   const [Profissao, setProfissao] = useState("");
   const [NumProf, setNumProf] = useState("");
   const [Sexo, setSexo] = useState("");
-  const [EsCart, setEsCart] = useState("")
+  const [EsCart, setEsCart] = useState("");
+  const [IdNoticia, setIdNoticia] = useState("")
+  
  
   useEffect(() => { 
       ListandoOc();
@@ -149,7 +152,7 @@ export default () => {
     if(ListOc.length >= 1){
       PegandoLig()
     }
-
+  console.log(ListOc)
    }, [ListOc, TipoCart, Estado, Cidade, Sexo, NumProf, NumEmp])
 
    useEffect(() => {
@@ -185,12 +188,32 @@ export default () => {
     }
 
    }, [LinkEnv])
+   useEffect(() => {
+    EntrandoLinks()
+   }, [])
 
   // useEffect( ()=>{ 
   //   if(Page !== 1){
   //     ListandoOc();  
   //   }            
   //  }, [Page]);
+
+
+  const EntrandoLinks = async () => {
+    const Site = window.location.href;
+  const VerSite =  Site.split("/");
+ 
+  if(VerSite[3] === "Noticias"){
+      navigation.navigate("CartaoVisita", {
+            id:VerSite[4],
+          
+          })
+
+    await AsyncStorage.setItem('Tel', VerSite[5]);    
+ 
+  }   
+   
+  }
   const EscoEstado = (item)=>{
    
    
@@ -212,6 +235,14 @@ export default () => {
   }
   const EscoCidade = (item)=>{
     setCidade(item[0])
+  }
+
+  const IrWhats = ()=>{
+    Linking.openURL(`https://wa.me/+5599984136843?text=Ola`)
+  }
+
+  const IrInsta = ()=>{
+    Linking.openURL(`https://www.instagram.com/routecitybacabal/`)
   }
 
   const EscoTipoCart = (item)=>{
@@ -598,7 +629,7 @@ export default () => {
           // navigation.navigate("Pagar", {
           //   Site:LinkEnv
           // })
-           
+           n
        
         }
 
@@ -610,10 +641,9 @@ export default () => {
           navigation.navigate("Config") 
        }
 
-       const IrCartao= (item)=>{
+       const IrCartao= (item, list)=>{
         navigation.navigate("CartaoVisita", {
           id:item,
-          Status:"Conta",
         });
      }
 
@@ -1530,7 +1560,16 @@ export default () => {
              
                
           {/* </Modal> */}
-        
+          {Carreg ?
+          <>
+            <Image source={require('../assets/loading-87.gif')}  style={{marginTop:300, width:200, height:100}} />
+          </>
+
+          :
+          <>
+          <ImageBackground source={require("../assets/fundo.png")} 
+          resizeMode="cover" 
+          style={styles.imageBack} >
             <View style={styles.CaixaTitulo} >
               <TouchableHighlight  style={styles.CaixaDados}>
               {userState.QN4 >= 8000 ?
@@ -1566,55 +1605,18 @@ export default () => {
 
               <TouchableHighlight  style={styles.CaixaDados}>
              <Text style={styles.TextInfo} >
-              Meus Contatos
+              Notícias
              </Text>
               </TouchableHighlight>
               <View  style={styles.AreaBtnTopConf}>
 
-              {/* <TouchableHighlight onPress={()=>AbrinoMoney() } style={styles.CaixaDados}>
-              <>
-              {userState.nome >0 &&
-                <View style={{marginBottom:-15, marginRight:-20, width:20, height:20, backgroundColor:"green", borderRadius:10, flex:1, display:"flex", justifyContent:"center", alignItems:"center"}} ><Text style={{color:"#fff"}}>R</Text></View> 
-              }
-              
-              <FontAwesome name="money" size={24} color="#fff" />
-              </>
-              </TouchableHighlight> */}
-
-
-              {/* <TouchableHighlight onPress={()=>AbrindoVenc() }  style={styles.CaixaDados}>
-                {userState.DatAti < new Date().getTime() ?
-                <>
-                 <View style={{marginBottom:-15, marginRight:-20, width:20, height:20, backgroundColor:"red", borderRadius:10, flex:1, display:"flex", justifyContent:"center", alignItems:"center"}} ><Text style={{color:"#fff"}}>V</Text></View> 
-                 <FontAwesome name="calendar-times-o" size={24} color="#fff" />
-                </>
-               
-                :
-                <FontAwesome name="calendar-check-o" size={24} color="#fff" />
-                }
-              
-              </TouchableHighlight> */}
-
-              
-
-              {/* <TouchableHighlight onPress={()=>IrNoti()}  style={styles.CaixaDados}>
-              <>
-              {userState.Noti >0 &&
-              <>
-                <View style={{marginBottom:-15, marginRight:-20, width:20, height:20, backgroundColor:"red", borderRadius:10, flex:1, display:"flex", justifyContent:"center", alignItems:"center"}} ><Text style={{color:"#fff"}}>{userState.Noti}</Text></View> 
-                
-                </>
-              }
-              <FontAwesome name="bell"  size={24} color="#fff" />
-              </>
-              </TouchableHighlight> */}
-
+            
               <TouchableHighlight  onPress={()=>IrConfig()}  style={styles.CaixaDados}>
-              <FontAwesome name="gear" size={24} color="#fff" />
+              <FontAwesome name="gear" size={24} color="#000" />
               </TouchableHighlight>
 
               <TouchableHighlight  onPress={()=>Atualizar()}  style={styles.CaixaDados}>
-              <FontAwesome name="refresh" size={24} color="#fff" />
+              <FontAwesome name="refresh" size={24} color="#000" />
               </TouchableHighlight>
 
            </View>
@@ -1634,259 +1636,31 @@ export default () => {
             </View>
 
             }
-             {/* {userState.versao !== userState.versaoBanco.Versao &&
-            <TouchableHighlight onPress={()=>BaixandoPag()} style={{width:370, marginBottom:5, height:120, backgroundColor:"red", borderRadius:10, padding:10, display:"flex", flexDirection:"row" }}>
-             <>
-             <FontAwesome name="download" size={80} color="#fff" />
-            <Text style={{margin:10, fontSize:15, color:"#fff"}} >{userState.versaoBanco.Msg1}</Text>
-            </>
-            </TouchableHighlight>
-            } */}
-            {/* {userState.versaoBanco.Msg2 !== "" &&
-            <TouchableHighlight onPress={()=>VerLinkMsg2()} style={{width:370, height:120, backgroundColor:"#00A859", borderRadius:10, padding:10, display:"flex", flexDirection:"row" }}>
-             <>
-             <FontAwesome name="warning"  size={80} color="#fff" />
-            <Text style={{margin:10, fontSize:15, color:"#fff"}} >{userState.versaoBanco.Msg2}</Text>
-            </>
-            </TouchableHighlight>
-            } */}
-           
-          {/* <View  style={styles.AreaBtn}>
-          
-              
-          <TouchableHighlight onPress={()=>setRelogio(true)}  style={styles.InputHora}>
-            <>
-          <FontAwesome name="clock-o" size={20} color="black" />
-          <Text  style={styles.modalText6}> {hr} </Text>
-          </>     
-                
-          </TouchableHighlight>
-                       <View  style={styles.AreaBtn4}>
-                       <FontAwesome name="calendar" size={20} color="black" />
-            </View>
-            <TouchableHighlight onPress={()=>AbrindoClend()}  style={styles.AreaBtn3}>
-            <View style={styles.modalView3}><Text  style={styles.modalText6}> {dataNasc} </Text></View>
-        
-                 
-                  </TouchableHighlight>
-          
-          </View> */}
-
-
-          {/* <View  style={styles.AreaBtnLiga}>
-        
-  
-            <TouchableHighlight onPress={()=>AbrirCriar()} style={{backgroundColor:"#00A859", display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column", height:50, borderRadius:5, marginRight:10, paddingLeft:5, paddingRight:5,}} >
-            <>
-          <Text  style={{fontSize:25, color:"#fff", margin:10}}>Criar Jogo Para Cliente</Text>
-          </>     
-                
-          </TouchableHighlight>
-              
-          
-       
-        </View> */}
-      
-      <ScrollView>
-      <View style={{width: wp('90%') }}>
-        <Text  style={{ marginLeft:10, fontSize:20, color:"#FFF", marginTop:5 , marginBottom:10 }}>Estado:  {Estado}</Text> 
-                     <MultiSelect
-                        hideTags
-                        items={EstCid}
-                        uniqueKey="sigla"
-                        onSelectedItemsChange={(item)=>EscoEstado(item)}
-                        selectedItems={selectedItems}
-                        selectText="Escolha o Estado"
-                        searchInputPlaceholderText="Pesquise o Estado Aqui..."
-                        onChangeInput={ (text)=> console.log(text)}
-                        altFontFamily="ProximaNova-Light"
-                        tagRemoveIconColor="#CCC"
-                        tagBorderColor="#CCC"
-                        tagTextColor="#CCC"
-                        selectedItemTextColor="#CCC"
-                        selectedItemIconColor="#CCC"
-                        itemTextColor="#000"
-                        displayKey="nome"
-                        searchInputStyle={{ color: '#CCC' }}
-                        submitButtonColor="#CCC"
-                        submitButtonText="Fechar Lista"
-                        hideDropdown={false}
-                        hideSubmitButton={false}
-                        single={true}
-                      />
-
-                      {Estado !== ""  &&
-                      <>
-                         <Text  style={{ marginLeft:10, fontSize:20, color:"#FFF", marginTop:5 , marginBottom:10}}>Cidade: {Cidade}</Text> 
-                         <MultiSelect
-                            hideTags
-                            items={VerCidade}
-                            uniqueKey="id"
-                            onSelectedItemsChange={(item)=>EscoCidade(item)}
-                            selectedItems={selectedItems}
-                            selectText="Escolha a Cidade"
-                            searchInputPlaceholderText="Pesquise a Cidade Aqui..."
-                            onChangeInput={ (text)=> console.log(text)}
-                            altFontFamily="ProximaNova-Light"
-                            tagRemoveIconColor="#CCC"
-                            tagBorderColor="#CCC"
-                            tagTextColor="#CCC"
-                            selectedItemTextColor="#CCC"
-                            selectedItemIconColor="#CCC"
-                            itemTextColor="#000"
-                            displayKey="nome"
-                            searchInputStyle={{ color: '#CCC' }}
-                            submitButtonColor="#CCC"
-                            submitButtonText="Fechar Lista"
-                            hideDropdown={false}
-                            hideSubmitButton={false}
-                            single={true}
-                          />
-                          </>}
-                          <Text  style={{ marginLeft:10, fontSize:20, color:"#FFF", marginTop:5 , marginBottom:10}}>Tipo do Cartão: {EsCart}</Text> 
-                         <MultiSelect
-                            hideTags
-                            items={ListTipo}
-                            uniqueKey="id"
-                            onSelectedItemsChange={(item)=>EscoTipoCart(item)}
-                            selectedItems={selectedItems}
-                            selectText="Escolha o Tipo do Cartão"
-                            searchInputPlaceholderText="Pesquise o Tipo do Cartão"
-                            onChangeInput={ (text)=> console.log(text)}
-                            altFontFamily="ProximaNova-Light"
-                            tagRemoveIconColor="#CCC"
-                            tagBorderColor="#CCC"
-                            tagTextColor="#CCC"
-                            selectedItemTextColor="#CCC"
-                            selectedItemIconColor="#CCC"
-                            itemTextColor="#000"
-                            displayKey="nome"
-                            searchInputStyle={{ color: '#CCC' }}
-                            submitButtonColor="#CCC"
-                            submitButtonText="Fechar Lista"
-                            hideDropdown={false}
-                            hideSubmitButton={false}
-                            single={true}
-                          />
-                          {TipoCart !== null &&
-                          <>
-                          {TipoCart?
-                          <>
-                            <Text  style={{marginLeft:10, fontSize:20, color:"#FFF", marginTop:5 , marginBottom:10 }}>Sexo: {Sexo}</Text> 
-                     <MultiSelect
-                        hideTags
-                        items={ListSexo}
-                        uniqueKey="id"
-                        onSelectedItemsChange={(item)=>SeleciSexo(item)}
-                        selectedItems={selectedItems}
-                        selectText="Escolha Seu Sexo"
-                        searchInputPlaceholderText="Pesquise o Sexo Aqui..."
-                        onChangeInput={ (text)=> console.log(text)}
-                        altFontFamily="ProximaNova-Light"
-                        tagRemoveIconColor="#CCC"
-                        tagBorderColor="#CCC"
-                        tagTextColor="#CCC"
-                        selectedItemTextColor="#CCC"
-                        selectedItemIconColor="#CCC"
-                        itemTextColor="#000"
-                        displayKey="nome"
-                        searchInputStyle={{ color: '#CCC' }}
-                        submitButtonColor="#CCC"
-                        submitButtonText="Fechar Lista"
-                        hideDropdown={false}
-                        hideSubmitButton={false}
-                        single={true}
-                      />
-                       <Text  style={{ marginLeft:10, fontSize:20, color:"#FFF", marginTop:5 , marginBottom:10 }}>Profissão da Pessoa: {Profissao}</Text> 
-                     <MultiSelect
-                        hideTags
-                        items={ProfList}
-                        uniqueKey="id"
-                        onSelectedItemsChange={(item)=>SeleciProf1(item)}
-                        onAddItem={(car)=>EntrandoItem(car)}
-                        selectedItems={selectedItems}
-                        selectText="Escolha Sua Profissão "
-                        searchInputPlaceholderText="Pesquise a Sua Profissão Aqui..."
-                        onChangeInput={ (text)=> console.log(text)}
-                        altFontFamily="ProximaNova-Light"
-                        tagRemoveIconColor="#CCC"
-                        tagBorderColor="#CCC"
-                        tagTextColor="#CCC"
-                        selectedItemTextColor="#CCC"
-                        selectedItemIconColor="#CCC"
-                        itemTextColor="#000"
-                        displayKey="profissao"
-                        searchInputStyle={{ color: '#CCC' }}
-                        submitButtonColor="#CCC"
-                        submitButtonText="Fechar Lista"
-                        hideDropdown={false}
-                        hideSubmitButton={false}
-                        single={true}
-                      />
-                          
-                          </>
-
-                            :
-                          <>
-                            <Text  style={{ marginLeft:10, fontSize:20, color:"#FFF", marginTop:5 , marginBottom:10 }}>Tipo da Empresa: {Empresa}</Text> 
-                    <MultiSelect
-                        hideTags
-                        items={Empre}
-                        uniqueKey="id"
-                        onSelectedItemsChange={(item)=>SeleciEmp1(item)}
-                        selectedItems={selectedItems}
-                        selectText="Escolha o Tipo da Empresa"
-                        searchInputPlaceholderText="Pesquise o Tipo da Empresa Aqui..."
-                        onChangeInput={ (text)=> console.log(text)}
-                        altFontFamily="ProximaNova-Light"
-                        tagRemoveIconColor="#CCC"
-                        tagBorderColor="#CCC"
-                        tagTextColor="#CCC"
-                        selectedItemTextColor="#CCC"
-                        selectedItemIconColor="#CCC"
-                        itemTextColor="#000"
-                        displayKey="Emp"
-                        searchInputStyle={{ color: '#CCC' }}
-                        submitButtonColor="#CCC"
-                        submitButtonText="Fechar Lista"
-                        single={true}
-                      />
-                          
-                          </>
-
-                          }
-                          
-                          </>
-
-                          }
-                          </View>
-                          {Carreg == true ?
-                          <>
-                          <View style={{width: wp('90%'), display:"flex", justifyContent:"center", alignItems:"center" }}>
-                            <Image source={require('../assets/carreg.gif')}  style={styles.ImageVer3 } />
-                            </View>
-                          </>
-                          :
-                          <>
-                            {Lista.map((item, key)=>(
-                               <>
-                            <View  style={styles.Post}>
-                            <TouchableHighlight onPress={()=>IrCartao(item.id)} style={{ padding:5, flexDirection:"row",  alignItems:"center", justifyContent:"space-around", height:70, width:wp('100%'), borderBottomWidth:1, marginBottom:5, borderColor:"#ccc", backgroundColor:item.CorNalist,}}>
+       <FlatList
+        data={Lista}
+        onEndReached={()=>loadPage()}
+        ListFooterComponent={ Load &&   <LoadingIcon size="large" color="#FFFFFF" /> }
+        keyExtractor={item => item.id}
+        renderItem={({item}) => 
+        <>
+         <View  style={styles.Post}>
+                            <TouchableHighlight onPress={()=>IrCartao(item.id, item)} style={{padding:10,  flexDirection:"column",  alignItems:"center", justifyContent:"center",  width:wp('100%'), borderBottomWidth:1, marginBottom:5, borderColor:"#FFE767",}}>
                             <>
                             <View  style={styles.CaixaNome}>
-                            {item.Foto.Ativar === true &&
+                            {/* {item.Foto.Ativar === true &&
                             <Image source={{uri:item.Foto.Link}} style={{width:50, height:50, borderRadius:25,  borderWidth:2, borderColor:"#fff", }} />
-                            }
+                            } */}
+                             <Image source={{uri:item.Url1}} style={{width:300, height:300, borderRadius:10,  borderWidth:2, borderColor:"#FFE767", }} />
 
                             </View> 
 
                             <View  style={styles.CaixaNome}>
 
-                              <Text style={{color:"#FFF", fontSize:17, fontWeight:"bold"}}>{item.Nome}</Text>
-                              <Text style={{color:"#FFF", fontSize:14,}}>{item.ListCredenciais.length} Credências</Text>
-                              <Text style={{color:"#FFF", fontSize:14,}}>{item.SalvouNum.length} Salvamentos</Text>
+                              <Text style={{color:"#fff", fontSize:25, fontWeight:"bold"}}>{item.Titulo}</Text>
+                              {/* <Text style={{color:"#FFF", fontSize:14,}}>{item.ListCredenciais.length} Credências</Text>
+                              <Text style={{color:"#FFF", fontSize:14,}}>{item.SalvouNum.length} Salvamentos</Text> */}
                             </View> 
-                            <View  style={styles.CaixaNome}>
+                            {/* <View  style={styles.CaixaNome}>
                             {item.ListCredenciais.length >= 10 &&  item.ListCredenciais.length < 100 &&
                             <Image source={require('../assets/bronze.png')}  style={{width:40, height:60}}  />
                             }
@@ -1900,73 +1674,47 @@ export default () => {
                             <Image source={require('../assets/ouro.png')}  style={{width:40, height:60}}  />
                             }
 
-                            </View> 
+                            </View>  */}
 
 
 
                             </>
                             </TouchableHighlight>
 
-
+                            <Text style={{marginLeft:30, marginBottom:5 , color:"#FFE767", fontSize:15, }}>{moment(item.dataCriacao).format("DD/MM/YYYY")}</Text>
 
 
 
                             </View>
+        
+        </>
 
-                            </>
-
-                            ))}
-
-                          
-                          </>
-
-                          }
-                           
-       </ScrollView>
-          {/* {Carre === false ?
-          <>
-          {Lista.map((item, key)=>(
-           <>
-           
-           
-              </>
-
-              ))}
-
-              </>
-              :
-              <>
-                <Image source={require('../assets/carreg.gif')}  style={styles.ImageVer3 } />
-              
-
-              </>
-              } */}
-              
-          
-            {/* <DatePickerModal
-        mode="single"
-        visible={Relogio}
-        onDismiss={onDismiss}
-        date={new Date()}
-        onConfirm={onChange}
-        saveLabel="Save" // optional
-        label="Select date" // optional
-        animationType="slide" // optional, default is 'slide' on ios/android and 'none' on web
-        locale={'pt'} // optional, default is automically detected by your system
-      /> */}
-      <TimePickerModal
-        visible={Relogio}
-        onDismiss={onDismiss}
-        onConfirm={onChange}
-        hours={0} // default: current hours
-        minutes={0} // default: current minutes
-        label="Select time" // optional, default 'Select time'
-        cancelLabel="Cancel" // optional, default: 'Cancel'
-        confirmLabel="Ok" // optional, default: 'Ok'
-        animationType="fade" // optional, default is 'none'
-        locale={'pt'} // optional, default is automically detected by your system
+        }
+      
       />
-          
+      
+      <TouchableHighlight style={styles.VerBole} onPress={()=>IrWhats()}>
+         <>
+       
+         <Image source={require('../assets/whatsapp.png')}  style={{width:40, height:40}}  />   
+         
+       
+         </>
+          </TouchableHighlight> 
+          <TouchableHighlight style={styles.VerBole5} onPress={()=>IrInsta()}>
+         <>
+       
+         <Image source={require('../assets/instagram.png')}  style={{width:40, height:40}}  /> 
+  
+       
+         </>
+          </TouchableHighlight> 
+     
+  
+        </ImageBackground>  
+          </>
+          }
+            
 
         
       </View>
@@ -2095,7 +1843,7 @@ const styles = StyleSheet.create({
    flexDirection:"column",
    alignItems:"center",
    justifyContent:"center",
-   backgroundColor:"#000",
+  
    marginRight:10,
    marginTop:10,
    textAlign:"center",
@@ -2108,6 +1856,26 @@ const styles = StyleSheet.create({
    color:"#fff",
 
   },
+  VerBole5:{
+    width:50,
+    height:50,
+    flex: 1,
+    flexDirection:"column",
+    alignItems:"center",
+    justifyContent:"center",
+   
+    marginRight:10,
+    marginTop:10,
+    textAlign:"center",
+    position:"absolute",
+    bottom:120,
+    right:10,
+    borderRadius:5,
+    fontWeight:"bold",
+    paddingTop:10,
+    color:"#fff",
+ 
+   },
 
   Caixadeaposta:{
     marginBottom:5,
@@ -2536,20 +2304,28 @@ const styles = StyleSheet.create({
 
         },
  
-
+        CaixaNomeTest: {
+   
+    
+          flex: 1,
+    justifyContent: 'center',
+    backgroundColor: '#ecf0f1',
+          },
 
   CaixaNome: {
-   
-     height:40,
+   width:300,
+    marginLeft:-30,
      display:"flex",
      justifyContent:"center",
-     alignItems:"flex-start",
+     alignItems:"center",
      flexDirection:"column",
      },
 
   Post: {
    backgroundColor:"#000",
-   width: wp('90%') 
+   width: wp('90%'),
+   borderRadius:10,
+   marginBottom:10,
     },
 
     Header: {
@@ -2566,7 +2342,7 @@ const styles = StyleSheet.create({
 
   TextInfo: {
     fontSize: 23,
-    color: "#FFF",
+    color: "#000",
     fontWeight: "bold",
     fontStyle:"italic"
     },
@@ -2588,7 +2364,7 @@ const styles = StyleSheet.create({
     
   
         Container:{
-            backgroundColor: "#000",
+            backgroundColor: "#FFE767",
             flex:1,
           justifyContent:"center",
           alignItems:"center",
@@ -2609,15 +2385,15 @@ const styles = StyleSheet.create({
            justifyContent:"space-around",
            alignItems:"center",
            flexDirection:"row",
-           backgroundColor:"#000",
+          
            paddingLeft:10,
            paddingRight:10,
            marginBottom:20,
            
           },
           ImageVer2: {
-            width:  40,
-            height: 40, 
+            width:  80,
+            height: 80, 
           }, 
            
 });

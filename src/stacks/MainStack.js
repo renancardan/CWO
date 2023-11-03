@@ -33,7 +33,7 @@ export default function Ret() {
       <NavigationContainer  >
          
         <Stack.Navigator
-      initialRouteName={"Preload"}
+      initialRouteName={"MainTab"}
 
       >
          <Stack.Screen
@@ -50,7 +50,7 @@ export default function Ret() {
      name="ListCart" component={ListCart} />
         <Stack.Screen
      options={{
-        title: 'Gartão De Visita',
+        title: 'Notícia',
         headerShown: false
     }}   
      name="CartaoVisita" component={CartaoVisita} />

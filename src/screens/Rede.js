@@ -1396,7 +1396,9 @@ export default () => {
              
                
           {/* </Modal> */}
-        
+          <ImageBackground source={require("../assets/fundo.png")} 
+          resizeMode="cover" 
+          style={styles.imageBack} >
             <View style={styles.CaixaTitulo} >
               <TouchableHighlight  style={styles.CaixaDados}>
               {userState.QN4 >= 8000 ?
@@ -1475,31 +1477,31 @@ export default () => {
               </>
               </TouchableHighlight> */}
 
-              <TouchableHighlight  onPress={()=>IrConfig()}  style={styles.CaixaDados}>
+              {/* <TouchableHighlight  onPress={()=>IrConfig()}  style={styles.CaixaDados}>
               <FontAwesome name="gear" size={24} color="#fff" />
               </TouchableHighlight>
 
               <TouchableHighlight  onPress={()=>Atualizar()}  style={styles.CaixaDados}>
               <FontAwesome name="refresh" size={24} color="#fff" />
-              </TouchableHighlight>
+              </TouchableHighlight> */}
 
            </View>
             </View >
-            {AbMoney === true &&
+            {/* {AbMoney === true &&
              <View style={styles.TextInforma}>
              <Text style={{margin:10, fontSize:17, color:"green", fontWeight:"bold"}} >RECEBER: R${userState.nome.toFixed(2)}</Text>
              </View>
 
 
-            }
+            } */}
 
-            {AbVenc === true &&
+            {/* {AbVenc === true &&
             <View style={styles.TextInforma}>
 
           <Text style={{margin:10, fontSize:17, color:"#000", fontWeight:"bold"}} >VENCIMENTO: {userState.data_nasc}</Text>
             </View>
 
-            }
+            } */}
              {/* {userState.versao !== userState.versaoBanco.Versao &&
             <TouchableHighlight onPress={()=>BaixandoPag()} style={{width:370, marginBottom:5, height:120, backgroundColor:"red", borderRadius:10, padding:10, display:"flex", flexDirection:"row" }}>
              <>
@@ -1552,9 +1554,12 @@ export default () => {
           
        
         </View> */}
-      
+        <View  style={styles.Post}>
+        <Text style={{color:"#fff", marginBottom:10, fontSize:25, fontWeight:"bold"}}>Sessão em Construção</Text>
+        <Text style={{color:"#fff", textAlign:"center", marginBottom:10, width:"90%", fontSize:15, fontWeight:"bold"}}>Essa Sessão vai servir para você pesquisar por itens novos e usados e empregos na suaa cidade!</Text>
+        </View>
       <ScrollView>
-      <View style={{width: wp('90%') }}>
+      {/* <View style={{width: wp('90%') }}>
         <Text  style={{ marginLeft:10, fontSize:20, color:"#FFF", marginTop:5 , marginBottom:10 }}>Estado:  {Estado}</Text> 
                      <MultiSelect
                         hideTags
@@ -1725,8 +1730,8 @@ export default () => {
                           </>
 
                           }
-                          </View>
-                          {Carreg == true ?
+                          </View> */}
+                          {Carreg == false ?
                           <>
                           <View style={{width: wp('90%'), display:"flex", justifyContent:"center", alignItems:"center" }}>
                             <Image source={require('../assets/carreg.gif')}  style={styles.ImageVer3 } />
@@ -1734,7 +1739,7 @@ export default () => {
                           </>
                           :
                           <>
-                           <FlatList 
+                           {/* <FlatList 
 
                             data={Lista}
                             //essa função é pra carregar mais listas quando chegar no final da lista faltando 10%
@@ -1798,7 +1803,7 @@ export default () => {
                             </View>
 
                             )}
-                            />
+                            /> */}
                           
                           </>
 
@@ -1849,7 +1854,7 @@ export default () => {
         locale={'pt'} // optional, default is automically detected by your system
       />
           
-
+</ImageBackground>
         
       </View>
     )
@@ -2431,7 +2436,13 @@ const styles = StyleSheet.create({
 
   Post: {
    backgroundColor:"#000",
-   width: wp('90%') 
+   width: wp('90%'),
+   height:400,
+   borderRadius:10,
+   display:"flex",
+   justifyContent:"center",
+   alignItems:"center",
+   flexDirection:"column",
     },
 
     Header: {
@@ -2448,7 +2459,7 @@ const styles = StyleSheet.create({
 
   TextInfo: {
     fontSize: 23,
-    color: "#FFF",
+    color: "#000",
     fontWeight: "bold",
     fontStyle:"italic"
     },
@@ -2470,7 +2481,7 @@ const styles = StyleSheet.create({
     
   
         Container:{
-            backgroundColor: "#000",
+            backgroundColor:"#FFE767",
             flex:1,
           justifyContent:"center",
           alignItems:"center",
@@ -2491,15 +2502,15 @@ const styles = StyleSheet.create({
            justifyContent:"space-around",
            alignItems:"center",
            flexDirection:"row",
-           backgroundColor:"#000",
+   
            paddingLeft:10,
            paddingRight:10,
            marginBottom:20,
            
           },
           ImageVer2: {
-            width:  40,
-            height: 40, 
+            width:  80,
+            height: 80, 
           }, 
            
 });

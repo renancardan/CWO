@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "CWO",
-    "slug": "CWO",
-    "description":"Seu Cartão de Visita",
+    "name": "Route City",
+    "slug": "Route City",
+    "description":"Contruindo Rotas em Sua Cidade",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

@@ -127,36 +127,27 @@ export default () => {
   const [NumProf, setNumProf] = useState("");
   const [Sexo, setSexo] = useState("");
   const [EsCart, setEsCart] = useState("")
- 
+  
+
   useEffect(() => { 
       ListandoOc();
-  }, []);
-
-  // useEffect(() => { 
-  //     ListandoOc();
-  //     console.log("Estado"+Estado)
-  //     console.log("Cidade"+Cidade)
-  //     console.log("TipoCart"+TipoCart)
-  //     console.log("Sexo"+Sexo)
-  //     console.log("NumProf"+NumProf)
-  //     console.log("NumEmp"+NumEmp)
-  // }, [TipoCart, Estado, Cidade, Sexo, NumProf, NumEmp]);
+      console.log("Estado"+Estado)
+      console.log("Cidade"+Cidade)
+      console.log("TipoCart"+TipoCart)
+      console.log("Sexo"+Sexo)
+      console.log("NumProf"+NumProf)
+      console.log("NumEmp"+NumEmp)
+  }, [TipoCart, Estado, Cidade, Sexo, NumProf, NumEmp]);
 
   useEffect(() => {
     tempo();
   }, [])
-
-  useEffect(() => {
-  console.log(Lista);
-  }, [Lista])
-
   useEffect(() => {
     if(ListOc.length >= 1){
       PegandoLig()
     }
-   
 
-   }, [ListOc, TipoCart, Estado, Cidade, Sexo, NumProf, NumEmp])
+   }, [ListOc])
 
    useEffect(() => {
     if(IdApos !== ""){
@@ -173,7 +164,7 @@ export default () => {
    }, [SimAp, Pago])
 
    useEffect(() => {
-    
+    console.log(SimAp)
    setQuanJog(SimAp.length)
    if(SimAp.length > 0){
      Caulc();
@@ -271,151 +262,22 @@ export default () => {
     var resRev = [];
     for(let i in ListOc){
 
-  
-    
-            
-            if(Estado === "" && Cidade === "" && TipoCart === null){
-              
-              resRev.push(ListOc[i])
-              
-            } else if(Estado !== "" && Cidade === "" && TipoCart === null){
-              
-              if(ListOc[i].Estado === Estado){
-                resRev.push(ListOc[i])
-              }
-             
-             
-           
-            } else if(Estado !== "" && Cidade !== "" && TipoCart === null){
-              
-              if(ListOc[i].Estado === Estado && ListOc[i].Cidade === Cidade){
-                resRev.push(ListOc[i])
-              }
-            
-           
-            }  else if(Estado !== "" && Cidade === "" && TipoCart !== null && Sexo === "" && NumProf === "" && NumEmp === "" ){
-              
-              if(ListOc[i].Estado === Estado && ListOc[i].Pessoal === TipoCart){
-                resRev.push(ListOc[i])
-              }
-             
-         
-            }  else if(Estado === "" && Cidade === "" && TipoCart !== null && Sexo === "" && NumProf === "" && NumEmp === "" ){
-              
-              if( ListOc[i].Pessoal === TipoCart){
-                resRev.push(ListOc[i])
-              }
-              
-             
-            }   else if(Estado !== "" && Cidade !== "" && TipoCart !== null  && Sexo === "" && NumProf === "" && NumEmp === "" ){
-              
-             
-              if(ListOc[i].Estado === Estado && ListOc[i].Pessoal === TipoCart && ListOc[i].Cidade === Cidade){
-                resRev.push(ListOc[i])
-              }
-            
-               
-            }  else if(Estado !== "" && Cidade === "" && TipoCart === true && Sexo !== "" && NumProf === "" && NumEmp === "" ){
-              
-              
-              if(ListOc[i].Estado === Estado && ListOc[i].Pessoal === TipoCart && ListOc[i].Sexo === Sexo ){
-                resRev.push(ListOc[i])
-              }
-
+    resRev.push(ListOc[i])
+       
+     
+        resli.push({
           
-                } else if(Estado === "" && Cidade === "" && TipoCart === true && Sexo !== "" && NumProf === "" && NumEmp === ""){
-                  if( ListOc[i].Pessoal === TipoCart && ListOc[i].Sexo === Sexo ){
-                    resRev.push(ListOc[i])
-                  }
-           
-             
-            }   else if(Estado !== "" && Cidade !== "" && TipoCart === true && Sexo !== "" && NumProf === "" && NumEmp === ""){
-              
-              if(ListOc[i].Estado === Estado && ListOc[i].Pessoal === TipoCart && ListOc[i].Sexo === Sexo && ListOc[i].Cidade === Cidade){
-                resRev.push(ListOc[i])
-              }
-            
-            
-            } else if(Estado !== "" && Cidade === "" && TipoCart === true && Sexo === "" && NumProf !== "" && NumEmp === "" ){
-              
-              if(ListOc[i].Estado === Estado && ListOc[i].Pessoal === TipoCart && ListOc[i].Profissao.includes(NumProf) ){
-                resRev.push(ListOc[i])
-              }
-             
-                } else if(Estado === "" && Cidade === "" && TipoCart === true && Sexo === "" && NumProf !== "" && NumEmp === ""){
-                  
-                  if( ListOc[i].Pessoal === TipoCart && ListOc[i].Profissao.includes(NumProf) ){
-                    resRev.push(ListOc[i])
-                  }
-             
-              
-            }   else if(Estado !== "" && Cidade !== "" && TipoCart === true && Sexo === "" && NumProf !== "" && NumEmp === ""){
-              
-              if(ListOc[i].Estado === Estado &&  ListOc[i].Pessoal === TipoCart && ListOc[i].Profissao.includes(NumProf) && ListOc[i].Cidade === Cidade ){
-                resRev.push(ListOc[i])
-              }
-              
-              
-            } else if(Estado !== "" && Cidade === "" && TipoCart === true && Sexo !== "" && NumProf !== "" && NumEmp === "" ){
-              if(ListOc[i].Estado === Estado &&  ListOc[i].Pessoal === TipoCart && ListOc[i].Profissao.includes(NumProf) && ListOc[i].Sexo === Sexo ){
-                resRev.push(ListOc[i])
-              }
-            
-             
-           
-                } else if(Estado === "" && Cidade === "" && TipoCart === true && Sexo !== "" && NumProf !== "" && NumEmp === ""){
-                  if( ListOc[i].Pessoal === TipoCart && ListOc[i].Profissao.includes(NumProf) && ListOc[i].Sexo === Sexo ){
-                    resRev.push(ListOc[i])
-                  }
-              
-               
-            }   else if(Estado !== "" && Cidade !== "" && TipoCart === true && Sexo !== "" && NumProf !== "" && NumEmp === ""){
-              if(ListOc[i].Estado === Estado &&  ListOc[i].Pessoal === TipoCart && ListOc[i].Profissao.includes(NumProf) && ListOc[i].Sexo === Sexo && ListOc[i].Cidade === Cidade){
-                resRev.push(ListOc[i])
-              }
-            
-           
-              
-            } else if(Estado !== "" && Cidade === "" && TipoCart === false && Sexo === "" && NumProf === "" && NumEmp !== "" ){
-              if(ListOc[i].Estado === Estado &&  ListOc[i].Pessoal === TipoCart && ListOc[i].Empresa.includes(NumEmp) ){
-                resRev.push(ListOc[i])
-              }
-           
-            
-              
-                } else if(Estado === "" && Cidade === "" && TipoCart === false && Sexo === "" && NumProf === "" && NumEmp !== ""){
-             
-                  if(  ListOc[i].Pessoal === TipoCart && ListOc[i].Empresa.includes(NumEmp)){
-                    resRev.push(ListOc[i])
-                  }
-              
-            
-             
-            }   else if(Estado !== "" && Cidade !== "" && TipoCart === false && Sexo === "" && NumProf === "" && NumEmp !== ""){
-              
-              if(ListOc[i].Estado === Estado &&  ListOc[i].Pessoal === TipoCart && ListOc[i].Empresa.includes(NumEmp)  && ListOc[i].Cidade === Cidade){
-                resRev.push(ListOc[i])
-              }
-             
-            
-            
-            } 
- 
-           
-           
- 
-      
-   
-     
-     
+        })
       
 
 
     }
 
-
+    resli = resli.filter(function (a) {
+      return !this[JSON.stringify(a)] && (this[JSON.stringify(a)] = true);
+    }, Object.create(null))
     
-    
+    setListLig(resli)
     setLista(resRev)
    }
 
@@ -429,7 +291,7 @@ export default () => {
    const ListandoOc = ()=>{
     
     setCarreg(true)
-    Api.PegandoMeuscartoes(Page, setListOc, setCarreg  );
+    Api.PegandoCartao(Page, TipoCart, Estado, Cidade, Sexo, NumProf, NumEmp, setLista, setCarreg  );
  
   }
 
@@ -1534,7 +1396,9 @@ export default () => {
              
                
           {/* </Modal> */}
-        
+          <ImageBackground source={require("../assets/fundo.png")} 
+          resizeMode="cover" 
+          style={styles.imageBack} >
             <View style={styles.CaixaTitulo} >
               <TouchableHighlight  style={styles.CaixaDados}>
               {userState.QN4 >= 8000 ?
@@ -1570,7 +1434,7 @@ export default () => {
 
               <TouchableHighlight  style={styles.CaixaDados}>
              <Text style={styles.TextInfo} >
-              Meus Cartões
+              Minha Conta
              </Text>
               </TouchableHighlight>
               <View  style={styles.AreaBtnTopConf}>
@@ -1613,31 +1477,31 @@ export default () => {
               </>
               </TouchableHighlight> */}
 
-              <TouchableHighlight  onPress={()=>IrConfig()}  style={styles.CaixaDados}>
+              {/* <TouchableHighlight  onPress={()=>IrConfig()}  style={styles.CaixaDados}>
               <FontAwesome name="gear" size={24} color="#fff" />
               </TouchableHighlight>
 
               <TouchableHighlight  onPress={()=>Atualizar()}  style={styles.CaixaDados}>
               <FontAwesome name="refresh" size={24} color="#fff" />
-              </TouchableHighlight>
+              </TouchableHighlight> */}
 
            </View>
             </View >
-            {AbMoney === true &&
+            {/* {AbMoney === true &&
              <View style={styles.TextInforma}>
              <Text style={{margin:10, fontSize:17, color:"green", fontWeight:"bold"}} >RECEBER: R${userState.nome.toFixed(2)}</Text>
              </View>
 
 
-            }
+            } */}
 
-            {AbVenc === true &&
+            {/* {AbVenc === true &&
             <View style={styles.TextInforma}>
 
           <Text style={{margin:10, fontSize:17, color:"#000", fontWeight:"bold"}} >VENCIMENTO: {userState.data_nasc}</Text>
             </View>
 
-            }
+            } */}
              {/* {userState.versao !== userState.versaoBanco.Versao &&
             <TouchableHighlight onPress={()=>BaixandoPag()} style={{width:370, marginBottom:5, height:120, backgroundColor:"red", borderRadius:10, padding:10, display:"flex", flexDirection:"row" }}>
              <>
@@ -1690,14 +1554,184 @@ export default () => {
           
        
         </View> */}
-      
+        <View  style={styles.Post}>
+        <Text style={{color:"#fff", marginBottom:10, fontSize:25, fontWeight:"bold"}}>Sessão em Construção</Text>
+        <Text style={{color:"#fff", textAlign:"center", marginBottom:10, width:"90%", fontSize:15, fontWeight:"bold"}}>Essa Sessão vai servir para você entra em sua conta e poder divulgar sua empresa!</Text>
+        </View>
       <ScrollView>
-      <View style={{width: wp('90%'), display:"flex", justifyContent:"center", alignItems:"center"  }}>
-      <TouchableHighlight  style={styles.Btn} onPress={null} >
-                            <Text style={styles.BtnText}>Comprar Cartões</Text>
-                 </TouchableHighlight>
-                          </View>
-                          {Carreg == true ?
+      {/* <View style={{width: wp('90%') }}>
+        <Text  style={{ marginLeft:10, fontSize:20, color:"#FFF", marginTop:5 , marginBottom:10 }}>Estado:  {Estado}</Text> 
+                     <MultiSelect
+                        hideTags
+                        items={EstCid}
+                        uniqueKey="sigla"
+                        onSelectedItemsChange={(item)=>EscoEstado(item)}
+                        selectedItems={selectedItems}
+                        selectText="Escolha o Estado"
+                        searchInputPlaceholderText="Pesquise o Estado Aqui..."
+                        onChangeInput={ (text)=> console.log(text)}
+                        altFontFamily="ProximaNova-Light"
+                        tagRemoveIconColor="#CCC"
+                        tagBorderColor="#CCC"
+                        tagTextColor="#CCC"
+                        selectedItemTextColor="#CCC"
+                        selectedItemIconColor="#CCC"
+                        itemTextColor="#000"
+                        displayKey="nome"
+                        searchInputStyle={{ color: '#CCC' }}
+                        submitButtonColor="#CCC"
+                        submitButtonText="Fechar Lista"
+                        hideDropdown={false}
+                        hideSubmitButton={false}
+                        single={true}
+                      />
+
+                      {Estado !== ""  &&
+                      <>
+                         <Text  style={{ marginLeft:10, fontSize:20, color:"#FFF", marginTop:5 , marginBottom:10}}>Cidade: {Cidade}</Text> 
+                         <MultiSelect
+                            hideTags
+                            items={VerCidade}
+                            uniqueKey="id"
+                            onSelectedItemsChange={(item)=>EscoCidade(item)}
+                            selectedItems={selectedItems}
+                            selectText="Escolha a Cidade"
+                            searchInputPlaceholderText="Pesquise a Cidade Aqui..."
+                            onChangeInput={ (text)=> console.log(text)}
+                            altFontFamily="ProximaNova-Light"
+                            tagRemoveIconColor="#CCC"
+                            tagBorderColor="#CCC"
+                            tagTextColor="#CCC"
+                            selectedItemTextColor="#CCC"
+                            selectedItemIconColor="#CCC"
+                            itemTextColor="#000"
+                            displayKey="nome"
+                            searchInputStyle={{ color: '#CCC' }}
+                            submitButtonColor="#CCC"
+                            submitButtonText="Fechar Lista"
+                            hideDropdown={false}
+                            hideSubmitButton={false}
+                            single={true}
+                          />
+                          </>}
+                          <Text  style={{ marginLeft:10, fontSize:20, color:"#FFF", marginTop:5 , marginBottom:10}}>Tipo do Cartão: {EsCart}</Text> 
+                         <MultiSelect
+                            hideTags
+                            items={ListTipo}
+                            uniqueKey="id"
+                            onSelectedItemsChange={(item)=>EscoTipoCart(item)}
+                            selectedItems={selectedItems}
+                            selectText="Escolha o Tipo do Cartão"
+                            searchInputPlaceholderText="Pesquise o Tipo do Cartão"
+                            onChangeInput={ (text)=> console.log(text)}
+                            altFontFamily="ProximaNova-Light"
+                            tagRemoveIconColor="#CCC"
+                            tagBorderColor="#CCC"
+                            tagTextColor="#CCC"
+                            selectedItemTextColor="#CCC"
+                            selectedItemIconColor="#CCC"
+                            itemTextColor="#000"
+                            displayKey="nome"
+                            searchInputStyle={{ color: '#CCC' }}
+                            submitButtonColor="#CCC"
+                            submitButtonText="Fechar Lista"
+                            hideDropdown={false}
+                            hideSubmitButton={false}
+                            single={true}
+                          />
+                          {TipoCart !== null &&
+                          <>
+                          {TipoCart?
+                          <>
+                            <Text  style={{marginLeft:10, fontSize:20, color:"#FFF", marginTop:5 , marginBottom:10 }}>Sexo: {Sexo}</Text> 
+                     <MultiSelect
+                        hideTags
+                        items={ListSexo}
+                        uniqueKey="id"
+                        onSelectedItemsChange={(item)=>SeleciSexo(item)}
+                        selectedItems={selectedItems}
+                        selectText="Escolha Seu Sexo"
+                        searchInputPlaceholderText="Pesquise o Sexo Aqui..."
+                        onChangeInput={ (text)=> console.log(text)}
+                        altFontFamily="ProximaNova-Light"
+                        tagRemoveIconColor="#CCC"
+                        tagBorderColor="#CCC"
+                        tagTextColor="#CCC"
+                        selectedItemTextColor="#CCC"
+                        selectedItemIconColor="#CCC"
+                        itemTextColor="#000"
+                        displayKey="nome"
+                        searchInputStyle={{ color: '#CCC' }}
+                        submitButtonColor="#CCC"
+                        submitButtonText="Fechar Lista"
+                        hideDropdown={false}
+                        hideSubmitButton={false}
+                        single={true}
+                      />
+                       <Text  style={{ marginLeft:10, fontSize:20, color:"#FFF", marginTop:5 , marginBottom:10 }}>Profissão da Pessoa: {Profissao}</Text> 
+                     <MultiSelect
+                        hideTags
+                        items={ProfList}
+                        uniqueKey="id"
+                        onSelectedItemsChange={(item)=>SeleciProf1(item)}
+                        onAddItem={(car)=>EntrandoItem(car)}
+                        selectedItems={selectedItems}
+                        selectText="Escolha Sua Profissão "
+                        searchInputPlaceholderText="Pesquise a Sua Profissão Aqui..."
+                        onChangeInput={ (text)=> console.log(text)}
+                        altFontFamily="ProximaNova-Light"
+                        tagRemoveIconColor="#CCC"
+                        tagBorderColor="#CCC"
+                        tagTextColor="#CCC"
+                        selectedItemTextColor="#CCC"
+                        selectedItemIconColor="#CCC"
+                        itemTextColor="#000"
+                        displayKey="profissao"
+                        searchInputStyle={{ color: '#CCC' }}
+                        submitButtonColor="#CCC"
+                        submitButtonText="Fechar Lista"
+                        hideDropdown={false}
+                        hideSubmitButton={false}
+                        single={true}
+                      />
+                          
+                          </>
+
+                            :
+                          <>
+                            <Text  style={{ marginLeft:10, fontSize:20, color:"#FFF", marginTop:5 , marginBottom:10 }}>Tipo da Empresa: {Empresa}</Text> 
+                    <MultiSelect
+                        hideTags
+                        items={Empre}
+                        uniqueKey="id"
+                        onSelectedItemsChange={(item)=>SeleciEmp1(item)}
+                        selectedItems={selectedItems}
+                        selectText="Escolha o Tipo da Empresa"
+                        searchInputPlaceholderText="Pesquise o Tipo da Empresa Aqui..."
+                        onChangeInput={ (text)=> console.log(text)}
+                        altFontFamily="ProximaNova-Light"
+                        tagRemoveIconColor="#CCC"
+                        tagBorderColor="#CCC"
+                        tagTextColor="#CCC"
+                        selectedItemTextColor="#CCC"
+                        selectedItemIconColor="#CCC"
+                        itemTextColor="#000"
+                        displayKey="Emp"
+                        searchInputStyle={{ color: '#CCC' }}
+                        submitButtonColor="#CCC"
+                        submitButtonText="Fechar Lista"
+                        single={true}
+                      />
+                          
+                          </>
+
+                          }
+                          
+                          </>
+
+                          }
+                          </View> */}
+                          {Carreg == false ?
                           <>
                           <View style={{width: wp('90%'), display:"flex", justifyContent:"center", alignItems:"center" }}>
                             <Image source={require('../assets/carreg.gif')}  style={styles.ImageVer3 } />
@@ -1705,8 +1739,26 @@ export default () => {
                           </>
                           :
                           <>
-                            {Lista.map((item, key)=>(
-                               <>
+                           {/* <FlatList 
+
+                            data={Lista}
+                            //essa função é pra carregar mais listas quando chegar no final da lista faltando 10%
+                              onEndReached={()=>loadPage()}
+                              //essa função é para dizer quantos porcento final da lista tem que tá para carregar a função de carregar mais lista
+                              onEndReachedThreshold={0.3}
+                              keyExtractor={post=> String(post.id)}
+                            // colocar o loading no final da lista para carregar mais conteudo 
+                            // ListFooterComponent={ Loading &&  <Loadin /> }
+                            //realizar uma função quando puxar pra cima 
+                            //onRefresh={refreshList}
+                            //boleano quando a função de refresh acabou 
+                            // refreshing={Refreshin}
+                            //dipara uma função quando os intens que estiver vizivel mudarem
+                              //onViewableItemsChanged={handleView}
+                            // quando o item chegar a 50 porcento carrega a outra imagem
+                            viewabilityConfig={{ minimumViewTime:2000, viewAreaCoveragePercentThreshold:75 }}
+
+                            renderItem={({ item }) => (
                             <View  style={styles.Post}>
                             <TouchableHighlight onPress={()=>IrCartao(item.id)} style={{ padding:5, flexDirection:"row",  alignItems:"center", justifyContent:"space-around", height:70, width:wp('100%'), borderBottomWidth:1, marginBottom:5, borderColor:"#ccc", backgroundColor:item.CorNalist,}}>
                             <>
@@ -1750,10 +1802,8 @@ export default () => {
 
                             </View>
 
-                            </>
-
-                            ))}
-
+                            )}
+                            /> */}
                           
                           </>
 
@@ -1804,7 +1854,7 @@ export default () => {
         locale={'pt'} // optional, default is automically detected by your system
       />
           
-
+</ImageBackground>
         
       </View>
     )
@@ -1818,7 +1868,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     
   },
- 
+  BtnText: {
+    fontSize: 18,
+    color: "#FFF212",
+    fontWeight: "bold",
+  },
   Avitext: {
     fontSize: 15,
     color: "#000",
@@ -2272,16 +2326,13 @@ const styles = StyleSheet.create({
     backgroundColor:"#00A859",
       },
   Btn: {
-    width:"60%",
-    marginTop:10,
-   height:40,
-   backgroundColor: "#00A859",
-   borderRadius:20,
-   justifyContent:"center",
-   alignItems: "center",
-  borderColor:"#FFF212",
-  borderWidth:2,
-  marginBottom:10
+    width:80,
+    height:60,
+    marginRight:10,
+    justifyContent:"center",
+    alignItems:"center",
+    flexDirection:"column",
+    backgroundColor:"#fff",
       },
   Botoes: {
     width:"100%",
@@ -2385,7 +2436,13 @@ const styles = StyleSheet.create({
 
   Post: {
    backgroundColor:"#000",
-   width: wp('90%') 
+   width: wp('90%'),
+   height:400,
+   borderRadius:10,
+   display:"flex",
+   justifyContent:"center",
+   alignItems:"center",
+   flexDirection:"column",
     },
 
     Header: {
@@ -2402,14 +2459,14 @@ const styles = StyleSheet.create({
 
   TextInfo: {
     fontSize: 23,
-    color: "#FFF",
+    color: "#000",
     fontWeight: "bold",
     fontStyle:"italic"
     },
    
     BtnText: {
-      fontSize: 20,
-      color: "#FFF212",
+      fontSize: 18,
+      color: "#000",
       fontWeight: "bold",
       },
 
@@ -2424,7 +2481,7 @@ const styles = StyleSheet.create({
     
   
         Container:{
-            backgroundColor: "#000",
+            backgroundColor:"#FFE767",
             flex:1,
           justifyContent:"center",
           alignItems:"center",
@@ -2445,15 +2502,15 @@ const styles = StyleSheet.create({
            justifyContent:"space-around",
            alignItems:"center",
            flexDirection:"row",
-           backgroundColor:"#000",
+   
            paddingLeft:10,
            paddingRight:10,
            marginBottom:20,
            
           },
           ImageVer2: {
-            width:  40,
-            height: 40, 
+            width:  80,
+            height: 80, 
           }, 
            
 });

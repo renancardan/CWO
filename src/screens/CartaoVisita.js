@@ -23,6 +23,7 @@ import EstCid from '../services/cidadejson.json'
 import Empre from '../services/Empresas.json'
 import MultiSelect from 'react-native-multiple-select';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import { Video, ResizeMode } from 'expo-av';
 //import Datand from '../components/datando';
 
 
@@ -38,7 +39,7 @@ export default ({route}) => {
   const [Page, setPage] = useState(1);
   const [Load, setLoad] = useState(false);
   const [DataPesq, setDataPesq] = useState(new Date().getTime());
-  const [Carreg, setCarreg] = useState(false);
+  const [Carreg, setCarreg] = useState(true);
   const [Refreshin, setRefreshin] = useState(false);
   const [hr, sethr] = useState("00:00");
   const [Pcasa, setPcasa] = useState(false);
@@ -107,7 +108,8 @@ export default ({route}) => {
   const [Btn, setBtn] = useState(false);
   const [IdTrans, setIdTrans] = useState("")
   const [IdCart, setIdCart] = useState(route.params.id)
-  const [StatusCart, setStatusCart] = useState(route.params.Status)
+  const [Noti, setNot] = useState()
+  const [StatusCart, setStatusCart] = useState("")
   const [Loading, setLoading] = useState(false);
   const [Te1, setTe1] = useState(false);
   const [TelMsg, setTelMsg] = useState(true);
@@ -224,7 +226,11 @@ export default ({route}) => {
   const [LisCre, setLisCre] = useState([])
   const [QrCode, setQrCode] = useState("")
   const [DireSite, setDireSite] = useState(false)
- 
+  const [FotAnuncio, setFotAnuncio] = useState("")
+  const [LinAnun, setLinAnun] = useState("")
+  const [IdAnun, setIdAnun] = useState("")
+  const [IdVizu, setIdVizu] = useState("")
+  console.log(route.params.Lista)
  
   useEffect(() => {
     
@@ -233,41 +239,41 @@ export default ({route}) => {
     
   }, []);
 
-  useEffect(() => {
+//   useEffect(() => {
     
-    criarListaem()
+//     criarListaem()
   
   
-}, []);
+// }, []);
 
-  useEffect(() => {   
-  setTelMsg4(false)
+//   useEffect(() => {   
+//   setTelMsg4(false)
 
-    }, [Nome]);
+//     }, [Nome]);
 
-  useEffect(() => {
-    if(Tel !== "" && Tel.length === 14 && Robo === false){
+//   useEffect(() => {
+//     if(Tel !== "" && Tel.length === 14 && Robo === false){
     
-    setTelMsg2(false);
-        TelWhats();
+//     setTelMsg2(false);
+//         TelWhats();
     
-    } else {
-      if(Robo === true && Tel.length > 3 ){
-        setTelMsg2(true);
-      }
-    }
+//     } else {
+//       if(Robo === true && Tel.length > 3 ){
+//         setTelMsg2(true);
+//       }
+//     }
     
-console.log(Robo)
+// console.log(Robo)
 
-   }, [Tel, Robo])
+//    }, [Tel, Robo])
 
-  useEffect(() => {
-    tempo();
-  }, [])
+//   useEffect(() => {
+//     tempo();
+//   }, [])
 
-  useEffect(() => {
+//   useEffect(() => {
    
-  }, [LisCre])
+//   }, [LisCre])
 
 
   //  useEffect(() => {
@@ -615,6 +621,10 @@ console.log(Robo)
     const AtivandoMenu = ()=>{
       setMenu(!Menu)
      }
+     const CliqueAnun = ()=>{
+      window.open(LinAnun, '_blank');
+      Api.ClicandoAnun(IdAnun, IdVizu)
+     }
 
   const AtivandoPessoal = ()=>{
     setPessoal(!Pessoal)
@@ -872,7 +882,7 @@ console.log(Robo)
   
    
       setCarreg(true)
-      Api.PegaCartao(IdCart, setLogado,  setCarreg, setInfCart, setIdUser );
+      Api.PegaAnuncio(IdCart, TelCam, setIdVizu,  setFotAnuncio, setLinAnun, setIdAnun, setCarreg, setNot,  );
     
 
 
@@ -1562,1837 +1572,24 @@ console.log(Robo)
 
     return (
       <View style={styles.Container}>
-           <Modal
-            transparent={true}
-            animationType="slide"
-            visible={ModalCalend}
-            >
-              <View style={styles.viewCalend}> 
+ 
             
-              {CriarCli === true ?
-
-              <>
-                {Load === true ?
-                      <>
-                <Image source={require('../assets/carreg.gif')}  style={styles.ImageVer3 } />
-               
-                      
-                      
-                      </>
-
-                      :
-                      <>
-                      
-                <View style={styles.QuadNota} >
-                <View  style={styles.CaixadeapostaTitulo}  >
-                    
-                    <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20, marginTop:20  }}>             </Text> <TouchableHighlight style={styles.fechaModal} onPress={() =>Siarnota()}><Text>X</Text></TouchableHighlight>
-                    
-                      </View>
-                <ScrollView>
-              
-                <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20, marginTop:20  }}>Editando Cartão</Text>
-                      
-                      <TouchableHighlight onPress={SalvandoCartao} style={{width:150, height:50, backgroundColor:"#1ED31A", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} >
-                      <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Salvar</Text>
-                    </TouchableHighlight>
-                    <View style={{width:300, height:3, backgroundColor:"#ccc", }}>
-  
-                </View>
-                    {CartAtivod=== false ?
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Cartão Desativado</Text> 
-                       <TouchableHighlight style={{width:60, height:35, backgroundColor:"red", borderRadius:20, margin:10, borderColor:"#ccc", borderWidth:3,   }} onPress={()=>AtivandoCartAtivo()}>
-                       <>
-                       <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginRight:1}}>
-  
-                       </View>
-                       </>
-                      </TouchableHighlight>
-                      </>
-                    
-
-                      :
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Cartão Ativado</Text> 
-                      <TouchableHighlight style={{width:60, height:35, backgroundColor:"green", borderRadius:20, margin:10, flexDirection:"row",  borderColor:"#ccc", borderWidth:3,  }} onPress={()=> AtivandoCartAtivo()}>
-                      <>
-                      <View style={{width:20, height:30 , borderRadius:20, marginLeft:1}}>
- 
-                       </View>
-                      <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginLeft:1}}>
- 
-                      </View>
-                      </>
-                     </TouchableHighlight>
-                    
-                  
-                  
-                     </>
-                      }
-                    <View style={{width:300, height:3, backgroundColor:"#ccc", }}>
-  
-                    </View>
-                    {CartAtivod === true &&
-                    <>
-                    
-                 
-                      {AtiImg === false ?
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000"  }}>Foto Desativada</Text> 
-                       <TouchableHighlight style={{width:60, height:35, backgroundColor:"red", borderRadius:20, margin:10, borderColor:"#ccc", borderWidth:3 }} onPress={()=>AtivandoImg()}>
-                       <>
-                       <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginRight:1}}>
-  
-                       </View>
-                       </>
-                      </TouchableHighlight>
-                      </>
-                    
-
-                      :
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000"  }}>Foto Ativada</Text> 
-                      <TouchableHighlight style={{width:60, height:35, backgroundColor:"green", borderRadius:20, margin:10, flexDirection:"row",  borderColor:"#ccc", borderWidth:3 }} onPress={()=>AtivandoImg()}>
-                      <>
-                      <View style={{width:20, height:30 , borderRadius:20, marginLeft:1}}>
- 
-                       </View>
-                      <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginLeft:1}}>
- 
-                      </View>
-                      </>
-                     </TouchableHighlight>
-                     </>
-                      }
-                     {AtiImg === true &&
-                     <>
-                      <Image  source={{uri:ImgCart }}  style={{ width:200, height:200, marginLeft:50, borderRadius:100 }} />
-                      <TouchableHighlight style={{width:250, height:50, backgroundColor:"#00A859", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} onPress={()=>openImagePickerAsync()}>
-                              <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Procurar Imagem</Text>
-                        </TouchableHighlight>
-                     
-                     </>
-
-                     }
- <Text  style={{ marginLeft:10, fontSize:17, color:"#000", fontWeight:"bold", marginTop:15  }}>Título do Cartão</Text> 
-            <View  style = {styles.InputAra15}>
-                  <FontAwesome name="user" size={40} color="black" />
-                  <SignInput
-                    placeholder="Digite Título" 
-                    value={NomeCart}
-                    onChangeText={t=>setNomeCart(t)}
-                    autoCapitalize="none"
-                    keyboardType={"default"}
-                    posi={15}
-                  /> 
-
-                  </View>
-                  <View style={{width:300, height:3, backgroundColor:"#ccc", }}>
-  
-                    </View>
-                  {AtiFun === false ?
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>SubTítulo Desativado</Text> 
-                       <TouchableHighlight style={{width:60, height:35, backgroundColor:"red", borderRadius:20, margin:10, borderColor:"#ccc", borderWidth:3,   }} onPress={()=>AtivandoFunc()}>
-                       <>
-                       <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginRight:1}}>
-  
-                       </View>
-                       </>
-                      </TouchableHighlight>
-                      </>
-                    
-
-                      :
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>SubTítulo Ativado</Text> 
-                      <TouchableHighlight style={{width:60, height:35, backgroundColor:"green", borderRadius:20, margin:10, flexDirection:"row",  borderColor:"#ccc", borderWidth:3,  }} onPress={()=>AtivandoFunc()}>
-                      <>
-                      <View style={{width:20, height:30 , borderRadius:20, marginLeft:1}}>
- 
-                       </View>
-                      <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginLeft:1}}>
- 
-                      </View>
-                      </>
-                     </TouchableHighlight>
-                     <Text  style={{ marginLeft:10, fontSize:17, color:"#000", fontWeight:"bold", }}>SubTítulo do Cartão</Text> 
-                   <View  style = {styles.InputAra15}>
-                  <FontAwesome name="quote-left" size={40} color="black" />
-                  <SignInput
-                    placeholder="Digite o SubTítulo" 
-                    value={FunCart}
-                    onChangeText={t=>setFunCart(t)}
-                    autoCapitalize="none"
-                    keyboardType={"default"}
-                    posi={20}
-                  /> 
-
-                  </View>
-                     </>
-                      }
-              <View style={{width:300, height:3, backgroundColor:"#ccc", }}>
-                
-                </View>
-                  {AtiTel === false ?
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Liga Pra Mim Desativado</Text> 
-                       <TouchableHighlight style={{width:60, height:35, backgroundColor:"red", borderRadius:20, margin:10, borderColor:"#ccc", borderWidth:3,   }} onPress={()=>AtivandoTel()}>
-                       <>
-                       <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginRight:1}}>
-  
-                       </View>
-                       </>
-                      </TouchableHighlight>
-                      </>
-                    
-
-                      :
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Liga Pra Mim Ativado</Text> 
-                      <TouchableHighlight style={{width:60, height:35, backgroundColor:"green", borderRadius:20, margin:10, flexDirection:"row",  borderColor:"#ccc", borderWidth:3,  }} onPress={()=>AtivandoTel()}>
-                      <>
-                      <View style={{width:20, height:30 , borderRadius:20, marginLeft:1}}>
- 
-                       </View>
-                      <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginLeft:1}}>
- 
-                      </View>
-                      </>
-                     </TouchableHighlight>
-                     <Text  style={{ marginLeft:10, fontSize:17, color:"#000", fontWeight:"bold", }}>Telefone</Text> 
-                     <View  style = {styles.InputAra15}>
-                  <FontAwesome name="phone-square" size={40} color="black" />
-                  
-                   <Telefone                      
-                       placeholder="Digite o Telefone" 
-                       value={TelCart}
-                       onChangeText={t=>setTelCart(t)}
-                       autoCapitalize="none"
-                       keyboardType={"phone-pad"}
-                   
-                   /> 
-                   </View>
-                     </>
-                      }
-                     <View style={{width:300, height:3, backgroundColor:"#ccc", }}>
-  
-                     </View>
-                    {AtiWhat === false ?
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Chamar No WhatsApp Desativado</Text> 
-                       <TouchableHighlight style={{width:60, height:35, backgroundColor:"red", borderRadius:20, margin:10, borderColor:"#ccc", borderWidth:3,   }} onPress={()=>AtivandoWhat()}>
-                       <>
-                       <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginRight:1}}>
-  
-                       </View>
-                       </>
-                      </TouchableHighlight>
-                      </>
-                    
-
-                      :
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Chamar No WhatsApp Ativado</Text> 
-                      <TouchableHighlight style={{width:60, height:35, backgroundColor:"green", borderRadius:20, margin:10, flexDirection:"row",  borderColor:"#ccc", borderWidth:3,  }} onPress={()=>AtivandoWhat()}>
-                      <>
-                      <View style={{width:20, height:30 , borderRadius:20, marginLeft:1}}>
- 
-                       </View>
-                      <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginLeft:1}}>
- 
-                      </View>
-                      </>
-                     </TouchableHighlight>
-                     <Text  style={{ marginLeft:10, fontSize:17, color:"#000", fontWeight:"bold", }}>WhatsApp</Text> 
-                     <View  style = {styles.InputAra15}>
-                  <FontAwesome name="whatsapp" size={40} color="black" />
-                  
-                   <Telefone                      
-                       placeholder="Digite o WhatsApp" 
-                       value={WhatCart}
-                       onChangeText={t=>setWhatCart(t)}
-                       autoCapitalize="none"
-                       keyboardType={"phone-pad"}
-                   
-                   /> 
-                   </View>
-                     </>
-                      }
- <View style={{width:300, height:3, backgroundColor:"#ccc", }}>
-  
-  </View>
-                {AtiInst === false ?
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Instagram Desativado</Text> 
-                       <TouchableHighlight style={{width:60, height:35, backgroundColor:"red", borderRadius:20, margin:10, borderColor:"#ccc", borderWidth:3,   }} onPress={()=>AtivandoInst()}>
-                       <>
-                       <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginRight:1}}>
-  
-                       </View>
-                       </>
-                      </TouchableHighlight>
-                      </>
-                    
-
-                      :
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Instagram Ativado</Text> 
-                      <TouchableHighlight style={{width:60, height:35, backgroundColor:"green", borderRadius:20, margin:10, flexDirection:"row",  borderColor:"#ccc", borderWidth:3,  }} onPress={()=>AtivandoInst()}>
-                      <>
-                      <View style={{width:20, height:30 , borderRadius:20, marginLeft:1}}>
- 
-                       </View>
-                      <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginLeft:1}}>
- 
-                      </View>
-                      </>
-                     </TouchableHighlight>
-                     <Text  style={{ marginLeft:10, fontSize:17, color:"#000", fontWeight:"bold", }}>Link do Seu Instagram</Text> 
-                   <View  style = {styles.InputAra15}>
-                  <FontAwesome name="instagram" size={40} color="black" />
-                  <SignInput
-                    placeholder="Digite Ou Cole o Link" 
-                    value={InstCard}
-                    onChangeText={t=>setInstCard(t)}
-                    autoCapitalize="none"
-                    keyboardType={"default"}
-                    posi={1000}
-                  /> 
-
-                  </View>
-               
-                   {InstruInst === false ?
-                    <>
-                    <TouchableHighlight onPress={InstrucaoInst} style={{width:200, height:50, backgroundColor:"#007895", borderRadius:5,  flex:1, justifyContent:"center", alignItems:"center" }} >
-                      <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Instrução Instagram</Text>
-                   </TouchableHighlight>
-                    </>
-                   :
-                   <>
-                   <TouchableHighlight onPress={InstrucaoInst} style={{width:70, height:50, backgroundColor:"#7F1E2B", borderRadius:5,  flex:1, justifyContent:"center", alignItems:"center" }} >
-                     <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Fechar</Text>
-                  </TouchableHighlight>
-                  <View style={{width:270, height:200, backgroundColor:"#fff", justifyContent:"center", alignItems:"center" }}>
-                  <Image source={require('../assets/instagram.gif')}  style={{width:300, height:200}} />
-                  </View>
-                   </>
-
-                   }
-                     </>
-                      }
-                         <View style={{width:300, height:3, backgroundColor:"#ccc", marginTop:10 }}>
-  
-  </View>    
-                  {AtiFace === false ?
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Facebook Desativado</Text> 
-                       <TouchableHighlight style={{width:60, height:35, backgroundColor:"red", borderRadius:20, margin:10, borderColor:"#ccc", borderWidth:3,   }} onPress={()=>AtivandoFace()}>
-                       <>
-                       <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginRight:1}}>
-  
-                       </View>
-                       </>
-                      </TouchableHighlight>
-                      </>
-                    
-
-                      :
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Facebook Ativado</Text> 
-                      <TouchableHighlight style={{width:60, height:35, backgroundColor:"green", borderRadius:20, margin:10, flexDirection:"row",  borderColor:"#ccc", borderWidth:3,  }} onPress={()=>AtivandoFace()}>
-                      <>
-                      <View style={{width:20, height:30 , borderRadius:20, marginLeft:1}}>
- 
-                       </View>
-                      <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginLeft:1}}>
- 
-                      </View>
-                      </>
-                     </TouchableHighlight>
-                     <Text  style={{ marginLeft:10, fontSize:17, color:"#000", fontWeight:"bold", }}>Link do Seu Facebook</Text> 
-                   <View  style = {styles.InputAra15}>
-                  <FontAwesome name="facebook-square" size={40} color="black" />
-                  <SignInput
-                    placeholder="Digite Ou Cole o Link" 
-                    value={FaceCard}
-                    onChangeText={t=>setFaceCard(t)}
-                    autoCapitalize="none"
-                    keyboardType={"default"}
-                    posi={1000}
-                  /> 
-
-                  </View>
-                  
-                   {InstruFace === false ?
-                    <>
-                    <TouchableHighlight onPress={InstrucaoFace} style={{width:200, height:50, backgroundColor:"#007895", borderRadius:5,  flex:1, justifyContent:"center", alignItems:"center" }} >
-                      <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Instrução Facebook</Text>
-                   </TouchableHighlight>
-                    </>
-                   :
-                   <>
-                   <TouchableHighlight onPress={InstrucaoFace} style={{width:70, height:50, backgroundColor:"#7F1E2B", borderRadius:5,  flex:1, justifyContent:"center", alignItems:"center" }} >
-                     <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Fechar</Text>
-                  </TouchableHighlight>
-                  <View style={{width:270, height:200, backgroundColor:"#fff", justifyContent:"center", alignItems:"center" }}>
-                  <Image source={require('../assets/facebook.gif')}  style={{width:300, height:200}} />
-                  </View>
-                   </>
-
-                   }
-                     </>
-                      }
-                         <View style={{width:300, height:3, backgroundColor:"#ccc", marginTop:10 }}>
-  
-  </View>
-                  {AtiSite === false ?
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Site Desativado</Text> 
-                       <TouchableHighlight style={{width:60, height:35, backgroundColor:"red", borderRadius:20, margin:10, borderColor:"#ccc", borderWidth:3,   }} onPress={()=>AtivandoSite()}>
-                       <>
-                       <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginRight:1}}>
-  
-                       </View>
-                       </>
-                      </TouchableHighlight>
-                      </>
-                    
-
-                      :
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Site Ativado</Text> 
-                      <TouchableHighlight style={{width:60, height:35, backgroundColor:"green", borderRadius:20, margin:10, flexDirection:"row",  borderColor:"#ccc", borderWidth:3,  }} onPress={()=>AtivandoSite()}>
-                      <>
-                      <View style={{width:20, height:30 , borderRadius:20, marginLeft:1}}>
- 
-                       </View>
-                      <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginLeft:1}}>
- 
-                      </View>
-                      </>
-                     </TouchableHighlight>
-                     {DireSite === false ?
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Direcionamento Desativado</Text> 
-                       <TouchableHighlight style={{width:60, height:35, backgroundColor:"red", borderRadius:20, margin:10, borderColor:"#ccc", borderWidth:3,   }} onPress={()=>AtivandoDireci()}>
-                       <>
-                       <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginRight:1}}>
-  
-                       </View>
-                       </>
-                      </TouchableHighlight>
-                      </>
-                    
-
-                      :
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Direcionamento Ativado</Text> 
-                      <TouchableHighlight style={{width:60, height:35, backgroundColor:"green", borderRadius:20, margin:10, flexDirection:"row",  borderColor:"#ccc", borderWidth:3,  }} onPress={()=>AtivandoDireci()}>
-                      <>
-                      <View style={{width:20, height:30 , borderRadius:20, marginLeft:1}}>
- 
-                       </View>
-                      <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginLeft:1}}>
- 
-                      </View>
-                      </>
-                     </TouchableHighlight>
-                    
-                  
-                  
-                     </>
-                      }
-                     <Text  style={{ marginLeft:10, fontSize:17, color:"#000", fontWeight:"bold", }}>Link do Seu Site</Text> 
-                   <View  style = {styles.InputAra15}>
-                  <FontAwesome name="eercast" size={40} color="black" />
-                  <SignInput
-                    placeholder="Digite Ou Cole o Link" 
-                    value={SiteCard}
-                    onChangeText={t=>setSiteCard(t)}
-                    autoCapitalize="none"
-                    keyboardType={"default"}
-                    posi={1000}
-                  /> 
-
-                  </View>
-                  
-                   {InstruSite === false ?
-                    <>
-                    <TouchableHighlight onPress={InstrucaoSite} style={{width:200, height:50, backgroundColor:"#007895", borderRadius:5,  flex:1, justifyContent:"center", alignItems:"center" }} >
-                      <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Instrução Site</Text>
-                   </TouchableHighlight>
-                    </>
-                   :
-                   <>
-                   <TouchableHighlight onPress={InstrucaoSite} style={{width:70, height:50, backgroundColor:"#7F1E2B", borderRadius:5,  flex:1, justifyContent:"center", alignItems:"center" }} >
-                     <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Fechar</Text>
-                  </TouchableHighlight>
-                  <View style={{width:270, height:200, backgroundColor:"#fff", justifyContent:"center", alignItems:"center" }}>
-                  <Image source={require('../assets/site.gif')}  style={{width:300, height:200}} />
-                  </View>
-                   </>
-
-                   }
-                     </>
-                      }
-   <View style={{width:300, height:3, backgroundColor:"#ccc", marginTop:10 }}>
-  
-  </View>
-                  {AtiTw === false ?
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Twitter Desativado</Text> 
-                       <TouchableHighlight style={{width:60, height:35, backgroundColor:"red", borderRadius:20, margin:10, borderColor:"#ccc", borderWidth:3,   }} onPress={()=>AtivandoTw()}>
-                       <>
-                       <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginRight:1}}>
-  
-                       </View>
-                       </>
-                      </TouchableHighlight>
-                      </>
-                    
-
-                      :
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Twitter Ativado</Text> 
-                      <TouchableHighlight style={{width:60, height:35, backgroundColor:"green", borderRadius:20, margin:10, flexDirection:"row",  borderColor:"#ccc", borderWidth:3,  }} onPress={()=>AtivandoTw()}>
-                      <>
-                      <View style={{width:20, height:30 , borderRadius:20, marginLeft:1}}>
- 
-                       </View>
-                      <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginLeft:1}}>
- 
-                      </View>
-                      </>
-                     </TouchableHighlight>
-                     <Text  style={{ marginLeft:10, fontSize:17, color:"#000", fontWeight:"bold", }}>Link do Seu Twitter</Text> 
-                   <View  style = {styles.InputAra15}>
-                  <FontAwesome name="twitter-square" size={40} color="black" />
-                  <SignInput
-                    placeholder="Digite Ou Cole o Link" 
-                    value={TwCard}
-                    onChangeText={t=>setTwCard(t)}
-                    autoCapitalize="none"
-                    keyboardType={"default"}
-                    posi={1000}
-                  /> 
-
-                  </View>
-                  
-                   {InstruTw === false ?
-                    <>
-                    <TouchableHighlight onPress={InstrucaoTw} style={{width:200, height:50, backgroundColor:"#007895", borderRadius:5,  flex:1, justifyContent:"center", alignItems:"center" }} >
-                      <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Instrução Twitter</Text>
-                   </TouchableHighlight>
-                    </>
-                   :
-                   <>
-                   <TouchableHighlight onPress={InstrucaoTw} style={{width:70, height:50, backgroundColor:"#7F1E2B", borderRadius:5,  flex:1, justifyContent:"center", alignItems:"center" }} >
-                     <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Fechar</Text>
-                  </TouchableHighlight>
-                  <View style={{width:270, height:200, backgroundColor:"#fff", justifyContent:"center", alignItems:"center" }}>
-                  <Image source={require('../assets/twitter.gif')}  style={{width:300, height:200}} />
-                  </View>
-                   </>
-
-                   }
-                     </>
-                      }
-   <View style={{width:300, height:3, backgroundColor:"#ccc", marginTop:10}}>
-  
-  </View>
-                  {AtiTik === false ?
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>TikTok Desativado</Text> 
-                       <TouchableHighlight style={{width:60, height:35, backgroundColor:"red", borderRadius:20, margin:10, borderColor:"#ccc", borderWidth:3,   }} onPress={()=>AtivandoTik()}>
-                       <>
-                       <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginRight:1}}>
-  
-                       </View>
-                       </>
-                      </TouchableHighlight>
-                      </>
-                    
-
-                      :
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>TikTok  Ativado</Text> 
-                      <TouchableHighlight style={{width:60, height:35, backgroundColor:"green", borderRadius:20, margin:10, flexDirection:"row",  borderColor:"#ccc", borderWidth:3,  }} onPress={()=>AtivandoTik()}>
-                      <>
-                      <View style={{width:20, height:30 , borderRadius:20, marginLeft:1}}>
- 
-                       </View>
-                      <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginLeft:1}}>
- 
-                      </View>
-                      </>
-                     </TouchableHighlight>
-                     <Text  style={{ marginLeft:10, fontSize:17, color:"#000", fontWeight:"bold", }}>Link do Seu TikTok</Text> 
-                   <View  style = {styles.InputAra15}>
-                  <FontAwesome name="tumblr-square" size={40} color="black" />
-                  <SignInput
-                    placeholder="Digite Ou Cole o Link" 
-                    value={TikCard}
-                    onChangeText={t=>setTikCard(t)}
-                    autoCapitalize="none"
-                    keyboardType={"default"}
-                    posi={1000}
-                  /> 
-
-                  </View>
-                  
-                   {InstruTik === false ?
-                    <>
-                    <TouchableHighlight onPress={InstrucaoTik} style={{width:200, height:50, backgroundColor:"#007895", borderRadius:5,  flex:1, justifyContent:"center", alignItems:"center" }} >
-                      <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Instrução TikTok </Text>
-                   </TouchableHighlight>
-                    </>
-                   :
-                   <>
-                   <TouchableHighlight onPress={InstrucaoTik} style={{width:70, height:50, backgroundColor:"#7F1E2B", borderRadius:5,  flex:1, justifyContent:"center", alignItems:"center" }} >
-                     <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Fechar</Text>
-                  </TouchableHighlight>
-                  <View style={{width:270, height:200, backgroundColor:"#fff", justifyContent:"center", alignItems:"center" }}>
-                  <Image source={require('../assets/tiktok.gif')}  style={{width:300, height:200}} />
-                  </View>
-                   </>
-
-                   }
-                     </>
-                      }
-                         <View style={{width:300, height:3, backgroundColor:"#ccc", marginTop:10 }}>
-  
-  </View>
-                          {AtiYou === false ?
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>YouTube Desativado</Text> 
-                       <TouchableHighlight style={{width:60, height:35, backgroundColor:"red", borderRadius:20, margin:10, borderColor:"#ccc", borderWidth:3,   }} onPress={()=>AtivandoYou()}>
-                       <>
-                       <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginRight:1}}>
-  
-                       </View>
-                       </>
-                      </TouchableHighlight>
-                      </>
-                    
-
-                      :
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>YouTube Ativado</Text> 
-                      <TouchableHighlight style={{width:60, height:35, backgroundColor:"green", borderRadius:20, margin:10, flexDirection:"row",  borderColor:"#ccc", borderWidth:3,  }} onPress={()=>AtivandoYou()}>
-                      <>
-                      <View style={{width:20, height:30 , borderRadius:20, marginLeft:1}}>
- 
-                       </View>
-                      <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginLeft:1}}>
- 
-                      </View>
-                      </>
-                     </TouchableHighlight>
-                     <Text  style={{ marginLeft:10, fontSize:17, color:"#000", fontWeight:"bold", }}>Link do YouTube </Text> 
-                   <View  style = {styles.InputAra15}>
-                  <FontAwesome name="youtube-square" size={40} color="black" />
-                  <SignInput
-                    placeholder="Digite Ou Cole o Link" 
-                    value={YouCard}
-                    onChangeText={t=>setYouCard(t)}
-                    autoCapitalize="none"
-                    keyboardType={"default"}
-                    posi={1000}
-                  /> 
-
-                  </View>
-                  
-                   {InstruYou === false ?
-                    <>
-                    <TouchableHighlight onPress={InstrucaoYou} style={{width:200, height:50, backgroundColor:"#007895", borderRadius:5,  flex:1, justifyContent:"center", alignItems:"center" }} >
-                      <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Instrução YouTube  </Text>
-                   </TouchableHighlight>
-                    </>
-                   :
-                   <>
-                   <TouchableHighlight onPress={InstrucaoYou} style={{width:70, height:50, backgroundColor:"#7F1E2B", borderRadius:5,  flex:1, justifyContent:"center", alignItems:"center" }} >
-                     <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Fechar</Text>
-                  </TouchableHighlight>
-                  <View style={{width:270, height:200, backgroundColor:"#fff", justifyContent:"center", alignItems:"center" }}>
-                  <Image source={require('../assets/youtube.gif')}  style={{width:300, height:200}} />
-                  </View>
-                   </>
-
-                   }
-                     </>
-                      }
-   <View style={{width:300, height:3, backgroundColor:"#ccc", marginTop:10}}>
-  
-  </View>
-                {AtiEmail === false ?
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Email Desativado</Text> 
-                       <TouchableHighlight style={{width:60, height:35, backgroundColor:"red", borderRadius:20, margin:10, borderColor:"#ccc", borderWidth:3,   }} onPress={()=>AtivandoEmail()}>
-                       <>
-                       <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginRight:1}}>
-  
-                       </View>
-                       </>
-                      </TouchableHighlight>
-                      </>
-                    
-
-                      :
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Email Ativado</Text> 
-                      <TouchableHighlight style={{width:60, height:35, backgroundColor:"green", borderRadius:20, margin:10, flexDirection:"row",  borderColor:"#ccc", borderWidth:3,  }} onPress={()=>AtivandoEmail()}>
-                      <>
-                      <View style={{width:20, height:30 , borderRadius:20, marginLeft:1}}>
- 
-                       </View>
-                      <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginLeft:1}}>
- 
-                      </View>
-                      </>
-                     </TouchableHighlight>
-                     <Text  style={{ marginLeft:10, fontSize:17, color:"#000", fontWeight:"bold", }}>Email: </Text> 
-                   <View  style = {styles.InputAra15}>
-                  <FontAwesome name="envelope-o" size={40} color="black" />
-                  <SignInput
-                    placeholder="Digite Seu Email " 
-                    value={EmailCard}
-                    onChangeText={t=>setEmailCard(t)}
-                    autoCapitalize="none"
-                    keyboardType={"default"}
-                    posi={1000}
-                  /> 
-
-                  </View>
-                  
-                  
-                     </>
-                      }
-   <View style={{width:300, height:3, backgroundColor:"#ccc", marginTop:10}}>
-  
-  </View>
-                {AtiPix === false ?
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Pix Desativado</Text> 
-                       <TouchableHighlight style={{width:60, height:35, backgroundColor:"red", borderRadius:20, margin:10, borderColor:"#ccc", borderWidth:3,   }} onPress={()=>AtivandoPix()}>
-                       <>
-                       <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginRight:1}}>
-  
-                       </View>
-                       </>
-                      </TouchableHighlight>
-                      </>
-                    
-
-                      :
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Pix Ativado</Text> 
-                      <TouchableHighlight style={{width:60, height:35, backgroundColor:"green", borderRadius:20, margin:10, flexDirection:"row",  borderColor:"#ccc", borderWidth:3,  }} onPress={()=>AtivandoPix()}>
-                      <>
-                      <View style={{width:20, height:30 , borderRadius:20, marginLeft:1}}>
- 
-                       </View>
-                      <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginLeft:1}}>
- 
-                      </View>
-                      </>
-                     </TouchableHighlight>
-                     <Text  style={{ marginLeft:10, fontSize:17, color:"#000", fontWeight:"bold", }}>Tipo do Pix: </Text> 
-                   <View  style = {styles.InputAra15}>
-                   <FontAwesome name="ticket" size={40} color="black" />
-                  <SignInput
-                    placeholder="Digite o Tipo de Pix " 
-                    value={TipPix}
-                    onChangeText={t=>setTipPix(t)}
-                    autoCapitalize="none"
-                    keyboardType={"default"}
-                    posi={1000}
-                  /> 
-
-                  </View>
-                     <Text  style={{ marginLeft:10, fontSize:17, color:"#000", fontWeight:"bold", }}>Pix: </Text> 
-                   <View  style = {styles.InputAra15}>
-                   <FontAwesome name="pencil-square-o" size={40} color="black" />
-                  <SignInput
-                    placeholder="Digite o Pix " 
-                    value={PixCard}
-                    onChangeText={t=>setPixCard(t)}
-                    autoCapitalize="none"
-                    keyboardType={"default"}
-                    posi={1000}
-                  /> 
-
-                  </View>
-                  <Text  style={{ marginLeft:10, fontSize:17, color:"#000", fontWeight:"bold", marginTop:15  }}>Nome da Conta que receberá o Pix </Text> 
-            <View  style = {styles.InputAra15}>
-                  <FontAwesome name="user" size={40} color="black" />
-                  <SignInput
-                    placeholder="Digite o Nome da Conta" 
-                    value={NomePix}
-                    onChangeText={t=>setNomePix(t)}
-                    autoCapitalize="none"
-                    keyboardType={"default"}
-                    posi={1000}
-                  /> 
-                  </View>
-                  
-                   {InstruPix === false ?
-                    <>
-                    <TouchableHighlight onPress={InstrucaoPix} style={{width:200, height:50, backgroundColor:"#007895", borderRadius:5,  flex:1, justifyContent:"center", alignItems:"center" }} >
-                      <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Instrução Pix  </Text>
-                   </TouchableHighlight>
-                    </>
-                   :
-                   <>
-                   <TouchableHighlight onPress={InstrucaoPix} style={{width:70, height:50, backgroundColor:"#7F1E2B", borderRadius:5,  flex:1, justifyContent:"center", alignItems:"center" }} >
-                     <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Fechar</Text>
-                  </TouchableHighlight>
-                  <View style={{width:270, height:200, backgroundColor:"#000", justifyContent:"center", alignItems:"center" }}>
-
-                  </View>
-                   </>
-
-                   }
-                     </>
-                      }
-                         <View style={{width:300, height:3, backgroundColor:"#ccc", marginTop:10}}>
-  
-  </View>
-                         {AtiTele === false ?
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Telegram Desativado</Text> 
-                       <TouchableHighlight style={{width:60, height:35, backgroundColor:"red", borderRadius:20, margin:10, borderColor:"#ccc", borderWidth:3,   }} onPress={()=>AtivandoTele()}>
-                       <>
-                       <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginRight:1}}>
-  
-                       </View>
-                       </>
-                      </TouchableHighlight>
-                      </>
-                    
-
-                      :
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Telegram Ativado</Text> 
-                      <TouchableHighlight style={{width:60, height:35, backgroundColor:"green", borderRadius:20, margin:10, flexDirection:"row",  borderColor:"#ccc", borderWidth:3,  }} onPress={()=>AtivandoTele()}>
-                      <>
-                      <View style={{width:20, height:30 , borderRadius:20, marginLeft:1}}>
- 
-                       </View>
-                      <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginLeft:1}}>
- 
-                      </View>
-                      </>
-                     </TouchableHighlight>
-                     <Text  style={{ marginLeft:10, fontSize:17, color:"#000", fontWeight:"bold", }}>Link do Telegram </Text> 
-                   <View  style = {styles.InputAra15}>
-                  <FontAwesome name="telegram" size={40} color="black" />
-                  <SignInput
-                    placeholder="Digite Ou Cole o Link"
-                    value={TeleCard}
-                    onChangeText={t=>setTeleCard(t)}
-                    autoCapitalize="none"
-                    keyboardType={"default"}
-                    posi={1000}
-                  /> 
-
-                  </View>
-                  
-                   {InstruTele === false ?
-                    <>
-                    <TouchableHighlight onPress={InstrucaoTele} style={{width:200, height:50, backgroundColor:"#007895", borderRadius:5,  flex:1, justifyContent:"center", alignItems:"center" }} >
-                      <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Instrução Telegram  </Text>
-                   </TouchableHighlight>
-                    </>
-                   :
-                   <>
-                   <TouchableHighlight onPress={InstrucaoTele} style={{width:70, height:50, backgroundColor:"#7F1E2B", borderRadius:5,  flex:1, justifyContent:"center", alignItems:"center" }} >
-                     <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Fechar</Text>
-                  </TouchableHighlight>
-                  <View style={{width:270, height:200, backgroundColor:"#fff", justifyContent:"center", alignItems:"center" }}>
-                  <Image source={require('../assets/telegram.gif')}  style={{width:300, height:200}} />
-                  </View>
-                   </>
-
-                   }
-                     </>
-                      }
-   <View style={{width:300, height:3, backgroundColor:"#ccc", marginTop:10}}>
-  
-  </View>
-                {AtiLoc === false ?
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Localização Desativado</Text> 
-                       <TouchableHighlight style={{width:60, height:35, backgroundColor:"red", borderRadius:20, margin:10, borderColor:"#ccc", borderWidth:3,   }} onPress={()=>AtivandoLoc()}>
-                       <>
-                       <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginRight:1}}>
-  
-                       </View>
-                       </>
-                      </TouchableHighlight>
-                      </>
-                    
-
-                      :
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Localização Ativado</Text> 
-                      <TouchableHighlight style={{width:60, height:35, backgroundColor:"green", borderRadius:20, margin:10, flexDirection:"row",  borderColor:"#ccc", borderWidth:3,  }} onPress={()=>AtivandoLoc()}>
-                      <>
-                      <View style={{width:20, height:30 , borderRadius:20, marginLeft:1}}>
- 
-                       </View>
-                      <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginLeft:1}}>
- 
-                      </View>
-                      </>
-                     </TouchableHighlight>
-                     <Text  style={{ marginLeft:10, fontSize:17, color:"#000", fontWeight:"bold", }}>Código da Localização </Text> 
-                   <View  style = {styles.InputAra15}>
-                  <FontAwesome name="location-arrow" size={40} color="black" />
-      
-                  <SignInput
-                    placeholder="Digite o Código " 
-                    value={LocCard}
-                    onChangeText={t=>setLocCard(t)}
-                    autoCapitalize="none"
-                    keyboardType={"default"}
-                    posi={1000}
-                  /> 
-
-                  </View>
-                  
-                   {InstruLoc === false ?
-                    <>
-                    <TouchableHighlight onPress={InstrucaoLoc} style={{width:200, height:50, backgroundColor:"#007895", borderRadius:5,  flex:1, justifyContent:"center", alignItems:"center" }} >
-                      <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Instrução Localização  </Text>
-                   </TouchableHighlight>
-                    </>
-                   :
-                   <>
-                   <TouchableHighlight onPress={InstrucaoLoc} style={{width:70, height:50, backgroundColor:"#7F1E2B", borderRadius:5,  flex:1, justifyContent:"center", alignItems:"center" }} >
-                     <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Fechar</Text>
-                  </TouchableHighlight>
-                  <View style={{width:270, height:200, backgroundColor:"#fff", justifyContent:"center", alignItems:"center" }}>
-                  <Image source={require('../assets/locali.gif')}  style={{width:300, height:200}} />
-                  </View>
-                   </>
-
-                   }
-                     </>
-                      }
-   <View style={{width:300, height:3, backgroundColor:"#ccc", marginTop:10 }}>
-  
-  </View>
-                {AtiSal === false ?
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Salvar Contato Desativado</Text> 
-                       <TouchableHighlight style={{width:60, height:35, backgroundColor:"red", borderRadius:20, margin:10, borderColor:"#ccc", borderWidth:3,   }} onPress={()=>AtivandoSal()}>
-                       <>
-                       <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginRight:1}}>
-  
-                       </View>
-                       </>
-                      </TouchableHighlight>
-                      </>
-                    
-
-                      :
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Salvar Contato Ativado</Text> 
-                      <TouchableHighlight style={{width:60, height:35, backgroundColor:"green", borderRadius:20, margin:10, flexDirection:"row",  borderColor:"#ccc", borderWidth:3,  }} onPress={()=>AtivandoSal()}>
-                      <>
-                      <View style={{width:20, height:30 , borderRadius:20, marginLeft:1}}>
- 
-                       </View>
-                      <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginLeft:1}}>
- 
-                      </View>
-                      </>
-                     </TouchableHighlight>
-                    
-                  
-                  
-                     </>
-                      }
-                         <View style={{width:300, height:3, backgroundColor:"#ccc", }}>
-  
-  </View>
-                       {AtiCom === false ?
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Compartilhar Contato Desativado</Text> 
-                       <TouchableHighlight style={{width:60, height:35, backgroundColor:"red", borderRadius:20, margin:10, borderColor:"#ccc", borderWidth:3,   }} onPress={()=>AtivandoCom()}>
-                       <>
-                       <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginRight:1}}>
-  
-                       </View>
-                       </>
-                      </TouchableHighlight>
-                      </>
-                    
-
-                      :
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Compartilhar Contato Ativado</Text> 
-                      <TouchableHighlight style={{width:60, height:35, backgroundColor:"green", borderRadius:20, margin:10, flexDirection:"row",  borderColor:"#ccc", borderWidth:3,  }} onPress={()=>AtivandoCom()}>
-                      <>
-                      <View style={{width:20, height:30 , borderRadius:20, marginLeft:1}}>
- 
-                       </View>
-                      <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginLeft:1}}>
- 
-                      </View>
-                      </>
-                     </TouchableHighlight>
-                    
-                  
-                  
-                     </>
-                      }
-                      
-                   
-            
-                    
-                     
-
-                      </>
-
-                      }
-                   
-                  
-                   
-                      
-                         
-                           
-                          </ScrollView>
-              </View>
-              </>
-                }
-              </>
-
-
-              :
-              <>
-
-{VerNotajogo === false ?
-              <>
-              {AlertTipo === null?
-              <>
-              {AtivEntrada ?
-              <>
-                <View  style={styles.AreaLogin}>
-                  
-                  <Text style={styles.TexTitu} >CADASTRANDO CARTÃO</Text>
-                  <ReCAPTCHA
-                ref={captcha}
-                    sitekey="6LdDVDIiAAAAAM8Z3lsWD6qE2o2w94YfwDM7mRf7"
-                    size="normal"
-                    hl="pt"
-                    theme="dark"
-                    onChange={onChange}
-                  />
-              <Text style={styles.TexTitu} >Digite Seu WhatsApp</Text>
-                <View  style = {styles.InputAra}>
-                <FontAwesome name="phone-square" size={40} color="black" />
-                <Telefone
-                
-                placeholder="Digite seu Whatsapp" 
-                value={Tel}
-                onChangeText={t=>setTel(t)}
-                autoCapitalize="none"
-                keyboardType={"phone-pad"}
-                TelWhats={TelWhats}
-                /> 
-
-
-                </View>
-  
-                </View>
-
-
-              
-              </>
-              
-              :
-              <>
-                <View  style={styles.QuadCalend}>
-               <TouchableHighlight onPress={()=>setModalCalend(false)} style={styles.CalendBtn}>
-                  <Text style={styles.CalendTexSim}>Fechar</Text>
-                 </TouchableHighlight>
-                 <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:27  }}>Tipo de Pix:</Text>
-                      <Text  style={{ marginLeft:10, fontSize:20  }}>{TipPix} </Text>
-                      <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:27  }}>Meu Pix:</Text>
-                      <Text  style={{ marginLeft:10, fontSize:20  }}>{PixCard} </Text>
-                      <Text  style={{fontWeight:"bold", marginLeft:10, fontSize:27  }}>Nome da Conta:</Text>
-                      <Text  style={{ marginLeft:10, fontSize:20  }}>{NomePix} </Text>
-                 {/* <TouchableHighlight style={styles.ModVieBtnBtn}>
-                  <Text style={styles.ModVieTexNao}>Não</Text>
-                 </TouchableHighlight> */}
-                
-                </View>
-              </>
-
-              }
-      
-              </>
-
-              :
-              <>
-              {AlertTipo === "danger"?
-              <>
-           
-               <View  style={styles.ModVie}>
-                <View  style={styles.ModVieTex}>
-                <Text style={styles.Avitext2}>{Alert}</Text>
-                </View>
-                <View  style={styles.ModVieBtn}>
-                 {/* <TouchableHighlight style={styles.ModVieBtnBtn}>
-                  <Text style={styles.ModVieTexNao}>Não</Text>
-                 </TouchableHighlight> */}
-                 <TouchableHighlight onPress={()=>SairAlert()} style={styles.ModVieBtnBtn}>
-                  <Text style={styles.ModVieTexSim}>Ok</Text>
-                 </TouchableHighlight>
-                </View>
-               </View>
-       
-            
-              </>
-
-              :
-              <>
-             
-               <View  style={styles.ModVie}>
-                <View  style={styles.ModVieTex}>
-                <Text style={styles.Avitext}>{Alert}</Text>
-                </View>
-                <View  style={styles.ModVieBtn}>
-                 {/* <TouchableHighlight style={styles.ModVieBtnBtn}>
-                  <Text style={styles.ModVieTexNao}>Não</Text>
-                 </TouchableHighlight> */}
-                 <TouchableHighlight onPress={()=>SairAlert()} style={styles.ModVieBtnBtn}>
-                  <Text style={styles.ModVieTexSim}>Ok</Text>
-                 </TouchableHighlight> 
-                 {AlertTipo === "Salve" &&
+            <ImageBackground source={require("../assets/fundo.png")} 
+          resizeMode="cover" 
+          style={styles.imageBack} >
+                 {Carreg ?
                  <>
-                   <TouchableHighlight onPress={()=>SairAlertExtra()} style={styles.ModVieBtnBtn2}>
-                  <Text style={styles.ModVieTexSim2}>Ir Para Conta</Text>
-                 </TouchableHighlight> 
-                 
-                 </>
-
-                 }
-                </View>
-               </View>
-       
-           
-
-              </>
-
-              }
-
-              </>
-
-              }
-                 
-             
-            
-              </>
-
-              :
-              <>
-
-                {Load === true ?
-                      <>
-                <Image source={require('../assets/carreg.gif')}  style={styles.ImageVer3 } />
-               
-                      
-                      
-                      </>
-
-                      :
-                      <>
-                     
-                        {PgCash ?
-                       <>
-                        <View style={styles.QuadNota} >
-                    
-                        <ScrollView >
-                        <View  style={styles.CaixadeapostaTitulo}  >
-                    <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Estilizar Cartão</Text><TouchableHighlight style={styles.fechaModal} onPress={() =>Siarnota()}><Text>X</Text></TouchableHighlight>
-                      </View> 
-                      <TouchableHighlight onPress={SalvandoCartao} style={{width:150, height:50, backgroundColor:"#1ED31A", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} >
-                      <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Salvar</Text>
-                    </TouchableHighlight>
-                      <View style={{width:300, height:3, backgroundColor:"#ccc", }}>
-  
-                  </View>
-                        
-
-                       <View style={{width:100, height:250, marginRight:5, marginBottom:5}} >
-                       <Text style={{color:"#000", fontSize:17, fontWeight:"bold"}}>Fundo Escolhido</Text>
-              <Image source={{uri:FundoImg}}  style={{width:100, height:200}} />
-           
-             
-              
-
-              
-            
-       
-              </View>
-              
-              {AtivFund === false ?
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Escolher Fundo Desativado</Text> 
-                       <TouchableHighlight style={{width:60, height:35, backgroundColor:"red", borderRadius:20, margin:10, borderColor:"#ccc", borderWidth:3,   }} onPress={()=>AtivandoFund()}>
-                       <>
-                       <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginRight:1}}>
-  
-                       </View>
-                       </>
-                      </TouchableHighlight>
-                      </>
-                    
-
-                      :
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Escolher Fundo Ativado</Text> 
-                      <TouchableHighlight style={{width:60, height:35, backgroundColor:"green", borderRadius:20, margin:10, flexDirection:"row",  borderColor:"#ccc", borderWidth:3,  }} onPress={()=>AtivandoFund()}>
-                      <>
-                      <View style={{width:20, height:30 , borderRadius:20, marginLeft:1}}>
- 
-                       </View>
-                      <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginLeft:1}}>
- 
-                      </View>
-                      </>
-                     </TouchableHighlight>
-                    
-                  
-                  
-                     </>
-                      }
-              {AtivFund === true &&
-              <>
-                   <View style={{width:320,  flexDirection:"row", justifyContent:"center", alignContent:"center", flexWrap:"wrap", }}>
-
-        {Fundos.map((item, key)=>(
-       <>
-       <View style={{width:100, height:250, marginRight:5, marginBottom:5}} >
-          <Image source={{uri:item.Fundo}}  style={{width:100, height:200}} />
-          <TouchableHighlight  onPress={()=>OutroFundo(item.Fundo)} style={{ padding:5, flexDirection:"row",  alignItems:"center", justifyContent:"space-around", height:50, width:100, marginBottom:5, backgroundColor:"#000",}}>
-          <>
-          
-           <Text style={{color:"#FFF", fontSize:17, fontWeight:"bold"}}>Selecionar</Text>
-
-          
-          </>
-          </TouchableHighlight>
-   
-          </View>
-       
-
-
-       
-       
-          </>
-
-          ))}
-  
-       </View>      
-              
-              </>
-
-              }
-              <View style={{width:300, height:3, backgroundColor:"#ccc", marginTop:10 }}>
-  
-  </View>
-                <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15, marginBottom:10 }}>A Cor do Ticket que aparecerá nas listas</Text> 
-                <View  style={styles.Post}>
-              <TouchableHighlight  style={{ padding:5, flexDirection:"row",  alignItems:"center", justifyContent:"space-around", height:70, width:300, borderBottomWidth:1, marginBottom:5, borderColor:"#ccc", backgroundColor:CorCart,}}>
-              <>
-               <View  style={styles.CaixaNome}>
-               <Image source={{uri:ImgCart }}  style={{width:50, height:50, borderRadius:25,  borderWidth:2, borderColor:"#fff", }} />
-                </View> 
-                <View  style={styles.CaixaNome}>
-                
-                  <Text style={{color:"#FFF", fontSize:17, fontWeight:"bold"}}>{NomeCart}</Text>
-                  <Text style={{color:"#FFF", fontSize:14,}}>25 Credencias</Text>
-                  <Text style={{color:"#FFF", fontSize:14,}}>75 Salvamentos</Text>
-                </View> 
-    
-              
-
-
-              </>
-              </TouchableHighlight>
-       
-             
-           
-
-
-            </View>
-            <View style={{width:320,  flexDirection:"row", justifyContent:"center", alignContent:"center", flexWrap:"wrap", }}>
-            {LisCores.map((item, key)=>(
-       <>
-       <View style={{width:100, height:100, marginRight:5, marginBottom:5, backgroundColor:item}} >
-          
-          <TouchableHighlight  onPress={()=>OutraCor(item)} style={{ padding:5, flexDirection:"row",  alignItems:"center", justifyContent:"space-around", height:50, width:100, marginBottom:5, backgroundColor:"#000",}}>
-          <>
-          
-           <Text style={{color:"#FFF", fontSize:17, fontWeight:"bold"}}>Selecionar</Text>
-
-          
-          </>
-          </TouchableHighlight>
-   
-          </View>
-       
-
-
-       
-       
-          </>
-
-          ))}
-          </View>
-                      </ScrollView>
-                      </View>
-                       </>
-                        :
-                        <>
-                         <View style={styles.QuadNota} >
-                        <ScrollView >
-                        <View  style={styles.CaixadeapostaTitulo}  >
-                    <Text style={{fontWeight:"bold", marginLeft:10, fontSize:20  }}>Especificar Cartão</Text><TouchableHighlight style={styles.fechaModal} onPress={() =>Siarnota()}><Text>X</Text></TouchableHighlight>
-                      </View> 
-                      <TouchableHighlight onPress={SalvandoCartao} style={{width:150, height:50, backgroundColor:"#1ED31A", borderRadius:5, margin:20, flex:1, justifyContent:"center", alignItems:"center" }} >
-                      <Text  style={{ margin:10, fontWeight:"bold",  fontSize:16, color:"#FFF"  }}>Salvar</Text>
-                    </TouchableHighlight>
-                      <View style={{width:300, height:3, backgroundColor:"#ccc", marginTop:10 }}>
-  
-  </View>
-                <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Aparecer Na lista da Cidade</Text> 
-                       {AtiPrivi=== false ?
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Desativado</Text> 
-                       <TouchableHighlight style={{width:60, height:35, backgroundColor:"red", borderRadius:20, margin:10, borderColor:"#ccc", borderWidth:3,   }} onPress={()=>AtivandoPriv()}>
-                       <>
-                       <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginRight:1}}>
-  
-                       </View>
-                       </>
-                      </TouchableHighlight>
-                      </>
-                    
-
-                      :
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Ativado</Text> 
-                      <TouchableHighlight style={{width:60, height:35, backgroundColor:"green", borderRadius:20, margin:10, flexDirection:"row",  borderColor:"#ccc", borderWidth:3,  }} onPress={()=>AtivandoPriv()}>
-                      <>
-                      <View style={{width:20, height:30 , borderRadius:20, marginLeft:1}}>
- 
-                       </View>
-                      <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginLeft:1}}>
- 
-                      </View>
-                      </>
-                     </TouchableHighlight>
-                     </>
-                      }
-                     <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:17, fontWeight:"bold"  }}>Especifique as configurações abaixo para você ser encontrado nas Listas de Contatos salvos dos seus amigos e clientes, ou caso você ative para aparecer na Lista da Sua Cidade, você será encontrado mais rápido, por meio dessas especificações.</Text> 
-                     <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15 , marginBottom:20 }}>Estado: {Estado}</Text> 
-                     <MultiSelect
-                        hideTags
-                        items={EstCid}
-                        uniqueKey="sigla"
-                        onSelectedItemsChange={(item)=>EscoEstado(item)}
-                        selectedItems={selectedItems}
-                        selectText="Escolha o Estado"
-                        searchInputPlaceholderText="Pesquise o Estado Aqui..."
-                        onChangeInput={ (text)=> console.log(text)}
-                        altFontFamily="ProximaNova-Light"
-                        tagRemoveIconColor="#CCC"
-                        tagBorderColor="#CCC"
-                        tagTextColor="#CCC"
-                        selectedItemTextColor="#CCC"
-                        selectedItemIconColor="#CCC"
-                        itemTextColor="#000"
-                        displayKey="nome"
-                        searchInputStyle={{ color: '#CCC' }}
-                        submitButtonColor="#CCC"
-                        submitButtonText="Fechar Lista"
-                        hideDropdown={false}
-                        hideSubmitButton={false}
-                        single={true}
-                      />
-
-                      {Estado !== ""  &&
-                      <>
-                         <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15 , marginBottom:20 }}>Cidade: {Cidade}</Text> 
-                         <MultiSelect
-                            hideTags
-                            items={VerCidade}
-                            uniqueKey="id"
-                            onSelectedItemsChange={(item)=>EscoCidade(item)}
-                            selectedItems={selectedItems}
-                            selectText="Escolha a Cidade"
-                            searchInputPlaceholderText="Pesquise a Cidade Aqui..."
-                            onChangeInput={ (text)=> console.log(text)}
-                            altFontFamily="ProximaNova-Light"
-                            tagRemoveIconColor="#CCC"
-                            tagBorderColor="#CCC"
-                            tagTextColor="#CCC"
-                            selectedItemTextColor="#CCC"
-                            selectedItemIconColor="#CCC"
-                            itemTextColor="#000"
-                            displayKey="nome"
-                            searchInputStyle={{ color: '#CCC' }}
-                            submitButtonColor="#CCC"
-                            submitButtonText="Fechar Lista"
-                            hideDropdown={false}
-                            hideSubmitButton={false}
-                            single={true}
-                          />
-                      </>
-                      }
-                     {Pessoal === false ?
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Cartão Pessoal Desativado</Text> 
-                       <TouchableHighlight style={{width:60, height:35, backgroundColor:"red", borderRadius:20, margin:10, borderColor:"#ccc", borderWidth:3,   }} onPress={()=>AtivandoPessoal()}>
-                       <>
-                       <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginRight:1}}>
-  
-                       </View>
-                       </>
-                      </TouchableHighlight>
-                      </>
-                    
-
-                      :
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Cartão Pessoal Ativado</Text> 
-                      <TouchableHighlight style={{width:60, height:35, backgroundColor:"green", borderRadius:20, margin:10, flexDirection:"row",  borderColor:"#ccc", borderWidth:3,  }} onPress={()=>AtivandoPessoal()}>
-                      <>
-                      <View style={{width:20, height:30 , borderRadius:20, marginLeft:1}}>
- 
-                       </View>
-                      <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginLeft:1}}>
- 
-                      </View>
-                      </>
-                     </TouchableHighlight>
-                    
-                  
-                  
-                     </>
-                      }
-                      {Pessoal === true ?
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Cartão Empresarial Desativado</Text> 
-                       <TouchableHighlight style={{width:60, height:35, backgroundColor:"red", borderRadius:20, margin:10, borderColor:"#ccc", borderWidth:3,   }} onPress={()=>AtivandoPessoal()}>
-                       <>
-                       <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginRight:1}}>
-  
-                       </View>
-                       </>
-                      </TouchableHighlight>
-                      </>
-                    
-
-                      :
-                      <>
-                      <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15  }}>Cartão Empresarial Ativado</Text> 
-                      <TouchableHighlight style={{width:60, height:35, backgroundColor:"green", borderRadius:20, margin:10, flexDirection:"row",  borderColor:"#ccc", borderWidth:3,  }} onPress={()=>AtivandoPessoal()}>
-                      <>
-                      <View style={{width:20, height:30 , borderRadius:20, marginLeft:1}}>
- 
-                       </View>
-                      <View style={{width:30, height:30 , borderRadius:20, backgroundColor:"#ccc", marginLeft:1}}>
- 
-                      </View>
-                      </>
-                     </TouchableHighlight>
-                  
-                  
-                  
-                     </>
-                      }
-                       {Pessoal === false ?
-                      <>
-                         <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15 , marginBottom:20 }}>Empresa Tipo Principal: {EscEmp1}</Text> 
-                    <MultiSelect
-                        hideTags
-                        items={Empre}
-                        uniqueKey="id"
-                        onSelectedItemsChange={(item)=>SeleciEmp1(item)}
-                        selectedItems={selectedItems}
-                        selectText="Escolha o Tipo Principal de Empresa"
-                        searchInputPlaceholderText="Pesquise o Tipo Principal da Empresa Aqui..."
-                        onChangeInput={ (text)=> console.log(text)}
-                        altFontFamily="ProximaNova-Light"
-                        tagRemoveIconColor="#CCC"
-                        tagBorderColor="#CCC"
-                        tagTextColor="#CCC"
-                        selectedItemTextColor="#CCC"
-                        selectedItemIconColor="#CCC"
-                        itemTextColor="#000"
-                        displayKey="Emp"
-                        searchInputStyle={{ color: '#CCC' }}
-                        submitButtonColor="#CCC"
-                        submitButtonText="Fechar Lista"
-                        single={true}
-                      />
-                        <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15 , marginBottom:20 }}>Empresa Tipo Secundário: {EscEmp2}</Text> 
-                    <MultiSelect
-                        hideTags
-                        items={Empre}
-                        uniqueKey="id"
-                        onSelectedItemsChange={(item)=>SeleciEmp2(item)}
-                        selectedItems={selectedItems}
-                        selectText="Escolha o Tipo Secundário de Empresa"
-                        searchInputPlaceholderText="Pesquise o Tipo Secundário da Empresa Aqui..."
-                        onChangeInput={ (text)=> console.log(text)}
-                        altFontFamily="ProximaNova-Light"
-                        tagRemoveIconColor="#CCC"
-                        tagBorderColor="#CCC"
-                        tagTextColor="#CCC"
-                        selectedItemTextColor="#CCC"
-                        selectedItemIconColor="#CCC"
-                        itemTextColor="#000"
-                        displayKey="Emp"
-                        searchInputStyle={{ color: '#CCC' }}
-                        submitButtonColor="#CCC"
-                        submitButtonText="Fechar Lista"
-                        single={true}
-                      />
-                      </>
-                      :
-                      <>
-                       <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15 , marginBottom:20 }}>Sexo: {Sexo}</Text> 
-                     <MultiSelect
-                        hideTags
-                        items={ListSexo}
-                        uniqueKey="id"
-                        onSelectedItemsChange={(item)=>SeleciSexo(item)}
-                        selectedItems={selectedItems}
-                        selectText="Escolha Seu Sexo"
-                        searchInputPlaceholderText="Pesquise o Sexo Aqui..."
-                        onChangeInput={ (text)=> console.log(text)}
-                        altFontFamily="ProximaNova-Light"
-                        tagRemoveIconColor="#CCC"
-                        tagBorderColor="#CCC"
-                        tagTextColor="#CCC"
-                        selectedItemTextColor="#CCC"
-                        selectedItemIconColor="#CCC"
-                        itemTextColor="#000"
-                        displayKey="nome"
-                        searchInputStyle={{ color: '#CCC' }}
-                        submitButtonColor="#CCC"
-                        submitButtonText="Fechar Lista"
-                        hideDropdown={false}
-                        hideSubmitButton={false}
-                        single={true}
-                      />
-                     <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15 , marginBottom:20 }}>Profissão Principal: {profEsco1}</Text> 
-                     <MultiSelect
-                        hideTags
-                        items={ProfList}
-                        uniqueKey="id"
-                        onSelectedItemsChange={(item)=>SeleciProf1(item)}
-                        onAddItem={(car)=>EntrandoItem(car)}
-                        selectedItems={selectedItems}
-                        selectText="Escolha Sua Profissão Principal"
-                        searchInputPlaceholderText="Pesquise a Profissão Principal Aqui..."
-                        onChangeInput={ (text)=> console.log(text)}
-                        altFontFamily="ProximaNova-Light"
-                        tagRemoveIconColor="#CCC"
-                        tagBorderColor="#CCC"
-                        tagTextColor="#CCC"
-                        selectedItemTextColor="#CCC"
-                        selectedItemIconColor="#CCC"
-                        itemTextColor="#000"
-                        displayKey="profissao"
-                        searchInputStyle={{ color: '#CCC' }}
-                        submitButtonColor="#CCC"
-                        submitButtonText="Fechar Lista"
-                        hideDropdown={false}
-                        hideSubmitButton={false}
-                        single={true}
-                      />
-
-            <Text  style={{ marginLeft:10, fontSize:17, color:"#000", marginTop:15 , marginBottom:20 }}>Profissão Secundária: {profEsco2}</Text> 
-                     <MultiSelect
-                        hideTags
-                        items={ProfList}
-                        uniqueKey="id"
-                        onSelectedItemsChange={(item)=>SeleciProf2(item)}
-                        onAddItem={(car)=>EntrandoItem(car)}
-                        selectedItems={selectedItems}
-                        selectText="Escolha Sua Profissão Secundária"
-                        searchInputPlaceholderText="Pesquise a Profissão Secundária Aqui..."
-                        onChangeInput={ (text)=> console.log(text)}
-                        altFontFamily="ProximaNova-Light"
-                        tagRemoveIconColor="#CCC"
-                        tagBorderColor="#CCC"
-                        tagTextColor="#CCC"
-                        selectedItemTextColor="#CCC"
-                        selectedItemIconColor="#CCC"
-                        itemTextColor="#000"
-                        displayKey="profissao"
-                        searchInputStyle={{ color: '#CCC' }}
-                        submitButtonColor="#CCC"
-                        submitButtonText="Fechar Lista"
-                        hideDropdown={false}
-                        hideSubmitButton={false}
-                        single={true}
-                      />
-                      </>
-                      }
-                  
-                     
-                      </ScrollView>
-                      </View>
-                          
-                        </>
-                        }
-
-                       
-                      </>
-                  }
-            
-               
-                     
-                          
-                         
-              </>
-             
-              }
-              
-              </>
-
-              }
-
-              
-            
-             </View>
-          </Modal>
-
-          {/* <Modal
-              transparent={true}
-            animationType="slide"
-            visible={ModalVer}
-            > */}
-            {Carreg === true ?
-
-            <>
-              <Image source={require('../assets/logomarca.png')}  style={styles.ImageVer2 } />
-             <Image source={require('../assets/carreg.gif')}  style={styles.ImageVer3 } />
-            </>
-
-            :
-            <>
-             {Uso === false?
-             <ScrollView  >
-             <View 
-               style={styles.imageBack} >
-                
-                 <Image source={require('../assets/logomarca.png')}  style={styles.ImageVer2 } />
-                 {IrEnt === false ?
-                 <>
-                 {CartBloq === true ?
-                 <>
-                  <View  style={styles.AreaLogin}>
-          {Loading === false ? 
-         <>
-    
-      
-      <Text style={styles.TexTitu} >Digite o Código do Certificado</Text>
-                
-                   <View  style = {styles.InputAra}>
-                   <FontAwesome name="expeditedssl" size={40} color="black" />
-            <SignInput
-                    
-                        placeholder="Digite o Código" 
-                        value={CodiEmp}
-                        onChangeText={t=>setCodiEmp(t)}
-                        autoCapitalize="none"
-                        keyboardType={"numeric"}
-                    />
-                    </View>
-                    {TelMsg3=== true &&
-                  <Text style={styles.TexMsg} >Esse Código Está Errado!</Text>
-                  }
-                    <TouchableHighlight  style={styles.Btn} onPress={LiberarAcesso} >
-                            <Text style={styles.BtnText}>Liberar</Text>
-                 </TouchableHighlight>
-              
-                {/* <CustomButton1 onPress={IrcadasSim} >
-                        <CustomButtonText1> Cadastro Simples CLIQUE AQUI!</CustomButtonText1>
-                </CustomButton1> */}
-    </>
-          
-            :
-            <>
-                <Image source={require('../assets/carreg.gif')}  style={styles.ImageVer3 } />
-     
-               </>
-                }
-              </View>
+                 <Image source={require('../assets/loading-87.gif')}  style={{marginTop:300, width:200, height:100}} />
                  </>
 
                  :
                  <>
-                   <View  style={styles.AreaLogin}>
-                  
-                                  <Text style={styles.TexTitu} >CADASTRANDO CARTÃO</Text>
-                                  <ReCAPTCHA
-                                ref={captcha}
-                                    sitekey="6LdDVDIiAAAAAM8Z3lsWD6qE2o2w94YfwDM7mRf7"
-                                    size="normal"
-                                    hl="pt"
-                                    theme="dark"
-                                    onChange={onChange}
-                                  />
-          <Text style={styles.TexTitu} >Digite Seu WhatsApp</Text>
-                  <View  style = {styles.InputAra}>
-                  <FontAwesome name="phone-square" size={40} color="black" />
-                  <Telefone
-                  
-                  placeholder="Digite seu Whatsapp" 
-                  value={Tel}
-                  onChangeText={t=>setTel(t)}
-                  autoCapitalize="none"
-                  keyboardType={"phone-pad"}
-                  TelWhats={TelWhats}
-                  /> 
-
-
-                  </View>
-                  
-                
-
-
-
-                      
-                  {Loading === false ?   
-                  <>      
-                  {Btn === true ?
-                  <>
-                  <View  style = {styles.InputAra}>
-                  <FontAwesome name="user" size={40} color="black" />
-                  <SignInput
-                    placeholder="Digite Nome Completo" 
-                    value={Nome}
-                    onChangeText={t=>setNome(t)}
-                    autoCapitalize="none"
-                    keyboardType={"default"}
-                    posi={1000}
-                  /> 
-
-                  </View>
-                  {TelMsg4=== true &&
-                  <Text style={styles.TexMsg} >Preencha o Campo Nome!</Text>
-                  }
-                  <TouchableHighlight  style={styles.Btn} onPress={handleMessageButtonClick} >
-                        <Text style={styles.BtnText}>Criar Código</Text>
-                  </TouchableHighlight>
-                    
-                  </>
-                  :
-                  <>
-                  {TelMsg=== false &&
-                  <Text style={styles.TexMsg} >Este Telefone Não é um Whatsapp!</Text>
-                  }
-                  {TelMsg2=== true &&
-                  <Text style={styles.TexMsg} >Clique no Não Sou Robô!</Text>
-                  }
-                  </>
-                  }
-       
-                  </>  
-                  :
-                  <>
-                  <Image source={require('../assets/carreg.gif')}  style={styles.ImageVer3 } />
-
-                  </>
-                    }
-
-                  </View>
-                 </>
-
-                 }
-                
-
-                 </>
-                 :
-                 <>
-          <View  style={styles.AreaLogin}>
-          {Loading === false ? 
-         <>
-      
-      <Text style={styles.TexTitu} >Digite O Código que Recebeu no Seu WhatsApp</Text>
-                
-                   <View  style = {styles.InputAra}>
-                   <FontAwesome name="expeditedssl" size={40} color="black" />
-            <SignInput
-                    
-                        placeholder="Digite o Código" 
-                        value={code}
-                        onChangeText={t=>setCode(t)}
-                        autoCapitalize="none"
-                        keyboardType={"numeric"}
-                    />
-                    </View>
-                    {TelMsg5=== true &&
-                  <Text style={styles.TexMsg} >Código errado, {Tentativa}° tentativa de 3.</Text>
-                  }
-                    <TouchableHighlight  style={styles.Btn} onPress={CadastrandoAgora} >
-                            <Text style={styles.BtnText}>Cadastrar</Text>
-                 </TouchableHighlight>
-                
-                {/* <CustomButton1 onPress={IrcadasSim} >
-                        <CustomButtonText1> Cadastro Simples CLIQUE AQUI!</CustomButtonText1>
-                </CustomButton1> */}
-    </>
-          
-            :
-            <>
-                <Image source={require('../assets/carreg.gif')}  style={styles.ImageVer3 } />
-     
-               </>
-                }
-              </View>
-                 </>
-
-                 }
-                  <Text style={styles.TexTitu} >ID:  {IdCart}</Text>
-                 <Text style={styles.TexTitu2} >TRANSFORME SEU CWO EM UM APP</Text>
-                
-                  <TouchableHighlight style={{width:200, marginTop:20}}>
-        <Image source={require('../assets/android.svg')}  style={styles.ImageVer63 } />
-        </TouchableHighlight>
-        <TouchableHighlight style={{width:200, marginTop:20}}>
-        <Image source={require('../assets/ios.svg')}  style={styles.ImageVer63 } />
-        </TouchableHighlight>
-        
-                  </View> 
-
-                  </ScrollView> 
-
-            :
-            <>
-            {SalVer === false ?
-            <>
- <ImageBackground source={{uri:FundoImg}} 
-            resizeMode='cover' 
-            style={styles.imageBack} >
-                
+              
                 <View style={styles.CaixaTitulo} >
                   {StatusCart !== "Link" ?
                   <TouchableHighlight  onPress={()=>Voltar()} style={styles.CaixaDados}>
                   <>
-                <FontAwesome name="arrow-circle-left" size={30} color="#fff" />
+                <FontAwesome name="arrow-circle-left" size={30} color="#000" />
               
                 </>
                 </TouchableHighlight>
@@ -3404,38 +1601,7 @@ console.log(Robo)
                 </>
                 </TouchableHighlight>
                   }
-                 {IdUser === InfCart.IdDono ?
-          <>
-          <TouchableHighlight  style={styles.BtnEdi} onPress={AbrirCriar} >
-                        <Text style={styles.BtnText}>Editar</Text>
-            </TouchableHighlight>
-            <TouchableHighlight  style={styles.BtnEdi} onPress={AbrirEstilizar} >
-                        <Text style={styles.BtnText}>Estilizar</Text>
-            </TouchableHighlight>
-            <TouchableHighlight  style={styles.BtnEdi} onPress={AbrirLiberar} >
-                        <Text style={styles.BtnText}>Especificar</Text>
-            </TouchableHighlight>
-          
-          </>
-          :
-          <>
-          {Creden === false ?
-        <TouchableHighlight  style={styles.BtnEdi2} onPress={CredenciandoCartao} >
-                        <Text style={styles.BtnText}>Credenciar</Text>
-          </TouchableHighlight> 
-          :
-          <TouchableHighlight  style={styles.BtnEdi3} onPress={DesCredenciandoCartao} >
-          <Text style={styles.BtnText}>Descredenciar</Text>
-        </TouchableHighlight>
-
-          }
-           
-          
-          
-          
-          </>
-
-          }
+              
               
                 {/* <Image source={require('../assets/logoTop.png')}  style={styles.ImageVer2 } /> */}
   
@@ -3444,482 +1610,118 @@ console.log(Robo)
                
                </Text>
                 </TouchableHighlight>
-                <TouchableHighlight  onPress={()=>AtivandoMenu()}  style={styles.CaixaDados}>
+                {/* <TouchableHighlight  onPress={()=>AtivandoMenu()}  style={styles.CaixaDados}>
                 <FontAwesome name="tasks" size={24} color="#fff" />
-                </TouchableHighlight>
+                </TouchableHighlight> */}
               </View >
-              {Menu &&
-                <View style={styles.VerBole} >
-       
-       <TouchableHighlight onPress={()=>EntrandoConta()} style={styles.ModVieBtnBtn2}>
-                  <Text style={styles.ModVieTexSim2}>Ir Para Minha Conta CWO</Text>
-                 </TouchableHighlight> 
-        
-                <Text style={{color:"#000", fontSize:17, marginTop:20}}>Qr Code desse Cartão</Text>
-                <Image source={{uri:QrCode}}  style={{width:150, height:150,  }} />
-                 </View>   
+              
+              <ScrollView  >
+              <View  style={styles.Post}>
+              <View  style={{padding:10,  flexDirection:"column",  alignItems:"center", justifyContent:"center",  width:wp('100%'), borderBottomWidth:1, marginBottom:5, borderColor:"#000",}}>
+              <View  style={styles.CaixaNome}>
+              <Text style={{marginLeft:30, marginBottom:5 , color:"#fff", fontSize:15, }}>{moment(Noti.dataCriacao).format("DD/MM/YYYY")}</Text>
+              <Text style={{color:"#fff", marginBottom:10, fontSize:25, fontWeight:"bold"}}>{Noti.Titulo}</Text>
+              </View>
+              {Noti.Video &&
+              <View  style={styles.CaixaNomeVideo}>
+              <Video
+             
+             style={{width:280, height:500, marginBottom:20, borderRadius:10,  borderWidth:2, borderColor:"#FFE767", }}
+             source={{
+               uri:Noti.LinkVideo,
+             }}
+             useNativeControls
+             resizeMode={ResizeMode.CONTAIN}
+             isLooping
+             onPlaybackStatusUpdate={status => setStatus(() => status)}
+           /> 
+              
+              </View>
+              }
+              <View  style={styles.CaixaNome}>
+                {Noti.Url1 &&
+                <Image source={{uri:Noti.Url1}} style={{width:300, height:300, borderRadius:10,  borderWidth:2, borderColor:"#FFE767", }} />
+                
+                }
+              
+              </View>
+              <View  style={styles.CaixaNome}>
+           
+              <Text style={{color:"#fff", marginBottom:10, fontSize:15, marginTop:10}}>{Noti.Not1}</Text>
+              </View>
+              <View  style={styles.CaixaNome}>
+                 {Noti.Url2 &&
+              <Image source={{uri:Noti.Url2}} style={{width:300, height:300, borderRadius:10,  borderWidth:2, borderColor:"#FFE767", }} />
+             
+                }
+              </View>
+              <View  style={styles.CaixaNome}>
+           
+              <Text style={{color:"#fff", marginBottom:10, fontSize:15, marginTop:10 }}>{Noti.Not2}</Text>
+              </View>
+              
+              {FotAnuncio &&
+                <>
+              <TouchableHighlight  onPress={()=>CliqueAnun()}  style={styles.CaixaNome}>
+                <>
+                  <Text style={{marginLeft:30, marginBottom:5 , color:"#fff", fontSize:15, }}>Anúncio</Text>
+              <Image source={{uri:FotAnuncio}} style={{width:300, height:300, borderRadius:10,  borderWidth:2, borderColor:"#FFE767", }} />
+               
+            </>
+              </TouchableHighlight>
+              </>
 
               }
-            
+              <View  style={styles.CaixaNome}>
            
+              <Text style={{color:"#fff", marginBottom:10, fontSize:15, marginTop:10 }}>{Noti.Not3}</Text>
+              </View>
+              <View  style={styles.CaixaNome}>
+              {Noti.Url3 &&
+                <Image source={{uri:Noti.Url3}} style={{width:300, height:300, borderRadius:10,  borderWidth:2, borderColor:"#FFE767", }} />
+                }
+              
+              </View>
+              <View  style={styles.CaixaNome}>
+           
+              <Text style={{color:"#fff", marginBottom:10, fontSize:15, marginTop:10 }}>{Noti.Not4}</Text>
+              </View>
+              <View  style={styles.CaixaNome}>
+              {Noti.Url4 &&
+              <Image source={{uri:Noti.Url4}} style={{width:300, height:300, borderRadius:10,  borderWidth:2, borderColor:"#FFE767", }} />
+                }
+              </View>
+              <View  style={styles.CaixaNome}>
+           
+              <Text style={{color:"#fff", marginBottom:10, fontSize:15, marginTop:10}}>{Noti.Not5}</Text>
+              </View>
+                </View>
+                </View>
+                </ScrollView>
+                </>
+
+}
               
                       
   
-            {/* <View  style={styles.AreaBtn}>
-            
-                
-            <TouchableHighlight onPress={()=>setRelogio(true)}  style={styles.InputHora}>
-              <>
-            <FontAwesome name="clock-o" size={20} color="black" />
-            <Text  style={styles.modalText6}> {hr} </Text>
-            </>     
-                  
-            </TouchableHighlight>
-                         <View  style={styles.AreaBtn4}>
-                         <FontAwesome name="calendar" size={20} color="black" />
-              </View>
-              <TouchableHighlight onPress={()=>setModalCalend(true)}  style={styles.AreaBtn3}>
-              <View style={styles.modalView3}><Text  style={styles.modalText6}> {dataNasc} </Text></View>
-           
-                   
-                    </TouchableHighlight>
-            
-            </View> */}
-  
-  
-            {/* <View  style={styles.AreaBtnLiga}>
           
-    
-              <TouchableHighlight onPress={()=>AbrirCriar()} style={{backgroundColor:"#00A859", display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column", height:50, borderRadius:5, marginRight:10, paddingLeft:5, paddingRight:5,}} >
-              <>
-            <Text  style={{fontSize:25, color:"#fff", margin:10}}>Criar Jogo Para Cliente</Text>
-            </>     
-                  
-            </TouchableHighlight>
-                
-            
-         
-          </View> */}
          
          
 
 
-        {CartAtivod === true &&
-          <ScrollView>
-            {Carre === false ?
-           
-         <View style={{width:wp('100%') , height:hp('100%') , flex:1, flexDirection: "column", justifyContent:"center", marginTop:20, alignItems:"center"}}>
-         {AtiImg === true &&
-          <Image source={{uri:ImgCart}}  style={{width:150, height:150, borderRadius:75,  borderWidth:2, borderColor:"#fff", }} />
-         }
         
-         <Text style={{fontFamily:"Arial", fontSize:35, color:"#fff", fontWeight:"bold" }} >
-              {NomeCart} 
-          </Text>
-          {AtiFun === true &&
-          <Text style={{fontFamily:"Arial", fontSize:25, color:"#fff", }} >
-          {FunCart} 
-          </Text>
-          }
-          <Text style={{fontFamily:"Arial", fontSize:15, color:"#fff", marginTop:10 }} >
-          {InfCart.SalvouNum?InfCart.SalvouNum.length :0} Salvo 
-          </Text>
-         <Text style={{fontFamily:"Arial", fontSize:15, color:"#fff", }} >
-          {InfCart.ListCredenciais?InfCart.ListCredenciais.length :0} Credências 
-          </Text>
-          {InfCart.ListCredenciais &&
-          <>
-          {InfCart.ListCredenciais.length >= 10 &&  InfCart.ListCredenciais.length < 100 &&
-          <Image source={require('../assets/bronze.png')}  style={{width:20, height:30}} />
-          }
-           {InfCart.ListCredenciais.length >= 0 &&  InfCart.ListCredenciais.length < 10 &&
-          <Image source={require('../assets/Zerado.png')}  style={{width:20, height:30}} />
-          }
-          {InfCart.ListCredenciais.length >= 100 &&  InfCart.ListCredenciais.length < 1000 &&
-          <Image source={require('../assets/prata.png')}  style={{width:20, height:30}} />
-          }
-          {InfCart.ListCredenciais.length >= 1000 &&  
-          <Image source={require('../assets/ouro.png')}  style={{width:20, height:30}} />
-          }
           
-          </>
-
-          }
-       
-         
-
-          <View style={{width: 420, height:70, flex:1, flexDirection: "row", justifyContent:"space-between", marginTop:20, alignItems:"center"}}>
-          {AtiTel === true &&
-          <TouchableHighlight  onPress={VendoLiga} style={{padding:10, width:50, height:70, backgroundColor:"#FFFFFF", borderBottomRightRadius:10, borderTopRightRadius:10, flex:1, flexDirection: "row", justifyContent:"flex-end",  alignItems:"center"}}>
-          <>
-         
-           <Text style={{fontFamily:"Arial", fontSize:15, color:"#0D3C71", width: 70, marginRight:10, textAlign:"right", fontWeight:"bold" }} >
-               LIGAR PRA MIM 
-           </Text>
-           <Image source={require('../assets/TelCar.png')}  style={{width:50, height:50}} />
-           </>
-           </TouchableHighlight>
-
-          }
-          
-          <TouchableHighlight style={{padding:10, width:60, height:70, }}>
-         <>
-        
-          </>
-          </TouchableHighlight>
-        {AtiWhat === true &&
-         <TouchableHighlight onPress={VendoWhat} style={{padding:10, width:50, height:70, backgroundColor:"#60D76A" , borderBottomLeftRadius:10,  borderTopLeftRadius:10, flex:1, flexDirection: "row", justifyContent:"flex-start",  alignItems:"center"}}>
-         <>
-         <Image source={require('../assets/WhatCar.png')}  style={{width:50, height:50}} />
-         <Text style={{fontFamily:"Arial", fontSize:15, color:"#FFF", width: 130, marginLeft:10, textAlign:"left", fontWeight:"bold" }} >
-            CHAMAR NO WHATSAPP
-         </Text>
-       
-         </>
-         </TouchableHighlight>
-
-        }
-         
-          </View>
-          <Text style={{fontFamily:"Arial", fontSize:15, color:"#fff", marginTop:20, fontWeight:"bold"   }} >
-             CLIQUE NOS ÍCONES PARA INTERAGIR 
-          </Text>
-          <View style={{width:420,  flexDirection:"row", justifyContent:"center", alignContent:"center", flexWrap:"wrap", }}>
-          {AtiInst === true &&
-           <TouchableHighlight  onPress={VendoInst} style={{width:100, margin:5, height:100,  justifyContent:"center", alignItems:"center"}}>
-           <>
-           <Image source={require('../assets/InstCar.png')}  style={{width:50, height:50}} />
-           <Text style={{fontFamily:"Arial", marginTop:5, fontSize:10, color:"#fff",  fontWeight:"bold" }}>
-            ME SIGA NO 
-           </Text>
-           <Text  style={{fontFamily:"Arial", fontSize:15, color:"#fff",  fontWeight:"bold" }}>
-            INSTAGRAM 
-           </Text>
-           </>
-           </TouchableHighlight>
-
-          }
-          {AtiFace === true &&
-            <TouchableHighlight onPress={VendoFace} style={{width:100, margin:5, height:100,  justifyContent:"center", alignItems:"center"}}>
-           <>
-           <Image source={require('../assets/FaceCart.png')}  style={{width:50, height:50}} />
-           <Text style={{fontFamily:"Arial", marginTop:5, fontSize:10, color:"#fff",  fontWeight:"bold" }}>
-            ME SIGA NO 
-           </Text>
-           <Text  style={{fontFamily:"Arial", fontSize:15, color:"#fff",  fontWeight:"bold" }}>
-            FACEBOOK 
-           </Text>
-           </>
-           </TouchableHighlight>
-          }
-           
-           {AtiSite === true &&
-            <TouchableHighlight onPress={VendoSite} style={{width:100, margin:5, height:100,  justifyContent:"center", alignItems:"center"}}>
-            <>
-            <Image source={require('../assets/WebCar.png')}  style={{width:50, height:50}} />
-            <Text style={{fontFamily:"Arial", marginTop:5, fontSize:10, color:"#fff",  fontWeight:"bold" }}>
-             ACESSE MEU 
-            </Text>
-            <Text  style={{fontFamily:"Arial", fontSize:15, color:"#fff",  fontWeight:"bold" }}>
-             SITE 
-            </Text>
-            </>
-            </TouchableHighlight>
-
-           }
-          {AtiTw === true &&
-          <TouchableHighlight onPress={VendoTw} style={{width:100, margin:5, height:100,  justifyContent:"center", alignItems:"center"}}>
-          <>
-          <Image source={require('../assets/TwCar.png')}  style={{width:50, height:50}} />
-          <Text style={{fontFamily:"Arial", marginTop:5, fontSize:10, color:"#fff",  fontWeight:"bold" }}>
-           ME SIGA NO 
-          </Text>
-          <Text  style={{fontFamily:"Arial", fontSize:15, color:"#fff",  fontWeight:"bold" }}>
-           TWITTER 
-          </Text>
-          </>
-          </TouchableHighlight>
-
-          }
-           {AtiTik === true &&
-             <TouchableHighlight onPress={VendoTik} style={{width:100, margin:5, height:100,  justifyContent:"center", alignItems:"center"}}>
-             <>
-             <Image source={require('../assets/TikCar.png')}  style={{width:50, height:50}} />
-             <Text style={{fontFamily:"Arial", marginTop:5, fontSize:10, color:"#fff",  fontWeight:"bold" }}>
-              ME SIGA NO 
-             </Text>
-             <Text  style={{fontFamily:"Arial", fontSize:15, color:"#fff",  fontWeight:"bold" }}>
-              TIKTOK 
-             </Text>
-             </>
-             </TouchableHighlight>
-           }
-            {AtiYou === true &&
-              <TouchableHighlight onPress={VendoYou}    style={{width:100, margin:5, height:100,  justifyContent:"center", alignItems:"center"}}>
-              <>
-              <Image source={require('../assets/youtubeCard.png')}  style={{width:50, height:50}} />
-              <Text style={{fontFamily:"Arial", marginTop:5, fontSize:10, color:"#fff",  fontWeight:"bold" }}>
-              ME SIGA NO
-              </Text>
-              <Text  style={{fontFamily:"Arial", fontSize:15, color:"#fff",  fontWeight:"bold" }}>
-              YOUTUBE
-              </Text>
-              </>
-              </TouchableHighlight>
-
-           }
-            {AtiTele === true &&
-              <TouchableHighlight onPress={VendoTele} style={{width:100, margin:5, height:100,  justifyContent:"center", alignItems:"center"}}>
-              <>
-              <Image source={require('../assets/teleCard.png')}  style={{width:50, height:50}} />
-              <Text style={{fontFamily:"Arial", marginTop:5, fontSize:10, color:"#fff",  fontWeight:"bold" }}>
-              ACESSE MEU
-              </Text>
-              <Text  style={{fontFamily:"Arial", fontSize:15, color:"#fff",  fontWeight:"bold" }}>
-              TELEGRAM
-              </Text>
-              </>
-              </TouchableHighlight>
-
-           }
-           {AtiEmail === true &&
-              <TouchableHighlight onPress={VendoEmail} style={{width:100, margin:5, height:100,  justifyContent:"center", alignItems:"center"}}>
-              <>
-              <Image source={require('../assets/emailCar.png')}  style={{width:50, height:50}} />
-              <Text style={{fontFamily:"Arial", marginTop:5, fontSize:10, color:"#fff",  fontWeight:"bold" }}>
-              ACESSE MEU
-              </Text>
-              <Text  style={{fontFamily:"Arial", fontSize:15, color:"#fff",  fontWeight:"bold" }}>
-              E-MAIL
-              </Text>
-              </>
-              </TouchableHighlight>
-
-           }
-           {AtiLoc === true &&
-              <TouchableHighlight onPress={VendoLoc}  style={{width:100, margin:5, height:100,  justifyContent:"center", alignItems:"center"}}>
-              <>
-              <Image source={require('../assets/GpsCar.png')}  style={{width:50, height:50}} />
-              <Text style={{fontFamily:"Arial", marginTop:5, fontSize:10, color:"#fff",  fontWeight:"bold" }}>
-               SAIBA A ONDE
-              </Text>
-              <Text  style={{fontFamily:"Arial", fontSize:15, color:"#fff",  fontWeight:"bold" }}>
-               ESTOU 
-              </Text>
-              </>
-              </TouchableHighlight>
-
-           }
-           
-         
-        {AtiPix === true &&
-         <TouchableHighlight onPress={AbrirEnviar} style={{width:100, margin:5, height:100,  justifyContent:"center", alignItems:"center"}}>
-           <>
-           <Image source={require('../assets/PixCar.png')}  style={{width:50, height:50}} />
-           <Text style={{fontFamily:"Arial", marginTop:5, fontSize:10, color:"#fff",  fontWeight:"bold" }}>
-            ACESSE MEU
-           </Text>
-           <Text  style={{fontFamily:"Arial", fontSize:15, color:"#fff",  fontWeight:"bold" }}>
-            PIX 
-           </Text>
-           </>
-           </TouchableHighlight>
-
-        }
-          {AtiSal === true &&
-          <TouchableHighlight onPress={SalvandoNumero} style={{width:100, margin:5, height:100,  justifyContent:"center", alignItems:"center"}}>
-          <>
-          <Image source={require('../assets/SalCar.png')}  style={{width:50, height:50}} />
-          <Text style={{fontFamily:"Arial", marginTop:5, fontSize:10, color:"#fff",  fontWeight:"bold" }}>
-           SALVAR
-          </Text>
-          <Text  style={{fontFamily:"Arial", fontSize:15, color:"#fff",  fontWeight:"bold" }}>
-           CONTATO
-          </Text>
-          </>
-          </TouchableHighlight>
-
-          }
-           {AtiCom === true &&
-           <TouchableHighlight onPress={compartir} style={{width:100, margin:5, height:100,  justifyContent:"center", alignItems:"center"}}>
-           <>
-           <Image source={require('../assets/CompCar.png')}  style={{width:50, height:50}} />
-           <Text style={{fontFamily:"Arial", marginTop:5, fontSize:10, color:"#fff",  fontWeight:"bold" }}>
-            COMPARTILHAR
-           </Text>
-           <Text  style={{fontFamily:"Arial", fontSize:15, color:"#fff",  fontWeight:"bold" }}>
-            CONTATO
-           </Text>
-           </>
-           </TouchableHighlight>
-
-           }
-           
-         
-         
-          </View>
-          </View>
-          
-                :
-               
-                <Image source={require('../assets/carreg.gif')}  style={styles.ImageVer3 } />
-               
-                }
-                </ScrollView>
-              }
+              
             
        
             
   
           </ImageBackground>
-            </>
-            :
-            <>
-          
-   <Image source={require('../assets/logomarca.png')}  style={styles.ImageVer2 } />
-   <View  style={styles.AreaLogin}>
-                  
-              
-  
-
-
-
-
-      
-  
-      {IrEnt === false?
-            <>
-                <Text style={styles.TexTitu} >ENTRAR NA SUA CONTA CWO</Text>
-                  <ReCAPTCHA
-                ref={captcha}
-                    sitekey="6LdDVDIiAAAAAM8Z3lsWD6qE2o2w94YfwDM7mRf7"
-                    size="normal"
-                    hl="pt"
-                    theme="dark"
-                    onChange={onChange}
-                  />
-          <Text style={styles.TexTitu} >Digite Seu WhatsApp</Text>
-            <View  style = {styles.InputAra}>
-            <FontAwesome name="phone-square" size={40} color="black" />
-            <Telefone
-            
-            placeholder="Digite seu Whatsapp" 
-            value={Tel}
-            onChangeText={t=>setTel(t)}
-            autoCapitalize="none"
-            keyboardType={"phone-pad"}
-            TelWhats={TelWhats}
-            /> 
-
-
-            </View>
-            {Loading === false ?   
-  <>      
-  {Btn === true ?
-  <>
-  
-  <View  style = {styles.InputAra}>
-  <FontAwesome name="user" size={40} color="black" />
-  <SignInput
-    placeholder="Digite Nome Completo" 
-    value={Nome}
-    onChangeText={t=>setNome(t)}
-    autoCapitalize="none"
-    keyboardType={"default"}
-    posi={1000}
-  /> 
-
-  </View>
-  {TelMsg4=== true &&
-  <Text style={styles.TexMsg} >Preencha o Campo Nome!</Text>
-  }
-  <TouchableHighlight  style={styles.Btn} onPress={handleMessageButtonClick} >
-        <Text style={styles.BtnText}>Criar Código</Text>
-  </TouchableHighlight>
-    
-  </>
-  :
-  <>
-  {TelMsg=== false &&
-  <Text style={styles.TexMsg} >Este Telefone Não é um Whatsapp!</Text>
-  }
-  {TelMsg2=== true &&
-  <Text style={styles.TexMsg} >Clique no Não Sou Robô!</Text>
-  }
-  </>
-  }
-
-  </>  
-  :
-  <>
-  <Image source={require('../assets/carreg.gif')}  style={styles.ImageVer3 } />
-
-  </>
-    }
-            </>
-                 :
-                 <>
-          <View  style={styles.AreaLogin}>
-          {Loading === false ? 
-         <>
-      
-      <Text style={styles.TexTitu} >Digite O Código que Recebeu no Seu WhatsApp</Text>
-                
-                   <View  style = {styles.InputAra}>
-                   <FontAwesome name="expeditedssl" size={40} color="black" />
-            <SignInput
-                    
-                        placeholder="Digite o Código" 
-                        value={code}
-                        onChangeText={t=>setCode(t)}
-                        autoCapitalize="none"
-                        keyboardType={"numeric"}
-                    />
-                    </View>
-                    {TelMsg5=== true &&
-                  <Text style={styles.TexMsg} >Código errado, {Tentativa}° tentativa de 3.</Text>
-                  }
-                    <TouchableHighlight  style={styles.Btn} onPress={EntrandoRel} >
-                            <Text style={styles.BtnText}>Entrar</Text>
-                 </TouchableHighlight>
-                
-                {/* <CustomButton1 onPress={IrcadasSim} >
-                        <CustomButtonText1> Cadastro Simples CLIQUE AQUI!</CustomButtonText1>
-                </CustomButton1> */}
-    </>
-          
-            :
-            <>
-                <Image source={require('../assets/carreg.gif')}  style={styles.ImageVer3 } />
-     
-               </>
-                }
-              </View>
-                 </>
-
-                 }
-
-
-       <Text style={styles.TexTitu2} >TRANSFORME EM APLICATIVO </Text>
-                
-                <TouchableHighlight style={{width:200, marginTop:20}}>
-      <Image source={require('../assets/android.svg')}  style={styles.ImageVer63 } />
-      </TouchableHighlight>
-      <TouchableHighlight style={{width:200, marginTop:20}}>
-      <Image source={require('../assets/ios.svg')}  style={styles.ImageVer63 } />
-      </TouchableHighlight>
-
-  </View>
-            
-            </>
-            }
            
-          </>
-            }
+           
+          
             
-            </>
-
-            }
+          
            
             
                
@@ -4617,20 +2419,30 @@ BtnEdi2: {
       fontWeight:"bold",
 
         },
- 
+        CaixaNomeVideo: {
+          width:300,
+          marginLeft:-30,
+           display:"flex",
+           justifyContent:"center",
+           alignItems:"center",
+           flexDirection:"column",
+           },
 
 
   CaixaNome: {
-     height:40,
+    width:300,
+    marginLeft:-30,
      display:"flex",
      justifyContent:"center",
-     alignItems:"flex-start",
+     alignItems:"center",
      flexDirection:"column",
      },
 
   Post: {
-   backgroundColor:"#FFF",
-   width:"100%",
+    backgroundColor:"#000",
+    width: wp('90%'),
+    borderRadius:10,
+    marginBottom:10,
     },
 
     Header: {
@@ -4669,7 +2481,7 @@ BtnEdi2: {
     
   
         Container:{
-            backgroundColor: "#000",
+            backgroundColor: "#FFE767",
             flex:1,
           justifyContent:"center",
           alignItems:"center",
